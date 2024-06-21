@@ -1,0 +1,31 @@
+Texture tile01 Assets\Tiles\FieldsTile_02.png
+Texture tile02 Assets\Tiles\FieldsTile_03.png
+Texture tile03 Assets\Tiles\FieldsTile_04.png
+Texture tile04 Assets\Tiles\FieldsTile_34.png
+Texture tile05 Assets\Tiles\FieldsTile_35.png
+Texture tile06 Assets\Tiles\FieldsTile_36.png
+Texture tile07 Assets\Tiles\FieldsTile_17.png
+Texture tile08 Assets\Tiles\FieldsTile_21.png
+Texture tower1 Assets\Tower\Idle\1.png
+Texture tower2 Assets\Tower\Idle\2.png
+Texture tower3 Assets\Tower\Idle\3.png
+Texture tower4 Assets\Tower\Idle\4.png
+Texture towerUp1 Assets\Tower\Upgrade\1.png
+Texture towerUp2 Assets\Tower\Upgrade\2.png
+Texture towerUp3 Assets\Tower\Upgrade\3.png
+Font RETROGAMING Assets\Fonts\Retro_Gaming.ttf
+Animation grass01 tile01 1 0 1
+Animation grass02 tile02 1 0 1
+Animation grass03 tile03 1 0 1
+Animation grass04 tile04 1 0 1
+Animation grass05 tile05 1 0 1
+Animation grass06 tile06 1 0 1
+Animation grass07 tile07 1 0 1
+Animation grass08 tile08 1 0 1
+Animation towerIdle1 tower1 6 8 1
+Animation towerIdle2 tower2 6 8 1
+Animation towerIdle3 tower3 6 8 1
+Animation towerIdle4 tower4 6 8 1
+Animation towerUp1 towerUp1 4 12 0
+Animation towerUp2 towerUp2 4 12 0
+Animation towerUp3 towerUp3 4 12 0

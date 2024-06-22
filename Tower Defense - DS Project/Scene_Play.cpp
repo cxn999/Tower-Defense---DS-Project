@@ -6,13 +6,15 @@
 #include "Components.h"
 #include "Action.h"
 #include <fstream>
-
+#include <cstdlib>
 #include <iostream>
+#include <time.h>
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath) 
 	: Scene(gameEngine)
 	, m_levelPath(levelPath) 
 {
+	srand(time(NULL));
 	init(m_levelPath);
 }
 
@@ -56,10 +58,11 @@ void Scene_Play::update() {
 	if (!m_paused) {
 		sCollision();
 		sMovement();
-		//sLifespan();
+		sEnemySpawner();
 		sAnimation();
 	}
 	sRender();
+	m_currentFrame++;
 }
 
 void Scene_Play::spawnBullet(std::shared_ptr<Entity> entity) {
@@ -71,7 +74,7 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CAnimation>(m_game->getAssets().getAnimation("towerIdle1"), false);
 	m_player->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 	auto size = m_player->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-	m_player->addComponent<CBoundingBox>(Vec2(size.getSize().x, size.getSize().y));
+	m_player->addComponent<CBoundingBox>(Vec2(size.getSize().x/2.f, size.getSize().y/2.f - 10));
 	m_player->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f));
 
 	m_player->addComponent<CState>();
@@ -113,23 +116,31 @@ void Scene_Play::loadLevel(const std::string& levelpath) {
 
 void Scene_Play::sRender() {
 	m_game->window().clear(sf::Color(166, 176, 79));
+	m_player->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
-			m_game->window().draw(e->getComponent<CAnimation>().animation.getSprite());
-
-			if (e->hasComponent<CHealth>() && e->tag() == "enemy") {
-				std::cout << e->getComponent<CHealth>().health << std::endl;
-				sf::RectangleShape rect(sf::Vector2f(100.f, 10.f));
-				rect.setFillColor(sf::Color::Red);
-				rect.setOrigin(rect.getSize().x / 2.f, rect.getSize().y / 2.f);
-				auto& e_pos = e->getComponent<CTransform>().pos;
-				auto& e_size = e->getComponent<CBoundingBox>().size;
-				rect.setPosition(e_pos.x, e_pos.y-e_size.y/1.5f);
-				m_game->window().draw(rect);
+			if (e->tag() != "player") {
+				m_game->window().draw(e->getComponent<CAnimation>().animation.getSprite());
+				if (e->hasComponent<CHealth>() && e->tag() == "enemy") {
+					sf::RectangleShape rect(sf::Vector2f(70.f, 8.f));
+					rect.setFillColor(sf::Color(255,0,0,180));
+					rect.setOutlineThickness(3.f);
+					rect.setOutlineColor(sf::Color(33,31,31,120));
+					rect.setOrigin(rect.getSize().x / 2.f, rect.getSize().y / 2.f);
+					auto& e_pos = e->getComponent<CTransform>().pos;
+					auto& e_size = e->getComponent<CBoundingBox>().size;
+					rect.setPosition(e_pos.x, e_pos.y-e_size.y/1.5f);
+					m_game->window().draw(rect);
+				}
+				if (e->getComponent<CState>().state == "attack" && e->getComponent<CAnimation>().animation.hasEnded()) {
+					m_player->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0,200));
+				}
 			}
 		}
 	}
 	
+	m_game->window().draw(m_player->getComponent<CAnimation>().animation.getSprite());
+
 	if (m_drawCollision) {
 		for (auto e : m_entityManager.getEntities()) {
 			if (e->hasComponent<CBoundingBox>()) {
@@ -171,6 +182,8 @@ void Scene_Play::sAnimation() {
 	auto& player_state = m_player->getComponent<CState>().state;
 	auto& animation = m_player->getComponent<CAnimation>().animation;
 	
+	std::cout << m_player->getComponent<CHealth>().health << std::endl;
+
 	if (player_state == "idle1") {
 		if (animation.getName() != "towerIdle1") {
 			animation = m_game->getAssets().getAnimation("towerIdle1");
@@ -215,6 +228,39 @@ void Scene_Play::sAnimation() {
 	animation.getSprite().setScale(2, 2);
 	m_player->getComponent<CAnimation>().animation.getSprite().setPosition(player.pos.x, player.pos.y);
 	m_player->getComponent<CAnimation>().animation.update();
+
+
+	for (auto& e : m_entityManager.getEntities("enemy")) {
+		auto& e_transform = e->getComponent<CTransform>();
+		auto& e_state = e->getComponent<CState>().state;
+		auto& animation = e->getComponent<CAnimation>().animation;
+
+		if (e_state == "attack") {
+			if (animation.getName() == "D_goblinWalk") animation = m_game->getAssets().getAnimation("D_goblinAttack");
+			if (animation.getName() == "S_goblinWalk") animation = m_game->getAssets().getAnimation("S_goblinAttack");
+			if (animation.getName() == "D_wolfWalk") animation = m_game->getAssets().getAnimation("D_wolfAttack");
+			if (animation.getName() == "S_wolfWalk") animation = m_game->getAssets().getAnimation("S_wolfAttack");
+		}
+
+		animation.getSprite().setScale(2, 2);
+
+		if (e_transform.pos.x > e_transform.prevPos.x && animation.getSprite().getScale().x > 0) {
+			animation.getSprite().scale(-1, 1);
+		}
+
+		e->getComponent<CAnimation>().animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
+		e->getComponent<CAnimation>().animation.update();
+	}
+}
+
+void Scene_Play::attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower) {
+	if (enemy->hasComponent<CAttack>()) {
+		tower->getComponent<CHealth>().health -= enemy->getComponent<CAttack>().damage;
+		if (tower->getComponent<CHealth>().health < 0) {
+			tower->destroy();
+			setPaused(true);
+		}
+	}
 }
 
 void Scene_Play::sCollision() {
@@ -222,24 +268,17 @@ void Scene_Play::sCollision() {
 	for (auto& e : m_entityManager.getEntities("enemy")) {
 		auto& tile = e->getComponent<CTransform>();
 
-		Vec2 overlap = GetOverlap(m_player, e);
-		Vec2 prevOverlap = GetPreviousOverlap(m_player, e);
+		Vec2 overlap = GetOverlap(e, m_player);
+		Vec2 prevOverlap = GetPreviousOverlap(e, m_player);
 
 		float dy = tile.pos.y - player.pos.y;
 
-		if (0 < overlap.x && -m_gridSize.y < overlap.x && dy > 0) {
-			if (0 <= overlap.y && prevOverlap.y <= 0) {
-				// stand on tile
-				player.velocity.y = 0;
-				// collision resolution
-				player.pos.y -= overlap.y;
-			}
-		}
 		// check if player hits the tile from the bottom
 		if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) {
 			if (0 <= overlap.y && prevOverlap.y <= 0) {
-				player.pos.y += overlap.y;
-				player.velocity.y = 0;
+				tile.pos.y += overlap.y;
+				tile.velocity.y = 0;
+				e->getComponent<CState>().state = "attack";
 			}
 		}
 		// check player and enemy side collide
@@ -248,11 +287,14 @@ void Scene_Play::sCollision() {
 			if (0 <= overlap.x && prevOverlap.x <= 0) {
 				if (dx > 0) {
 					// tile is right of player
-					player.pos.x -= overlap.x;
+					tile.pos.x += overlap.x;
+					e->getComponent<CState>().state = "attack";
+					attack(e, m_player);
 				}
 				else {
 					// tile is left of player
-					player.pos.x += overlap.x;
+					tile.pos.x -= overlap.x;
+					e->getComponent<CState>().state = "attack";
 				}
 			}
 		}
@@ -260,7 +302,15 @@ void Scene_Play::sCollision() {
 }
 
 void Scene_Play::sMovement() {
-
+	for (auto& e : m_entityManager.getEntities("enemy")) {
+		auto & e_transform = e->getComponent<CTransform>();
+		e_transform.prevPos = e_transform.pos;
+		e_transform.pos += e_transform.velocity;
+		e->getComponent<CAnimation>().animation.getSprite().setPosition(e_transform.pos.x,e_transform.pos.y);
+		if (e->getComponent<CState>().state == "attack" && e->getComponent<CAnimation>().animation.hasEnded()) {
+			attack(e, m_player);
+		}
+	}
 }
 
 void Scene_Play::onEnd() {
@@ -269,4 +319,85 @@ void Scene_Play::onEnd() {
 
 Vec2 Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity) {
 	return Vec2(0, 0);
+}
+
+void Scene_Play::sEnemySpawner() {
+	if (m_currentFrame % 200 == 0) {
+		sSpawnEnemy(rand()%3+1);
+	}
+}
+
+void Scene_Play::sSpawnEnemy(size_t line) {
+	// create enemy with "enemy" tag
+	auto entity = m_entityManager.addEntity("enemy");
+
+	std::string animation;
+	Vec2 pos, velocity;
+	auto type = rand() % 4;
+	float damage;
+
+	if (line == 1) {
+		pos = { -100,484 };
+		velocity = { 2,0 };
+	}
+	else if (line == 2) {
+		pos = { 894, -100 };
+		velocity = { 0, 2 };
+	}
+	else {
+		pos = { 1900, 484 };
+		velocity = { -2, 0 };
+	}
+
+	if (type == 0) {
+		damage = 0.8f;
+		velocity *= 0.8;
+		if (line == 2) {
+			animation = "D_goblinWalk";
+		}
+		else {
+			animation = "S_goblinWalk";
+		}
+	}
+	else if (type == 1) {
+		damage = 0.6f;
+		velocity*=1.5;
+		if (line == 2) {
+			animation = "D_wolfWalk";
+		}
+		else {
+			animation = "S_wolfWalk";
+		}
+	}
+	else if (type == 2) {
+		damage = 0.3f;
+		animation = "D_beeWalk";
+		if (line == 2) {
+			animation = "D_beeWalk";
+		}
+		else {
+			animation = "S_beeWalk";
+		}
+	}
+	else if (type == 3) {
+		damage = 0.2f;
+		animation = "D_slimeWalk";
+		if (line == 2) {
+			animation = "D_slimeWalk";
+		}
+		else {
+			animation = "S_slimeWalk";
+		}
+	}
+
+	entity->addComponent<CAnimation>(m_game->getAssets().getAnimation(animation), false);
+	entity->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
+	auto size = entity->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+	entity->addComponent<CBoundingBox>(Vec2(size.getSize().x, size.getSize().y/2.f));
+	entity->addComponent<CTransform>(pos);
+	entity->getComponent<CTransform>().velocity = velocity;
+	entity->addComponent<CState>();
+	entity->getComponent<CState>().state = "walk";
+	entity->addComponent<CHealth>(60);
+	entity->addComponent<CAttack>(damage);
 }

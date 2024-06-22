@@ -81,7 +81,15 @@ public:
 
 class CHealth : public Component {
 public:
-	size_t health = 0;
+	float totalHealth = 0;
+	float health = 0;
 	CHealth() {}
-	CHealth(size_t h) : health(h) {}
+	CHealth(float h) : totalHealth(h), health(h) {}
+};
+
+class CAttack : public Component {
+public:
+	float damage = 0;
+	CAttack() {}
+	CAttack(float d) : damage(d) {}
 };

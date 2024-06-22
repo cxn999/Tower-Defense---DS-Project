@@ -12,7 +12,8 @@ typedef std::tuple <
 	CLifeSpan,
 	CTransform,
 	CLevel,
-	CHealth
+	CHealth,
+	CAttack
 	> ComponentTuple;
 
 class Entity { 

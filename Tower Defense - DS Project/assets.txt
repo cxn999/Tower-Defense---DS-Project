@@ -1,3 +1,8 @@
+Font RETROGAMING Assets\Fonts\Retro_Gaming.ttf
+
+------------------------- TEXTURES -------------------------
+
+=================TILES=================
 Texture tile01 Assets\Tiles\FieldsTile_02.png
 Texture tile02 Assets\Tiles\FieldsTile_03.png
 Texture tile03 Assets\Tiles\FieldsTile_04.png
@@ -6,26 +11,82 @@ Texture tile05 Assets\Tiles\FieldsTile_35.png
 Texture tile06 Assets\Tiles\FieldsTile_36.png
 Texture tile07 Assets\Tiles\FieldsTile_17.png
 Texture tile08 Assets\Tiles\FieldsTile_21.png
+=================TOWER=================
 Texture tower1 Assets\Tower\Idle\1.png
 Texture tower2 Assets\Tower\Idle\2.png
 Texture tower3 Assets\Tower\Idle\3.png
 Texture tower4 Assets\Tower\Idle\4.png
+=================TOWER UPGRADE=================
 Texture towerUp1 Assets\Tower\Upgrade\1.png
 Texture towerUp2 Assets\Tower\Upgrade\2.png
 Texture towerUp3 Assets\Tower\Upgrade\3.png
-Font RETROGAMING Assets\Fonts\Retro_Gaming.ttf
-Animation grass01 tile01 1 0 1
-Animation grass02 tile02 1 0 1
-Animation grass03 tile03 1 0 1
-Animation grass04 tile04 1 0 1
-Animation grass05 tile05 1 0 1
-Animation grass06 tile06 1 0 1
-Animation grass07 tile07 1 0 1
-Animation grass08 tile08 1 0 1
-Animation towerIdle1 tower1 6 8 1
-Animation towerIdle2 tower2 6 8 1
-Animation towerIdle3 tower3 6 8 1
-Animation towerIdle4 tower4 6 8 1
-Animation towerUp1 towerUp1 4 12 0
-Animation towerUp2 towerUp2 4 12 0
-Animation towerUp3 towerUp3 4 12 0
+=================GOBLIN=================
+Texture D_goblinAttack Assets\Enemies\Goblin\D_Attack.png
+Texture D_goblinDeath Assets\Enemies\Goblin\D_Death.png
+Texture D_goblinWalk Assets\Enemies\Goblin\D_Walk.png
+Texture S_goblinAttack Assets\Enemies\Goblin\S_Attack.png
+Texture S_goblinDeath Assets\Enemies\Goblin\S_Death.png
+Texture S_goblinWalk Assets\Enemies\Goblin\S_Walk.png
+=================WOLF=================
+Texture D_wolfAttack Assets\Enemies\Wolf\D_Attack.png
+Texture D_wolfDeath Assets\Enemies\Wolf\D_Death.png
+Texture D_wolfWalk Assets\Enemies\Wolf\D_Walk.png
+Texture S_wolfAttack Assets\Enemies\Wolf\S_Attack.png
+Texture S_wolfDeath Assets\Enemies\Wolf\S_Death.png
+Texture S_wolfWalk Assets\Enemies\Wolf\S_Walk.png
+=================BEE=================
+Texture D_BeeWalk Assets\Enemies\Bee\D_Walk.png
+Texture D_BeeDeath Assets\Enemies\Bee\D_Death.png
+Texture S_BeeWalk Assets\Enemies\Bee\S_Walk.png
+Texture S_BeeDeath Assets\Enemies\Bee\S_Death.png
+=================BEE=================
+Texture D_slimeWalk Assets\Enemies\Slime\D_Walk.png
+Texture D_slimeDeath Assets\Enemies\Slime\D_Death.png
+Texture S_slimeWalk Assets\Enemies\Slime\S_Walk.png
+Texture S_slimeDeath Assets\Enemies\Slime\S_Death.png
+
+
+------------------------- ANIMATIONS -------------------------
+
+=================TILES=================
+Animation grass01 tile01 1 0
+Animation grass02 tile02 1 0
+Animation grass03 tile03 1 0
+Animation grass04 tile04 1 0
+Animation grass05 tile05 1 0
+Animation grass06 tile06 1 0
+Animation grass07 tile07 1 0
+Animation grass08 tile08 1 0
+=================TOWER=================
+Animation towerIdle1 tower1 6 8
+Animation towerIdle2 tower2 6 8
+Animation towerIdle3 tower3 6 8
+Animation towerIdle4 tower4 6 8
+=================TOWER UPGRADE=================
+Animation towerUp1 towerUp1 4 5
+Animation towerUp2 towerUp2 4 5
+Animation towerUp3 towerUp3 4 5
+=================GOBLIN=================
+Animation D_goblinAttack D_goblinAttack 6 16
+Animation D_goblinDeath D_goblinDeath 6 6
+Animation D_goblinWalk D_goblinWalk 6 6
+Animation S_goblinAttack S_goblinAttack 6 16
+Animation S_goblinDeath S_goblinDeath 6 6
+Animation S_goblinWalk S_goblinWalk 6 6
+=================WOLF=================
+Animation D_wolfAttack D_wolfAttack 6 10
+Animation D_wolfDeath D_wolfDeath 6 6
+Animation D_wolfWalk D_wolfWalk 6 6
+Animation S_wolfAttack S_wolfAttack 6 10
+Animation S_wolfDeath S_wolfDeath 6 6
+Animation S_wolfWalk S_wolfWalk 6 6
+=================BEE=================
+Animation D_beeWalk D_BeeWalk 6 6
+Animation D_beeDeath D_BeeDeath 6 6
+Animation S_beeWalk S_BeeWalk 6 6
+Animation S_beeDeath S_BeeDeath 6 6
+=================SLIME=================
+Animation D_slimeWalk D_slimeWalk 6 6
+Animation D_slimeDeath D_slimeDeath 6 6
+Animation S_slimeWalk S_slimeWalk 6 6
+Animation S_slimeDeath S_slimeDeath 6 6

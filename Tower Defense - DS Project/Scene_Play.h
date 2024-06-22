@@ -11,7 +11,7 @@ protected:
 	bool m_drawCollision = false;
 	bool m_drawGrid = false;
 	Vec2 m_gridSize = { 64,64 };
-
+	size_t m_currentFrame = 0;
 	std::shared_ptr<Entity> m_player;
 	// player config>!?!?!?!?!?!?
 public:
@@ -27,6 +27,7 @@ public:
 	void sAnimation();
 	void sMovement();
 	void sEnemySpawner();
+	void sSpawnEnemy(size_t line);
 	void sCollision();
 	void sRender();
 	void sDoAction(const Action& a);
@@ -38,5 +39,5 @@ public:
 	void loadLevel(const std::string & levelpath);
 
 	Vec2 gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity);
-
+	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
 };

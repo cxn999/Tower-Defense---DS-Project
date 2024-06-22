@@ -80,8 +80,7 @@ void Assets::loadFromFile(const std::string& path) {
         else if (identifier == "Animation") {
             std::string textureName;
             int frameCount, animDuration;
-            bool repeat;
-            file >> name >> textureName >> frameCount >> animDuration >> repeat;
+            file >> name >> textureName >> frameCount >> animDuration;
             addAnimation(name, Animation(name, getTexture(textureName), frameCount, animDuration));
         }
     }

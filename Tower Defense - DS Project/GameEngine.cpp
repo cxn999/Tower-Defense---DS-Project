@@ -42,6 +42,16 @@ void GameEngine::sUserInput() {
 			// look up the action and send the action to the scene
 			currentScene()->doAction(Action(currentScene()->getActionMap().at(event.key.code), actionType));
 		}
+		if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseButtonReleased) {
+			// if the current scene does not have an action associated with this key, skip this event
+			if (currentScene()->getActionMap().find(event.mouseButton.button) == currentScene()->getActionMap().end()) { continue; }
+
+			// determine start or end action by whether it was key press or release
+			const std::string actionType = (event.type == sf::Event::MouseButtonPressed) ? "START" : "END";
+
+			// look up the action and send the action to the scene
+			currentScene()->doAction(Action(currentScene()->getActionMap().at(event.key.code), actionType));
+		}
 	}
 }
 

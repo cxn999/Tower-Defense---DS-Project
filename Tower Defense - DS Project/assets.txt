@@ -11,6 +11,7 @@ Texture tile05 Assets\Tiles\FieldsTile_35.png
 Texture tile06 Assets\Tiles\FieldsTile_36.png
 Texture tile07 Assets\Tiles\FieldsTile_17.png
 Texture tile08 Assets\Tiles\FieldsTile_21.png
+Texture wood Assets\Tiles\Wood.png
 =================TOWER=================
 Texture tower1 Assets\Tower\Idle\1.png
 Texture tower2 Assets\Tower\Idle\2.png
@@ -57,6 +58,7 @@ Animation grass05 tile05 1 0
 Animation grass06 tile06 1 0
 Animation grass07 tile07 1 0
 Animation grass08 tile08 1 0
+Animation wood wood 1 0
 =================TOWER=================
 Animation towerIdle1 tower1 6 8
 Animation towerIdle2 tower2 6 8
@@ -86,7 +88,9 @@ Animation D_beeDeath D_BeeDeath 6 6
 Animation S_beeWalk S_BeeWalk 6 6
 Animation S_beeDeath S_BeeDeath 6 6
 =================SLIME=================
+Animation D_slimeAttack D_slimeWalk 6 9
 Animation D_slimeWalk D_slimeWalk 6 6
 Animation D_slimeDeath D_slimeDeath 6 6
+Animation S_slimeAttack S_slimeWalk 6 9
 Animation S_slimeWalk S_slimeWalk 6 6
 Animation S_slimeDeath S_slimeDeath 6 6

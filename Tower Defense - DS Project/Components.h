@@ -33,13 +33,7 @@ public:
 
 class CInput : public Component {
 public:
-	bool up = false;
-	bool down = false;
-	bool right = false;
-	bool left = false;
-	bool shoot = false;
-	bool canShoot = true;
-	bool canJump = true;
+	bool click = false;
 };
 
 class CBoundingBox : public Component {

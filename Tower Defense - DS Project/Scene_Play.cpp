@@ -25,12 +25,22 @@ void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
 	registerAction(sf::Keyboard::G, "TOGGLE_GRID");
 	registerAction(sf::Keyboard::X, "UPGRADE");
+	registerAction(sf::Mouse::Left, "CLICK");
 
 	// TODO: REGISTER ALL OTHER GAMEPLAY ACTIONS
 
 	m_gridText.setCharacterSize(12);
 	// m_gridText.setFont(m_game->getAssets().getFont("NAMEFONT"))
 	loadLevel(levelPath);
+
+	for (int i = 0; i < 5; i++) {
+		sf::RectangleShape rect(sf::Vector2f(200, 200));
+		rect.setPosition(rect.getSize().x * i + 50.f * (i + 1), m_game->window().getSize().y - rect.getSize().y - 20.f);
+		rect.setFillColor(sf::Color(0, 0, 0, 120));
+		rect.setOutlineThickness(10.f);
+		rect.setOutlineColor(sf::Color(0, 0, 0, 180));
+		m_shopRectangles.push_back(rect);
+	}
 }
 
 void Scene_Play::sDoAction(const Action& action) {
@@ -40,6 +50,7 @@ void Scene_Play::sDoAction(const Action& action) {
 		else if (action.name() == "TOGGLE_GRID") { m_drawGrid = !m_drawGrid; }
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
+		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
 		else if (action.name() == "UPGRADE") {
 			if (m_player->getComponent<CLevel>().level < 4 && m_player->getComponent<CState>().state != "upgrade") {
 				m_player->getComponent<CLevel>().level++;
@@ -50,6 +61,7 @@ void Scene_Play::sDoAction(const Action& action) {
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
+		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
 	}
 }
 
@@ -75,12 +87,13 @@ void Scene_Play::spawnPlayer() {
 	m_player->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 	auto size = m_player->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
 	m_player->addComponent<CBoundingBox>(Vec2(size.getSize().x/2.f, size.getSize().y/2.f - 10));
-	m_player->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f));
+	m_player->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f +50.f));
 
 	m_player->addComponent<CState>();
 	m_player->getComponent<CState>().state = "idle1";
 	m_player->addComponent<CLevel>();
 	m_player->addComponent<CHealth>(300);
+	m_player->addComponent<CInput>();
 }
 
 void Scene_Play::loadLevel(const std::string& levelpath) {
@@ -156,22 +169,51 @@ void Scene_Play::sRender() {
 			}
 		}
 	}
-	if (m_drawGrid) {
+	if (m_grassGrid) {
 		int m = m_game->window().getSize().x / 128;
 		int n = m_game->window().getSize().y / 128;
 		for (int i = 1; i<n; i++) {
 			sf::RectangleShape linex(sf::Vector2f(m_game->window().getSize().x, 1));
-			linex.setFillColor(sf::Color::White);
+			linex.setFillColor(sf::Color::Blue);
 			linex.setPosition(0, 128*i);
 			m_game->window().draw(linex);
 		}
 		for (int i = 1; i < m; i++) {
 			sf::RectangleShape liney(sf::Vector2f(m_game->window().getSize().y, 1));
 			liney.rotate(90);
-			liney.setFillColor(sf::Color::White);
+			liney.setFillColor(sf::Color::Blue);
 			liney.setPosition(128*i, 0);
 			m_game->window().draw(liney);
 		}
+	}
+	if (m_roadGrid) {
+		int m = m_game->window().getSize().x / 128;
+		int n = m_game->window().getSize().y / 128;
+		for (int i = 1; i < n; i++) {
+			sf::RectangleShape linex(sf::Vector2f(m_game->window().getSize().x, 1));
+			linex.setFillColor(sf::Color::Red);
+			linex.setPosition(0, 128 * i);
+			m_game->window().draw(linex);
+		}
+		for (int i = 1; i < m; i++) {
+			sf::RectangleShape liney(sf::Vector2f(m_game->window().getSize().y, 1));
+			liney.rotate(90);
+			liney.setFillColor(sf::Color::Red);
+			liney.setPosition(128 * i, 0);
+			m_game->window().draw(liney);
+		}
+	}
+
+	auto& shop = m_game->getAssets().getAnimation("wood");
+	for (int i = 0; i < m_game->window().getSize().x / shop.getSize().x; i++) {
+		shop.getSprite().setPosition(shop.getSize().x / 2.f + i * shop.getSize().x, m_game->window().getSize().y - 98.f);
+		m_game->window().draw(shop.getSprite());
+	}
+
+	sShop();
+
+	for (auto& rect : m_shopRectangles) {
+		m_game->window().draw(rect);
 	}
 
 	m_game->window().display();
@@ -182,8 +224,6 @@ void Scene_Play::sAnimation() {
 	auto& player_state = m_player->getComponent<CState>().state;
 	auto& animation = m_player->getComponent<CAnimation>().animation;
 	
-	std::cout << m_player->getComponent<CHealth>().health << std::endl;
-
 	if (player_state == "idle1") {
 		if (animation.getName() != "towerIdle1") {
 			animation = m_game->getAssets().getAnimation("towerIdle1");
@@ -226,7 +266,7 @@ void Scene_Play::sAnimation() {
 	}
 
 	animation.getSprite().setScale(2, 2);
-	m_player->getComponent<CAnimation>().animation.getSprite().setPosition(player.pos.x, player.pos.y);
+	m_player->getComponent<CAnimation>().animation.getSprite().setPosition(player.pos.x, player.pos.y-50.f);
 	m_player->getComponent<CAnimation>().animation.update();
 
 
@@ -240,6 +280,8 @@ void Scene_Play::sAnimation() {
 			if (animation.getName() == "S_goblinWalk") animation = m_game->getAssets().getAnimation("S_goblinAttack");
 			if (animation.getName() == "D_wolfWalk") animation = m_game->getAssets().getAnimation("D_wolfAttack");
 			if (animation.getName() == "S_wolfWalk") animation = m_game->getAssets().getAnimation("S_wolfAttack");
+			if (animation.getName() == "D_slimeWalk") animation = m_game->getAssets().getAnimation("D_slimeAttack");
+			if (animation.getName() == "S_slimeWalk") animation = m_game->getAssets().getAnimation("S_slimeAttack");
 		}
 
 		animation.getSprite().setScale(2, 2);
@@ -330,22 +372,25 @@ void Scene_Play::sEnemySpawner() {
 void Scene_Play::sSpawnEnemy(size_t line) {
 	// create enemy with "enemy" tag
 	auto entity = m_entityManager.addEntity("enemy");
+	int offsetConstant = 50;
 
 	std::string animation;
 	Vec2 pos, velocity;
 	auto type = rand() % 4;
 	float damage;
 
+	auto window_size = m_game->window().getSize();
+
 	if (line == 1) {
-		pos = { -100,484 };
+		pos = Vec2(-offsetConstant, rand() % offsetConstant*2 + window_size.y / 2.f);
 		velocity = { 2,0 };
 	}
 	else if (line == 2) {
-		pos = { 894, -100 };
+		pos = Vec2(window_size.x / 2.f + rand() % offsetConstant*2 -50 , -offsetConstant);
 		velocity = { 0, 2 };
 	}
 	else {
-		pos = { 1900, 484 };
+		pos = Vec2(window_size.x + offsetConstant , rand() % offsetConstant*2 + window_size.y / 2.f);
 		velocity = { -2, 0 };
 	}
 
@@ -400,4 +445,28 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	entity->getComponent<CState>().state = "walk";
 	entity->addComponent<CHealth>(60);
 	entity->addComponent<CAttack>(damage);
+}
+
+void Scene_Play::sShop() {
+	int i = 0;
+	m_roadGrid = false;
+	m_grassGrid = false;
+	for (auto & rect : m_shopRectangles) {
+		bool& click = m_player->getComponent<CInput>().click;
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+			click = false;
+			sPlace(i);
+		}
+		i++;
+	}
+}
+
+void Scene_Play::sPlace(int n) {
+	if (n == 0 || n == 1) {
+		m_roadGrid = true;
+	}
+	else {
+		m_grassGrid = true;
+	}
 }

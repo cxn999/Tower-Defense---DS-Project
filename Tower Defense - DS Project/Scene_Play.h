@@ -10,8 +10,11 @@ protected:
 	bool m_drawTextures = true;
 	bool m_drawCollision = false;
 	bool m_drawGrid = false;
+	bool m_roadGrid = false;
+	bool m_grassGrid = false;
 	Vec2 m_gridSize = { 64,64 };
 	size_t m_currentFrame = 0;
+	std::vector<sf::RectangleShape> m_shopRectangles;
 	std::shared_ptr<Entity> m_player;
 	// player config>!?!?!?!?!?!?
 public:
@@ -30,6 +33,8 @@ public:
 	void sSpawnEnemy(size_t line);
 	void sCollision();
 	void sRender();
+	void sShop();
+	void sPlace(int n);
 	void sDoAction(const Action& a);
 
 	void spawnPlayer();

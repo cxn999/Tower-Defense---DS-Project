@@ -364,6 +364,21 @@ void Scene_Play::sAnimation() {
 			if (animation.getName() == "D_slimeWalk") animation = m_game->getAssets().getAnimation("D_slimeAttack");
 			if (animation.getName() == "S_slimeWalk") animation = m_game->getAssets().getAnimation("S_slimeAttack");
 		}
+		if (e_state == "death") {
+			if (animation.getName() == "D_goblinWalk" || animation.getName() == "D_goblinAttack") animation = m_game->getAssets().getAnimation("D_goblinDeath");
+			if (animation.getName() == "S_goblinWalk" || animation.getName() == "S_goblinAttack") animation = m_game->getAssets().getAnimation("S_goblinDeath");
+			if (animation.getName() == "D_wolfWalk" || animation.getName() == "D_wolfAttack") animation = m_game->getAssets().getAnimation("D_wolfDeath");
+			if (animation.getName() == "S_wolfWalk" || animation.getName() == "S_wolfAttack") animation = m_game->getAssets().getAnimation("S_wolfDeath");
+			if (animation.getName() == "D_slimeWalk" || animation.getName() == "D_slimeAttack") animation = m_game->getAssets().getAnimation("D_slimeDeath");
+			if (animation.getName() == "S_slimeWalk" || animation.getName() == "S_slimeAttack") animation = m_game->getAssets().getAnimation("S_slimeDeath");
+			if (animation.getName() == "D_beeWalk") animation = m_game->getAssets().getAnimation("D_beeDeath");
+			if (animation.getName() == "S_beeWalk") animation = m_game->getAssets().getAnimation("S_beeDeath");
+			e_transform.velocity = { 0,0 };
+		}
+
+		if (e_state == "death" && animation.hasEnded()) {
+			e->destroy();
+		}
 
 		animation.getSprite().setScale(2, 2);
 
@@ -464,7 +479,7 @@ void Scene_Play::sCollision() {
 			e->getComponent<CHealth>().health -= 2;
 		}
 		if (e->getComponent<CHealth>().health <= 0) {
-			e->destroy();
+			e->getComponent<CState>().state = "death";
 		}
 	}
 }
@@ -583,7 +598,7 @@ void Scene_Play::sShop() {
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
 			click = false;
 			m_selectedItem = i;
 			m_mouseItem = true;
@@ -615,7 +630,7 @@ void Scene_Play::sPlacement() {
 				m_attack = true;
 
 				m_attackPos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f,
-								   roadRect.getPosition().y + roadRect.getSize().y / 2.f };
+								roadRect.getPosition().y + roadRect.getSize().y / 2.f };
 
 				m_attackSquare = roadRect;
 

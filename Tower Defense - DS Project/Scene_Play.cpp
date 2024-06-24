@@ -18,12 +18,32 @@ Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 	init(m_levelPath);
 }
 
+void Scene_Play::generateRoadRectangles() {
+	for (int i = 64; i < m_game->window().getSize().x - 128; i += 128) {
+		if (i != 128 * 6 + 64) {
+			sf::RectangleShape roadRect(sf::Vector2f(128, 128));
+			roadRect.setPosition(i, m_game->window().getSize().y / 2.f);
+			roadRect.setOutlineThickness(1.f);
+			roadRect.setOutlineColor(sf::Color::Green);
+			roadRect.setFillColor(sf::Color(0, 255, 0, 80));
+			m_roadRectanglesGrid.push_back(roadRect);
+		}
+	}
+	for (int i = 64; i < m_game->window().getSize().y / 2.f; i += 128) {
+		sf::RectangleShape roadRect(sf::Vector2f(128, 128));
+		roadRect.setPosition(m_game->window().getSize().x / 2.f - 64, i);
+		roadRect.setOutlineThickness(1.f);
+		roadRect.setOutlineColor(sf::Color::Green);
+		roadRect.setFillColor(sf::Color(0, 255, 0, 80));
+		m_roadRectanglesGrid.push_back(roadRect);
+	}
+}
+
 void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Keyboard::P, "PAUSE");
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Keyboard::G, "TOGGLE_GRID");
 	registerAction(sf::Keyboard::X, "UPGRADE");
 	registerAction(sf::Mouse::Left, "CLICK");
 
@@ -41,13 +61,14 @@ void Scene_Play::init(const std::string& levelPath) {
 		rect.setOutlineColor(sf::Color(0, 0, 0, 180));
 		m_shopRectangles.push_back(rect);
 	}
+
+	generateRoadRectangles();
 }
 
 void Scene_Play::sDoAction(const Action& action) {
 	if (action.type() == "START") {
 		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
 		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
-		else if (action.name() == "TOGGLE_GRID") { m_drawGrid = !m_drawGrid; }
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
@@ -71,6 +92,7 @@ void Scene_Play::update() {
 		sCollision();
 		sMovement();
 		sEnemySpawner();
+		sPlacement();
 		sAnimation();
 	}
 	sRender();
@@ -92,7 +114,7 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CState>();
 	m_player->getComponent<CState>().state = "idle1";
 	m_player->addComponent<CLevel>();
-	m_player->addComponent<CHealth>(300);
+	m_player->addComponent<CHealth>(600);
 	m_player->addComponent<CInput>();
 }
 
@@ -128,12 +150,16 @@ void Scene_Play::loadLevel(const std::string& levelpath) {
 }
 
 void Scene_Play::sRender() {
-	m_game->window().clear(sf::Color(166, 176, 79));
+	auto& window = m_game->window();
+
+	window.clear(sf::Color(166, 176, 79));
 	m_player->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+
+
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
 			if (e->tag() != "player") {
-				m_game->window().draw(e->getComponent<CAnimation>().animation.getSprite());
+				window.draw(e->getComponent<CAnimation>().animation.getSprite());
 				if (e->hasComponent<CHealth>() && e->tag() == "enemy") {
 					sf::RectangleShape rect(sf::Vector2f(70.f, 8.f));
 					rect.setFillColor(sf::Color(255,0,0,180));
@@ -143,17 +169,23 @@ void Scene_Play::sRender() {
 					auto& e_pos = e->getComponent<CTransform>().pos;
 					auto& e_size = e->getComponent<CBoundingBox>().size;
 					rect.setPosition(e_pos.x, e_pos.y-e_size.y/1.5f);
-					m_game->window().draw(rect);
+					window.draw(rect);
 				}
 				if (e->getComponent<CState>().state == "attack" && e->getComponent<CAnimation>().animation.hasEnded()) {
 					m_player->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0,200));
 				}
 			}
+			auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+			e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255,255));
+			if (e->tag() == "enemy" && m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
+				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
+			}
 		}
 	}
-	
-	m_game->window().draw(m_player->getComponent<CAnimation>().animation.getSprite());
 
+	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
+
+	
 	if (m_drawCollision) {
 		for (auto e : m_entityManager.getEntities()) {
 			if (e->hasComponent<CBoundingBox>()) {
@@ -165,58 +197,106 @@ void Scene_Play::sRender() {
 				BoundingBox.setOutlineColor(sf::Color::Blue);
 				BoundingBox.setFillColor(sf::Color::Transparent);
 				BoundingBox.setOutlineThickness(1);
-				m_game->window().draw(BoundingBox);
+				window.draw(BoundingBox);
 			}
 		}
 	}
-	if (m_grassGrid) {
+	if (m_grassGrid && !m_paused) {
 		int m = m_game->window().getSize().x / 128;
 		int n = m_game->window().getSize().y / 128;
-		for (int i = 1; i<n; i++) {
-			sf::RectangleShape linex(sf::Vector2f(m_game->window().getSize().x, 1));
-			linex.setFillColor(sf::Color::Blue);
+		for (int i = 1; i<4; i++) {
+			sf::RectangleShape linex(sf::Vector2f(128*6, 2.f));
+			linex.setFillColor(sf::Color::Green);
 			linex.setPosition(0, 128*i);
-			m_game->window().draw(linex);
+			window.draw(linex);
 		}
-		for (int i = 1; i < m; i++) {
-			sf::RectangleShape liney(sf::Vector2f(m_game->window().getSize().y, 1));
+		for (int i = 1; i < 7; i++) {
+			sf::RectangleShape liney(sf::Vector2f(128*3, 2.f));
 			liney.rotate(90);
-			liney.setFillColor(sf::Color::Blue);
+			liney.setFillColor(sf::Color::Green);
 			liney.setPosition(128*i, 0);
-			m_game->window().draw(liney);
+			window.draw(liney);
 		}
+		sf::RectangleShape rect(sf::Vector2f(128 * 6, 128 * 3));
+		rect.setFillColor(sf::Color(0, 255, 0, 80));
+		window.draw(rect);
 	}
-	if (m_roadGrid) {
-		int m = m_game->window().getSize().x / 128;
-		int n = m_game->window().getSize().y / 128;
-		for (int i = 1; i < n; i++) {
-			sf::RectangleShape linex(sf::Vector2f(m_game->window().getSize().x, 1));
-			linex.setFillColor(sf::Color::Red);
-			linex.setPosition(0, 128 * i);
-			m_game->window().draw(linex);
-		}
-		for (int i = 1; i < m; i++) {
-			sf::RectangleShape liney(sf::Vector2f(m_game->window().getSize().y, 1));
-			liney.rotate(90);
-			liney.setFillColor(sf::Color::Red);
-			liney.setPosition(128 * i, 0);
-			m_game->window().draw(liney);
+	if (m_roadGrid && !m_paused) {
+		for (auto& roadRect : m_roadRectanglesGrid) {
+			window.draw(roadRect);
 		}
 	}
 
 	auto& shop = m_game->getAssets().getAnimation("wood");
 	for (int i = 0; i < m_game->window().getSize().x / shop.getSize().x; i++) {
 		shop.getSprite().setPosition(shop.getSize().x / 2.f + i * shop.getSize().x, m_game->window().getSize().y - 98.f);
-		m_game->window().draw(shop.getSprite());
+		window.draw(shop.getSprite());
 	}
 
 	sShop();
 
+	int i = 0;
 	for (auto& rect : m_shopRectangles) {
-		m_game->window().draw(rect);
+		window.draw(rect);
+		auto & coin = m_game->getAssets().getAnimation("coin");
+		coin.getSprite().setPosition(rect.getPosition().x + 20, rect.getPosition().y + 20);
+		coin.getSprite().setScale(0.08f, 0.08f);
+		window.draw(coin.getSprite());
+
+		if (i == 0) {
+			auto& tower = m_game->getAssets().getAnimation("archerTowerShop");
+			tower.getSprite().setScale(2, 2);
+			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
+			window.draw(tower.getSprite());
+		}
+		if (i == 2) {
+			auto& tower = m_game->getAssets().getAnimation("iceSpikesShop");
+			tower.getSprite().setScale(2.5, 2.5);
+			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
+			window.draw(tower.getSprite());
+		}
+		if (i == 3) {
+			auto& tower = m_game->getAssets().getAnimation("woodSpikesShop");
+			tower.getSprite().setScale(2.5, 2.5);
+			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
+			window.draw(tower.getSprite());
+		}
+		if (i == 4) {
+			auto& tower = m_game->getAssets().getAnimation("lightningShop");
+			tower.getSprite().setScale(1.5, 1.5);
+			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
+			window.draw(tower.getSprite());
+		}
+		i++;
 	}
 
-	m_game->window().display();
+	if (m_mouseItem) {
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		auto& item = m_game->getAssets().getAnimation("");
+		switch (m_selectedItem) {
+		case 0:
+			item = m_game->getAssets().getAnimation("archerTowerShop");
+			break;
+		case 1:
+			item = m_game->getAssets().getAnimation("");
+			break;
+		case 2:
+			item = m_game->getAssets().getAnimation("iceSpikesShop");
+
+			break;
+		case 3:
+			item = m_game->getAssets().getAnimation("woodSpikesShop");
+			break;
+		case 4:
+			item = m_game->getAssets().getAnimation("lightningShop");
+			break;
+		}
+		item.getSprite().setPosition(mouse_pos.x, mouse_pos.y);
+		item.getSprite().setScale(1.5, 1.5);
+		window.draw(item.getSprite());
+	}
+
+	window.display();
 }
 
 void Scene_Play::sAnimation() {
@@ -244,6 +324,7 @@ void Scene_Play::sAnimation() {
 			animation = m_game->getAssets().getAnimation("towerIdle4");
 		}
 	}
+
 	else if (player_state == "upgrade") {
 		if (animation.getName() == "towerIdle1") {
 			animation = m_game->getAssets().getAnimation("towerUp1");
@@ -293,6 +374,43 @@ void Scene_Play::sAnimation() {
 		e->getComponent<CAnimation>().animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		e->getComponent<CAnimation>().animation.update();
 	}
+
+	if (m_attack) {
+		auto& attacks = m_entityManager.getEntities("attack");
+		for (auto& ent : attacks) {
+			if (!ent->hasComponent<CAnimation>()) {
+				ent->addComponent<CAnimation>();
+				if (m_selectedItem == 2) {
+					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
+				}
+				else if (m_selectedItem == 3) {
+					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
+				}
+				else if (m_selectedItem == 4) {
+					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				if (ent->getComponent<CAnimation>().animation.hasEnded()) {
+					ent->destroy();
+					m_attack = false;
+				}
+			}
+			auto& ent_pos = ent->getComponent<CTransform>().pos;
+			if (m_selectedItem != 4) {
+				ent->getComponent<CAnimation>().animation.getSprite().setScale(2.5, 2.5);
+				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y);
+			}
+			else {
+				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
+				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y-50);
+			}
+			ent->getComponent<CAnimation>().animation.update();
+		}
+	}
 }
 
 void Scene_Play::attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower) {
@@ -340,6 +458,14 @@ void Scene_Play::sCollision() {
 				}
 			}
 		}
+		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
+			// Depending on attack subtract less or more life
+			e->getComponent<CHealth>().health -= 2;
+		}
+		if (e->getComponent<CHealth>().health <= 0) {
+			e->destroy();
+		}
 	}
 }
 
@@ -378,6 +504,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	Vec2 pos, velocity;
 	auto type = rand() % 4;
 	float damage;
+	size_t health = 0;
 
 	auto window_size = m_game->window().getSize();
 
@@ -397,6 +524,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	if (type == 0) {
 		damage = 0.8f;
 		velocity *= 0.8;
+		health = 50;
 		if (line == 2) {
 			animation = "D_goblinWalk";
 		}
@@ -407,6 +535,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	else if (type == 1) {
 		damage = 0.6f;
 		velocity*=1.5;
+		health = 30;
 		if (line == 2) {
 			animation = "D_wolfWalk";
 		}
@@ -417,6 +546,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	else if (type == 2) {
 		damage = 0.3f;
 		animation = "D_beeWalk";
+		health = 20;
 		if (line == 2) {
 			animation = "D_beeWalk";
 		}
@@ -426,6 +556,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	}
 	else if (type == 3) {
 		damage = 0.2f;
+		health = 25;
 		animation = "D_slimeWalk";
 		if (line == 2) {
 			animation = "D_slimeWalk";
@@ -443,30 +574,54 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	entity->getComponent<CTransform>().velocity = velocity;
 	entity->addComponent<CState>();
 	entity->getComponent<CState>().state = "walk";
-	entity->addComponent<CHealth>(60);
+	entity->addComponent<CHealth>(health);
 	entity->addComponent<CAttack>(damage);
 }
 
 void Scene_Play::sShop() {
 	int i = 0;
-	m_roadGrid = false;
-	m_grassGrid = false;
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
 			click = false;
-			sPlace(i);
+			m_selectedItem = i;
+			m_mouseItem = true;
+			sGrid(i);
 		}
 		i++;
 	}
 }
 
-void Scene_Play::sPlace(int n) {
+void Scene_Play::sGrid(int n) {
 	if (n == 0 || n == 1) {
-		m_roadGrid = true;
+		m_grassGrid = true;
 	}
 	else {
-		m_grassGrid = true;
+		m_roadGrid = true;
+	}
+}
+
+void Scene_Play::sPlacement() {
+	if (m_roadGrid) {
+		bool& click = m_player->getComponent<CInput>().click;
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		for (auto& roadRect : m_roadRectanglesGrid) {
+			if (click && roadRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+				click = false;
+				m_mouseItem = false;
+				m_roadGrid = false;
+
+				m_attack = true;
+
+				m_attackPos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f,
+								   roadRect.getPosition().y + roadRect.getSize().y / 2.f };
+
+				m_attackSquare = roadRect;
+
+				auto attack = m_entityManager.addEntity("attack");
+				attack->addComponent<CTransform>(m_attackPos);
+			}
+		}
 	}
 }

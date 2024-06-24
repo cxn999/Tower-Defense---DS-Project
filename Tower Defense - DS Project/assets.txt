@@ -11,7 +11,7 @@ Texture tile05 Assets\Tiles\FieldsTile_35.png
 Texture tile06 Assets\Tiles\FieldsTile_36.png
 Texture tile07 Assets\Tiles\FieldsTile_17.png
 Texture tile08 Assets\Tiles\FieldsTile_21.png
-Texture wood Assets\Tiles\Wood.png
+Texture wood Assets\Shop\Wood.png
 =================TOWER=================
 Texture tower1 Assets\Tower\Idle\1.png
 Texture tower2 Assets\Tower\Idle\2.png

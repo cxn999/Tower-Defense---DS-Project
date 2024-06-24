@@ -54,8 +54,8 @@ void Scene_Play::init(const std::string& levelPath) {
 	loadLevel(levelPath);
 
 	for (int i = 0; i < 5; i++) {
-		sf::RectangleShape rect(sf::Vector2f(200, 200));
-		rect.setPosition(rect.getSize().x * i + 50.f * (i + 1), m_game->window().getSize().y - rect.getSize().y - 20.f);
+		sf::RectangleShape rect(sf::Vector2f(75, 75));
+		rect.setPosition(rect.getSize().x * i + 50.f * (i + 1), m_game->window().getSize().y - rect.getSize().y - 70.f);
 		rect.setFillColor(sf::Color(0, 0, 0, 120));
 		rect.setOutlineThickness(10.f);
 		rect.setOutlineColor(sf::Color(0, 0, 0, 180));
@@ -229,7 +229,8 @@ void Scene_Play::sRender() {
 
 	auto& shop = m_game->getAssets().getAnimation("wood");
 	for (int i = 0; i < m_game->window().getSize().x / shop.getSize().x; i++) {
-		shop.getSprite().setPosition(shop.getSize().x / 2.f + i * shop.getSize().x, m_game->window().getSize().y - 98.f);
+		shop.getSprite().setPosition(shop.getSize().x / 2.f + i * shop.getSize().x, m_game->window().getSize().y - 100.f);
+		//shop.getSprite().setScale(5, 5);
 		window.draw(shop.getSprite());
 	}
 
@@ -239,31 +240,31 @@ void Scene_Play::sRender() {
 	for (auto& rect : m_shopRectangles) {
 		window.draw(rect);
 		auto & coin = m_game->getAssets().getAnimation("coin");
-		coin.getSprite().setPosition(rect.getPosition().x + 20, rect.getPosition().y + 20);
-		coin.getSprite().setScale(0.08f, 0.08f);
+		coin.getSprite().setPosition(rect.getPosition().x + 20, rect.getPosition().y + 110);
+		coin.getSprite().setScale(2, 2);
 		window.draw(coin.getSprite());
 
 		if (i == 0) {
 			auto& tower = m_game->getAssets().getAnimation("archerTowerShop");
-			tower.getSprite().setScale(2, 2);
+			tower.getSprite().setScale(1, 1);
 			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
 			window.draw(tower.getSprite());
 		}
 		if (i == 2) {
 			auto& tower = m_game->getAssets().getAnimation("iceSpikesShop");
-			tower.getSprite().setScale(2.5, 2.5);
+			tower.getSprite().setScale(1.25, 1.25);
 			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
 			window.draw(tower.getSprite());
 		}
 		if (i == 3) {
 			auto& tower = m_game->getAssets().getAnimation("woodSpikesShop");
-			tower.getSprite().setScale(2.5, 2.5);
+			tower.getSprite().setScale(1.25, 1.25);
 			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
 			window.draw(tower.getSprite());
 		}
 		if (i == 4) {
 			auto& tower = m_game->getAssets().getAnimation("lightningShop");
-			tower.getSprite().setScale(1.5, 1.5);
+			tower.getSprite().setScale(0.5, 0.5);
 			tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
 			window.draw(tower.getSprite());
 		}
@@ -292,7 +293,8 @@ void Scene_Play::sRender() {
 			break;
 		}
 		item.getSprite().setPosition(mouse_pos.x, mouse_pos.y);
-		item.getSprite().setScale(1.5, 1.5);
+		if (m_selectedItem != 4) item.getSprite().setScale(1.5, 1.5);
+		else					 item.getSprite().setScale(0.75, 0.75);
 		window.draw(item.getSprite());
 	}
 

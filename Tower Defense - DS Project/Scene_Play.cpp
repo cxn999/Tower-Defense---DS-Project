@@ -298,6 +298,8 @@ void Scene_Play::sRender() {
 		window.draw(item.getSprite());
 	}
 
+
+
 	window.display();
 }
 
@@ -428,20 +430,22 @@ void Scene_Play::sAnimation() {
 			ent->getComponent<CAnimation>().animation.update();
 		}
 	}
+	std::cout << m_entityManager.getEntities().size() << std::endl;
 }
 
 void Scene_Play::attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower) {
 	if (enemy->hasComponent<CAttack>()) {
 		tower->getComponent<CHealth>().health -= enemy->getComponent<CAttack>().damage;
 		if (tower->getComponent<CHealth>().health < 0) {
-			tower->destroy();
-			setPaused(true);
+			// tower->destroy();
+			// setPaused(true);
 		}
 	}
 }
 
 void Scene_Play::sCollision() {
 	auto& player = m_player->getComponent<CTransform>();
+
 	for (auto& e : m_entityManager.getEntities("enemy")) {
 		auto& tile = e->getComponent<CTransform>();
 
@@ -507,7 +511,7 @@ Vec2 Scene_Play::gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame % 200 == 0) {
+	if (m_currentFrame % 1 == 0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }

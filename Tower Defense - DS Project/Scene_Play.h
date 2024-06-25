@@ -16,17 +16,22 @@ protected:
 	bool m_attack = false; // if player has selected an attack item and clicked in a square
 
 	Vec2 m_attackPos = { 0,0 };
-	sf::RectangleShape m_attackSquare;
+	sf::RectangleShape m_attackSquare; // Square of attack
+	sf::RectangleShape m_defenseSquare; // Square of defense tower
 
 	Vec2 m_gridSize = { 64,64 }; // size of the grid
 
 	size_t m_currentFrame = 0; // Current frame
 	size_t m_selectedItem = 0; // Selected item
+	size_t m_lastFrameDefenseSpawn = 0; // Last frame in which a defense tower was placed
 
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
+	std::vector<sf::RectangleShape> m_grassRectanglesGrid;
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
+
+	sf::Clock m_clock;
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
 
@@ -44,6 +49,7 @@ public:
 	void sCollision();
 	void sRender();
 	void sShop();
+	void sHealth();
 	void sGrid(int n);
 	void sDoAction(const Action& a);
 	void sPlacement();
@@ -53,7 +59,7 @@ public:
 	// LOAD FROM FILE EACH BLOCK POSITION ETC
 	void loadLevel(const std::string & levelpath);
 
-	Vec2 gridToMidPixel(float gridX, float gridY, std::shared_ptr<Entity> entity);
 	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
 	void generateRoadRectangles();
+	void generateGrassRectangles();
 };

@@ -56,6 +56,11 @@ Texture archerTower4 Assets\Attack\ArcherTower\Idle\4.png
 Texture upgradeTower1 Assets\Attack\ArcherTower\Upgrade\1.png
 Texture upgradeTower2 Assets\Attack\ArcherTower\Upgrade\1.png
 Texture upgradeTower3 Assets\Attack\ArcherTower\Upgrade\1.png
+
+Texture archerIdle Assets\Attack\ArcherTower\Archer\D_Idle.png
+Texture D_archerAttack Assets\Attack\ArcherTower\Archer\D_Attack.png
+Texture S_archerAttack Assets\Attack\ArcherTower\Archer\S_Attack.png
+
 =================SHOP===============
 Texture archerTowerShop Assets\Shop\Tower_shop.png
 Texture iceSpikesShop Assets\Shop\iceSpike_Shop.png
@@ -112,24 +117,26 @@ Animation S_slimeWalk S_slimeWalk 6 6
 Animation S_slimeDeath S_slimeDeath 6 6
 =================ATTACK===============
 Animation lightning lightning 10 6
-Animation lightningShop lightningShop 1 0
-
 Animation iceSpike iceSpike 6 12
 Animation woodSpike woodSpikes 6 12
-
-Animation iceSpikesShop iceSpikesShop 1 0
-Animation woodSpikesShop woodSpikesShop 1 0
-
 Animation archerTower1 archerTower1 1 0
 Animation archerTower2 archerTower2 1 0
 Animation archerTower3 archerTower3 4 4
 Animation archerTower4 archerTower4 4 4
+Animation upgradeTower1 upgradeTower1 4 10
+Animation upgradeTower2 upgradeTower2 4 10
+Animation upgradeTower3 upgradeTower3 4 10
 
+Animation archerIdle archerIdle 4 12
+Animation D_archerAttack D_archerAttack 6 10
+Animation S_archerAttack S_archerAttack 6 10
+
+
+
+=================SHOP - SHOULD BE DELETED AFTER===============
 Animation archerTowerShop archerTowerShop 1 0
-
-Animation upgradeTower1 upgradeTower1 4 4
-Animation upgradeTower2 upgradeTower2 4 4
-Animation upgradeTower3 upgradeTower3 4 4
-
-
+Animation lightningShop lightningShop 1 0
+Animation iceSpikesShop iceSpikesShop 1 0
+Animation woodSpikesShop woodSpikesShop 1 0
 Animation coin coin 1 0
+

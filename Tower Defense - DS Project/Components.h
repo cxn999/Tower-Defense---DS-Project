@@ -4,6 +4,7 @@
 #include "Assets.h"
 #include "Vec2.h"
 #include <string>
+#include <SFML/Graphics.hpp>
 
 class Component {
 public:
@@ -77,8 +78,9 @@ class CHealth : public Component {
 public:
 	float totalHealth = 0;
 	float health = 0;
+	float prevHealth = 0;
 	CHealth() {}
-	CHealth(float h) : totalHealth(h), health(h) {}
+	CHealth(float h) : totalHealth(h), health(h), prevHealth(h) {}
 };
 
 class CAttack : public Component {
@@ -86,4 +88,12 @@ public:
 	float damage = 0;
 	CAttack() {}
 	CAttack(float d) : damage(d) {}
+};
+
+class CRange : public Component {
+public:
+	float radius = 0;
+	bool target = false;
+	CRange(float r) : radius(r) {}
+	CRange() {}
 };

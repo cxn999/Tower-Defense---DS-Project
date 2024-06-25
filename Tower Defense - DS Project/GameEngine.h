@@ -20,6 +20,7 @@ protected:
 	size_t m_simulationSpeed = 1;
 	bool m_running = true;
 
+
 	// Should load the assets
 	void init(const std::string& path);
 	void update();
@@ -28,6 +29,9 @@ protected:
 	std::shared_ptr<Scene> currentScene();
 
 public:
+	sf::Clock m_clock;
+	float m_fps;
+
 	GameEngine(const std::string& path);
 
 	// Change scene  

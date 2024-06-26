@@ -21,6 +21,7 @@ protected:
 
 	Vec2 m_gridSize = { 64,64 }; // size of the grid
 
+
 	size_t m_currentFrame = 0; // Current frame
 	size_t m_selectedItem = 0; // Selected item
 	size_t m_lastFrameDefenseSpawn = 0; // Last frame in which a defense tower was placed
@@ -55,9 +56,6 @@ public:
 	void sPlacement();
 	void spawnPlayer();
 	void spawnBullet(std::shared_ptr<Entity> entity);
-
-	// LOAD FROM FILE EACH BLOCK POSITION ETC
-	void loadLevel(const std::string & levelpath);
 
 	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
 	void generateRoadRectangles();

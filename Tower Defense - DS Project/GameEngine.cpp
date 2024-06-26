@@ -32,6 +32,18 @@ void GameEngine::update() {
 void GameEngine::sUserInput() {
 	sf::Event event;
 	while (m_window.pollEvent(event)) {
+
+
+		if (event.type == sf::Event::KeyPressed) {
+			if (event.key.code == sf::Keyboard::Z) {
+				sf::Texture texture;
+				texture.create(m_window.getSize().x, m_window.getSize().y);
+				texture.update(m_window);
+				if (texture.copyToImage().saveToFile("test.png")) {
+					std::cout << "Screenshot saved to " << "test.png" << std::endl;
+				}
+			}
+		}
 		if (event.type == sf::Event::Closed) {
 			quit();
 		}

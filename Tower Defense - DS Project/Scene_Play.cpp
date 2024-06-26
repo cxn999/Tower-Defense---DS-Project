@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
+#include <cmath>
 
 Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath) 
 	: Scene(gameEngine)
@@ -71,8 +72,8 @@ void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Mouse::Left, "CLICK");
 
 
-	m_gridText.setCharacterSize(12);
-	loadLevel(levelPath);
+	m_entityManager = EntityManager();
+	spawnPlayer();
 
 	for (int i = 0; i < 5; i++) {
 		sf::RectangleShape rect(sf::Vector2f(75, 75));
@@ -142,40 +143,12 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CInput>();
 }
 
-void Scene_Play::loadLevel(const std::string& levelpath) {
-	// reset the entity manager every time we load a level
-	m_entityManager = EntityManager();
-
-	std::ifstream file(levelpath);
-	std::string identifier;
-
-	if (!file.is_open()) {
-		std::cerr << "Error opening file...\n";
-		exit(EXIT_FAILURE);
-	}
-
-	while (file >> identifier) {
-		std::string name;
-		int x, y;;
-		if (identifier == "tile") {
-			file >> name >> x >> y;
-			auto e = m_entityManager.addEntity(identifier);
-			e->addComponent<CAnimation>(m_game->getAssets().getAnimation(name), false);
-			e->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
-			auto size = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-			//e->addComponent<CBoundingBox>(Vec2(size.getSize().x,size.getSize().y));
-			e->addComponent<CTransform>(Vec2(x*m_gridSize.x+m_gridSize.x/2,m_game->window().getSize().y-y*m_gridSize.y-m_gridSize.y / 2));
-			auto pos = e->getComponent<CTransform>().pos;
-			e->getComponent<CAnimation>().animation.getSprite().setPosition(pos.x, pos.y);
-		}
-	}
-	spawnPlayer();
-}
-
 void Scene_Play::sRender() {
 	auto& window = m_game->window();
 
 	window.clear(sf::Color(166, 176, 79));
+
+	window.draw(m_game->getAssets().getAnimation("background").getSprite());
 
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
@@ -185,107 +158,75 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 	}
-		window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
+	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
 
-
-		if (m_drawCollision) {
-			for (auto e : m_entityManager.getEntities()) {
-				if (e->hasComponent<CBoundingBox>()) {
-					auto size_x = e->getComponent<CBoundingBox>().size.x;
-					auto size_y = e->getComponent<CBoundingBox>().size.y;
-					sf::RectangleShape BoundingBox(sf::Vector2f(size_x, size_y));
-					BoundingBox.setOrigin(e->getComponent<CBoundingBox>().halfSize.x, e->getComponent<CBoundingBox>().halfSize.y);
-					BoundingBox.setPosition(e->getComponent<CTransform>().pos.x, e->getComponent<CTransform>().pos.y);
-					BoundingBox.setOutlineColor(sf::Color::Blue);
-					BoundingBox.setFillColor(sf::Color::Transparent);
-					BoundingBox.setOutlineThickness(1);
-					window.draw(BoundingBox);
-				}
+	if (m_drawCollision) {
+		for (auto e : m_entityManager.getEntities()) {
+			if (e->hasComponent<CBoundingBox>()) {
+				auto size_x = e->getComponent<CBoundingBox>().size.x;
+				auto size_y = e->getComponent<CBoundingBox>().size.y;
+				sf::RectangleShape BoundingBox(sf::Vector2f(size_x, size_y));
+				BoundingBox.setOrigin(e->getComponent<CBoundingBox>().halfSize.x, e->getComponent<CBoundingBox>().halfSize.y);
+				BoundingBox.setPosition(e->getComponent<CTransform>().pos.x, e->getComponent<CTransform>().pos.y);
+				BoundingBox.setOutlineColor(sf::Color::Blue);
+				BoundingBox.setFillColor(sf::Color::Transparent);
+				BoundingBox.setOutlineThickness(1);
+				window.draw(BoundingBox);
 			}
 		}
-		if (m_grassGrid && !m_paused) {
-			for (auto& grassRect : m_grassRectanglesGrid) {
-				window.draw(grassRect);
-			}
+	}
+	if (m_grassGrid && !m_paused) {
+		for (auto& grassRect : m_grassRectanglesGrid) {
+			window.draw(grassRect);
 		}
-		if (m_roadGrid && !m_paused) {
-			for (auto& roadRect : m_roadRectanglesGrid) {
-				window.draw(roadRect);
-			}
+	}
+	if (m_roadGrid && !m_paused) {
+		for (auto& roadRect : m_roadRectanglesGrid) {
+			window.draw(roadRect);
 		}
+	}
+	
+	sShop();
 
-		// Shop and everything is actually not that important to the rendering
-		auto& shop = m_game->getAssets().getAnimation("wood");
-		for (int i = 0; i < m_game->window().getSize().x / shop.getSize().x; i++) {
-			shop.getSprite().setPosition(shop.getSize().x / 2.f + i * shop.getSize().x, m_game->window().getSize().y - 100.f);
-			window.draw(shop.getSprite());
-		}
+	if (m_mouseItem) {
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		auto& item = m_game->getAssets().getAnimation("");
+		switch (m_selectedItem) {
+		case 0:
+			item = m_game->getAssets().getAnimation("archerTowerShop");
+			break;
+		case 1:
+			item = m_game->getAssets().getAnimation("");
+			break;
+		case 2:
+			item = m_game->getAssets().getAnimation("iceSpikesShop");
 
-		sShop();
-
-		int i = 0;
-
-		for (auto& rect : m_shopRectangles) {
-			window.draw(rect);
-			auto& coin = m_game->getAssets().getAnimation("coin");
-			coin.getSprite().setPosition(rect.getPosition().x + 20, rect.getPosition().y + 110);
-			coin.getSprite().setScale(2, 2);
-			window.draw(coin.getSprite());
-
-			if (i == 0) {
-				auto& tower = m_game->getAssets().getAnimation("archerTowerShop");
-				tower.getSprite().setScale(1, 1);
-				tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
-				window.draw(tower.getSprite());
-			}
-			if (i == 2) {
-				auto& tower = m_game->getAssets().getAnimation("iceSpikesShop");
-				tower.getSprite().setScale(1.25, 1.25);
-				tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
-				window.draw(tower.getSprite());
-			}
-			if (i == 3) {
-				auto& tower = m_game->getAssets().getAnimation("woodSpikesShop");
-				tower.getSprite().setScale(1.25, 1.25);
-				tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
-				window.draw(tower.getSprite());
-			}
-			if (i == 4) {
-				auto& tower = m_game->getAssets().getAnimation("lightningShop");
-				tower.getSprite().setScale(0.5, 0.5);
-				tower.getSprite().setPosition(rect.getPosition().x + rect.getSize().x / 2.f, rect.getPosition().y + rect.getSize().y / 2.f);
-				window.draw(tower.getSprite());
-			}
-			i++;
-		}
-		if (m_mouseItem) {
-			auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-			auto& item = m_game->getAssets().getAnimation("");
-			switch (m_selectedItem) {
-			case 0:
-				item = m_game->getAssets().getAnimation("archerTowerShop");
-				break;
-			case 1:
-				item = m_game->getAssets().getAnimation("");
-				break;
-			case 2:
-				item = m_game->getAssets().getAnimation("iceSpikesShop");
-
-				break;
-			case 3:
-				item = m_game->getAssets().getAnimation("woodSpikesShop");
-				break;
-			case 4:
-				item = m_game->getAssets().getAnimation("lightningShop");
-				break;
-			}
-			item.getSprite().setPosition(mouse_pos.x, mouse_pos.y);
-			if (m_selectedItem != 4) item.getSprite().setScale(1.5, 1.5);
-			else					 item.getSprite().setScale(0.75, 0.75);
-			window.draw(item.getSprite());
+			break;
+		case 3:
+			item = m_game->getAssets().getAnimation("woodSpikesShop");
+			break;
+		case 4:
+			item = m_game->getAssets().getAnimation("lightningShop");
+			break;
 		}
 
-		window.display();
+		if (m_selectedItem == 0) {
+			sf::CircleShape c(300);
+			c.setFillColor(sf::Color(219, 116, 209, 80));
+			c.setOutlineThickness(1.f);
+			c.setOutlineColor(sf::Color::Magenta);
+			c.setPosition(mouse_pos.x, mouse_pos.y);
+			c.setOrigin(c.getRadius(), c.getRadius());
+			window.draw(c);
+		}
+
+		item.getSprite().setPosition(mouse_pos.x, mouse_pos.y);
+		if (m_selectedItem != 4) item.getSprite().setScale(1.5, 1.5);
+		else					 item.getSprite().setScale(0.75, 0.75);
+		window.draw(item.getSprite());
+	}
+
+	window.display();
 }
 
 void Scene_Play::sAnimation() {
@@ -531,9 +472,9 @@ void Scene_Play::sMovement() {
 			auto& archer_pos = archer->getComponent<CTransform>().pos;
 			auto r = archer->getComponent<CRange>().radius;
 			if (archer_pos.dist(e_transform.pos) <= r && archer->getComponent<CRange>().target == false) {
-				archer->getComponent<CState>().state = "attack";
 				attack(archer, e);
 				archer->getComponent<CRange>().target = true;
+				archer->getComponent<CState>().state = "attack";
 			}
 		}
 
@@ -545,7 +486,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame % 200 == 0) {
+	if (m_currentFrame%100==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }
@@ -639,8 +580,12 @@ void Scene_Play::sShop() {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
-			click = false;
 			m_selectedItem = i;
+
+			if (m_selectedItem == 0 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
+
+
+			click = false;
 			m_mouseItem = true;
 			sGrid(i);
 		}
@@ -682,8 +627,6 @@ void Scene_Play::sPlacement() {
 	else if (m_grassGrid) {
 		for (auto& grassRect : m_grassRectanglesGrid) {
 			if (click && grassRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-
-				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 
 				click = false;
 				m_mouseItem = false;

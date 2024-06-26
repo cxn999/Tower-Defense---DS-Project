@@ -68,6 +68,8 @@ Texture woodSpikesShop Assets\Shop\woodSpike_shop.png
 Texture lightningShop Assets\Shop\lightning_Shop.png
 Texture coin Assets\Shop\Coin.png
 
+Texture background Assets\background.png
+
 ------------------------- ANIMATIONS -------------------------
 
 =================TILES=================
@@ -128,8 +130,8 @@ Animation upgradeTower2 upgradeTower2 4 10
 Animation upgradeTower3 upgradeTower3 4 10
 
 Animation archerIdle archerIdle 4 12
-Animation D_archerAttack D_archerAttack 6 10
-Animation S_archerAttack S_archerAttack 6 10
+Animation D_archerAttack D_archerAttack 6 20
+Animation S_archerAttack S_archerAttack 6 20
 
 
 
@@ -139,4 +141,6 @@ Animation lightningShop lightningShop 1 0
 Animation iceSpikesShop iceSpikesShop 1 0
 Animation woodSpikesShop woodSpikesShop 1 0
 Animation coin coin 1 0
+
+Animation background background 1 0
 

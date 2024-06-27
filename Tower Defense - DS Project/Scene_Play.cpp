@@ -220,7 +220,7 @@ void Scene_Play::sRender() {
 			break;
 		}
 
-		if (m_selectedItem == 0) {
+		if (m_selectedItem < 3) {
 			sf::CircleShape c(300);
 			c.setFillColor(sf::Color(219, 116, 209, 80));
 			c.setOutlineThickness(1.f);
@@ -658,7 +658,7 @@ void Scene_Play::sShop() {
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
 			m_selectedItem = i;
 
-			if (m_selectedItem == 0 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
+			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 
 			click = false;
 			m_mouseItem = true;

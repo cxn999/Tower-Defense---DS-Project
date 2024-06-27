@@ -85,6 +85,12 @@ Texture lightning Assets\Attack\Lightning\4.png
 Texture iceSpike Assets\Attack\Spikes\4.png
 Texture woodSpikes Assets\Attack\Spikes\2.png
 
+Texture shopAreaTower Assets\Shop\shopArea.png
+Texture shopFreezeTower Assets\Shop\shopFreeze.png
+Texture shopTargetTower Assets\Shop\shopTarget.png
+
+
+
 Texture background Assets\background.png
 
 ------------------------- ANIMATIONS -------------------------
@@ -176,3 +182,7 @@ Animation D_archerFreezeIdle D_archerFreezeIdle 4 12
 Animation D_archerFreezeIdle D_archerFreezeIdle 4 12
 Animation D_archerFreezeAttack D_archerFreezeAttack 6 20
 Animation S_archerFreezeAttack S_archerFreezeAttack 6 20
+
+Animation shopAreaTower shopAreaTower 1 0
+Animation shopFreezeTower shopFreezeTower 1 0
+Animation shopTargetTower shopTargetTower 1 0

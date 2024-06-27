@@ -141,8 +141,7 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CBoundingBox>(Vec2(size.getSize().x/2.f, size.getSize().y/2.f - 10));
 	m_player->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f +50.f));
 
-	m_player->addComponent<CState>();
-	m_player->getComponent<CState>().state = "idle1";
+	m_player->addComponent<CState>("idle1", "default");
 	m_player->addComponent<CLevel>();
 	m_player->addComponent<CHealth>(600);
 	m_player->addComponent<CInput>();
@@ -204,13 +203,13 @@ void Scene_Play::sRender() {
 		auto& item = m_game->getAssets().getAnimation("");
 		switch (m_selectedItem) {
 		case 0:
-			item = m_game->getAssets().getAnimation("archerTowerShop");
+			item = m_game->getAssets().getAnimation("shopAreaTower");
 			break;
 		case 1:
-			item = m_game->getAssets().getAnimation("");
+			item = m_game->getAssets().getAnimation("shopFreezeTower");
 			break;
 		case 2:
-			item = m_game->getAssets().getAnimation("iceSpikesShop");
+			item = m_game->getAssets().getAnimation("shopTargetTower");
 
 			break;
 		case 3:
@@ -241,33 +240,23 @@ void Scene_Play::sRender() {
 }
 
 void Scene_Play::sAnimation() {
-	// Animation system is not important to the render
 	auto& player = m_player->getComponent<CTransform>();
 	auto& player_state = m_player->getComponent<CState>().state;
 	auto& animation = m_player->getComponent<CAnimation>().animation;
 	
-	if (player_state == "idle1") {
-		if (animation.getName() != "towerIdle1") {
+	if (player_state == "idle1" && (animation.getName().find("Idle1") == std::string::npos))
 			animation = m_game->getAssets().getAnimation("towerIdle1");
-		}
-	}
-	if (player_state == "idle2") {
-		if (animation.getName() != "towerIdle2") {
-			animation = m_game->getAssets().getAnimation("towerIdle2");
-		}
-	}
-	if (player_state == "idle3") {
-		if (animation.getName() != "towerIdle3") {
-			animation = m_game->getAssets().getAnimation("towerIdle3");
-		}
-	}
-	if (player_state == "idle4") {
-		if (animation.getName() != "towerIdle4") {
-			animation = m_game->getAssets().getAnimation("towerIdle4");
-		}
-	}
 
-	else if (player_state == "upgrade") {
+	if (player_state == "idle2" && (animation.getName().find("Idle2") == std::string::npos))
+			animation = m_game->getAssets().getAnimation("towerIdle2");
+
+	if (player_state == "idle3" && (animation.getName().find("Idle3") == std::string::npos))
+			animation = m_game->getAssets().getAnimation("towerIdle3");
+
+	if (player_state == "idle4" && (animation.getName().find("Idle4") == std::string::npos))
+			animation = m_game->getAssets().getAnimation("towerIdle4");
+
+	if (player_state == "upgrade") {
 		if (animation.getName() == "towerIdle1") {
 			animation = m_game->getAssets().getAnimation("towerUp1");
 		}
@@ -297,24 +286,40 @@ void Scene_Play::sAnimation() {
 		auto& e_transform = e->getComponent<CTransform>();
 		auto& e_state = e->getComponent<CState>().state;
 		auto& animation = e->getComponent<CAnimation>().animation;
+		auto type = e->getComponent<CType>().type;
+		auto direction = e->getComponent<CState>().direction;
 
-		if (e_state == "attack") {
-			if (animation.getName() == "D_goblinWalk") animation = m_game->getAssets().getAnimation("D_goblinAttack");
-			if (animation.getName() == "S_goblinWalk") animation = m_game->getAssets().getAnimation("S_goblinAttack");
-			if (animation.getName() == "D_wolfWalk") animation = m_game->getAssets().getAnimation("D_wolfAttack");
-			if (animation.getName() == "S_wolfWalk") animation = m_game->getAssets().getAnimation("S_wolfAttack");
-			if (animation.getName() == "D_slimeWalk") animation = m_game->getAssets().getAnimation("D_slimeAttack");
-			if (animation.getName() == "S_slimeWalk") animation = m_game->getAssets().getAnimation("S_slimeAttack");
+		if (e_state == "attack" && (animation.getName().find("Attack") == std::string::npos)) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinAttack");
+				else animation = m_game->getAssets().getAnimation("S_goblinAttack");
+			}
+			else if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfAttack");
+				else animation = m_game->getAssets().getAnimation("S_wolfAttack");
+			}
+			else if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeAttack");
+				else animation = m_game->getAssets().getAnimation("S_slimeAttack");
+			}
 		}
-		if (e_state == "death") {
-			if (animation.getName() == "D_goblinWalk" || animation.getName() == "D_goblinAttack") animation = m_game->getAssets().getAnimation("D_goblinDeath");
-			if (animation.getName() == "S_goblinWalk" || animation.getName() == "S_goblinAttack") animation = m_game->getAssets().getAnimation("S_goblinDeath");
-			if (animation.getName() == "D_wolfWalk" || animation.getName() == "D_wolfAttack") animation = m_game->getAssets().getAnimation("D_wolfDeath");
-			if (animation.getName() == "S_wolfWalk" || animation.getName() == "S_wolfAttack") animation = m_game->getAssets().getAnimation("S_wolfDeath");
-			if (animation.getName() == "D_slimeWalk" || animation.getName() == "D_slimeAttack") animation = m_game->getAssets().getAnimation("D_slimeDeath");
-			if (animation.getName() == "S_slimeWalk" || animation.getName() == "S_slimeAttack") animation = m_game->getAssets().getAnimation("S_slimeDeath");
-			if (animation.getName() == "D_beeWalk") animation = m_game->getAssets().getAnimation("D_beeDeath");
-			if (animation.getName() == "S_beeWalk") animation = m_game->getAssets().getAnimation("S_beeDeath");
+		if (e_state == "death" && (animation.getName().find("Death") == std::string::npos)) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
+				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
+				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
+				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
+				else animation = m_game->getAssets().getAnimation("S_beeDeath");
+			}
 			e_transform.velocity = { 0,0 };
 		}
 
@@ -372,20 +377,55 @@ void Scene_Play::sAnimation() {
 	for (auto& defense : m_entityManager.getEntities("defense")) {
 		auto& d = defense->getComponent<CAnimation>();
 		auto& d_pos = defense->getComponent<CTransform>().pos;
+		auto d_type = defense->getComponent<CType>().type;
+
 		if (d.animation.getName() == "constructionTower" && m_lastFrameDefenseSpawn+300==m_currentFrame) {
-			d.animation = m_game->getAssets().getAnimation("upgradeAreaTower1");
+
+			if (d_type == "area") {
+				d.animation = (m_game->getAssets().getAnimation("upgradeAreaTower1"));
+			}
+			else if (d_type == "freeze") {
+				d.animation = (m_game->getAssets().getAnimation("upgradeFreezeTower1"));
+			}
+			else if (d_type == "target") {
+				d.animation = (m_game->getAssets().getAnimation("upgradeTargetTower1"));
+			}
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 		}
-		if (d.animation.getName() == "upgradeAreaTower1" && d.animation.hasEnded()) {
-			d.animation = m_game->getAssets().getAnimation("areaTower2");
+		if (d.animation.getName().find("upgrade") != std::string::npos && d.animation.hasEnded()) {
+
+			if (d_type == "area") {
+				d.animation = (m_game->getAssets().getAnimation("areaTower2"));
+			}
+			else if (d_type == "freeze") {
+				d.animation = (m_game->getAssets().getAnimation("freezeTower2"));
+			}
+			else if (d_type == "target") {
+				d.animation = (m_game->getAssets().getAnimation("targetTower2"));
+			}
+
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 			auto archer = m_entityManager.addEntity("archer");
+
+			archer->addComponent<CType>(d_type);
 			archer->addComponent<CAnimation>();
-			archer->addComponent<CAnimation>().animation = m_game->getAssets().getAnimation("D_archerAreaIdle");
+
+			auto type = archer->getComponent<CType>().type;
+
+			if (type == "area") {
+				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
+			}
+			else if (type == "freeze") {
+				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
+			}
+			else if (type == "target") {
+				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
+			}
+
 			archer->addComponent<CTransform>(d_pos);
 			archer->addComponent<CRange>(300);
 			archer->addComponent<CAttack>(3);
-			archer->addComponent<CState>("idle");
+			archer->addComponent<CState>("idle", "vertical");
 		}
 		d.animation.getSprite().setScale(2, 2);		
 		d.animation.update();
@@ -394,15 +434,35 @@ void Scene_Play::sAnimation() {
 	for (auto& archer : m_entityManager.getEntities("archer")) {
 		auto& d = archer->getComponent<CAnimation>();
 		auto& d_pos = archer->getComponent<CTransform>().pos;
+		auto type = archer->getComponent<CType>().type;
 
 		if (archer->getComponent<CState>().state == "attack") {
 			if (animation.hasEnded()) {
-				d.animation = m_game->getAssets().getAnimation("D_archerAreaIdle");
+				if (type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
+				}
+				else if (type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
+				}
+				else if (type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
+				}
+
 				archer->getComponent<CRange>().target = false;
 				archer->getComponent<CState>().state = "idle";
 			}
-			else if (d.animation.getName() != "D_archerAreaAttack" && d.animation.getName() != "S_archerAreaAttack") {
-				d.animation = m_game->getAssets().getAnimation("D_archerAreaAttack");
+			else if (d.animation.getName().find("Attack") == std::string::npos) {
+
+				if (type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerAreaAttack"));
+				}
+				else if (type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerFreezeAttack"));
+				}
+				else if (type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("D_archerTargetAttack"));
+				}
+
 			}
 		}
 		d.animation.getSprite().setPosition(d_pos.x, d_pos.y-20);
@@ -497,7 +557,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame%100==0) {
+	if (m_currentFrame%20==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }
@@ -518,20 +578,24 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	if (line == 1) {
 		pos = Vec2(-offsetConstant, rand() % offsetConstant*2 + window_size.y / 2.f);
 		velocity = { 2,0 };
+		entity->addComponent<CState>("walk", "horizontal");
 	}
 	else if (line == 2) {
 		pos = Vec2(window_size.x / 2.f + rand() % offsetConstant*2 -50 , -offsetConstant);
 		velocity = { 0, 2 };
+		entity->addComponent<CState>("walk", "vertical");
 	}
 	else {
 		pos = Vec2(window_size.x + offsetConstant , rand() % offsetConstant*2 + window_size.y / 2.f);
 		velocity = { -2, 0 };
+		entity->addComponent<CState>("walk", "horizontal");
 	}
 
 	if (type == 0) {
+		entity->addComponent<CType>("goblin");
 		damage = 0.8f;
 		velocity *= 0.8;
-		health = 50;
+		health = 80;
 		if (line == 2) {
 			animation = "D_goblinWalk";
 		}
@@ -540,9 +604,10 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 	}
 	else if (type == 1) {
+		entity->addComponent<CType>("wolf");
 		damage = 0.6f;
 		velocity*=1.5;
-		health = 30;
+		health = 50;
 		if (line == 2) {
 			animation = "D_wolfWalk";
 		}
@@ -551,9 +616,10 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 	}
 	else if (type == 2) {
+		entity->addComponent<CType>("bee");
 		damage = 0.3f;
 		animation = "D_beeWalk";
-		health = 20;
+		health = 30;
 		if (line == 2) {
 			animation = "D_beeWalk";
 		}
@@ -562,8 +628,9 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 	}
 	else if (type == 3) {
+		entity->addComponent<CType>("slime");
 		damage = 0.2f;
-		health = 25;
+		health = 40;
 		animation = "D_slimeWalk";
 		if (line == 2) {
 			animation = "D_slimeWalk";
@@ -579,8 +646,6 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	entity->addComponent<CBoundingBox>(Vec2(size.getSize().x, size.getSize().y/2.f));
 	entity->addComponent<CTransform>(pos);
 	entity->getComponent<CTransform>().velocity = velocity;
-	entity->addComponent<CState>();
-	entity->getComponent<CState>().state = "walk";
 	entity->addComponent<CHealth>(health);
 	entity->addComponent<CAttack>(damage);
 }
@@ -595,11 +660,10 @@ void Scene_Play::sShop() {
 
 			if (m_selectedItem == 0 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 
-
 			click = false;
 			m_mouseItem = true;
 			
-			if (i == 0 || i==1) {
+			if (i == 0 || i==1 || i==2) {
 				m_grassGrid = true;
 			} else {
 				m_roadGrid = true;
@@ -654,6 +718,20 @@ void Scene_Play::sPlacement() {
 				defense->addComponent<CAnimation>(m_game->getAssets().getAnimation("constructionTower"), false);
 				defense->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 				defense->getComponent<CAnimation>().animation.getSprite().setPosition(m_defensePos.x,m_defensePos.y);
+
+				std::string type;
+
+				if (m_selectedItem == 0) {
+					type = "area";
+				}
+				else if (m_selectedItem == 1) {
+					type = "freeze";
+				}
+				else if (m_selectedItem == 2) {
+					type = "target";
+				}
+
+				defense->addComponent<CType>().type = type;
 			}
 			i++;
 		}

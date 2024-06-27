@@ -63,8 +63,9 @@ public:
 class CState : public Component {
 public:
 	std::string state = "idle";
+	std::string direction = "default";
 	CState() {}
-	CState(std::string s) : state(s) {}
+	CState(std::string s, std::string d) : state(s), direction(d) {}
 };
 
 class CLevel : public Component {
@@ -96,4 +97,12 @@ public:
 	bool target = false;
 	CRange(float r) : radius(r) {}
 	CRange() {}
+};
+
+class CType : public Component {
+public:
+	std::string type;
+
+	CType(std::string t) : type(t) {}
+	CType() {}
 };

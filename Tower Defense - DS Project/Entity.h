@@ -14,7 +14,8 @@ typedef std::tuple <
 	CLevel,
 	CHealth,
 	CAttack,
-	CRange
+	CRange,
+	CType
 	> ComponentTuple;
 
 class Entity { 

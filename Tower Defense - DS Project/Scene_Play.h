@@ -29,10 +29,10 @@ protected:
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
 	std::vector<sf::RectangleShape> m_grassRectanglesGrid;
+	std::map<size_t, bool> m_usedRectanglesIndex;
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
 
-	sf::Clock m_clock;
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
 
@@ -51,7 +51,6 @@ public:
 	void sRender();
 	void sShop();
 	void sHealth();
-	void sGrid(int n);
 	void sDoAction(const Action& a);
 	void sPlacement();
 	void spawnPlayer();

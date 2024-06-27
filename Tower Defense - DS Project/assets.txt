@@ -1,7 +1,6 @@
 Font RETROGAMING Assets\Fonts\Retro_Gaming.ttf
 
 ------------------------- TEXTURES -------------------------
-
 =================TILES=================
 Texture tile01 Assets\Tiles\FieldsTile_02.png
 Texture tile02 Assets\Tiles\FieldsTile_03.png
@@ -11,7 +10,6 @@ Texture tile05 Assets\Tiles\FieldsTile_35.png
 Texture tile06 Assets\Tiles\FieldsTile_36.png
 Texture tile07 Assets\Tiles\FieldsTile_17.png
 Texture tile08 Assets\Tiles\FieldsTile_21.png
-Texture wood Assets\Shop\Wood.png
 =================TOWER=================
 Texture tower1 Assets\Tower\Idle\1.png
 Texture tower2 Assets\Tower\Idle\2.png
@@ -45,32 +43,53 @@ Texture D_slimeWalk Assets\Enemies\Slime\D_Walk.png
 Texture D_slimeDeath Assets\Enemies\Slime\D_Death.png
 Texture S_slimeWalk Assets\Enemies\Slime\S_Walk.png
 Texture S_slimeDeath Assets\Enemies\Slime\S_Death.png
-=================ATTACK===============
+
+Texture constructionTower Assets\Attack\ArcherTower\constructionTower.png
+
+=================TARGET TOWER===============
+Texture targetTower2 Assets\Attack\ArcherTower\TargetTower\Idle\2.png
+Texture targetTower3 Assets\Attack\ArcherTower\TargetTower\Idle\3.png
+Texture targetTower4 Assets\Attack\ArcherTower\TargetTower\Idle\4.png
+Texture upgradeTargetTower1 Assets\Attack\ArcherTower\TargetTower\Upgrade\1.png
+Texture upgradeTargetTower2 Assets\Attack\ArcherTower\TargetTower\Upgrade\2.png
+Texture upgradeTargetTower3 Assets\Attack\ArcherTower\TargetTower\Upgrade\3.png
+Texture D_archerTargetIdle Assets\Attack\ArcherTower\TargetTower\Archer\D_Idle.png
+Texture D_archerTargetIdle Assets\Attack\ArcherTower\TargetTower\Archer\S_Idle.png
+Texture D_archerTargetAttack Assets\Attack\ArcherTower\TargetTower\Archer\D_Attack.png
+Texture S_archerTargetAttack Assets\Attack\ArcherTower\TargetTower\Archer\S_Attack.png
+=================AREA TOWER===============
+Texture areaTower2 Assets\Attack\ArcherTower\AreaTower\Idle\2.png
+Texture areaTower3 Assets\Attack\ArcherTower\AreaTower\Idle\3.png
+Texture areaTower4 Assets\Attack\ArcherTower\AreaTower\Idle\4.png
+Texture upgradeAreaTower1 Assets\Attack\ArcherTower\AreaTower\Upgrade\1.png
+Texture upgradeAreaTower2 Assets\Attack\ArcherTower\AreaTower\Upgrade\2.png
+Texture upgradeAreaTower3 Assets\Attack\ArcherTower\AreaTower\Upgrade\3.png
+Texture D_archerAreaIdle Assets\Attack\ArcherTower\AreaTower\Archer\D_Idle.png
+Texture D_archerAreaIdle Assets\Attack\ArcherTower\AreaTower\Archer\S_Idle.png
+Texture D_archerAreaAttack Assets\Attack\ArcherTower\AreaTower\Archer\D_Attack.png
+Texture S_archerAreaAttack Assets\Attack\ArcherTower\AreaTower\Archer\S_Attack.png
+=================FREEZE TOWER===============
+Texture freezeTower2 Assets\Attack\ArcherTower\FreezeTower\Idle\2.png
+Texture freezeTower3 Assets\Attack\ArcherTower\FreezeTower\Idle\3.png
+Texture freezeTower4 Assets\Attack\ArcherTower\FreezeTower\Idle\4.png
+Texture upgradeFreezeTower1 Assets\Attack\ArcherTower\FreezeTower\Upgrade\1.png
+Texture upgradeFreezeTower2 Assets\Attack\ArcherTower\FreezeTower\Upgrade\2.png
+Texture upgradeFreezeTower3 Assets\Attack\ArcherTower\FreezeTower\Upgrade\3.png
+Texture D_archerFreezeIdle Assets\Attack\ArcherTower\FreezeTower\Archer\D_Idle.png
+Texture D_archerFreezeIdle Assets\Attack\ArcherTower\FreezeTower\Archer\S_Idle.png
+Texture D_archerFreezeAttack Assets\Attack\ArcherTower\FreezeTower\Archer\D_Attack.png
+Texture S_archerFreezeAttack Assets\Attack\ArcherTower\FreezeTower\Archer\S_Attack.png
+
+
 Texture lightning Assets\Attack\Lightning\4.png
 Texture iceSpike Assets\Attack\Spikes\4.png
 Texture woodSpikes Assets\Attack\Spikes\2.png
-Texture archerTower1 Assets\Attack\ArcherTower\Idle\1.png
-Texture archerTower2 Assets\Attack\ArcherTower\Idle\2.png
-Texture archerTower3 Assets\Attack\ArcherTower\Idle\3.png
-Texture archerTower4 Assets\Attack\ArcherTower\Idle\4.png
-Texture upgradeTower1 Assets\Attack\ArcherTower\Upgrade\1.png
-Texture upgradeTower2 Assets\Attack\ArcherTower\Upgrade\1.png
-Texture upgradeTower3 Assets\Attack\ArcherTower\Upgrade\1.png
-
-Texture archerIdle Assets\Attack\ArcherTower\Archer\D_Idle.png
-Texture D_archerAttack Assets\Attack\ArcherTower\Archer\D_Attack.png
-Texture S_archerAttack Assets\Attack\ArcherTower\Archer\S_Attack.png
-
-=================SHOP===============
-Texture archerTowerShop Assets\Shop\Tower_shop.png
-Texture iceSpikesShop Assets\Shop\iceSpike_Shop.png
-Texture woodSpikesShop Assets\Shop\woodSpike_shop.png
-Texture lightningShop Assets\Shop\lightning_Shop.png
-Texture coin Assets\Shop\Coin.png
 
 Texture background Assets\background.png
 
 ------------------------- ANIMATIONS -------------------------
+
+Animation background background 1 0
 
 =================TILES=================
 Animation grass01 tile01 1 0
@@ -81,7 +100,6 @@ Animation grass05 tile05 1 0
 Animation grass06 tile06 1 0
 Animation grass07 tile07 1 0
 Animation grass08 tile08 1 0
-Animation wood wood 1 0
 =================TOWER=================
 Animation towerIdle1 tower1 6 8
 Animation towerIdle2 tower2 6 8
@@ -121,26 +139,40 @@ Animation S_slimeDeath S_slimeDeath 6 6
 Animation lightning lightning 10 6
 Animation iceSpike iceSpike 6 12
 Animation woodSpike woodSpikes 6 12
-Animation archerTower1 archerTower1 1 0
-Animation archerTower2 archerTower2 1 0
-Animation archerTower3 archerTower3 4 4
-Animation archerTower4 archerTower4 4 4
-Animation upgradeTower1 upgradeTower1 4 10
-Animation upgradeTower2 upgradeTower2 4 10
-Animation upgradeTower3 upgradeTower3 4 10
-
-Animation archerIdle archerIdle 4 12
-Animation D_archerAttack D_archerAttack 6 20
-Animation S_archerAttack S_archerAttack 6 20
 
 
+Animation constructionTower constructionTower 1 0
 
-=================SHOP - SHOULD BE DELETED AFTER===============
-Animation archerTowerShop archerTowerShop 1 0
-Animation lightningShop lightningShop 1 0
-Animation iceSpikesShop iceSpikesShop 1 0
-Animation woodSpikesShop woodSpikesShop 1 0
-Animation coin coin 1 0
-
-Animation background background 1 0
-
+=================TARGET TOWER===============
+Animation targetTower2 targetTower2 1 0
+Animation targetTower3 targetTower3 4 4
+Animation targetTower4 targetTower4 4 4
+Animation upgradeTargetTower1 upgradeTargetTower1 4 10
+Animation upgradeTargetTower2 upgradeTargetTower2 4 10
+Animation upgradeTargetTower3 upgradeTargetTower3 4 10
+Animation D_archerTargetIdle D_archerTargetIdle 4 12
+Animation D_archerTargetIdle D_archerTargetIdle 4 12
+Animation D_archerTargetAttack D_archerTargetAttack 6 20
+Animation S_archerTargetAttack S_archerTargetAttack 6 20
+=================AREA TOWER===============
+Animation areaTower2 areaTower2 1 0
+Animation areaTower3 areaTower3 4 4
+Animation areaTower4 areaTower4 4 4
+Animation upgradeAreaTower1 upgradeAreaTower1 4 10
+Animation upgradeAreaTower2 upgradeAreaTower2 4 10
+Animation upgradeAreaTower3 upgradeAreaTower3 4 10
+Animation D_archerAreaIdle D_archerAreaIdle 4 12
+Animation D_archerAreaIdle D_archerAreaIdle 4 12
+Animation D_archerAreaAttack D_archerAreaAttack 6 20
+Animation S_archerAreaAttack S_archerAreaAttack 6 20
+=================FREEZE TOWER===============
+Animation freezeTower2 freezeTower2 1 0
+Animation freezeTower3 freezeTower3 4 4
+Animation freezeTower4 freezeTower4 4 4
+Animation upgradeFreezeTower1 upgradeFreezeTower1 4 10
+Animation upgradeFreezeTower2 upgradeFreezeTower2 4 10
+Animation upgradeFreezeTower3 upgradeFreezeTower3 4 10
+Animation D_archerFreezeIdle D_archerFreezeIdle 4 12
+Animation D_archerFreezeIdle D_archerFreezeIdle 4 12
+Animation D_archerFreezeAttack D_archerFreezeAttack 6 20
+Animation S_archerFreezeAttack S_archerFreezeAttack 6 20

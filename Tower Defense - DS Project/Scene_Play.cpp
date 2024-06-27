@@ -41,6 +41,7 @@ void Scene_Play::generateRoadRectangles() {
 }
 
 void Scene_Play::generateGrassRectangles() {
+	int n = 0;
 	for (int i = 0; i < m_game->window().getSize().x; i += 128) {
 		if (i != 6 * 128 && i != 7 * 128) {
 			sf::RectangleShape grassRect(sf::Vector2f(128, 128));
@@ -49,7 +50,9 @@ void Scene_Play::generateGrassRectangles() {
 			grassRect.setOutlineColor(sf::Color::Magenta);
 			grassRect.setFillColor(sf::Color(219, 116, 209, 80));
 			m_grassRectanglesGrid.push_back(grassRect);
+			m_usedRectanglesIndex[n] = false;
 		}
+		n++;
 	}
 	for (int i = 0; i < m_game->window().getSize().y / 2.f - 128*2; i += 128) {
 		sf::RectangleShape grassRect(sf::Vector2f(128, 128));
@@ -60,6 +63,8 @@ void Scene_Play::generateGrassRectangles() {
 		m_grassRectanglesGrid.push_back(grassRect);
 		grassRect.setPosition(128 * 8, i);
 		m_grassRectanglesGrid.push_back(grassRect);
+		m_usedRectanglesIndex[n] = false;
+		n++;
 	}
 }
 
@@ -176,8 +181,14 @@ void Scene_Play::sRender() {
 		}
 	}
 	if (m_grassGrid && !m_paused) {
+		int n = 0;
 		for (auto& grassRect : m_grassRectanglesGrid) {
+			if (m_usedRectanglesIndex[n] == true) {
+				grassRect.setFillColor(sf::Color(255, 0, 0, 80));
+				grassRect.setOutlineColor(sf::Color::Red);
+			}
 			window.draw(grassRect);
+			n++;
 		}
 	}
 	if (m_roadGrid && !m_paused) {
@@ -361,23 +372,22 @@ void Scene_Play::sAnimation() {
 	for (auto& defense : m_entityManager.getEntities("defense")) {
 		auto& d = defense->getComponent<CAnimation>();
 		auto& d_pos = defense->getComponent<CTransform>().pos;
-		if (d.animation.getName() == "archerTower1" && m_lastFrameDefenseSpawn+300==m_currentFrame) {
-			d.animation = m_game->getAssets().getAnimation("upgradeTower1");
+		if (d.animation.getName() == "constructionTower" && m_lastFrameDefenseSpawn+300==m_currentFrame) {
+			d.animation = m_game->getAssets().getAnimation("upgradeAreaTower1");
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 		}
-		if (d.animation.getName() == "upgradeTower1" && d.animation.hasEnded()) {
-			d.animation = m_game->getAssets().getAnimation("archerTower2");
+		if (d.animation.getName() == "upgradeAreaTower1" && d.animation.hasEnded()) {
+			d.animation = m_game->getAssets().getAnimation("areaTower2");
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 			auto archer = m_entityManager.addEntity("archer");
 			archer->addComponent<CAnimation>();
-			archer->addComponent<CAnimation>().animation = m_game->getAssets().getAnimation("archerIdle");
+			archer->addComponent<CAnimation>().animation = m_game->getAssets().getAnimation("D_archerAreaIdle");
 			archer->addComponent<CTransform>(d_pos);
 			archer->addComponent<CRange>(300);
 			archer->addComponent<CAttack>(3);
 			archer->addComponent<CState>("idle");
 		}
-		d.animation.getSprite().setScale(2, 2);
-		
+		d.animation.getSprite().setScale(2, 2);		
 		d.animation.update();
 	}
 
@@ -387,16 +397,17 @@ void Scene_Play::sAnimation() {
 
 		if (archer->getComponent<CState>().state == "attack") {
 			if (animation.hasEnded()) {
-				d.animation = m_game->getAssets().getAnimation("archerIdle");
+				d.animation = m_game->getAssets().getAnimation("D_archerAreaIdle");
 				archer->getComponent<CRange>().target = false;
 				archer->getComponent<CState>().state = "idle";
 			}
-			else if (d.animation.getName() != "D_archerAttack" && d.animation.getName() != "S_ArcherAttack") {
-				d.animation = m_game->getAssets().getAnimation("D_archerAttack");
+			else if (d.animation.getName() != "D_archerAreaAttack" && d.animation.getName() != "S_archerAreaAttack") {
+				d.animation = m_game->getAssets().getAnimation("D_archerAreaAttack");
 			}
 		}
 		d.animation.getSprite().setPosition(d_pos.x, d_pos.y-20);
 		d.animation.getSprite().setScale(1.5, 1.5);
+		d.animation.getSprite().setColor(sf::Color(255,0,0));
 		d.animation.update();
 	}
 }
@@ -587,18 +598,14 @@ void Scene_Play::sShop() {
 
 			click = false;
 			m_mouseItem = true;
-			sGrid(i);
+			
+			if (i == 0 || i==1) {
+				m_grassGrid = true;
+			} else {
+				m_roadGrid = true;
+			}
 		}
 		i++;
-	}
-}
-
-void Scene_Play::sGrid(int n) {
-	if (n == 0 || n == 1) {
-		m_grassGrid = true;
-	}
-	else {
-		m_roadGrid = true;
 	}
 }
 
@@ -625,12 +632,16 @@ void Scene_Play::sPlacement() {
 		}
 	}
 	else if (m_grassGrid) {
+		int i = 0;
 		for (auto& grassRect : m_grassRectanglesGrid) {
 			if (click && grassRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+
+				if (m_usedRectanglesIndex[i] == true) continue;
 
 				click = false;
 				m_mouseItem = false;
 				m_grassGrid = false;
+				m_usedRectanglesIndex[i] = true;
 
 				Vec2 m_defensePos = { grassRect.getPosition().x + grassRect.getSize().x / 2.f,
 								grassRect.getPosition().y + grassRect.getSize().y / 2.f };
@@ -640,10 +651,11 @@ void Scene_Play::sPlacement() {
 
 				auto defense = m_entityManager.addEntity("defense");
 				defense->addComponent<CTransform>(m_defensePos);
-				defense->addComponent<CAnimation>(m_game->getAssets().getAnimation("archerTower1"), false);
+				defense->addComponent<CAnimation>(m_game->getAssets().getAnimation("constructionTower"), false);
 				defense->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 				defense->getComponent<CAnimation>().animation.getSprite().setPosition(m_defensePos.x,m_defensePos.y);
 			}
+			i++;
 		}
 	}
 }

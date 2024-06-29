@@ -519,7 +519,7 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 		b->getComponent<CHealth>().health -= a->getComponent<CAttack>().damage;
 		if (b->getComponent<CHealth>().health < 0) {
 			if (b->tag() == "player") {
-				// m_paused = true;
+				m_paused = true;
 			}
 		}
 	}
@@ -533,6 +533,10 @@ void Scene_Play::sCollision() {
 
 	// Query the quadtree for entities within the search area
 	auto nearbyEntities = m_entityManager.queryRange(searchArea);
+
+	std::cout << "TOTAL SIZE: " << m_entityManager.getEntities().size() << std::endl;
+	std::cout << "QUERY SIZE: " << nearbyEntities.size() << std::endl;
+
 
 	for (auto& e : nearbyEntities) {
 		if (e->tag() != "enemy") continue;
@@ -625,8 +629,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	std::cout << m_entityManager.getEntities().size() << std::endl;
-	if (m_currentFrame%1==0) {
+	if (m_currentFrame%150==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }

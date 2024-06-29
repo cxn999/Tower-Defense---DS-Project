@@ -1,9 +1,13 @@
 #include "Scene.h"
 #include "GameEngine.h"
 
-Scene::Scene() = default;
+Scene::Scene() {
+}
 
-Scene::Scene(GameEngine * gameEngine) : m_game(gameEngine) {}
+Scene::Scene(GameEngine * gameEngine) : m_game(gameEngine) {
+	sf::FloatRect windowBounds(sf::Vector2f(0.f, 0.f), m_game->window().getDefaultView().getSize());
+	m_entityManager = EntityManager(windowBounds);
+}
 
 void Scene::setPaused(bool paused) {
 	m_paused = paused;

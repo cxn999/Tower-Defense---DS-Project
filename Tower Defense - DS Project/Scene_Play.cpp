@@ -17,6 +17,7 @@ Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 {
 	srand(time(NULL));
 	init(m_levelPath);
+
 }
 
 void Scene_Play::generateRoadRectangles() {
@@ -76,8 +77,6 @@ void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Mouse::Right, "UPGRADE");
 	registerAction(sf::Mouse::Left, "CLICK");
 
-
-	m_entityManager = EntityManager();
 	spawnPlayer();
 
 	for (int i = 0; i < 3; i++) {
@@ -223,7 +222,7 @@ void Scene_Play::sRender() {
 		}
 
 		if (m_selectedItem < 3) {
-			sf::CircleShape c(300);
+			sf::CircleShape c(250);
 			c.setFillColor(sf::Color(219, 116, 209, 80));
 			c.setOutlineThickness(1.f);
 			c.setOutlineColor(sf::Color::Magenta);
@@ -467,7 +466,7 @@ void Scene_Play::sAnimation() {
 			}
 
 			archer->addComponent<CTransform>(d_pos);
-			archer->addComponent<CRange>(300);
+			archer->addComponent<CRange>(250);
 			archer->addComponent<CAttack>(15);
 			archer->addComponent<CState>("idle", "vertical");
 		}
@@ -527,10 +526,17 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 }
 
 void Scene_Play::sCollision() {
-	// a little bit important
 	auto& player = m_player->getComponent<CTransform>();
 
-	for (auto& e : m_entityManager.getEntities("enemy")) {
+	// Define the search area around the player
+	sf::FloatRect searchArea(player.pos.x - 100, player.pos.y - 100, 200, 200); // Adjust size as needed
+
+	// Query the quadtree for entities within the search area
+	auto nearbyEntities = m_entityManager.queryRange(searchArea);
+
+	for (auto& e : nearbyEntities) {
+		if (e->tag() != "enemy") continue;
+
 		auto& tile = e->getComponent<CTransform>();
 
 		Vec2 overlap = GetOverlap(e, m_player);
@@ -538,7 +544,7 @@ void Scene_Play::sCollision() {
 
 		float dy = tile.pos.y - player.pos.y;
 
-		// check if player hits the tile from the bottom
+		// Check if player hits the tile from the bottom
 		if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) {
 			if (0 <= overlap.y && prevOverlap.y <= 0) {
 				tile.pos.y += overlap.y;
@@ -546,27 +552,30 @@ void Scene_Play::sCollision() {
 				e->getComponent<CState>().state = "attack";
 			}
 		}
-		// check player and enemy side collide
+
+		// Check player and enemy side collision
 		float dx = tile.pos.x - player.pos.x;
 		if (0 < overlap.y && -m_gridSize.x < overlap.x) {
 			if (0 <= overlap.x && prevOverlap.x <= 0) {
 				if (dx > 0) {
-					// tile is right of player
+					// Tile is right of player
 					tile.pos.x += overlap.x;
 					e->getComponent<CState>().state = "attack";
 				}
 				else {
-					// tile is left of player
+					// Tile is left of player
 					tile.pos.x -= overlap.x;
 					e->getComponent<CState>().state = "attack";
 				}
 			}
 		}
+
 		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
 		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
 			// Depending on attack subtract less or more life
 			e->getComponent<CHealth>().health -= 2;
 		}
+
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;
 			e->getComponent<CState>().state = "death";
@@ -877,9 +886,6 @@ void Scene_Play::sInfo() {
 					if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
 					else m_infoVector[2].setFillColor(sf::Color(64, 4, 4));
 					m_infoVector[2].setPosition(1268, 750);
-				}
-
-				if (m_upgrade) {
 				}
 
 				break;

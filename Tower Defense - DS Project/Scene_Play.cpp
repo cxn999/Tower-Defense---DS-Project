@@ -73,7 +73,7 @@ void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Keyboard::X, "UPGRADE");
+	registerAction(sf::Mouse::Right, "UPGRADE");
 	registerAction(sf::Mouse::Left, "CLICK");
 
 
@@ -113,17 +113,12 @@ void Scene_Play::sDoAction(const Action& action) {
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
-		else if (action.name() == "UPGRADE") {
-			if (m_player->getComponent<CLevel>().level < 4 && m_player->getComponent<CState>().state != "upgrade") {
-				m_player->getComponent<CLevel>().level++;
-				m_player->getComponent<CState>().state = "upgrade";
-				m_player->getComponent<CHealth>().health += 200;
-			}
-		}
+		else if (action.name() == "UPGRADE") { m_upgrade = true; }
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
 		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
+		else if (action.name() == "UPGRADE") { m_upgrade = false; }
 	}
 }
 
@@ -278,9 +273,9 @@ void Scene_Play::sRender() {
 	window.draw(m_coinsText);
 
 	if (m_drawInfo) {
-		window.draw(t);
-		window.draw(t2);
-		window.draw(t3);
+		for (auto& i : m_infoVector) {
+			window.draw(i);
+		}
 	}
 
 	window.display();
@@ -348,6 +343,10 @@ void Scene_Play::sAnimation() {
 			else if (type == "slime") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeAttack");
 				else animation = m_game->getAssets().getAnimation("S_slimeAttack");
+			}
+			else if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeAttack");
+				else animation = m_game->getAssets().getAnimation("S_beeAttack");
 			}
 		}
 		if (e_state == "death" && (animation.getName().find("Death") == std::string::npos)) {
@@ -469,7 +468,7 @@ void Scene_Play::sAnimation() {
 
 			archer->addComponent<CTransform>(d_pos);
 			archer->addComponent<CRange>(300);
-			archer->addComponent<CAttack>(3);
+			archer->addComponent<CAttack>(15);
 			archer->addComponent<CState>("idle", "vertical");
 		}
 		d.animation.getSprite().setScale(2, 2);		
@@ -496,8 +495,7 @@ void Scene_Play::sAnimation() {
 				archer->getComponent<CRange>().target = false;
 				archer->getComponent<CState>().state = "idle";
 			}
-			else if (d.animation.getName().find("Attack") == std::string::npos) {
-
+			else if (d.animation.getName().find("Idle") != std::string::npos) {
 				if (type == "area") {
 					d.animation = (m_game->getAssets().getAnimation("D_archerAreaAttack"));
 				}
@@ -556,7 +554,6 @@ void Scene_Play::sCollision() {
 					// tile is right of player
 					tile.pos.x += overlap.x;
 					e->getComponent<CState>().state = "attack";
-					attack(e, m_player);
 				}
 				else {
 					// tile is left of player
@@ -571,6 +568,7 @@ void Scene_Play::sCollision() {
 			e->getComponent<CHealth>().health -= 2;
 		}
 		if (e->getComponent<CHealth>().health <= 0) {
+			e->getComponent<CHealth>().health = 0;
 			e->getComponent<CState>().state = "death";
 		}
 	}
@@ -581,8 +579,9 @@ void Scene_Play::sMovement() {
 		auto & e_transform = e->getComponent<CTransform>();
 		e_transform.prevPos = e_transform.pos;
 		e_transform.pos += e_transform.velocity;
-		e->getComponent<CAnimation>().animation.getSprite().setPosition(e_transform.pos.x,e_transform.pos.y);
-		if (e->getComponent<CState>().state == "attack" && e->getComponent<CAnimation>().animation.hasEnded()) {
+		auto& animation = e->getComponent<CAnimation>().animation;
+		animation.getSprite().setPosition(e_transform.pos.x,e_transform.pos.y);
+		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
 		}
 		for (auto& archer : m_entityManager.getEntities("archer")) {
@@ -639,7 +638,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 
 	if (type == 0) {
 		entity->addComponent<CType>("goblin");
-		damage = 0.8f;
+		damage = 5;
 		velocity *= 0.8;
 		health = 80;
 		if (line == 2) {
@@ -651,7 +650,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	}
 	else if (type == 1) {
 		entity->addComponent<CType>("wolf");
-		damage = 0.6f;
+		damage = 3;
 		velocity*=1.5;
 		health = 50;
 		if (line == 2) {
@@ -663,7 +662,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	}
 	else if (type == 2) {
 		entity->addComponent<CType>("bee");
-		damage = 0.3f;
+		damage = 2;
 		animation = "D_beeWalk";
 		health = 30;
 		if (line == 2) {
@@ -675,7 +674,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	}
 	else if (type == 3) {
 		entity->addComponent<CType>("slime");
-		damage = 0.2f;
+		damage = 2.5f;
 		health = 40;
 		animation = "D_slimeWalk";
 		if (line == 2) {
@@ -840,20 +839,74 @@ void Scene_Play::sHealth() {
 }
 
 void Scene_Play::sInfo() {
-	int i = 0;
 	m_drawInfo = false;
+	m_infoVector.clear();
 	for (auto& rect : m_shopRectangles) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 			m_drawInfo = true;
 			auto& f = m_game->getAssets().getFont("RETROGAMING");
-			t = sf::Text("Attack damage: 15",f, 20);
-			t.setPosition(1275, 700);
-			t2 = sf::Text("Attack speed: 5", f, 20);
-			t2.setPosition(1275, 730);
-			t3 = sf::Text("Cost: 25", f, 20);
-			t3.setPosition(1275, 760);
+			m_infoVector.push_back(sf::Text("Attack damage: 15", f, 20));
+			m_infoVector[0].setPosition(1268, 700);
+			m_infoVector.push_back(sf::Text("Attack speed: 5", f, 20));
+			m_infoVector[1].setPosition(1268, 725);
+			m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
+			m_infoVector[2].setPosition(1268, 750);
 		}
-		i++;
+	}
+	for (auto& ent : m_entityManager.getEntities()) {
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		if (ent->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+			m_drawInfo = true;
+			auto& f = m_game->getAssets().getFont("RETROGAMING");
+
+			if (ent->tag() == "player") {
+				auto& ent_health = ent->getComponent<CHealth>();
+				auto& ent_level = ent->getComponent<CLevel>();
+				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+				m_infoVector.push_back(sf::Text(health, f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				std::string level = "Level: " + std::to_string((int)ent_level.level) + "/" + std::to_string((int)ent_level.max_level);
+				m_infoVector.push_back(sf::Text(level , f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+
+				if (ent_level.level != ent_level.max_level) {
+					int upgradePrice = ent_health.totalHealth * 0.6 + 300;
+					std::string upgrade = "Upgrade: " + std::to_string(m_coins) +"/" + std::to_string(upgradePrice);
+					m_infoVector.push_back(sf::Text(upgrade, f, 20));
+					if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
+					else m_infoVector[2].setFillColor(sf::Color(64, 4, 4));
+					m_infoVector[2].setPosition(1268, 750);
+				}
+
+				if (m_upgrade) {
+				}
+
+				break;
+			}
+			if (ent->tag() == "enemy") {
+				auto& ent_health = ent->getComponent<CHealth>();
+				auto& ent_damage = ent->getComponent<CAttack>();
+				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+				m_infoVector.push_back(sf::Text(health, f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				std::string damage = "Damage: " + std::to_string((int)ent_damage.damage);
+				m_infoVector.push_back(sf::Text(damage, f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				auto& speed = ent->getComponent<CTransform>().velocity;
+				auto m = ent->getComponent<CAnimation>().animation.getFrameCount();
+				std::string velocity;
+				if (speed.x != 0)
+					velocity = "Speed: " + std::to_string((int)abs(speed.x*m));
+				else
+					velocity = "Speed: " + std::to_string((int)abs(speed.y*m));
+				m_infoVector.push_back(sf::Text(velocity, f, 20));
+				m_infoVector[2].setPosition(1268, 750);
+				break;
+			}
+			if (ent->tag() == "archer") {
+
+			}
+		}
 	}
 }

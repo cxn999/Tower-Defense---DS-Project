@@ -71,6 +71,7 @@ public:
 class CLevel : public Component {
 public:
 	size_t level = 1;
+	size_t max_level = 4;
 	CLevel() {}
 	CLevel(size_t l) : level(l) {}
 };

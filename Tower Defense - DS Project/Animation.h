@@ -21,4 +21,5 @@ public:
 	std::string& getName();
 	Vec2& getSize();
 	sf::Sprite& getSprite();
+	int getFrameCount();
 };

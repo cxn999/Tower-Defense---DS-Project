@@ -30,7 +30,7 @@ void Animation::update() {
 }
 
 bool Animation::hasEnded() {
-	return (m_frameCount-1 == m_currentFrame/m_speed%m_frameCount);
+	return (m_frameCount-1 == m_currentFrame/m_speed%m_frameCount && m_currentFrame%m_speed==0);
 }
 std::string& Animation::getName() {
 	return m_name;
@@ -42,4 +42,8 @@ Vec2& Animation::getSize() {
 
 sf::Sprite& Animation::getSprite() {
 	return m_sprite;
+}
+
+int Animation::getFrameCount() {
+	return m_frameCount;
 }

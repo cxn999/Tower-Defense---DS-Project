@@ -11,10 +11,10 @@ protected:
 	size_t m_coins = 150;
 	sf::Text m_coinsText;
 
-	sf::Text t, t2, t3;
+	std::vector<sf::Text> m_infoVector;
 
 	bool m_drawInfo = false;
-
+	bool m_upgrade = false;
 	bool m_drawTextures = true; // toggle textures
 	bool m_drawCollision = false; // toggle hitboxes
 	bool m_roadGrid = false; // draw the road grid depending on the type of item selected

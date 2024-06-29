@@ -44,6 +44,7 @@ Texture D_slimeDeath Assets\Enemies\Slime\D_Death.png
 Texture S_slimeWalk Assets\Enemies\Slime\S_Walk.png
 Texture S_slimeDeath Assets\Enemies\Slime\S_Death.png
 
+
 Texture constructionTower Assets\Attack\ArcherTower\constructionTower.png
 
 =================TARGET TOWER===============
@@ -134,6 +135,8 @@ Animation D_beeWalk D_BeeWalk 6 6
 Animation D_beeDeath D_BeeDeath 6 6
 Animation S_beeWalk S_BeeWalk 6 6
 Animation S_beeDeath S_BeeDeath 6 6
+Animation S_beeAttack S_BeeWalk 6 9
+Animation D_beeAttack D_BeeWalk 6 9
 =================SLIME=================
 Animation D_slimeAttack D_slimeWalk 6 9
 Animation D_slimeWalk D_slimeWalk 6 6

@@ -80,14 +80,27 @@ void Scene_Play::init(const std::string& levelPath) {
 	m_entityManager = EntityManager();
 	spawnPlayer();
 
-	for (int i = 0; i < 5; i++) {
-		sf::RectangleShape rect(sf::Vector2f(75, 75));
-		rect.setPosition(rect.getSize().x * i + 50.f * (i + 1), m_game->window().getSize().y - rect.getSize().y - 70.f);
-		rect.setFillColor(sf::Color(0, 0, 0, 120));
+	for (int i = 0; i < 3; i++) {
+		sf::RectangleShape rect(sf::Vector2f(36, 36));
+		rect.setPosition(rect.getSize().x * i + 28.f * (i + 1) + 22.f, m_game->window().getSize().y - rect.getSize().y - 70.f);
+		rect.setFillColor(sf::Color::Transparent);
+		rect.setOutlineThickness(10.f);
+		rect.setOutlineColor(sf::Color(0, 0, 0, 180));
+		rect.move(sf::Vector2f(0, -90));
+		m_shopRectangles.push_back(rect);
+	}
+	for (int i = 0; i < 3; i++) {
+		sf::RectangleShape rect(sf::Vector2f(36, 36));
+		rect.setPosition(rect.getSize().x * i + 28.f * (i + 1) + 22.f, m_game->window().getSize().y - rect.getSize().y - 70.f);
+		rect.setFillColor(sf::Color::Transparent);
 		rect.setOutlineThickness(10.f);
 		rect.setOutlineColor(sf::Color(0, 0, 0, 180));
 		m_shopRectangles.push_back(rect);
 	}
+
+	m_coinsText.setFont(m_game->getAssets().getFont("RETROGAMING"));
+	m_coinsText.setOutlineColor(sf::Color::Black);
+	m_coinsText.setOutlineThickness(4.f);
 
 	generateRoadRectangles();
 	generateGrassRectangles();
@@ -124,13 +137,10 @@ void Scene_Play::update() {
 		sEnemySpawner();
 		sPlacement();
 		sAnimation();
+		sInfo();
 	}
 	sRender();
 	m_currentFrame++;
-}
-
-void Scene_Play::spawnBullet(std::shared_ptr<Entity> entity) {
-	// Bullet should go in direction player is facing
 }
 
 void Scene_Play::spawnPlayer() {
@@ -213,9 +223,6 @@ void Scene_Play::sRender() {
 
 			break;
 		case 3:
-			item = m_game->getAssets().getAnimation("woodSpikesShop");
-			break;
-		case 4:
 			item = m_game->getAssets().getAnimation("lightningShop");
 			break;
 		}
@@ -231,9 +238,49 @@ void Scene_Play::sRender() {
 		}
 
 		item.getSprite().setPosition(mouse_pos.x, mouse_pos.y);
-		if (m_selectedItem != 4) item.getSprite().setScale(1.5, 1.5);
+		if (m_selectedItem != 3) item.getSprite().setScale(1.5, 1.5);
 		else					 item.getSprite().setScale(0.75, 0.75);
 		window.draw(item.getSprite());
+	}
+
+	m_coinsText.setString(std::to_string(m_coins));
+	m_coinsText.setPosition(380, 790);
+
+	/*
+	int array[6] = { 20,30,25,150,30,40 };
+
+	for (int i = 0; i < 3; i++) {
+		sf::Text k(std::to_string(array[i]), m_game->getAssets().getFont("RETROGAMING"), 15);
+		k.setOutlineColor(sf::Color::Black);
+		k.setOutlineThickness(2.f);
+		k.setPosition(45 + 65*i, m_game->window().getSize().y - 147.f);
+		window.draw(k);
+	}
+	for (int i = 1; i < 4; i++) {
+		sf::Text k(std::to_string(array[i+2]), m_game->getAssets().getFont("RETROGAMING"), 15);
+		k.setOutlineColor(sf::Color::Black);
+		k.setOutlineThickness(2.f);
+		k.setPosition(35 + 70 * (i-1), m_game->window().getSize().y - 57.f);
+		window.draw(k);
+	}
+	*/
+
+	auto health = m_player->getComponent<CHealth>().health;
+	auto totalHealth = m_player->getComponent<CHealth>().totalHealth;
+
+	sf::RectangleShape r(sf::Vector2f(482*(health/totalHealth), 35));
+
+	r.setFillColor(sf::Color(255, 0, 0, 150));
+	r.setPosition(409, 711);
+	
+	window.draw(r);
+
+	window.draw(m_coinsText);
+
+	if (m_drawInfo) {
+		window.draw(t);
+		window.draw(t2);
+		window.draw(t3);
 	}
 
 	window.display();
@@ -307,18 +354,22 @@ void Scene_Play::sAnimation() {
 			if (type == "goblin") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
 				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
+				m_coins += 25;
 			}
 			if (type == "wolf") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
 				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
+				m_coins += 20;
 			}
 			if (type == "slime") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
 				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
+				m_coins += 15;
 			}
 			if (type == "bee") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
+				m_coins += 10;
 			}
 			e_transform.velocity = { 0,0 };
 		}
@@ -342,13 +393,7 @@ void Scene_Play::sAnimation() {
 		for (auto& ent : attacks) {
 			if (!ent->hasComponent<CAnimation>()) {
 				ent->addComponent<CAnimation>();
-				if (m_selectedItem == 2) {
-					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
-				}
-				else if (m_selectedItem == 3) {
-					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
-				}
-				else if (m_selectedItem == 4) {
+				if (m_selectedItem == 3) {
 					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
 				}
 				else {
@@ -362,9 +407,9 @@ void Scene_Play::sAnimation() {
 				}
 			}
 			auto& ent_pos = ent->getComponent<CTransform>().pos;
-			if (m_selectedItem != 4) {
-				ent->getComponent<CAnimation>().animation.getSprite().setScale(2.5, 2.5);
-				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y);
+			if (m_selectedItem == 3) {
+				ent->getComponent<CAnimation>().animation.getSprite().setScale(3.5, 3.5);
+				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x-20, ent_pos.y-250);
 			}
 			else {
 				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
@@ -476,8 +521,9 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 	if (a->hasComponent<CAttack>()) {
 		b->getComponent<CHealth>().health -= a->getComponent<CAttack>().damage;
 		if (b->getComponent<CHealth>().health < 0) {
-			// tower->destroy();
-			// setPaused(true);
+			if (b->tag() == "player") {
+				m_paused = true;
+			}
 		}
 	}
 }
@@ -557,7 +603,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame%20==0) {
+	if (m_currentFrame%100==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }
@@ -656,16 +702,47 @@ void Scene_Play::sShop() {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
-			m_selectedItem = i;
 
 			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 
+			if (i == 0) {
+				if (m_coins < 20) { continue; }
+				m_mouseItem = true;
+			}
+			else if (i == 1) {
+				if (m_coins < 30) { continue; }
+				m_mouseItem = true;
+			}
+			else if (i == 2) {
+				if (m_coins < 25) { continue; }
+				m_mouseItem = true;
+			}
+			else if (i == 3) {
+				if (m_coins < 150) { continue; }
+				m_mouseItem = true;
+			}
+			else if (i == 4) {
+				if (m_coins < 25) { continue; }
+				else {
+					m_player->getComponent<CHealth>().health += 50;
+					if (m_player->getComponent<CHealth>().health > m_player->getComponent<CHealth>().totalHealth)
+						m_player->getComponent<CHealth>().health = m_player->getComponent<CHealth>().totalHealth;
+					m_coins -= 25;
+				}
+				m_mouseItem = false;
+			}
+			else if (i == 5) {
+				if (m_coins < 25) { continue; }
+			}
+
+
+			m_selectedItem = i;
+
 			click = false;
-			m_mouseItem = true;
 			
 			if (i == 0 || i==1 || i==2) {
 				m_grassGrid = true;
-			} else {
+			} else if (i==3 || i==5) {
 				m_roadGrid = true;
 			}
 		}
@@ -682,6 +759,10 @@ void Scene_Play::sPlacement() {
 				click = false;
 				m_mouseItem = false;
 				m_roadGrid = false;
+
+				if (m_selectedItem == 3) {
+					m_coins -= 150;
+				}
 
 				m_attack = true;
 
@@ -706,6 +787,18 @@ void Scene_Play::sPlacement() {
 				m_mouseItem = false;
 				m_grassGrid = false;
 				m_usedRectanglesIndex[i] = true;
+
+
+				if (m_selectedItem == 0) {
+					m_coins -= 20;
+				}
+				else if (m_selectedItem == 1) {
+					m_coins -= 30;
+				}
+				else if (m_selectedItem == 2) {
+					m_coins -= 25;
+				}
+
 
 				Vec2 m_defensePos = { grassRect.getPosition().x + grassRect.getSize().x / 2.f,
 								grassRect.getPosition().y + grassRect.getSize().y / 2.f };
@@ -743,5 +836,24 @@ void Scene_Play::sHealth() {
 		if (e->hasComponent<CHealth>()) {
 			e->getComponent<CHealth>().prevHealth = e->getComponent<CHealth>().health;
 		}
+	}
+}
+
+void Scene_Play::sInfo() {
+	int i = 0;
+	m_drawInfo = false;
+	for (auto& rect : m_shopRectangles) {
+		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+		if (rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+			m_drawInfo = true;
+			auto& f = m_game->getAssets().getFont("RETROGAMING");
+			t = sf::Text("Attack damage: 15",f, 20);
+			t.setPosition(1275, 700);
+			t2 = sf::Text("Attack speed: 5", f, 20);
+			t2.setPosition(1275, 730);
+			t3 = sf::Text("Cost: 25", f, 20);
+			t3.setPosition(1275, 760);
+		}
+		i++;
 	}
 }

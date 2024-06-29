@@ -8,6 +8,13 @@ protected:
 	sf::Text m_gridText;
 	std::string m_levelPath;
 
+	size_t m_coins = 150;
+	sf::Text m_coinsText;
+
+	sf::Text t, t2, t3;
+
+	bool m_drawInfo = false;
+
 	bool m_drawTextures = true; // toggle textures
 	bool m_drawCollision = false; // toggle hitboxes
 	bool m_roadGrid = false; // draw the road grid depending on the type of item selected
@@ -54,7 +61,8 @@ public:
 	void sDoAction(const Action& a);
 	void sPlacement();
 	void spawnPlayer();
-	void spawnBullet(std::shared_ptr<Entity> entity);
+
+	void sInfo();
 
 	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
 	void generateRoadRectangles();

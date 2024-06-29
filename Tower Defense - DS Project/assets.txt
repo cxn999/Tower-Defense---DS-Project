@@ -1,4 +1,4 @@
-Font RETROGAMING Assets\Fonts\Retro_Gaming.ttf
+Font RETROGAMING Assets\Fonts\Ac437_IBM_VGA_9x16-2x.ttf
 
 ------------------------- TEXTURES -------------------------
 =================TILES=================
@@ -88,7 +88,7 @@ Texture woodSpikes Assets\Attack\Spikes\2.png
 Texture shopAreaTower Assets\Shop\shopArea.png
 Texture shopFreezeTower Assets\Shop\shopFreeze.png
 Texture shopTargetTower Assets\Shop\shopTarget.png
-
+Texture lightningShop Assets\Shop\Lightning_shop.png
 
 
 Texture background Assets\background.png
@@ -186,3 +186,4 @@ Animation S_archerFreezeAttack S_archerFreezeAttack 6 20
 Animation shopAreaTower shopAreaTower 1 0
 Animation shopFreezeTower shopFreezeTower 1 0
 Animation shopTargetTower shopTargetTower 1 0
+Animation lightningShop lightningShop 1 0

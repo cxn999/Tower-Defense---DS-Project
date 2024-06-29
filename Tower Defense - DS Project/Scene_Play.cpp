@@ -263,11 +263,25 @@ void Scene_Play::sRender() {
 	auto totalHealth = m_player->getComponent<CHealth>().totalHealth;
 
 	sf::RectangleShape r(sf::Vector2f(482*(health/totalHealth), 35));
-
+	
 	r.setFillColor(sf::Color(255, 0, 0, 150));
 	r.setPosition(409, 711);
+
+	//Clouds block
+	/*sf::RectangleShape clouds(sf::Vector2f(window.getSize().x, window.getSize().y * 0.72f));*/
+	sf::Texture cloudsTexture;
+	sf::Sprite clouds;
+	clouds.setTexture(m_game->getAssets().getTexture("clouds"));
+	clouds.setColor(sf::Color(128, 128, 128, 50)); 
+	clouds.setScale(2.7f, 2.5f);
+
+	window.draw(r); 
 	
-	window.draw(r);
+	//clouds movement
+	clouds.setPosition(sf::Vector2f(-1800.f + m_clock.getElapsedTime().asSeconds()*10, 0.f));
+	window.draw(clouds);
+	
+
 
 	window.draw(m_coinsText);
 
@@ -519,7 +533,7 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 		b->getComponent<CHealth>().health -= a->getComponent<CAttack>().damage;
 		if (b->getComponent<CHealth>().health < 0) {
 			if (b->tag() == "player") {
-				// m_paused = true;
+				m_paused = true;
 			}
 		}
 	}
@@ -533,6 +547,10 @@ void Scene_Play::sCollision() {
 
 	// Query the quadtree for entities within the search area
 	auto nearbyEntities = m_entityManager.queryRange(searchArea);
+
+	std::cout << "TOTAL SIZE: " << m_entityManager.getEntities().size() << std::endl;
+	std::cout << "QUERY SIZE: " << nearbyEntities.size() << std::endl;
+
 
 	for (auto& e : nearbyEntities) {
 		if (e->tag() != "enemy") continue;
@@ -625,8 +643,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	std::cout << m_entityManager.getEntities().size() << std::endl;
-	if (m_currentFrame%1==0) {
+	if (m_currentFrame%150==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }

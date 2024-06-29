@@ -46,6 +46,7 @@ Texture S_slimeDeath Assets\Enemies\Slime\S_Death.png
 
 
 Texture constructionTower Assets\Attack\ArcherTower\constructionTower.png
+Texture clouds Assets\clouds.png
 
 =================TARGET TOWER===============
 Texture targetTower2 Assets\Attack\ArcherTower\TargetTower\Idle\2.png

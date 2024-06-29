@@ -93,6 +93,18 @@ void GameEngine::changeScene(const std::string & sceneName, std::shared_ptr<Scen
 	//if (endCurrentScene) {
 	//	m_sceneMap[m_currentScene] = nullptr;
 	//}
+
+	if (sceneName == "PLAY") {
+		stopMusic();
+		switchToMusic("play");
+	}
+	else {
+		if (m_currentMusic && getMusic() == true && m_currentMusic == m_assets.getMusic("play")) {
+			stopMusic();
+		}
+		switchToMusic("menu");
+	}
+
 	m_currentScene = sceneName;
 	m_sceneMap[sceneName] = scene;
 }
@@ -104,4 +116,98 @@ sf::RenderWindow& GameEngine::window() {
 // const Assets & assets() const;
 bool GameEngine::isRunning() {
 	return m_running && m_window.isOpen();
+}
+
+float GameEngine::getVolume() {
+	return m_volume;
+}
+
+bool GameEngine::getMusic() {
+	return m_music;
+}
+
+void GameEngine::setVolume(float volume) {
+	m_volume = volume;
+
+	if (m_currentMusic) {
+		m_currentMusic->setVolume(volume);
+	}
+	// Update volume for other sound effects as needed
+}
+
+void GameEngine::setMusic(bool music) {
+	m_music = music;
+}
+
+void GameEngine::startMusic(const std::string& musicName) {
+	if (getMusic()) {
+		if (m_currentMusic) {
+			m_currentMusic->stop();
+		}
+		m_currentMusic = m_assets.getMusic(musicName);
+		if (m_currentMusic) {
+			m_currentMusic->setVolume(m_volume);
+			m_currentMusic->setLoop(true);
+			m_currentMusic->play();
+		}
+		else {
+			std::cerr << "Music not found: " << musicName << std::endl;
+		}
+	}
+}
+
+void GameEngine::stopMusic() {
+	if (m_currentMusic) {
+		m_currentMusic->stop();
+		m_currentMusic = nullptr;
+	}
+}
+
+void GameEngine::setMusicState(bool musicOn) {
+	m_music = musicOn;
+	if (m_music) {
+		if (m_currentMusic) {
+			m_currentMusic->play();
+		}
+	}
+	else {
+		if (m_currentMusic) {
+			m_currentMusic->stop();
+		}
+	}
+}
+
+void GameEngine::switchToMusic(const std::string& musicName) {
+	if (musicName == "menu") {
+		m_currentMusic = getAssets().getMusic("menu");
+	}
+	else if (musicName == "play") {
+		m_currentMusic = getAssets().getMusic("play");
+	}
+
+
+
+	sf::Music* newMusic = nullptr;
+
+	if (musicName == "menu") {
+		newMusic = getAssets().getMusic("menu");
+	}
+	else if (musicName == "play") {
+		newMusic = getAssets().getMusic("play");
+	}
+
+	if (m_currentMusic != newMusic) {
+		if (m_currentMusic) {
+			m_currentMusic->stop();
+		}
+		m_currentMusic = newMusic;
+		if (m_music && m_currentMusic) {
+			m_currentMusic->setVolume(m_volume);
+			m_currentMusic->play();
+		}
+	}
+	else if (m_music && m_currentMusic && m_currentMusic->getStatus() != sf::Music::Playing) {
+		m_currentMusic->setVolume(m_volume);
+		m_currentMusic->play();
+	}
 }

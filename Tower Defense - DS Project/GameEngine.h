@@ -20,6 +20,9 @@ protected:
 	size_t m_simulationSpeed = 1;
 	bool m_running = true;
 
+	float m_volume = 50;
+	bool m_music = true;
+
 
 	// Should load the assets
 	void init(const std::string& path);
@@ -27,6 +30,8 @@ protected:
 
 	void sUserInput();
 	std::shared_ptr<Scene> currentScene();
+	sf::Music* m_currentMusic; // Pointer to the current music track
+
 
 public:
 	sf::Clock m_clock;
@@ -46,4 +51,18 @@ public:
 	sf::RenderWindow& window();
 	// const Assets & assets() const;
 	bool isRunning();
+
+	/// methods to get configurations
+	float getVolume();
+	bool getMusic();
+
+	/// methods to set configurations
+	void setVolume(float volume);
+	void setMusic(bool music);
+
+	/// methods for musics
+	void startMusic(const std::string& musicName);
+	void stopMusic();
+	void setMusicState(bool musicOn);
+	void switchToMusic(const std::string& musicName);
 };

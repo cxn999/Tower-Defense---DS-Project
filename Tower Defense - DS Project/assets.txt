@@ -190,3 +190,12 @@ Animation shopAreaTower shopAreaTower 1 0
 Animation shopFreezeTower shopFreezeTower 1 0
 Animation shopTargetTower shopTargetTower 1 0
 Animation lightningShop lightningShop 1 0
+
+------------------------- MUSICS -------------------------
+
+Music menu Assets\Musics\TheCastleWalls.ogg
+Music play Assets\Musics\forest_battle.ogg
+
+------------------------SOUND EFFECTS -------------------------
+
+

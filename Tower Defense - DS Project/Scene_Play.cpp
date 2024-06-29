@@ -519,7 +519,7 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 		b->getComponent<CHealth>().health -= a->getComponent<CAttack>().damage;
 		if (b->getComponent<CHealth>().health < 0) {
 			if (b->tag() == "player") {
-				m_paused = true;
+				// m_paused = true;
 			}
 		}
 	}
@@ -584,25 +584,39 @@ void Scene_Play::sCollision() {
 }
 
 void Scene_Play::sMovement() {
+	// Update positions of enemies
 	for (auto& e : m_entityManager.getEntities("enemy")) {
-		auto & e_transform = e->getComponent<CTransform>();
+		auto& e_transform = e->getComponent<CTransform>();
 		e_transform.prevPos = e_transform.pos;
 		e_transform.pos += e_transform.velocity;
 		auto& animation = e->getComponent<CAnimation>().animation;
-		animation.getSprite().setPosition(e_transform.pos.x,e_transform.pos.y);
+		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
 		}
-		for (auto& archer : m_entityManager.getEntities("archer")) {
-			auto& archer_pos = archer->getComponent<CTransform>().pos;
-			auto r = archer->getComponent<CRange>().radius;
-			if (archer_pos.dist(e_transform.pos) <= r && archer->getComponent<CRange>().target == false) {
+	}
+
+	// Update archers and check for enemies in range
+	for (auto& archer : m_entityManager.getEntities("archer")) {
+		auto& archer_pos = archer->getComponent<CTransform>().pos;
+		auto r = archer->getComponent<CRange>().radius;
+
+		// Define the search area for the quadtree query
+		sf::FloatRect searchArea(archer_pos.x - r, archer_pos.y - r, 2 * r, 2 * r);
+
+		// Query the quadtree for enemies within the archer's range
+		auto nearbyEnemies = m_entityManager.queryRange(searchArea);
+
+		for (auto& e : nearbyEnemies) {
+			if (e->tag() != "enemy") continue;
+
+			auto& e_transform = e->getComponent<CTransform>();
+			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) {
 				attack(archer, e);
 				archer->getComponent<CRange>().target = true;
 				archer->getComponent<CState>().state = "attack";
 			}
 		}
-
 	}
 }
 
@@ -611,7 +625,8 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame%100==0) {
+	std::cout << m_entityManager.getEntities().size() << std::endl;
+	if (m_currentFrame%1==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }

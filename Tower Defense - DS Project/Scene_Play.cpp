@@ -263,11 +263,25 @@ void Scene_Play::sRender() {
 	auto totalHealth = m_player->getComponent<CHealth>().totalHealth;
 
 	sf::RectangleShape r(sf::Vector2f(482*(health/totalHealth), 35));
-
+	
 	r.setFillColor(sf::Color(255, 0, 0, 150));
 	r.setPosition(409, 711);
+
+	//Clouds block
+	/*sf::RectangleShape clouds(sf::Vector2f(window.getSize().x, window.getSize().y * 0.72f));*/
+	sf::Texture cloudsTexture;
+	sf::Sprite clouds;
+	clouds.setTexture(m_game->getAssets().getTexture("clouds"));
+	clouds.setColor(sf::Color(128, 128, 128, 50)); 
+	clouds.setScale(2.7f, 2.5f);
+
+	window.draw(r); 
 	
-	window.draw(r);
+	//clouds movement
+	clouds.setPosition(sf::Vector2f(-1800.f + m_clock.getElapsedTime().asSeconds()*10, 0.f));
+	window.draw(clouds);
+	
+
 
 	window.draw(m_coinsText);
 

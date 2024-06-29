@@ -39,6 +39,8 @@ protected:
 	std::map<size_t, bool> m_usedRectanglesIndex;
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
+	
+	sf::Clock m_clock; 
 
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);

@@ -494,7 +494,6 @@ void Scene_Play::sAnimation() {
 				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
 				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y-50);
 			}
-			ent->getComponent<CAnimation>().animation.update();
 		}
 	}
 
@@ -897,7 +896,7 @@ void Scene_Play::sShop() {
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
 
 			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 

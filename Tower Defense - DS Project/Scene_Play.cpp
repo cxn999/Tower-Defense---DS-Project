@@ -400,34 +400,32 @@ void Scene_Play::sAnimation() {
 		e->getComponent<CAnimation>().animation.update();
 	}
 
-	if (m_attack) {
-		auto& attacks = m_entityManager.getEntities("attack");
-		for (auto& ent : attacks) {
-			if (!ent->hasComponent<CAnimation>()) {
-				ent->addComponent<CAnimation>();
-				if (m_selectedItem == 3) {
-					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
-				}
-				else {
-					continue;
-				}
+	auto& attacks = m_entityManager.getEntities("attack");
+	for (auto& ent : attacks) {
+		if (!ent->hasComponent<CAnimation>()) {
+			ent->addComponent<CAnimation>();
+			ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+		}
+		if (ent->getComponent<CAnimation>().animation.hasEnded()) {
+			ent->destroy();
+			m_attack = false;
+		}
+		auto& ent_pos = ent->getComponent<CTransform>().pos;
+		ent->getComponent<CAnimation>().animation.getSprite().setScale(3.5, 3.5);
+		ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y);
+		ent->getComponent<CAnimation>().animation.update();
+
+		// Define the search area around the player
+		sf::FloatRect searchArea(ent_pos.x-100,ent_pos.y-100, 200, 200); // Adjust size as needed
+
+		// Query the quadtree for entities within the search area
+		auto nearbyEntities = m_entityManager.queryRange(searchArea);
+		for (auto& e : nearbyEntities) {
+			auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+			if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds) && e->tag() != "player" && e->tag() != "attack") {
+				// Depending on attack subtract less or more life
+				e->getComponent<CHealth>().health -= 2;
 			}
-			else {
-				if (ent->getComponent<CAnimation>().animation.hasEnded()) {
-					ent->destroy();
-					m_attack = false;
-				}
-			}
-			auto& ent_pos = ent->getComponent<CTransform>().pos;
-			if (m_selectedItem == 3) {
-				ent->getComponent<CAnimation>().animation.getSprite().setScale(3.5, 3.5);
-				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x-20, ent_pos.y-250);
-			}
-			else {
-				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
-				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y-50);
-			}
-			ent->getComponent<CAnimation>().animation.update();
 		}
 	}
 
@@ -548,9 +546,6 @@ void Scene_Play::sCollision() {
 	// Query the quadtree for entities within the search area
 	auto nearbyEntities = m_entityManager.queryRange(searchArea);
 
-	std::cout << "TOTAL SIZE: " << m_entityManager.getEntities().size() << std::endl;
-	std::cout << "QUERY SIZE: " << nearbyEntities.size() << std::endl;
-
 
 	for (auto& e : nearbyEntities) {
 		if (e->tag() != "enemy") continue;
@@ -587,17 +582,6 @@ void Scene_Play::sCollision() {
 				}
 			}
 		}
-
-		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
-			// Depending on attack subtract less or more life
-			e->getComponent<CHealth>().health -= 2;
-		}
-
-		if (e->getComponent<CHealth>().health <= 0) {
-			e->getComponent<CHealth>().health = 0;
-			e->getComponent<CState>().state = "death";
-		}
 	}
 }
 
@@ -611,6 +595,10 @@ void Scene_Play::sMovement() {
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
+		}
+		if (e->getComponent<CHealth>().health <= 0) {
+			e->getComponent<CHealth>().health = 0;
+			e->getComponent<CState>().state = "death";
 		}
 	}
 
@@ -630,7 +618,30 @@ void Scene_Play::sMovement() {
 
 			auto& e_transform = e->getComponent<CTransform>();
 			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) {
-				attack(archer, e);
+				auto type = archer->getComponent<CType>().type;
+
+				if (type == "target") {
+					attack(archer, e);
+				}
+				else if (type == "freeze") {
+					m_attack = true;
+
+					for (auto& roadRect : m_roadRectanglesGrid) {
+						if (roadRect.getGlobalBounds().contains(e_transform.pos.x, e_transform.pos.y)) {
+							m_attackSquare = roadRect;
+							auto attack = m_entityManager.addEntity("attack");
+							attack->addComponent<CAnimation>();
+							attack->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
+							m_attack = true;
+							attack->addComponent<CTransform>();
+							attack->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f,
+																	   roadRect.getPosition().y + roadRect.getSize().y / 2.f };
+						}
+					}
+				}
+				else if (type == "area") {
+
+				}
 				archer->getComponent<CRange>().target = true;
 				archer->getComponent<CState>().state = "attack";
 			}
@@ -643,7 +654,7 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame%150==0) {
+	if (m_currentFrame%20==0) {
 		sSpawnEnemy(rand()%3+1);
 	}
 }
@@ -741,7 +752,7 @@ void Scene_Play::sShop() {
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
 
 			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 

@@ -1188,6 +1188,6 @@ void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
 		woodSpike->addComponent<CAnimation>();
 		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
 		woodSpike->addComponent<CType>().type = "area";
-		woodSpike->addComponent<CAttack>().damage = 0.2;
+		woodSpike->addComponent<CAttack>().damage = 0.5;
 	}
 }

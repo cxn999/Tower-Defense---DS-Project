@@ -77,4 +77,6 @@ public:
 	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
 	void generateRoadRectangles();
 	void generateGrassRectangles();
+
+	void spawnSpikes(const std::string& type, const Vec2& pos);
 };

@@ -15,7 +15,8 @@ typedef std::tuple <
 	CHealth,
 	CAttack,
 	CRange,
-	CType
+	CType,
+	CDelay
 	> ComponentTuple;
 
 class Entity { 

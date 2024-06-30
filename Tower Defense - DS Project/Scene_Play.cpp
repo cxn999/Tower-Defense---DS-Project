@@ -164,10 +164,16 @@ void Scene_Play::sRender() {
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
 			if (e->tag() != "enemyBoss")
+				if (e->getComponent<CState>().effect == "freeze")
+				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+				else
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
 			else if(e->tag() == "enemyBoss")
-				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
-			if (e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health) 
+				if (e->getComponent<CState>().effect == "freeze")
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255,200));
+				else
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
+			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
@@ -272,18 +278,14 @@ void Scene_Play::sRender() {
 	
 	r.setFillColor(sf::Color(255, 0, 0, 150));
 	r.setPosition(409, 711);
+	window.draw(r);
 
 	//Clouds block
-
-	sf::Texture cloudsTexture;
 	sf::Sprite clouds;
 	clouds = m_game->getAssets().getAnimation("clouds").getSprite(); 
 	clouds.setOrigin(0.0f, 0.0f);
 	clouds.setColor(sf::Color(128, 128, 128, 50)); 
 	clouds.setScale(2.7f, 2.5f);
-
-	window.draw(r); 
-	
 	//clouds movement
 	clouds.setPosition(sf::Vector2f(-1800.f + m_weatherClock.getElapsedTime().asSeconds()*10, 0.f));
 	window.draw(clouds);
@@ -496,35 +498,20 @@ void Scene_Play::sAnimation() {
 		e->getComponent<CAnimation>().animation.update();
 	}
 
-	if (m_attack) {
-		auto& attacks = m_entityManager.getEntities("attack");
-		for (auto& ent : attacks) {
-			if (!ent->hasComponent<CAnimation>()) {
-				ent->addComponent<CAnimation>();
-				if (m_selectedItem == 3) {
-					ent->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
-				}
-				else {
-					continue;
-				}
-			}
-			else {
-				if (ent->getComponent<CAnimation>().animation.hasEnded()) {
-					ent->destroy();
-					m_attack = false;
-				}
-			}
-			auto& ent_pos = ent->getComponent<CTransform>().pos;
-			if (m_selectedItem == 3) {
-				ent->getComponent<CAnimation>().animation.getSprite().setScale(3.5, 3.5);
-				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x-20, ent_pos.y-250);
-			}
-			else {
-				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
-				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y-50);
-			}
+	for (auto& attack : m_entityManager.getEntities("attack")) {
+		auto & attack_animation = attack->getComponent<CAnimation>().animation;
+
+		if (attack_animation.hasEnded()) {
+			attack->destroy();
 		}
+
+		auto& attack_pos = attack->getComponent<CTransform>().pos;
+
+		attack_animation.getSprite().setPosition(attack_pos.x, attack_pos.y);
+		attack_animation.getSprite().setScale(4, 4);
+		attack_animation.update();
 	}
+
 
 	for (auto& defense : m_entityManager.getEntities("defense")) {
 		auto& d = defense->getComponent<CAnimation>();
@@ -566,9 +553,11 @@ void Scene_Play::sAnimation() {
 
 			if (type == "area") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
+				archer->addComponent<CDelay>(0, 200);
 			}
 			else if (type == "freeze") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
+				archer->addComponent<CDelay>(0, 600);
 			}
 			else if (type == "target") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
@@ -613,9 +602,9 @@ void Scene_Play::sAnimation() {
 				else if (type == "target") {
 					d.animation = (m_game->getAssets().getAnimation("D_archerTargetAttack"));
 				}
-
 			}
 		}
+
 		d.animation.getSprite().setPosition(d_pos.x, d_pos.y-20);
 		d.animation.getSprite().setScale(1.5, 1.5);
 		d.animation.getSprite().setColor(sf::Color(255,0,0));
@@ -692,15 +681,23 @@ void Scene_Play::sMovement() {
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
 		}
-		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
-			// Depending on attack subtract less or more life
-			e->getComponent<CHealth>().health -= 2;
-		}
-
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;
 			e->getComponent<CState>().state = "death";
+		}
+
+		for (auto& a : m_entityManager.getEntities("attack")) {
+			auto& attack_animation = a->getComponent<CAnimation>().animation;
+
+			if (attack_animation.getSprite().getGlobalBounds().contains(e_transform.pos.x, e_transform.pos.y)) {
+				if (a->getComponent<CType>().type == "freeze") {
+					e->getComponent<CState>().effect = "freeze";
+				}
+				else if (a->getComponent<CType>().type == "area") {
+					attack(a, e);
+				}
+			}
+
 		}
 	}
 	for (auto& e : m_entityManager.getEntities("enemyBoss")) {
@@ -712,15 +709,23 @@ void Scene_Play::sMovement() {
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
 		}
-		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
-			// Depending on attack subtract less or more life
-			e->getComponent<CHealth>().health -= 2;
-		}
-
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;
 			e->getComponent<CState>().state = "death";
+		}
+
+		for (auto& a : m_entityManager.getEntities("attack")) {
+			auto& attack_animation = a->getComponent<CAnimation>().animation;
+
+			if (attack_animation.getSprite().getGlobalBounds().contains(e_transform.pos.x, e_transform.pos.y)) {
+				if (a->getComponent<CType>().type == "freeze") {
+					e->getComponent<CState>().effect = "freeze";
+					auto & type = e->getComponent<CType>().type;
+				}
+				else if (a->getComponent<CType>().type == "area") {
+					attack(a, e);
+				}
+			}
 		}
 	}
 
@@ -739,8 +744,27 @@ void Scene_Play::sMovement() {
 			if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
 
 			auto& e_transform = e->getComponent<CTransform>();
-			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) { 
-				attack(archer, e);
+			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) {
+				auto & archer_type = archer->getComponent<CType>().type;
+				if (archer_type == "target") {
+					attack(archer, e);
+				}
+				else if (archer_type == "freeze") {
+					auto& cDelay = archer->getComponent<CDelay>();
+					if (cDelay.lastAttackFrame == 0 || cDelay.lastAttackFrame + cDelay.delay <= m_currentFrame) {
+						cDelay.lastAttackFrame = m_currentFrame;
+						spawnSpikes("freeze", e_transform.pos);
+					}
+				}
+				else if (archer_type == "area") {
+					auto& cDelay = archer->getComponent<CDelay>();
+					std::cout << "LAST ATTACK FRAME: " << cDelay.lastAttackFrame << std::endl;
+					if (cDelay.lastAttackFrame == 0 || cDelay.lastAttackFrame + cDelay.delay <= m_currentFrame) {
+						cDelay.lastAttackFrame = m_currentFrame;
+						std::cout << "MHMHMHM" << std::endl;
+						spawnSpikes("area", e_transform.pos);
+					}
+				}
 				archer->getComponent<CRange>().target = true;
 				archer->getComponent<CState>().state = "attack";
 			}
@@ -1009,20 +1033,6 @@ void Scene_Play::sPlacement() {
 				click = false;
 				m_mouseItem = false;
 				m_roadGrid = false;
-
-				if (m_selectedItem == 3) {
-					m_coins -= 150;
-				}
-
-				m_attack = true;
-
-				m_attackPos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f,
-								roadRect.getPosition().y + roadRect.getSize().y / 2.f };
-
-				m_attackSquare = roadRect;
-
-				auto attack = m_entityManager.addEntity("attack");
-				attack->addComponent<CTransform>(m_attackPos);
 			}
 		}
 	}
@@ -1048,7 +1058,6 @@ void Scene_Play::sPlacement() {
 				else if (m_selectedItem == 2) {
 					m_coins -= 25;
 				}
-
 
 				Vec2 m_defensePos = { grassRect.getPosition().x + grassRect.getSize().x / 2.f,
 								grassRect.getPosition().y + grassRect.getSize().y / 2.f };
@@ -1153,8 +1162,32 @@ void Scene_Play::sInfo() {
 				break;
 			}
 			if (ent->tag() == "archer") {
-
+				auto& f = m_game->getAssets().getFont("RETROGAMING");
+				m_infoVector.push_back(sf::Text("Attack damage: 15", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector.push_back(sf::Text("Attack speed: 5", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
+				m_infoVector[2].setPosition(1268, 750);
 			}
 		}
+	}
+}
+
+void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
+	if (type == "freeze") {
+		auto iceSpike = m_entityManager.addEntity("attack");
+		iceSpike->addComponent<CTransform>(pos);
+		iceSpike->addComponent<CAnimation>();
+		iceSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
+		iceSpike->addComponent<CType>().type = "freeze";
+	}
+	else if (type == "area") {
+		auto woodSpike = m_entityManager.addEntity("attack");
+		woodSpike->addComponent<CTransform>(pos);
+		woodSpike->addComponent<CAnimation>();
+		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
+		woodSpike->addComponent<CType>().type = "area";
+		woodSpike->addComponent<CAttack>().damage = 0.2;
 	}
 }

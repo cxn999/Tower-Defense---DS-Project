@@ -95,6 +95,7 @@ Texture lightningShop Assets\Shop\Lightning_shop.png
 
 Texture background Assets\background.png
 Texture backgroundMenu Assets\MenuBackground.png
+Texture backgroundSettings Assets\SettingsBackground.png
 
 
 ------------------------- ANIMATIONS -------------------------
@@ -102,6 +103,7 @@ Texture backgroundMenu Assets\MenuBackground.png
 Animation background background 1 0
 Animation clouds clouds 1 0
 Animation backgroundMenu backgroundMenu 1 0
+Animation backgroundSettings backgroundSettings 1 0
 
 
 =================TILES=================

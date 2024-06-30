@@ -85,6 +85,7 @@ void Scene_Menu::sRender() {
 	auto& m_window = m_game->window();
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
+	// Calculate middle of the screen in Y axis
 	auto my = m_window.getSize().y / 2;
 	// Clear the window with blue
 	m_window.clear(sf::Color::Blue);

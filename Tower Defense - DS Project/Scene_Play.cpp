@@ -115,12 +115,12 @@ void Scene_Play::sDoAction(const Action& action) {
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
-		else if (action.name() == "UPGRADE") { m_upgrade = true; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
 		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
-		else if (action.name() == "UPGRADE") { m_upgrade = false; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = false; }
 	}
 }
 
@@ -135,6 +135,7 @@ void Scene_Play::update() {
 		sPlacement();
 		sAnimation();
 		sInfo();
+		sUpgrade();
 	}
 	sRender();
 	m_currentFrame++;
@@ -1234,5 +1235,21 @@ void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
 		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
 		woodSpike->addComponent<CType>().type = "area";
 		woodSpike->addComponent<CAttack>().damage = 1;
+	}
+}
+
+void Scene_Play::sUpgrade() {
+	auto & player_animation = m_player->getComponent<CAnimation>().animation;
+	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+	
+	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		if (m_player->getComponent<CInput>().rightClick) {
+			m_player->getComponent<CInput>().rightClick = false;
+			auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+			if (m_coins >= upgradePrice) {
+				m_coins -= upgradePrice;
+				m_player->getComponent<CState>().state = "upgrade";
+			}
+		}
 	}
 }

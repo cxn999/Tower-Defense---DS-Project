@@ -675,7 +675,14 @@ void Scene_Play::sMovement() {
 	for (auto& e : m_entityManager.getEntities("enemy")) {
 		auto& e_transform = e->getComponent<CTransform>();
 		e_transform.prevPos = e_transform.pos;
-		e_transform.pos += e_transform.velocity;
+
+		if (e->getComponent<CState>().effect == "freeze") {
+			e_transform.pos += e_transform.velocity/2.f;
+		}
+		else {
+			e_transform.pos += e_transform.velocity;
+		}
+		
 		auto& animation = e->getComponent<CAnimation>().animation;
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
@@ -984,7 +991,10 @@ void Scene_Play::sShop() {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
 
-			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
+			if (i < 3) {
+				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0)
+					continue;
+			}
 
 			if (i == 0) {
 				if (m_coins < 20) { continue; }
@@ -1003,6 +1013,7 @@ void Scene_Play::sShop() {
 				m_mouseItem = true;
 			}
 			else if (i == 4) {
+				m_mouseItem = false;
 				if (m_coins < 25) { continue; }
 				else {
 					m_player->getComponent<CHealth>().health += 50;
@@ -1010,12 +1021,10 @@ void Scene_Play::sShop() {
 						m_player->getComponent<CHealth>().health = m_player->getComponent<CHealth>().totalHealth;
 					m_coins -= 25;
 				}
-				m_mouseItem = false;
 			}
 			else if (i == 5) {
 				if (m_coins < 25) { continue; }
 			}
-
 
 			m_selectedItem = i;
 

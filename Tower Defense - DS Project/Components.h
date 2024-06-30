@@ -64,6 +64,7 @@ class CState : public Component {
 public:
 	std::string state = "idle";
 	std::string direction = "default";
+	std::string effect;
 	CState() {}
 	CState(std::string s, std::string d) : state(s), direction(d) {}
 };
@@ -106,4 +107,13 @@ public:
 
 	CType(std::string t) : type(t) {}
 	CType() {}
+};
+
+class CDelay : public Component {
+public:
+	size_t lastAttackFrame;
+	size_t delay;
+
+	CDelay(size_t l, size_t d) : lastAttackFrame(l), delay(d) {}
+	CDelay() {}
 };

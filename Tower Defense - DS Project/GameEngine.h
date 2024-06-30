@@ -21,7 +21,7 @@ protected:
 	bool m_running = true;
 
 	float m_volume = 50;
-	bool m_music = true;
+	bool m_music = false;
 
 
 	// Should load the assets

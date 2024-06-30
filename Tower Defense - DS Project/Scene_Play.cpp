@@ -557,7 +557,7 @@ void Scene_Play::sAnimation() {
 			}
 			else if (type == "freeze") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
-				archer->addComponent<CDelay>(0, 600);
+				archer->addComponent<CDelay>(0, 200);
 			}
 			else if (type == "target") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
@@ -995,7 +995,6 @@ void Scene_Play::sShop() {
 				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0)
 					continue;
 			}
-
 			if (i == 0) {
 				if (m_coins < 20) { continue; }
 				m_mouseItem = true;
@@ -1218,6 +1217,6 @@ void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
 		woodSpike->addComponent<CAnimation>();
 		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
 		woodSpike->addComponent<CType>().type = "area";
-		woodSpike->addComponent<CAttack>().damage = 0.5;
+		woodSpike->addComponent<CAttack>().damage = 1;
 	}
 }

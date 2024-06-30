@@ -71,6 +71,7 @@ public:
 	void sDoAction(const Action& a);
 	void sPlacement();
 	void spawnPlayer();
+	void spawnBarricade(const Vec2&, size_t);
 
 	void sInfo();
 

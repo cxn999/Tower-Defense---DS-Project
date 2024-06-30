@@ -798,7 +798,7 @@ void Scene_Play::sEnemySpawner() {
 	}
 	if (t >= 1) {
 		if (t % 1 == 0 && m_spawnRateFrame >= 15) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
-			m_spawnRateFrame -= 2;
+			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}
 	}

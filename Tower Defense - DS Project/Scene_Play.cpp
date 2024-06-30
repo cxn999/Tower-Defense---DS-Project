@@ -684,6 +684,16 @@ void Scene_Play::sMovement() {
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
 		}
+		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
+			// Depending on attack subtract less or more life
+			e->getComponent<CHealth>().health -= 2;
+		}
+
+		if (e->getComponent<CHealth>().health <= 0) {
+			e->getComponent<CHealth>().health = 0;
+			e->getComponent<CState>().state = "death";
+		}
 	}
 
 	// Update archers and check for enemies in range

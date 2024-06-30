@@ -282,7 +282,7 @@ void Scene_Play::sRender() {
 	window.draw(r); 
 	
 	//clouds movement
-	clouds.setPosition(sf::Vector2f(-1800.f + m_cloudsClock.getElapsedTime().asSeconds()*10, 0.f));
+	clouds.setPosition(sf::Vector2f(-1800.f + m_weatherClock.getElapsedTime().asSeconds()*10, 0.f));
 	window.draw(clouds);
 	
 
@@ -433,22 +433,22 @@ void Scene_Play::sAnimation() {
 			if (type == "goblin") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
 				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
-				m_coins += 25;
+				m_coins += 100;
 			}
 			if (type == "wolf") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
 				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
-				m_coins += 20;
+				m_coins += 100;
 			}
 			if (type == "slime") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
 				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
-				m_coins += 15;
+				m_coins += 100;
 			}
 			if (type == "bee") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
-				m_coins += 10;
+				m_coins += 100;
 			}
 			e_transform.velocity = { 0,0 };
 		}
@@ -740,16 +740,17 @@ void Scene_Play::sEnemySpawner() {
 
 void Scene_Play::sSpawnEnemy(size_t line) {
 	// create enemy with "enemy" tag
-	float secondsPassed = m_clock.getElapsedTime().asSeconds();
+
 	std::string tag;
-	if (secondsPassed < 10.f || secondsPassed > 12.f) 
+	if (int(m_clock.getElapsedTime().asSeconds()) == 0 || int(m_clock.getElapsedTime().asSeconds()) % 15 != 0.0f) 
 		tag = "enemy";
 	else {
 		tag = "enemyBoss";
-		m_clock.restart();
+
 	}
 	auto entity = m_entityManager.addEntity(tag); 
 	
+
 
 	int offsetConstant = 50;
 	
@@ -778,7 +779,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		entity->addComponent<CState>("walk", "horizontal");
 	}
 
-	if (secondsPassed < 10.f || secondsPassed > 11.f) {
+	if (int(m_clock.getElapsedTime().asSeconds()) == 0 || int(m_clock.getElapsedTime().asSeconds()) % 15 != 0.0f) {
 		if (type == 0) {
 			entity->addComponent<CType>("goblin");
 			damage = 5;
@@ -831,9 +832,9 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	else {
 		if (type == 0) {
 			entity->addComponent<CType>("goblin");
-			damage = 50;
+			damage = 50.f;
 			velocity *= 0.3;
-			health = 800;
+			health = 400;
 			if (line == 2) {
 				animation = "D_goblinWalk";
 			}
@@ -843,9 +844,9 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 		else if (type == 1) {
 			entity->addComponent<CType>("wolf");
-			damage = 30;
-			velocity *= 0.8;
-			health = 500;
+			damage = 30.f;
+			velocity *= 1.2f;
+			health = 200;
 			if (line == 2) {
 				animation = "D_wolfWalk";
 			}
@@ -855,7 +856,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 		else if (type == 2) {
 			entity->addComponent<CType>("bee");
-			damage = 60;
+			damage = 40.f;
 			animation = "D_beeWalk";
 			health = 300;
 			if (line == 2) {
@@ -867,8 +868,8 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 		else if (type == 3) {
 			entity->addComponent<CType>("slime");
-			damage = 1.5f;
-			health = 400;
+			damage = 15.f;
+			health = 100;
 			animation = "D_slimeWalk";
 			if (line == 2) {
 				animation = "D_slimeWalk";

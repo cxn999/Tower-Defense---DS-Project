@@ -172,7 +172,7 @@ void GameEngine::setMusicState(bool musicOn) {
 	}
 	else {
 		if (m_currentMusic) {
-			m_currentMusic->stop();
+			m_currentMusic->pause();
 		}
 	}
 }

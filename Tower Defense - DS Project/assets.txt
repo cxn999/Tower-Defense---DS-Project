@@ -94,7 +94,7 @@ Texture lightningShop Assets\Shop\Lightning_shop.png
 
 
 Texture background Assets\background.png
-Texture backgroundMenu Assets\MenuBackground.jpg
+Texture backgroundMenu Assets\MenuBackground.png
 
 
 ------------------------- ANIMATIONS -------------------------

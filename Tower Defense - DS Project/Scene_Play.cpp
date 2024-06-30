@@ -697,7 +697,11 @@ void Scene_Play::sMovement() {
 					attack(a, e);
 				}
 			}
-
+			if (a->getComponent<CType>().type == "lightning") {
+				if (m_lightningSquare.getGlobalBounds().contains(e_transform.pos.x, e_transform.pos.y)) {
+					attack(a, e);
+				}
+			}
 		}
 	}
 	for (auto& e : m_entityManager.getEntities("enemyBoss")) {
@@ -723,6 +727,11 @@ void Scene_Play::sMovement() {
 					auto & type = e->getComponent<CType>().type;
 				}
 				else if (a->getComponent<CType>().type == "area") {
+					attack(a, e);
+				}
+			}
+			if (a->getComponent<CType>().type == "lightning") {
+				if (m_lightningSquare.getGlobalBounds().contains(e_transform.pos.x, e_transform.pos.y)) {
 					attack(a, e);
 				}
 			}
@@ -758,10 +767,8 @@ void Scene_Play::sMovement() {
 				}
 				else if (archer_type == "area") {
 					auto& cDelay = archer->getComponent<CDelay>();
-					std::cout << "LAST ATTACK FRAME: " << cDelay.lastAttackFrame << std::endl;
 					if (cDelay.lastAttackFrame == 0 || cDelay.lastAttackFrame + cDelay.delay <= m_currentFrame) {
 						cDelay.lastAttackFrame = m_currentFrame;
-						std::cout << "MHMHMHM" << std::endl;
 						spawnSpikes("area", e_transform.pos);
 					}
 				}
@@ -1033,6 +1040,20 @@ void Scene_Play::sPlacement() {
 				click = false;
 				m_mouseItem = false;
 				m_roadGrid = false;
+
+				if (m_selectedItem == 3) {
+					m_coins -= 150;
+				}
+
+				auto lightning = m_entityManager.addEntity("attack");
+				lightning->addComponent<CTransform>();
+				lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f -15, roadRect.getPosition().y + roadRect.getSize().y / 2.f -310};
+				m_lightningSquare = roadRect;
+				lightning->addComponent<CType>();
+				lightning->getComponent<CType>().type = "lightning";
+				lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+				lightning->addComponent<CAttack>();
+				lightning->getComponent<CAttack>().damage = 2;
 			}
 		}
 	}

@@ -24,7 +24,7 @@ protected:
 	bool m_nightFall = true; // toggles change in the night filter
 
 	Vec2 m_attackPos = { 0,0 };
-	sf::RectangleShape m_attackSquare; // Square of attack
+	sf::RectangleShape m_lightningSquare; // Square of attack
 	sf::RectangleShape m_defenseSquare; // Square of defense tower
 	sf::RectangleShape m_nightFilter;	// Night filter square
 

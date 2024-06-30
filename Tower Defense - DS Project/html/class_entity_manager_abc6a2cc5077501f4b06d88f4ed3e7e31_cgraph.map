@@ -1,0 +1,8 @@
+<map id="EntityManager::update" name="EntityManager::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,158,69"/>
+<area shape="rect" id="Node000002" href="$class_quadtree.html#ab2b40ef82fa81688886c8f38bf7846d3" title=" " alt="" coords="208,5,318,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,39,192,31,193,36,150,45"/>
+<area shape="rect" id="Node000003" href="$class_quadtree.html#a5707a18168416e1699ba5838bc65015e" title=" " alt="" coords="206,80,320,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,67,191,76,190,81,149,73"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="232,81,226,71,230,62,243,55,263,53,285,56,296,62,294,67,283,61,263,59,244,61,234,65,232,71,236,78"/>
+</map>

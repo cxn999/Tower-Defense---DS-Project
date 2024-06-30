@@ -1,0 +1,13 @@
+<map id="Scene_Play::sAnimation" name="Scene_Play::sAnimation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,170,133"/>
+<area shape="rect" id="Node000002" href="$class_entity_manager.html#a85c22d45c0bde41cd2b82336b6f32046" title=" " alt="" coords="221,5,390,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,104,156,73,217,42,234,35,236,40,219,46,158,78,110,109"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#ad9800454ac0f4dd0b21c373d20f6d488" title=" " alt="" coords="238,56,373,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,103,229,84,231,89,149,109"/>
+<area shape="rect" id="Node000004" href="$class_assets.html#a82a07c4ce9f847b53f635018533c160c" title=" " alt="" coords="232,107,379,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="170,117,217,117,217,123,170,123"/>
+<area shape="rect" id="Node000005" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="224,157,387,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="149,131,231,151,229,156,148,137"/>
+<area shape="rect" id="Node000006" href="$class_entity_manager.html#ad718816dd5307c5f90bf25dd8e9b750b" title=" " alt="" coords="218,208,393,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="110,131,158,162,219,194,236,200,234,205,217,198,156,167,107,136"/>
+</map>

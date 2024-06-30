@@ -1,0 +1,219 @@
+digraph "Scene_Settings"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Settings</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Scene_Settings(GameEngine<BR ALIGN="LEFT"/> *gameEngine=nullptr)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sRender()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void init()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void update()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void onEnd()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sDoAction(const<BR ALIGN="LEFT"/> Action &amp;action)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Color getVolumeColor<BR ALIGN="LEFT"/>(float volume)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void updateVolumeSlider()<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="include graphics library"];
+  Node2 -> Node1 [id="edge23_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node2 [id="Node000002",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void setPaused(bool)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Scene()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Scene(GameEngine *gameEngine)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void update()=0<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void sDoAction<BR ALIGN="LEFT"/>(const Action &amp;action)=0<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void sRender()=0<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void doAction<BR ALIGN="LEFT"/>(const Action &amp;action)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void registerAction<BR ALIGN="LEFT"/>(int inputKey, const<BR ALIGN="LEFT"/> std::string &amp;actionName)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">size_t width() const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">size_t height() const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">size_t currentFrame<BR ALIGN="LEFT"/>() const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool hasEnded() const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">const ActionMap &amp; getAction<BR ALIGN="LEFT"/>Map() const<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void onEnd()=0<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_scene.html",tooltip=" "];
+  Node3 -> Node2 [id="edge24_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" #m_game",fontcolor="grey" ,arrowhead="odiamond"];
+  Node3 [id="Node000003",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">GameEngine</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">GameEngine(const std<BR ALIGN="LEFT"/>::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void changeScene(const<BR ALIGN="LEFT"/> std::string &amp;, std::shared<BR ALIGN="LEFT"/>_ptr&lt; Scene &gt; scene, bool<BR ALIGN="LEFT"/> endCurrentScene)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void run()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void quit()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Assets &amp; getAssets()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::RenderWindow &amp;<BR ALIGN="LEFT"/> window()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool isRunning()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">float getVolume()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool getMusic()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void setVolume(float<BR ALIGN="LEFT"/> volume)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void setMusic(bool<BR ALIGN="LEFT"/> music)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void startMusic(const<BR ALIGN="LEFT"/> std::string &amp;musicName)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void stopMusic()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void setMusicState<BR ALIGN="LEFT"/>(bool musicOn)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void switchToMusic<BR ALIGN="LEFT"/>(const std::string &amp;musicName)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void init(const std<BR ALIGN="LEFT"/>::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void update()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sUserInput()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::shared_ptr&lt; Scene<BR ALIGN="LEFT"/> &gt; currentScene()<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_game_engine.html",tooltip=" "];
+  Node4 -> Node3 [id="edge25_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" ",label=" #m_window",fontcolor="grey" ,arrowhead="odiamond"];
+  Node4 [id="Node000004",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">RenderWindow</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node3 [id="edge26_Node000003_Node000005",color="steelblue1",style="solid",tooltip=" ",label=" #m_assets",fontcolor="grey" ,arrowhead="odiamond"];
+  Node5 [id="Node000005",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Assets</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">~Assets()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void addTexture(const<BR ALIGN="LEFT"/> std::string &amp;name, const<BR ALIGN="LEFT"/> std::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void addSoundBuffer<BR ALIGN="LEFT"/>(const std::string &amp;name,<BR ALIGN="LEFT"/> const std::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void addMusic(const<BR ALIGN="LEFT"/> std::string &amp;name,<BR ALIGN="LEFT"/> const std::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void addFont(const<BR ALIGN="LEFT"/> std::string &amp;name,<BR ALIGN="LEFT"/> const std::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void addAnimation(const<BR ALIGN="LEFT"/> std::string &amp;name, const<BR ALIGN="LEFT"/> Animation &amp;animation)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Texture &amp; getTexture<BR ALIGN="LEFT"/>(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::SoundBuffer &amp; getSound<BR ALIGN="LEFT"/>Buffer(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Music * getMusic<BR ALIGN="LEFT"/>(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Sound &amp; getSound<BR ALIGN="LEFT"/>(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Font &amp; getFont<BR ALIGN="LEFT"/>(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Animation &amp; getAnimation<BR ALIGN="LEFT"/>(const std::string &amp;name)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void loadFromFile(const<BR ALIGN="LEFT"/> std::string &amp;path)<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_assets.html",tooltip=" "];
+  Node6 -> Node3 [id="edge27_Node000003_Node000006",color="steelblue1",style="solid",tooltip=" ",label=" #m_currentScene",fontcolor="grey" ,arrowhead="odiamond"];
+  Node6 [id="Node000006",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">string</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node3 [id="edge28_Node000003_Node000007",color="steelblue1",style="solid",tooltip=" ",label=" #m_sceneMap",fontcolor="grey" ,arrowhead="odiamond"];
+  Node7 [id="Node000007",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">map&lt; std::string, std<BR ALIGN="LEFT"/>::shared_ptr&lt; Scene &gt; &gt;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node3 [id="edge29_Node000003_Node000008",color="steelblue1",style="solid",tooltip=" ",label=" #m_simulationSpeed",fontcolor="grey" ,arrowhead="odiamond"];
+  Node8 [id="Node000008",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">size_t</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node3 [id="edge30_Node000003_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_music\n#m_running",fontcolor="grey" ,arrowhead="odiamond"];
+  Node9 [id="Node000009",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">bool</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node3 [id="edge31_Node000003_Node000010",color="steelblue1",style="solid",tooltip=" ",label=" #m_volume\n+m_fps",fontcolor="grey" ,arrowhead="odiamond"];
+  Node10 [id="Node000010",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">float</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node11 -> Node3 [id="edge32_Node000003_Node000011",color="steelblue1",style="solid",tooltip=" ",label=" #m_currentMusic",fontcolor="grey" ,arrowhead="odiamond"];
+  Node11 [id="Node000011",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Music *</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node12 -> Node3 [id="edge33_Node000003_Node000012",color="steelblue1",style="solid",tooltip=" ",label=" +m_clock",fontcolor="grey" ,arrowhead="odiamond"];
+  Node12 [id="Node000012",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Clock</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node13 -> Node2 [id="edge34_Node000002_Node000013",color="steelblue1",style="solid",tooltip=" ",label=" #m_entityManager",fontcolor="grey" ,arrowhead="odiamond"];
+  Node13 [id="Node000013",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">EntityManager</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">EntityManager()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">EntityManager(sf::<BR ALIGN="LEFT"/>FloatRect bounds)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void init()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void update()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::shared_ptr&lt; Entity<BR ALIGN="LEFT"/> &gt; addEntity(const std<BR ALIGN="LEFT"/>::string &amp;tag)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">EntityVec &amp; getEntities()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">EntityVec &amp; getEntities<BR ALIGN="LEFT"/>(const std::string &amp;tag)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">EntityVec queryRange<BR ALIGN="LEFT"/>(sf::FloatRect range)<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_entity_manager.html",tooltip=" "];
+  Node14 -> Node2 [id="edge35_Node000002_Node000014",color="steelblue1",style="solid",tooltip=" ",label=" #m_actionMap",fontcolor="grey" ,arrowhead="odiamond"];
+  Node14 [id="Node000014",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">map&lt; int, std::string &gt;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node2 [id="edge36_Node000002_Node000008",color="steelblue1",style="solid",tooltip=" ",label=" #m_currentFrame",fontcolor="grey" ,arrowhead="odiamond"];
+  Node9 -> Node2 [id="edge37_Node000002_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_hasEnded\n#m_paused",fontcolor="grey" ,arrowhead="odiamond"];
+  Node15 -> Node1 [id="edge38_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" ",label=" #m_controlSchemeText\n#m_menuText\n#m_musicToggleText\n#m_titleText\n#m_volumeText",fontcolor="grey" ,arrowhead="odiamond"];
+  Node15 [id="Node000015",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Text</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node16 -> Node1 [id="edge39_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" ",label=" #m_texts",fontcolor="grey" ,arrowhead="odiamond"];
+  Node16 [id="Node000016",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">vector&lt; sf::Text &gt;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node17 -> Node1 [id="edge40_Node000001_Node000017",color="steelblue1",style="solid",tooltip=" ",label=" #m_menuStrings",fontcolor="grey" ,arrowhead="odiamond"];
+  Node17 [id="Node000017",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">vector&lt; std::string &gt;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node18 -> Node1 [id="edge41_Node000001_Node000018",color="steelblue1",style="solid",tooltip=" ",label=" #m_selectedMenuIndex",fontcolor="grey" ,arrowhead="odiamond"];
+  Node18 [id="Node000018",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">int</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node19 -> Node1 [id="edge42_Node000001_Node000019",color="steelblue1",style="solid",tooltip=" ",label=" #m_volumeSlider",fontcolor="grey" ,arrowhead="odiamond"];
+  Node19 [id="Node000019",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">RectangleShape</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node10 -> Node1 [id="edge43_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" ",label=" #m_volume",fontcolor="grey" ,arrowhead="odiamond"];
+  Node9 -> Node1 [id="edge44_Node000001_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_musicOn\n#m_useWASD",fontcolor="grey" ,arrowhead="odiamond"];
+}

@@ -1,0 +1,9 @@
+<map id="Entity::getComponent" name="Entity::getComponent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,56,371,83"/>
+<area shape="rect" id="Node000002" href="$class_entity.html#aafe23d7d7ea7f427ca40454edcae460e" title=" " alt="" coords="15,5,166,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,54,147,35,149,30,225,49"/>
+<area shape="rect" id="Node000003" href="$class_entity.html#ad42785721cb226a1bea8025aeb1d9e8d" title=" " alt="" coords="15,56,166,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,72,166,72,166,67,208,67"/>
+<area shape="rect" id="Node000004" href="$class_entity.html#a590ddbda675cf9b188977d553e396a0f" title=" " alt="" coords="5,107,176,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,90,149,109,147,103,224,84"/>
+</map>

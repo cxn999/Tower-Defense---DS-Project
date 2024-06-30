@@ -1,0 +1,143 @@
+\doxysection{Entity\+Manager Class Reference}
+\hypertarget{class_entity_manager}{}\label{class_entity_manager}\index{EntityManager@{EntityManager}}
+
+
+{\ttfamily \#include $<$Entity\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for Entity\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_entity_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_entity_manager_a7555637657d090171be6ceee8451de0a}{Entity\+Manager}} ()
+\item 
+\mbox{\hyperlink{class_entity_manager_a8becd501b73e56d6a7a5cf26441232b0}{Entity\+Manager}} (sf\+::\+Float\+Rect bounds)
+\item 
+void \mbox{\hyperlink{class_entity_manager_ae0abecb1a8037d6af51d950491115bfb}{init}} ()
+\item 
+void \mbox{\hyperlink{class_entity_manager_abc6a2cc5077501f4b06d88f4ed3e7e31}{update}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ \mbox{\hyperlink{class_entity_manager_a85c22d45c0bde41cd2b82336b6f32046}{add\+Entity}} (const std\+::string \&tag)
+\item 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} \& \mbox{\hyperlink{class_entity_manager_ad718816dd5307c5f90bf25dd8e9b750b}{get\+Entities}} ()
+\item 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} \& \mbox{\hyperlink{class_entity_manager_a6340a54cdc44ce240a756ebb043991ed}{get\+Entities}} (const std\+::string \&tag)
+\item 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} \mbox{\hyperlink{class_entity_manager_aaf0e016b7ebef56e20ae7613e0a102f3}{query\+Range}} (sf\+::\+Float\+Rect range)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_entity_manager_a7555637657d090171be6ceee8451de0a}\index{EntityManager@{EntityManager}!EntityManager@{EntityManager}}
+\index{EntityManager@{EntityManager}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{EntityManager()}{EntityManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_entity_manager_a7555637657d090171be6ceee8451de0a} 
+Entity\+Manager\+::\+Entity\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_manager_a8becd501b73e56d6a7a5cf26441232b0}\index{EntityManager@{EntityManager}!EntityManager@{EntityManager}}
+\index{EntityManager@{EntityManager}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{EntityManager()}{EntityManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_entity_manager_a8becd501b73e56d6a7a5cf26441232b0} 
+Entity\+Manager\+::\+Entity\+Manager (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{bounds}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_entity_manager_a85c22d45c0bde41cd2b82336b6f32046}\index{EntityManager@{EntityManager}!addEntity@{addEntity}}
+\index{addEntity@{addEntity}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
+{\footnotesize\ttfamily \label{class_entity_manager_a85c22d45c0bde41cd2b82336b6f32046} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ Entity\+Manager\+::add\+Entity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_manager_a85c22d45c0bde41cd2b82336b6f32046_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_manager_ad718816dd5307c5f90bf25dd8e9b750b}\index{EntityManager@{EntityManager}!getEntities@{getEntities}}
+\index{getEntities@{getEntities}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{getEntities()}{getEntities()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_entity_manager_ad718816dd5307c5f90bf25dd8e9b750b} 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} \& Entity\+Manager\+::get\+Entities (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_manager_ad718816dd5307c5f90bf25dd8e9b750b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_manager_a6340a54cdc44ce240a756ebb043991ed}\index{EntityManager@{EntityManager}!getEntities@{getEntities}}
+\index{getEntities@{getEntities}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{getEntities()}{getEntities()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_entity_manager_a6340a54cdc44ce240a756ebb043991ed} 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} \& Entity\+Manager\+::get\+Entities (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_manager_ae0abecb1a8037d6af51d950491115bfb}\index{EntityManager@{EntityManager}!init@{init}}
+\index{init@{init}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_entity_manager_ae0abecb1a8037d6af51d950491115bfb} 
+void Entity\+Manager\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_manager_aaf0e016b7ebef56e20ae7613e0a102f3}\index{EntityManager@{EntityManager}!queryRange@{queryRange}}
+\index{queryRange@{queryRange}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{queryRange()}{queryRange()}}
+{\footnotesize\ttfamily \label{class_entity_manager_aaf0e016b7ebef56e20ae7613e0a102f3} 
+\mbox{\hyperlink{_entity_manager_8h_a09dfc6fcc286236e5a41fc73b3ecbab7}{Entity\+Vec}} Entity\+Manager\+::query\+Range (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{range}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_entity_manager_aaf0e016b7ebef56e20ae7613e0a102f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_manager_aaf0e016b7ebef56e20ae7613e0a102f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_manager_abc6a2cc5077501f4b06d88f4ed3e7e31}\index{EntityManager@{EntityManager}!update@{update}}
+\index{update@{update}!EntityManager@{EntityManager}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_entity_manager_abc6a2cc5077501f4b06d88f4ed3e7e31} 
+void Entity\+Manager\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_entity_manager_abc6a2cc5077501f4b06d88f4ed3e7e31_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_manager_abc6a2cc5077501f4b06d88f4ed3e7e31_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_entity_manager_8h}{Entity\+Manager.\+h}}\item 
+\mbox{\hyperlink{_entity_manager_8cpp}{Entity\+Manager.\+cpp}}\end{DoxyCompactItemize}

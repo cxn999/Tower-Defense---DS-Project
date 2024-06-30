@@ -1,0 +1,9 @@
+<map id="Action::name" name="Action::name">
+<area shape="rect" id="Node000001" title=" " alt="" coords="235,56,333,83"/>
+<area shape="rect" id="Node000002" href="$class_scene___menu.html#a1293fb9b99a662d7fa6416fbcf857541" title=" " alt="" coords="13,5,179,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,55,147,35,149,30,221,50"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a34a74b594e4c984c13462c71cc5d9962" title=" " alt="" coords="16,56,176,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,72,176,72,176,67,219,67"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html#a4da6738ad070d4fb99ce3675e636b160" title=" " alt="" coords="5,107,187,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="221,89,149,109,147,104,219,84"/>
+</map>

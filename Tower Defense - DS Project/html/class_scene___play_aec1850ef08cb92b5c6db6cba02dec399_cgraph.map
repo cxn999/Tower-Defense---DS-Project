@@ -1,0 +1,12 @@
+<map id="Scene_Play::sCollision" name="Scene_Play::sCollision">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,161,83"/>
+<area shape="rect" id="Node000002" href="$_physics_8cpp.html#aa87f1b530a7104e4aa0d2b7e5f719934" title=" " alt="" coords="257,5,343,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,53,241,29,242,35,144,58"/>
+<area shape="rect" id="Node000003" href="$_physics_8cpp.html#a81596138051998bc8d891720baaa59bc" title=" " alt="" coords="233,56,367,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,67,217,67,217,72,161,72"/>
+<area shape="rect" id="Node000004" href="$class_entity_manager.html#aaf0e016b7ebef56e20ae7613e0a102f3" title=" " alt="" coords="209,107,391,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="144,81,225,100,224,105,143,86"/>
+<area shape="rect" id="Node000005" href="$class_quadtree.html#a7b7e9512000b128095a49b2da0b2150e" title=" " alt="" coords="439,107,553,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="391,117,424,117,424,123,391,123"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="463,108,457,98,461,88,474,82,496,80,520,83,532,89,530,94,518,88,496,85,476,87,465,92,462,97,467,105"/>
+</map>

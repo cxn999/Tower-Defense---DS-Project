@@ -1,0 +1,422 @@
+\doxysection{Scene\+\_\+\+Settings Class Reference}
+\hypertarget{class_scene___settings}{}\label{class_scene___settings}\index{Scene\_Settings@{Scene\_Settings}}
+
+
+include graphics library  
+
+
+
+
+{\ttfamily \#include $<$Scene\+\_\+\+Settings.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+\_\+\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_scene___settings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Scene\+\_\+\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scene___settings_aed9876c261637e7aa4f25c1c39261033}{Scene\+\_\+\+Settings}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine=nullptr)
+\begin{DoxyCompactList}\small\item\em constructor for play scene that receives the pointer to the game engine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene___settings_adef765b0de1cab51176913b143c6f0bc}{s\+Render}} ()
+\begin{DoxyCompactList}\small\item\em virtual method of the base class \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene_abad71a081e3b76cff376c954d3b6c3cb}{set\+Paused}} (bool)
+\item 
+\mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}} ()
+\item 
+\mbox{\hyperlink{class_scene_a413d692c235f90a9b0aaa33196e87384}{Scene}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine)
+\item 
+virtual void \mbox{\hyperlink{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}{do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\item 
+void \mbox{\hyperlink{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}{register\+Action}} (int input\+Key, const std\+::string \&action\+Name)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}{width}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9ca07b0a912e89b57193d14ca68564d3}{height}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}{current\+Frame}} () const
+\item 
+bool \mbox{\hyperlink{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}{has\+Ended}} () const
+\item 
+const \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \& \mbox{\hyperlink{class_scene_a201c6f29c57f78a6af5addb9fa779306}{get\+Action\+Map}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene___settings_a76b13e5709a76c73b7768859555f83bc}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initial control scheme. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76}{update}} ()
+\item 
+void \mbox{\hyperlink{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629}{on\+End}} ()
+\item 
+void \mbox{\hyperlink{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160}{s\+Do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\item 
+sf\+::\+Color \mbox{\hyperlink{class_scene___settings_a7ab9de3dc8e935feeb5e637690adeb6b}{get\+Volume\+Color}} (float volume)
+\begin{DoxyCompactList}\small\item\em method for getting the color of the volume slider depending on the volume \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4}{update\+Volume\+Slider}} ()
+\begin{DoxyCompactList}\small\item\em method for updating the volume slider width \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___settings_a5614d5fbe61b021d20fe9d9f26776de7}{m\+\_\+title\+Text}}
+\item 
+std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_scene___settings_a42dbeab94ebb09377ada43a5beff5011}{m\+\_\+texts}}
+\begin{DoxyCompactList}\small\item\em text for the settings \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_scene___settings_a7cfff3c5625b1a076ac7ea75f802f629}{m\+\_\+menu\+Strings}}
+\begin{DoxyCompactList}\small\item\em vector for the texts in the scene \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___settings_a7f60563f12470a94cadf6f7afc2207ff}{m\+\_\+menu\+Text}}
+\begin{DoxyCompactList}\small\item\em vector for the strings \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_scene___settings_a55a44ef708474ad016eb8db35ceb29b2}{m\+\_\+selected\+Menu\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em text for the menu \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_scene___settings_a4e091179c199dcb0b975ecb0e6690f8b}{m\+\_\+volume\+Slider}}
+\begin{DoxyCompactList}\small\item\em is the selected menu index, it makes the index in which we are sitting highlighted \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___settings_a1c43c901c5ca88f49a0006ed0bd5885d}{m\+\_\+volume\+Text}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___settings_a65ff5084d877df0b33af4b1ef05f33f1}{m\+\_\+music\+Toggle\+Text}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___settings_a1631f8bf55af3b9ffbe97461e0149529}{m\+\_\+control\+Scheme\+Text}}
+\item 
+float \mbox{\hyperlink{class_scene___settings_ae13515467449a7bbd64a961f1883dbf3}{m\+\_\+volume}} = 50.\+0f
+\begin{DoxyCompactList}\small\item\em State variables. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_scene___settings_a618a2b69200b84d4f52ecc69058abaf3}{m\+\_\+music\+On}} = true
+\begin{DoxyCompactList}\small\item\em Initial volume level deprecated doesnt function anymore. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_scene___settings_a07693a7981f51be5eb4f6994adcbb8a0}{m\+\_\+use\+WASD}} = true
+\begin{DoxyCompactList}\small\item\em Initial music state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_scene_a055a2a35151e229504f940dc4a1eff0e}{m\+\_\+game}} = nullptr
+\item 
+\mbox{\hyperlink{class_entity_manager}{Entity\+Manager}} \mbox{\hyperlink{class_scene_a9607716b0ac72569b450f7e8aa1ac161}{m\+\_\+entity\+Manager}}
+\item 
+\mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \mbox{\hyperlink{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}{m\+\_\+action\+Map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a7bae804882b015014c71c017f7df0b1e}{m\+\_\+current\+Frame}}
+\item 
+bool \mbox{\hyperlink{class_scene_a9831c81afc52aeaac474275fcaa5bf95}{m\+\_\+paused}} = false
+\item 
+bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\+Ended}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+include graphics library 
+
+include entity manager header file include scene header file include map library include memory library derived \doxylink{class_scene}{Scene} from \doxylink{_scene_8h}{Scene.\+h} to implement the settings \doxylink{class_scene}{Scene} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_scene___settings_aed9876c261637e7aa4f25c1c39261033}\index{Scene\_Settings@{Scene\_Settings}!Scene\_Settings@{Scene\_Settings}}
+\index{Scene\_Settings@{Scene\_Settings}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{Scene\_Settings()}{Scene\_Settings()}}
+{\footnotesize\ttfamily \label{class_scene___settings_aed9876c261637e7aa4f25c1c39261033} 
+Scene\+\_\+\+Settings\+::\+Scene\+\_\+\+Settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+constructor for play scene that receives the pointer to the game engine 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_aed9876c261637e7aa4f25c1c39261033_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_scene___settings_a7ab9de3dc8e935feeb5e637690adeb6b}\index{Scene\_Settings@{Scene\_Settings}!getVolumeColor@{getVolumeColor}}
+\index{getVolumeColor@{getVolumeColor}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{getVolumeColor()}{getVolumeColor()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a7ab9de3dc8e935feeb5e637690adeb6b} 
+sf\+::\+Color Scene\+\_\+\+Settings\+::get\+Volume\+Color (\begin{DoxyParamCaption}\item[{float}]{volume}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+method for getting the color of the volume slider depending on the volume 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a7ab9de3dc8e935feeb5e637690adeb6b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_a76b13e5709a76c73b7768859555f83bc}\index{Scene\_Settings@{Scene\_Settings}!init@{init}}
+\index{init@{init}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a76b13e5709a76c73b7768859555f83bc} 
+void Scene\+\_\+\+Settings\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initial control scheme. 
+
+pure virtual method of the base class Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a76b13e5709a76c73b7768859555f83bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_scene___settings_a76b13e5709a76c73b7768859555f83bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629}\index{Scene\_Settings@{Scene\_Settings}!onEnd@{onEnd}}
+\index{onEnd@{onEnd}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{onEnd()}{onEnd()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629} 
+void Scene\+\_\+\+Settings\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160}\index{Scene\_Settings@{Scene\_Settings}!sDoAction@{sDoAction}}
+\index{sDoAction@{sDoAction}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{sDoAction()}{sDoAction()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160} 
+void Scene\+\_\+\+Settings\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_action}{Action}} \&}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_adef765b0de1cab51176913b143c6f0bc}\index{Scene\_Settings@{Scene\_Settings}!sRender@{sRender}}
+\index{sRender@{sRender}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{sRender()}{sRender()}}
+{\footnotesize\ttfamily \label{class_scene___settings_adef765b0de1cab51176913b143c6f0bc} 
+void Scene\+\_\+\+Settings\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+virtual method of the base class 
+
+
+
+Implements \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_adef765b0de1cab51176913b143c6f0bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_adef765b0de1cab51176913b143c6f0bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76}\index{Scene\_Settings@{Scene\_Settings}!update@{update}}
+\index{update@{update}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76} 
+void Scene\+\_\+\+Settings\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4}\index{Scene\_Settings@{Scene\_Settings}!updateVolumeSlider@{updateVolumeSlider}}
+\index{updateVolumeSlider@{updateVolumeSlider}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{updateVolumeSlider()}{updateVolumeSlider()}}
+{\footnotesize\ttfamily \label{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4} 
+void Scene\+\_\+\+Settings\+::update\+Volume\+Slider (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+method for updating the volume slider width 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_scene___settings_a1631f8bf55af3b9ffbe97461e0149529}\index{Scene\_Settings@{Scene\_Settings}!m\_controlSchemeText@{m\_controlSchemeText}}
+\index{m\_controlSchemeText@{m\_controlSchemeText}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_controlSchemeText}{m\_controlSchemeText}}
+{\footnotesize\ttfamily \label{class_scene___settings_a1631f8bf55af3b9ffbe97461e0149529} 
+sf\+::\+Text Scene\+\_\+\+Settings\+::m\+\_\+control\+Scheme\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___settings_a7cfff3c5625b1a076ac7ea75f802f629}\index{Scene\_Settings@{Scene\_Settings}!m\_menuStrings@{m\_menuStrings}}
+\index{m\_menuStrings@{m\_menuStrings}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_menuStrings}{m\_menuStrings}}
+{\footnotesize\ttfamily \label{class_scene___settings_a7cfff3c5625b1a076ac7ea75f802f629} 
+std\+::vector$<$std\+::string$>$ Scene\+\_\+\+Settings\+::m\+\_\+menu\+Strings\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+vector for the texts in the scene 
+
+\Hypertarget{class_scene___settings_a7f60563f12470a94cadf6f7afc2207ff}\index{Scene\_Settings@{Scene\_Settings}!m\_menuText@{m\_menuText}}
+\index{m\_menuText@{m\_menuText}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_menuText}{m\_menuText}}
+{\footnotesize\ttfamily \label{class_scene___settings_a7f60563f12470a94cadf6f7afc2207ff} 
+sf\+::\+Text Scene\+\_\+\+Settings\+::m\+\_\+menu\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+vector for the strings 
+
+\Hypertarget{class_scene___settings_a618a2b69200b84d4f52ecc69058abaf3}\index{Scene\_Settings@{Scene\_Settings}!m\_musicOn@{m\_musicOn}}
+\index{m\_musicOn@{m\_musicOn}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_musicOn}{m\_musicOn}}
+{\footnotesize\ttfamily \label{class_scene___settings_a618a2b69200b84d4f52ecc69058abaf3} 
+bool Scene\+\_\+\+Settings\+::m\+\_\+music\+On = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initial volume level deprecated doesnt function anymore. 
+
+\Hypertarget{class_scene___settings_a65ff5084d877df0b33af4b1ef05f33f1}\index{Scene\_Settings@{Scene\_Settings}!m\_musicToggleText@{m\_musicToggleText}}
+\index{m\_musicToggleText@{m\_musicToggleText}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_musicToggleText}{m\_musicToggleText}}
+{\footnotesize\ttfamily \label{class_scene___settings_a65ff5084d877df0b33af4b1ef05f33f1} 
+sf\+::\+Text Scene\+\_\+\+Settings\+::m\+\_\+music\+Toggle\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___settings_a55a44ef708474ad016eb8db35ceb29b2}\index{Scene\_Settings@{Scene\_Settings}!m\_selectedMenuIndex@{m\_selectedMenuIndex}}
+\index{m\_selectedMenuIndex@{m\_selectedMenuIndex}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_selectedMenuIndex}{m\_selectedMenuIndex}}
+{\footnotesize\ttfamily \label{class_scene___settings_a55a44ef708474ad016eb8db35ceb29b2} 
+int Scene\+\_\+\+Settings\+::m\+\_\+selected\+Menu\+Index = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+text for the menu 
+
+\Hypertarget{class_scene___settings_a42dbeab94ebb09377ada43a5beff5011}\index{Scene\_Settings@{Scene\_Settings}!m\_texts@{m\_texts}}
+\index{m\_texts@{m\_texts}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_texts}{m\_texts}}
+{\footnotesize\ttfamily \label{class_scene___settings_a42dbeab94ebb09377ada43a5beff5011} 
+std\+::vector$<$sf\+::\+Text$>$ Scene\+\_\+\+Settings\+::m\+\_\+texts\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+text for the settings 
+
+\Hypertarget{class_scene___settings_a5614d5fbe61b021d20fe9d9f26776de7}\index{Scene\_Settings@{Scene\_Settings}!m\_titleText@{m\_titleText}}
+\index{m\_titleText@{m\_titleText}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_titleText}{m\_titleText}}
+{\footnotesize\ttfamily \label{class_scene___settings_a5614d5fbe61b021d20fe9d9f26776de7} 
+sf\+::\+Text Scene\+\_\+\+Settings\+::m\+\_\+title\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___settings_a07693a7981f51be5eb4f6994adcbb8a0}\index{Scene\_Settings@{Scene\_Settings}!m\_useWASD@{m\_useWASD}}
+\index{m\_useWASD@{m\_useWASD}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_useWASD}{m\_useWASD}}
+{\footnotesize\ttfamily \label{class_scene___settings_a07693a7981f51be5eb4f6994adcbb8a0} 
+bool Scene\+\_\+\+Settings\+::m\+\_\+use\+WASD = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initial music state. 
+
+\Hypertarget{class_scene___settings_ae13515467449a7bbd64a961f1883dbf3}\index{Scene\_Settings@{Scene\_Settings}!m\_volume@{m\_volume}}
+\index{m\_volume@{m\_volume}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_volume}{m\_volume}}
+{\footnotesize\ttfamily \label{class_scene___settings_ae13515467449a7bbd64a961f1883dbf3} 
+float Scene\+\_\+\+Settings\+::m\+\_\+volume = 50.\+0f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+State variables. 
+
+\Hypertarget{class_scene___settings_a4e091179c199dcb0b975ecb0e6690f8b}\index{Scene\_Settings@{Scene\_Settings}!m\_volumeSlider@{m\_volumeSlider}}
+\index{m\_volumeSlider@{m\_volumeSlider}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_volumeSlider}{m\_volumeSlider}}
+{\footnotesize\ttfamily \label{class_scene___settings_a4e091179c199dcb0b975ecb0e6690f8b} 
+sf\+::\+Rectangle\+Shape Scene\+\_\+\+Settings\+::m\+\_\+volume\+Slider\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+is the selected menu index, it makes the index in which we are sitting highlighted 
+
+New UI elements \Hypertarget{class_scene___settings_a1c43c901c5ca88f49a0006ed0bd5885d}\index{Scene\_Settings@{Scene\_Settings}!m\_volumeText@{m\_volumeText}}
+\index{m\_volumeText@{m\_volumeText}!Scene\_Settings@{Scene\_Settings}}
+\doxysubsubsection{\texorpdfstring{m\_volumeText}{m\_volumeText}}
+{\footnotesize\ttfamily \label{class_scene___settings_a1c43c901c5ca88f49a0006ed0bd5885d} 
+sf\+::\+Text Scene\+\_\+\+Settings\+::m\+\_\+volume\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_scene___settings_8h}{Scene\+\_\+\+Settings.\+h}}\item 
+\mbox{\hyperlink{_scene___settings_8cpp}{Scene\+\_\+\+Settings.\+cpp}}\end{DoxyCompactItemize}

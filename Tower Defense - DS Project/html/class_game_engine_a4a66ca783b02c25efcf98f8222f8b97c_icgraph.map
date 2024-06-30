@@ -1,0 +1,13 @@
+<map id="GameEngine::getVolume" name="GameEngine::getVolume">
+<area shape="rect" id="Node000001" title="methods to get configurations" alt="" coords="693,40,860,67"/>
+<area shape="rect" id="Node000002" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="233,13,372,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="718,38,645,23,573,17,499,16,372,22,372,17,499,10,573,11,646,17,719,33"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html#a4da6738ad070d4fb99ce3675e636b160" title=" " alt="" coords="212,68,393,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="719,74,646,89,580,95,514,97,394,92,394,87,514,91,580,90,645,84,718,69"/>
+<area shape="rect" id="Node000005" href="$class_scene___settings.html#a2b9b180644b36c931eb7c47888ede9c4" title="method for updating the volume slider width" alt="" coords="441,32,645,75"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="678,56,646,56,646,51,678,51"/>
+<area shape="rect" id="Node000003" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="5,5,164,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,29,164,29,164,24,218,24"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="425,43,372,37,372,32,426,38"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="426,70,394,73,393,68,425,64"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="EntityManager::queryRange" name="EntityManager::queryRange">
+<area shape="rect" id="Node000001" title=" " alt="" coords="405,31,587,57"/>
+<area shape="rect" id="Node000002" href="$class_scene___play.html#aec1850ef08cb92b5c6db6cba02dec399" title=" " alt="" coords="197,5,352,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="389,34,352,30,353,25,390,29"/>
+<area shape="rect" id="Node000004" href="$class_scene___play.html#ae80c24b0bb449025d718c9b6dba8d619" title=" " alt="" coords="192,56,357,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="390,59,358,63,357,57,389,54"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="5,31,144,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="181,33,144,38,143,33,181,28"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="176,60,144,55,144,50,176,54"/>
+</map>

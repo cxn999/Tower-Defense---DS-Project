@@ -1,0 +1,46 @@
+\doxysection{Scene\+\_\+\+Settings.\+h}
+\hypertarget{_scene___settings_8h_source}{}\label{_scene___settings_8h_source}\mbox{\hyperlink{_scene___settings_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_manager_8h}{EntityManager.h}}"{}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scene_8h}{Scene.h}}"{}}\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}\ \ \ \ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_scene___settings}{Scene\_Settings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_scene}{Scene}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00013\ \ \ \ \ sf::Text\ \mbox{\hyperlink{class_scene___settings_a5614d5fbe61b021d20fe9d9f26776de7}{m\_titleText}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ std::vector<sf::Text>\ \mbox{\hyperlink{class_scene___settings_a42dbeab94ebb09377ada43a5beff5011}{m\_texts}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_scene___settings_a7cfff3c5625b1a076ac7ea75f802f629}{m\_menuStrings}};\ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ sf::Text\ \mbox{\hyperlink{class_scene___settings_a7f60563f12470a94cadf6f7afc2207ff}{m\_menuText}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_scene___settings_a55a44ef708474ad016eb8db35ceb29b2}{m\_selectedMenuIndex}}\ =\ 0;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ sf::RectangleShape\ \mbox{\hyperlink{class_scene___settings_a4e091179c199dcb0b975ecb0e6690f8b}{m\_volumeSlider}};}
+\DoxyCodeLine{00021\ \ \ \ \ sf::Text\ \mbox{\hyperlink{class_scene___settings_a1c43c901c5ca88f49a0006ed0bd5885d}{m\_volumeText}};}
+\DoxyCodeLine{00022\ \ \ \ \ sf::Text\ \mbox{\hyperlink{class_scene___settings_a65ff5084d877df0b33af4b1ef05f33f1}{m\_musicToggleText}};}
+\DoxyCodeLine{00023\ \ \ \ \ sf::Text\ \mbox{\hyperlink{class_scene___settings_a1631f8bf55af3b9ffbe97461e0149529}{m\_controlSchemeText}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_scene___settings_ae13515467449a7bbd64a961f1883dbf3}{m\_volume}}\ =\ 50.0f;\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_scene___settings_a618a2b69200b84d4f52ecc69058abaf3}{m\_musicOn}}\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_scene___settings_a07693a7981f51be5eb4f6994adcbb8a0}{m\_useWASD}}\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_a76b13e5709a76c73b7768859555f83bc}{init}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76}{update}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629}{onEnd}}();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160}{sDoAction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_action}{Action}}\&\ action);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ sf::Color\ \mbox{\hyperlink{class_scene___settings_a7ab9de3dc8e935feeb5e637690adeb6b}{getVolumeColor}}(\textcolor{keywordtype}{float}\ volume);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_a2b9b180644b36c931eb7c47888ede9c4}{updateVolumeSlider}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_scene___settings_aed9876c261637e7aa4f25c1c39261033}{Scene\_Settings}}(\mbox{\hyperlink{class_game_engine}{GameEngine}}*\ gameEngine\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene___settings_adef765b0de1cab51176913b143c6f0bc}{sRender}}();}
+\DoxyCodeLine{00049\ \};}
+
+\end{DoxyCode}

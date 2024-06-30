@@ -1,0 +1,151 @@
+\doxysection{Entity Class Reference}
+\hypertarget{class_entity}{}\label{class_entity}\index{Entity@{Entity}}
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+
+
+Collaboration diagram for Entity\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{class_entity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_entity_a33ea809110fb8fdad11196403ecb495c}{id}} ()
+\item 
+bool \mbox{\hyperlink{class_entity_a00a0f5a9e9f39be9b9db28d5dbccd20e}{is\+Active}} ()
+\item 
+const std\+::string \& \mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}} ()
+\item 
+void \mbox{\hyperlink{class_entity_a691dbe5f9ec930c27af2af0b97907a9e}{destroy}} ()
+\item 
+{\footnotesize template$<$typename T , typename... TArgs$>$ }\\T \& \mbox{\hyperlink{class_entity_aafe23d7d7ea7f427ca40454edcae460e}{add\+Component}} (TArgs \&\&... m\+Args)
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}{has\+Component}} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \& \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{get\+Component}} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\const T \& \mbox{\hyperlink{class_entity_a67794319327b8c2889b44587e8174e98}{get\+Component}} () const
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{class_entity_a590ddbda675cf9b188977d553e396a0f}{remove\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_entity_a6f579cda6059d102e9074e11a27e0282}{Entity\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_entity_aafe23d7d7ea7f427ca40454edcae460e}\index{Entity@{Entity}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily \label{class_entity_aafe23d7d7ea7f427ca40454edcae460e} 
+template$<$typename T , typename... TArgs$>$ \\
+T \& Entity\+::add\+Component (\begin{DoxyParamCaption}\item[{TArgs \&\&...}]{m\+Args}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_entity_aafe23d7d7ea7f427ca40454edcae460e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_a691dbe5f9ec930c27af2af0b97907a9e}\index{Entity@{Entity}!destroy@{destroy}}
+\index{destroy@{destroy}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily \label{class_entity_a691dbe5f9ec930c27af2af0b97907a9e} 
+void Entity\+::destroy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_af378c2ea70fa68a8433f19500261393d}\index{Entity@{Entity}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_entity_af378c2ea70fa68a8433f19500261393d} 
+template$<$typename T $>$ \\
+T \& Entity\+::get\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_af378c2ea70fa68a8433f19500261393d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_a67794319327b8c2889b44587e8174e98}\index{Entity@{Entity}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_entity_a67794319327b8c2889b44587e8174e98} 
+template$<$typename T $>$ \\
+const T \& Entity\+::get\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}\index{Entity@{Entity}!hasComponent@{hasComponent}}
+\index{hasComponent@{hasComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{hasComponent()}{hasComponent()}}
+{\footnotesize\ttfamily \label{class_entity_ad42785721cb226a1bea8025aeb1d9e8d} 
+template$<$class T $>$ \\
+bool Entity\+::has\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_entity_ad42785721cb226a1bea8025aeb1d9e8d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_a33ea809110fb8fdad11196403ecb495c}\index{Entity@{Entity}!id@{id}}
+\index{id@{id}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{id()}{id()}}
+{\footnotesize\ttfamily \label{class_entity_a33ea809110fb8fdad11196403ecb495c} 
+size\+\_\+t Entity\+::id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_a00a0f5a9e9f39be9b9db28d5dbccd20e}\index{Entity@{Entity}!isActive@{isActive}}
+\index{isActive@{isActive}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily \label{class_entity_a00a0f5a9e9f39be9b9db28d5dbccd20e} 
+bool Entity\+::is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_entity_a590ddbda675cf9b188977d553e396a0f}\index{Entity@{Entity}!removeComponent@{removeComponent}}
+\index{removeComponent@{removeComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{removeComponent()}{removeComponent()}}
+{\footnotesize\ttfamily \label{class_entity_a590ddbda675cf9b188977d553e396a0f} 
+template$<$class T $>$ \\
+void Entity\+::remove\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity_a590ddbda675cf9b188977d553e396a0f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_entity_a5b92e79c2f8dff009caec96048630cad}\index{Entity@{Entity}!tag@{tag}}
+\index{tag@{tag}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{tag()}{tag()}}
+{\footnotesize\ttfamily \label{class_entity_a5b92e79c2f8dff009caec96048630cad} 
+const std\+::string \& Entity\+::tag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_entity_a6f579cda6059d102e9074e11a27e0282}\index{Entity@{Entity}!EntityManager@{EntityManager}}
+\index{EntityManager@{EntityManager}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{EntityManager}{EntityManager}}
+{\footnotesize\ttfamily \label{class_entity_a6f579cda6059d102e9074e11a27e0282} 
+friend class \mbox{\hyperlink{class_entity_manager}{Entity\+Manager}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\item 
+\mbox{\hyperlink{_entity_8cpp}{Entity.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,18 @@
+digraph "Scene_Play::sCollision"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Scene_Play::sCollision",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge6_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="GetOverlap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_physics_8cpp.html#aa87f1b530a7104e4aa0d2b7e5f719934",tooltip=" "];
+  Node1 -> Node3 [id="edge7_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="GetPreviousOverlap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_physics_8cpp.html#a81596138051998bc8d891720baaa59bc",tooltip=" "];
+  Node1 -> Node4 [id="edge8_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="EntityManager::queryRange",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_entity_manager.html#aaf0e016b7ebef56e20ae7613e0a102f3",tooltip=" "];
+  Node4 -> Node5 [id="edge9_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Quadtree::query",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_quadtree.html#a7b7e9512000b128095a49b2da0b2150e",tooltip=" "];
+  Node5 -> Node5 [id="edge10_Node000005_Node000005",color="steelblue1",style="solid",tooltip=" "];
+}

@@ -1,0 +1,70 @@
+\doxysection{Game\+Engine.\+h}
+\hypertarget{_game_engine_8h_source}{}\label{_game_engine_8h_source}\mbox{\hyperlink{_game_engine_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_assets_8h}{Assets.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_scene}{Scene}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ std::map<std::string,\ std::shared\_ptr<Scene>>\ \mbox{\hyperlink{_game_engine_8h_a30a44bde9f6d41838c12dc8ed3eb61d6}{SceneMap}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_engine}{GameEngine}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016\ \ \ \ \ sf::RenderWindow\ \mbox{\hyperlink{class_game_engine_a696cd67bc5b2bdcfaa5fb538dff54a08}{m\_window}};}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_assets}{Assets}}\ \mbox{\hyperlink{class_game_engine_a6244e9f3b1256089d70d88a7243f4dd3}{m\_assets}};}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \mbox{\hyperlink{class_game_engine_ac64e50bae65e7aa8f4e907a99967feee}{m\_currentScene}};}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{_game_engine_8h_a30a44bde9f6d41838c12dc8ed3eb61d6}{SceneMap}}\ \mbox{\hyperlink{class_game_engine_a164f337b403eeecd5332940c2e099450}{m\_sceneMap}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_game_engine_ad9c4a2a0ba0c9aad0ea31bee13fa3e1b}{m\_simulationSpeed}}\ =\ 1;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_engine_ae587c23c6915881101bb2110dcb9370e}{m\_running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_game_engine_a59433fa04a5c49d8f09d0a49efe05289}{m\_volume}}\ =\ 50;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_engine_a8f1ca91bd3f714ead236e4a28db8607a}{m\_music}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Should\ load\ the\ assets}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_afdc1acd2cec0663921353540226aa839}{init}}(\textcolor{keyword}{const}\ std::string\&\ path);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_ae03241b464040b659b6a91f27920e8c3}{update}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_a63ad889c82b4a58806e7edb4979144f5}{sUserInput}}();}
+\DoxyCodeLine{00032\ \ \ \ \ std::shared\_ptr<Scene>\ \mbox{\hyperlink{class_game_engine_a3190ba2b66d4690abf451dc2e365b51e}{currentScene}}();}
+\DoxyCodeLine{00033\ \ \ \ \ sf::Music*\ \mbox{\hyperlink{class_game_engine_a91c50a70210dc4ec2ddafc81e478d7ad}{m\_currentMusic}};\ \textcolor{comment}{//\ Pointer\ to\ the\ current\ music\ track}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ sf::Clock\ \mbox{\hyperlink{class_game_engine_a111d098e65c1ad2836afd9dc1e4ae235}{m\_clock}};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_game_engine_a0489a5f3f882b11df808e59fc9d82292}{m\_fps}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_game_engine_a0ca18eba2a25a6a92fc8434d146d9299}{GameEngine}}(\textcolor{keyword}{const}\ std::string\&\ path);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Change\ scene\ \ }}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_a41a16489bd3b05403545a700f7f9e88e}{changeScene}}(\textcolor{keyword}{const}\ std::string\ \&,\ std::shared\_ptr<Scene>\ scene,\ \textcolor{keywordtype}{bool}\ endCurrentScene);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Main\ loop\ of\ the\ game}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae}{run}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Maybe\ quit\ the\ game?}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_ad82b626def2e52b28f0d6c2d167589f6}{quit}}();}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_assets}{Assets}}\&\ \mbox{\hyperlink{class_game_engine_a2db9a2dd6d6cc9879ec988690837f09e}{getAssets}}();}
+\DoxyCodeLine{00051\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{class_game_engine_ab54532076e85b26619be743450d3a0e5}{window}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ const\ Assets\ \&\ assets()\ const;}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_engine_ac7fe66907626424cd391f7b4692ba68e}{isRunning}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_game_engine_a4a66ca783b02c25efcf98f8222f8b97c}{getVolume}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_game_engine_a216acb74cf052d361aaa825a00e4c03a}{getMusic}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_ae8ea35acaa9ae03251d58faf9d5b3908}{setVolume}}(\textcolor{keywordtype}{float}\ volume);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_a8d23b73726b14ad7edff796fb64537d6}{setMusic}}(\textcolor{keywordtype}{bool}\ music);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_abb8d3e7650d045550956e4d5c2573458}{startMusic}}(\textcolor{keyword}{const}\ std::string\&\ musicName);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_ae6cae07b810c3a0cd859885ac2ecacb5}{stopMusic}}();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_a70f4192da66e8f2a8fb084e363fdb5c3}{setMusicState}}(\textcolor{keywordtype}{bool}\ musicOn);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_game_engine_aba79db1d04e0133ad1273ce885434117}{switchToMusic}}(\textcolor{keyword}{const}\ std::string\&\ musicName);}
+\DoxyCodeLine{00068\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,11 @@
+<map id="CBoundingBox" name="CBoundingBox">
+<area shape="rect" id="Node000001" title=" " alt="" coords="33,736,197,843"/>
+<area shape="rect" id="Node000002" href="$class_component.html" title=" " alt="" coords="5,371,84,440"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,454,108,736,103,737,51,455"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,5,63,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="47,74,47,354,42,354,42,74"/>
+<area shape="rect" id="Node000004" href="$class_vec2.html" title=" " alt="" coords="109,155,269,656"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,656,131,720,126,719,138,655"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="170,5,207,75"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="191,74,191,138,186,138,186,74"/>
+</map>

@@ -1,0 +1,36 @@
+\doxysection{Vec2.\+h}
+\hypertarget{_vec2_8h_source}{}\label{_vec2_8h_source}\mbox{\hyperlink{_vec2_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Class\ to\ define\ a\ vector\ of\ 2\ dimensions}}
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vec2}{Vec2}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{//\ Fields\ are\ x\ and\ y\ coordinates}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_adf8ee322d4b4bcc04146762c018d731f}{x}},\ \mbox{\hyperlink{class_vec2_a30543787e62f6d915543cf1dfb04c094}{y}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//\ Default\ constructor}}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_vec2_ab44c734ac1b44d99cd27e6e5e9068f4f}{Vec2}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Constructor\ that\ takes\ x\ and\ y\ parameters}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_vec2_a048e32eec43247969589ae5661e35b13}{Vec2}}(\textcolor{keywordtype}{float}\ xin,\ \textcolor{keywordtype}{float}\ yin)\ :\ \mbox{\hyperlink{class_vec2_adf8ee322d4b4bcc04146762c018d731f}{x}}(xin),\ \mbox{\hyperlink{class_vec2_a30543787e62f6d915543cf1dfb04c094}{y}}(yin)\ \{\}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Multiple\ operator\ overloading\ methods}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Implementation\ defined\ at\ Vec2.cpp}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vec2_a1b51577bde6009f5e1d8f7cf91efd5f4}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vec2_ad171adeadd5b58c431687cec6837d68d}{operator\ !=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_vec2_acc8d06b96e3f84cd0cb11e5a17fd046b}{operator\ +\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_vec2_a6c757ff81021ae3ffabf06a6afcdb6bd}{operator\ -\/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_vec2_ad574bfce5c7dad58b80b364f517ffb37}{operator\ *\ }}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c);}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_vec2_a17836876b83302a02b29d13283a5f1fa}{operator\ /\ }}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vec2_a58f7a9fd50f38f089528cb12af4dd13f}{operator\ +=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vec2_afb078fac709c7bd64b6c92567a310563}{operator\ -\/=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vec2_a1f15c9ade68b07ef08a422b3049283d4}{operator\ *=\ }}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vec2_a1cf7a1a01a17844172697eb3a70a67b7}{operator\ /=\ }}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ c);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Distance\ between\ 2\ vectors}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_a90df8336e6f00771697efab750757a73}{dist}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ rhs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

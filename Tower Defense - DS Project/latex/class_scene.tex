@@ -1,0 +1,290 @@
+\doxysection{Scene Class Reference}
+\hypertarget{class_scene}{}\label{class_scene}\index{Scene@{Scene}}
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_scene__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Scene\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene_abad71a081e3b76cff376c954d3b6c3cb}{set\+Paused}} (bool)
+\item 
+\mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}} ()
+\item 
+\mbox{\hyperlink{class_scene_a413d692c235f90a9b0aaa33196e87384}{Scene}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine)
+\item 
+virtual void \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{update}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{s\+Do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)=0
+\item 
+virtual void \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{s\+Render}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}{do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\item 
+void \mbox{\hyperlink{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}{register\+Action}} (int input\+Key, const std\+::string \&action\+Name)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}{width}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9ca07b0a912e89b57193d14ca68564d3}{height}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}{current\+Frame}} () const
+\item 
+bool \mbox{\hyperlink{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}{has\+Ended}} () const
+\item 
+const \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \& \mbox{\hyperlink{class_scene_a201c6f29c57f78a6af5addb9fa779306}{get\+Action\+Map}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{on\+End}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_scene_a055a2a35151e229504f940dc4a1eff0e}{m\+\_\+game}} = nullptr
+\item 
+\mbox{\hyperlink{class_entity_manager}{Entity\+Manager}} \mbox{\hyperlink{class_scene_a9607716b0ac72569b450f7e8aa1ac161}{m\+\_\+entity\+Manager}}
+\item 
+\mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \mbox{\hyperlink{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}{m\+\_\+action\+Map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a7bae804882b015014c71c017f7df0b1e}{m\+\_\+current\+Frame}}
+\item 
+bool \mbox{\hyperlink{class_scene_a9831c81afc52aeaac474275fcaa5bf95}{m\+\_\+paused}} = false
+\item 
+bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\+Ended}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_scene_ad10176d75a9cc0da56626f682d083507}\index{Scene@{Scene}!Scene@{Scene}}
+\index{Scene@{Scene}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{Scene()}{Scene()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_scene_ad10176d75a9cc0da56626f682d083507} 
+Scene\+::\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_scene_a413d692c235f90a9b0aaa33196e87384}\index{Scene@{Scene}!Scene@{Scene}}
+\index{Scene@{Scene}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{Scene()}{Scene()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_scene_a413d692c235f90a9b0aaa33196e87384} 
+Scene\+::\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{class_scene_a413d692c235f90a9b0aaa33196e87384_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}\index{Scene@{Scene}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{currentFrame()}{currentFrame()}}
+{\footnotesize\ttfamily \label{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a} 
+size\+\_\+t Scene\+::current\+Frame (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}\index{Scene@{Scene}!doAction@{doAction}}
+\index{doAction@{doAction}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily \label{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4} 
+void Scene\+::do\+Action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_action}{Action}} \&}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene_a201c6f29c57f78a6af5addb9fa779306}\index{Scene@{Scene}!getActionMap@{getActionMap}}
+\index{getActionMap@{getActionMap}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{getActionMap()}{getActionMap()}}
+{\footnotesize\ttfamily \label{class_scene_a201c6f29c57f78a6af5addb9fa779306} 
+const \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \& Scene\+::get\+Action\+Map (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}\index{Scene@{Scene}!hasEnded@{hasEnded}}
+\index{hasEnded@{hasEnded}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{hasEnded()}{hasEnded()}}
+{\footnotesize\ttfamily \label{class_scene_ac6421c6df8dba50d02fdaf37538dfebf} 
+bool Scene\+::has\+Ended (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_scene_a9ca07b0a912e89b57193d14ca68564d3}\index{Scene@{Scene}!height@{height}}
+\index{height@{height}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}}
+{\footnotesize\ttfamily \label{class_scene_a9ca07b0a912e89b57193d14ca68564d3} 
+size\+\_\+t Scene\+::height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{class_scene_a9ca07b0a912e89b57193d14ca68564d3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene_af53e066bb222802c6287eb9d749ef0b4}\index{Scene@{Scene}!onEnd@{onEnd}}
+\index{onEnd@{onEnd}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{onEnd()}{onEnd()}}
+{\footnotesize\ttfamily \label{class_scene_af53e066bb222802c6287eb9d749ef0b4} 
+virtual void Scene\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_scene___menu_a6f9695c142fe978a98aa94649d3f966e}{Scene\+\_\+\+Menu}}, \mbox{\hyperlink{class_scene___play_a608db7a88064f779d2a3a42f47af3958}{Scene\+\_\+\+Play}}, and \mbox{\hyperlink{class_scene___settings_a25488bed750f7bbaed6fb7b1a31f6629}{Scene\+\_\+\+Settings}}.
+
+\Hypertarget{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}\index{Scene@{Scene}!registerAction@{registerAction}}
+\index{registerAction@{registerAction}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{registerAction()}{registerAction()}}
+{\footnotesize\ttfamily \label{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc} 
+void Scene\+::register\+Action (\begin{DoxyParamCaption}\item[{int}]{input\+Key}{, }\item[{const std\+::string \&}]{action\+Name}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene_aa445449fc0befdff76d7228aaf5a90e4}\index{Scene@{Scene}!sDoAction@{sDoAction}}
+\index{sDoAction@{sDoAction}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{sDoAction()}{sDoAction()}}
+{\footnotesize\ttfamily \label{class_scene_aa445449fc0befdff76d7228aaf5a90e4} 
+virtual void Scene\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_action}{Action}} \&}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_scene___menu_a1293fb9b99a662d7fa6416fbcf857541}{Scene\+\_\+\+Menu}}, \mbox{\hyperlink{class_scene___play_a34a74b594e4c984c13462c71cc5d9962}{Scene\+\_\+\+Play}}, and \mbox{\hyperlink{class_scene___settings_a4da6738ad070d4fb99ce3675e636b160}{Scene\+\_\+\+Settings}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_scene_aa445449fc0befdff76d7228aaf5a90e4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene_abad71a081e3b76cff376c954d3b6c3cb}\index{Scene@{Scene}!setPaused@{setPaused}}
+\index{setPaused@{setPaused}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{setPaused()}{setPaused()}}
+{\footnotesize\ttfamily \label{class_scene_abad71a081e3b76cff376c954d3b6c3cb} 
+void Scene\+::set\+Paused (\begin{DoxyParamCaption}\item[{bool}]{paused}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{class_scene_abad71a081e3b76cff376c954d3b6c3cb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}\index{Scene@{Scene}!sRender@{sRender}}
+\index{sRender@{sRender}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{sRender()}{sRender()}}
+{\footnotesize\ttfamily \label{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b} 
+virtual void Scene\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_scene___menu_a4aa2a808fcf50c6767998657d3f4657e}{Scene\+\_\+\+Menu}}, \mbox{\hyperlink{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2}{Scene\+\_\+\+Play}}, and \mbox{\hyperlink{class_scene___settings_adef765b0de1cab51176913b143c6f0bc}{Scene\+\_\+\+Settings}}.
+
+\Hypertarget{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}\index{Scene@{Scene}!update@{update}}
+\index{update@{update}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec} 
+virtual void Scene\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_scene___menu_a46cf38bd4128df45b9b11bab2c4484f0}{Scene\+\_\+\+Menu}}, \mbox{\hyperlink{class_scene___play_a416e630ef10fac7e34855babea499700}{Scene\+\_\+\+Play}}, and \mbox{\hyperlink{class_scene___settings_a54f6f5a3c647bb750b697ff362af7a76}{Scene\+\_\+\+Settings}}.
+
+\Hypertarget{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}\index{Scene@{Scene}!width@{width}}
+\index{width@{width}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{width()}{width()}}
+{\footnotesize\ttfamily \label{class_scene_a440f3cd29cc9d73ca0d579a828d80c27} 
+size\+\_\+t Scene\+::width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_scene_a440f3cd29cc9d73ca0d579a828d80c27_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene_a440f3cd29cc9d73ca0d579a828d80c27_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}\index{Scene@{Scene}!m\_actionMap@{m\_actionMap}}
+\index{m\_actionMap@{m\_actionMap}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_actionMap}{m\_actionMap}}
+{\footnotesize\ttfamily \label{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2} 
+\mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} Scene\+::m\+\_\+action\+Map\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene_a7bae804882b015014c71c017f7df0b1e}\index{Scene@{Scene}!m\_currentFrame@{m\_currentFrame}}
+\index{m\_currentFrame@{m\_currentFrame}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_currentFrame}{m\_currentFrame}}
+{\footnotesize\ttfamily \label{class_scene_a7bae804882b015014c71c017f7df0b1e} 
+size\+\_\+t Scene\+::m\+\_\+current\+Frame\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene_a9607716b0ac72569b450f7e8aa1ac161}\index{Scene@{Scene}!m\_entityManager@{m\_entityManager}}
+\index{m\_entityManager@{m\_entityManager}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_entityManager}{m\_entityManager}}
+{\footnotesize\ttfamily \label{class_scene_a9607716b0ac72569b450f7e8aa1ac161} 
+\mbox{\hyperlink{class_entity_manager}{Entity\+Manager}} Scene\+::m\+\_\+entity\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene_a055a2a35151e229504f940dc4a1eff0e}\index{Scene@{Scene}!m\_game@{m\_game}}
+\index{m\_game@{m\_game}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_game}{m\_game}}
+{\footnotesize\ttfamily \label{class_scene_a055a2a35151e229504f940dc4a1eff0e} 
+\mbox{\hyperlink{class_game_engine}{Game\+Engine}}\texorpdfstring{$\ast$}{*} Scene\+::m\+\_\+game = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}\index{Scene@{Scene}!m\_hasEnded@{m\_hasEnded}}
+\index{m\_hasEnded@{m\_hasEnded}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_hasEnded}{m\_hasEnded}}
+{\footnotesize\ttfamily \label{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03} 
+bool Scene\+::m\+\_\+has\+Ended = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene_a9831c81afc52aeaac474275fcaa5bf95}\index{Scene@{Scene}!m\_paused@{m\_paused}}
+\index{m\_paused@{m\_paused}!Scene@{Scene}}
+\doxysubsubsection{\texorpdfstring{m\_paused}{m\_paused}}
+{\footnotesize\ttfamily \label{class_scene_a9831c81afc52aeaac474275fcaa5bf95} 
+bool Scene\+::m\+\_\+paused = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_scene_8h}{Scene.\+h}}\item 
+\mbox{\hyperlink{_scene_8cpp}{Scene.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+<map id="EntityManager::update" name="EntityManager::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="214,56,366,83"/>
+<area shape="rect" id="Node000002" href="$class_scene___menu.html#a46cf38bd4128df45b9b11bab2c4484f0" title=" " alt="" coords="13,5,158,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,54,142,35,143,30,219,49"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="16,56,155,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,72,155,72,155,67,198,67"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html#a54f6f5a3c647bb750b697ff362af7a76" title=" " alt="" coords="5,107,166,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,90,143,109,142,103,218,84"/>
+</map>

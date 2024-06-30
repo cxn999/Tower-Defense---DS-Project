@@ -1,0 +1,223 @@
+\doxysection{Assets Class Reference}
+\hypertarget{class_assets}{}\label{class_assets}\index{Assets@{Assets}}
+
+
+{\ttfamily \#include $<$Assets.\+h$>$}
+
+
+
+Collaboration diagram for Assets\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{class_assets__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_assets_ae47d41f4f674807c271f64ffc1771b7f}{\texorpdfstring{$\sim$}{\string~}\+Assets}} ()
+\item 
+void \mbox{\hyperlink{class_assets_ab02c9f34cbb12ec541e2fc94b828df14}{add\+Texture}} (const std\+::string \&name, const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_assets_a11cd15f30f4d1c68cc17e254eba69a16}{add\+Sound\+Buffer}} (const std\+::string \&name, const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_assets_a314c5e6b15285a50cc1debe298887f92}{add\+Music}} (const std\+::string \&name, const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_assets_a3378e3ae3e66e6395b05869df9dd5262}{add\+Font}} (const std\+::string \&name, const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_assets_a84caed537de59ad01d5d7061b9b2aa06}{add\+Animation}} (const std\+::string \&name, const \mbox{\hyperlink{class_animation}{Animation}} \&animation)
+\item 
+sf\+::\+Texture \& \mbox{\hyperlink{class_assets_a181004ad24f0fe14ec4d10a284c578c3}{get\+Texture}} (const std\+::string \&name)
+\item 
+sf\+::\+Sound\+Buffer \& \mbox{\hyperlink{class_assets_a174951069666f735f0c263841dcc52e5}{get\+Sound\+Buffer}} (const std\+::string \&name)
+\item 
+sf\+::\+Music \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_assets_a8351d230cad9bc777061b69c839c5116}{get\+Music}} (const std\+::string \&name)
+\item 
+sf\+::\+Sound \& \mbox{\hyperlink{class_assets_a1de9cf301a26102e74cd009f2fe14c64}{get\+Sound}} (const std\+::string \&name)
+\item 
+sf\+::\+Font \& \mbox{\hyperlink{class_assets_a044201d3a5016c7ac2785181cec15b50}{get\+Font}} (const std\+::string \&name)
+\item 
+\mbox{\hyperlink{class_animation}{Animation}} \& \mbox{\hyperlink{class_assets_a82a07c4ce9f847b53f635018533c160c}{get\+Animation}} (const std\+::string \&name)
+\item 
+void \mbox{\hyperlink{class_assets_a0bc45e2fee19dfd8e7fd75599d232a30}{load\+From\+File}} (const std\+::string \&path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_assets_ae47d41f4f674807c271f64ffc1771b7f}\index{Assets@{Assets}!````~Assets@{\texorpdfstring{$\sim$}{\string~}Assets}}
+\index{````~Assets@{\texorpdfstring{$\sim$}{\string~}Assets}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Assets()}{\string~Assets()}}
+{\footnotesize\ttfamily \label{class_assets_ae47d41f4f674807c271f64ffc1771b7f} 
+Assets\+::\texorpdfstring{$\sim$}{\string~}\+Assets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_assets_a84caed537de59ad01d5d7061b9b2aa06}\index{Assets@{Assets}!addAnimation@{addAnimation}}
+\index{addAnimation@{addAnimation}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{addAnimation()}{addAnimation()}}
+{\footnotesize\ttfamily \label{class_assets_a84caed537de59ad01d5d7061b9b2aa06} 
+void Assets\+::add\+Animation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const \mbox{\hyperlink{class_animation}{Animation}} \&}]{animation}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a84caed537de59ad01d5d7061b9b2aa06_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a3378e3ae3e66e6395b05869df9dd5262}\index{Assets@{Assets}!addFont@{addFont}}
+\index{addFont@{addFont}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{addFont()}{addFont()}}
+{\footnotesize\ttfamily \label{class_assets_a3378e3ae3e66e6395b05869df9dd5262} 
+void Assets\+::add\+Font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a3378e3ae3e66e6395b05869df9dd5262_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a314c5e6b15285a50cc1debe298887f92}\index{Assets@{Assets}!addMusic@{addMusic}}
+\index{addMusic@{addMusic}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{addMusic()}{addMusic()}}
+{\footnotesize\ttfamily \label{class_assets_a314c5e6b15285a50cc1debe298887f92} 
+void Assets\+::add\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a314c5e6b15285a50cc1debe298887f92_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a11cd15f30f4d1c68cc17e254eba69a16}\index{Assets@{Assets}!addSoundBuffer@{addSoundBuffer}}
+\index{addSoundBuffer@{addSoundBuffer}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{addSoundBuffer()}{addSoundBuffer()}}
+{\footnotesize\ttfamily \label{class_assets_a11cd15f30f4d1c68cc17e254eba69a16} 
+void Assets\+::add\+Sound\+Buffer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a11cd15f30f4d1c68cc17e254eba69a16_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_ab02c9f34cbb12ec541e2fc94b828df14}\index{Assets@{Assets}!addTexture@{addTexture}}
+\index{addTexture@{addTexture}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{addTexture()}{addTexture()}}
+{\footnotesize\ttfamily \label{class_assets_ab02c9f34cbb12ec541e2fc94b828df14} 
+void Assets\+::add\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_ab02c9f34cbb12ec541e2fc94b828df14_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a82a07c4ce9f847b53f635018533c160c}\index{Assets@{Assets}!getAnimation@{getAnimation}}
+\index{getAnimation@{getAnimation}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getAnimation()}{getAnimation()}}
+{\footnotesize\ttfamily \label{class_assets_a82a07c4ce9f847b53f635018533c160c} 
+\mbox{\hyperlink{class_animation}{Animation}} \& Assets\+::get\+Animation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a82a07c4ce9f847b53f635018533c160c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a044201d3a5016c7ac2785181cec15b50}\index{Assets@{Assets}!getFont@{getFont}}
+\index{getFont@{getFont}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getFont()}{getFont()}}
+{\footnotesize\ttfamily \label{class_assets_a044201d3a5016c7ac2785181cec15b50} 
+sf\+::\+Font \& Assets\+::get\+Font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a044201d3a5016c7ac2785181cec15b50_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a8351d230cad9bc777061b69c839c5116}\index{Assets@{Assets}!getMusic@{getMusic}}
+\index{getMusic@{getMusic}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getMusic()}{getMusic()}}
+{\footnotesize\ttfamily \label{class_assets_a8351d230cad9bc777061b69c839c5116} 
+sf\+::\+Music \texorpdfstring{$\ast$}{*} Assets\+::get\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a8351d230cad9bc777061b69c839c5116_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a1de9cf301a26102e74cd009f2fe14c64}\index{Assets@{Assets}!getSound@{getSound}}
+\index{getSound@{getSound}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getSound()}{getSound()}}
+{\footnotesize\ttfamily \label{class_assets_a1de9cf301a26102e74cd009f2fe14c64} 
+sf\+::\+Sound \& Assets\+::get\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_assets_a174951069666f735f0c263841dcc52e5}\index{Assets@{Assets}!getSoundBuffer@{getSoundBuffer}}
+\index{getSoundBuffer@{getSoundBuffer}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getSoundBuffer()}{getSoundBuffer()}}
+{\footnotesize\ttfamily \label{class_assets_a174951069666f735f0c263841dcc52e5} 
+sf\+::\+Sound\+Buffer \& Assets\+::get\+Sound\+Buffer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_assets_a181004ad24f0fe14ec4d10a284c578c3}\index{Assets@{Assets}!getTexture@{getTexture}}
+\index{getTexture@{getTexture}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{getTexture()}{getTexture()}}
+{\footnotesize\ttfamily \label{class_assets_a181004ad24f0fe14ec4d10a284c578c3} 
+sf\+::\+Texture \& Assets\+::get\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a181004ad24f0fe14ec4d10a284c578c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_assets_a0bc45e2fee19dfd8e7fd75599d232a30}\index{Assets@{Assets}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!Assets@{Assets}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \label{class_assets_a0bc45e2fee19dfd8e7fd75599d232a30} 
+void Assets\+::load\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{class_assets_a0bc45e2fee19dfd8e7fd75599d232a30_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_assets_a0bc45e2fee19dfd8e7fd75599d232a30_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_assets_8h}{Assets.\+h}}\item 
+\mbox{\hyperlink{_assets_8cpp}{Assets.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,30 @@
+\doxysection{Animation.\+h}
+\hypertarget{_animation_8h_source}{}\label{_animation_8h_source}\mbox{\hyperlink{_animation_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vec2_8h}{Vec2.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_animation}{Animation}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ sf::Sprite\ m\_sprite;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_frameCount\ =\ 1;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_currentFrame\ =\ 0;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_speed\ =\ 0;}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ m\_size\ =\ \{\ 1,1\ \};}
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ m\_name\ =\ \textcolor{stringliteral}{"{}none"{}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_animation_a83f0a16cef7117f187ad596de38dd9d6}{Animation}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ sf::Texture\&\ t,\ \textcolor{keywordtype}{size\_t}\ frameCount,\ \textcolor{keywordtype}{size\_t}\ speed);}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_animation_a83f0a16cef7117f187ad596de38dd9d6}{Animation}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ sf::Texture\&\ t);}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_animation_a83f0a16cef7117f187ad596de38dd9d6}{Animation}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_animation_a4318baf0b0735e7da87b2c6d3d3a2705}{update}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_animation_a650f4e7a268305bf8d3000289ae699a3}{hasEnded}}();}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\&\ \mbox{\hyperlink{class_animation_a2aa5b53680fc42d16712b111bb8b356d}{getName}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ \mbox{\hyperlink{class_animation_accbdf0acc1f6a38e96087e6a771efd97}{getSize}}();}
+\DoxyCodeLine{00023\ \ \ \ \ sf::Sprite\&\ \mbox{\hyperlink{class_animation_adc3d127aedf807dccbfaae49290f3c76}{getSprite}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_animation_a7259de7543e565ebcb7e676a5e0e77c6}{getFrameCount}}();}
+\DoxyCodeLine{00025\ \};}
+
+\end{DoxyCode}

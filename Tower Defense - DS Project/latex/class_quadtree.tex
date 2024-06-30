@@ -1,0 +1,111 @@
+\doxysection{Quadtree Class Reference}
+\hypertarget{class_quadtree}{}\label{class_quadtree}\index{Quadtree@{Quadtree}}
+
+
+{\ttfamily \#include $<$Quadtree.\+h$>$}
+
+
+
+Collaboration diagram for Quadtree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_quadtree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_quadtree_a02291983b9c05cf820dd258430c2f54d}{Quadtree}} ()
+\item 
+\mbox{\hyperlink{class_quadtree_a65f66a977687a5151362eca669799f12}{Quadtree}} (sf\+::\+Float\+Rect bounds)
+\item 
+void \mbox{\hyperlink{class_quadtree_a5707a18168416e1699ba5838bc65015e}{insert}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ entity)
+\item 
+void \mbox{\hyperlink{class_quadtree_ab2b40ef82fa81688886c8f38bf7846d3}{clear}} ()
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ $>$ \mbox{\hyperlink{class_quadtree_a7b7e9512000b128095a49b2da0b2150e}{query}} (sf\+::\+Float\+Rect range)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_quadtree_a02291983b9c05cf820dd258430c2f54d}\index{Quadtree@{Quadtree}!Quadtree@{Quadtree}}
+\index{Quadtree@{Quadtree}!Quadtree@{Quadtree}}
+\doxysubsubsection{\texorpdfstring{Quadtree()}{Quadtree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_quadtree_a02291983b9c05cf820dd258430c2f54d} 
+Quadtree\+::\+Quadtree (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_quadtree_a65f66a977687a5151362eca669799f12}\index{Quadtree@{Quadtree}!Quadtree@{Quadtree}}
+\index{Quadtree@{Quadtree}!Quadtree@{Quadtree}}
+\doxysubsubsection{\texorpdfstring{Quadtree()}{Quadtree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_quadtree_a65f66a977687a5151362eca669799f12} 
+Quadtree\+::\+Quadtree (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{bounds}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_quadtree_ab2b40ef82fa81688886c8f38bf7846d3}\index{Quadtree@{Quadtree}!clear@{clear}}
+\index{clear@{clear}!Quadtree@{Quadtree}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{class_quadtree_ab2b40ef82fa81688886c8f38bf7846d3} 
+void Quadtree\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_quadtree_ab2b40ef82fa81688886c8f38bf7846d3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_quadtree_a5707a18168416e1699ba5838bc65015e}\index{Quadtree@{Quadtree}!insert@{insert}}
+\index{insert@{insert}!Quadtree@{Quadtree}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{class_quadtree_a5707a18168416e1699ba5838bc65015e} 
+void Quadtree\+::insert (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{entity}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_quadtree_a5707a18168416e1699ba5838bc65015e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_quadtree_a5707a18168416e1699ba5838bc65015e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_quadtree_a7b7e9512000b128095a49b2da0b2150e}\index{Quadtree@{Quadtree}!query@{query}}
+\index{query@{query}!Quadtree@{Quadtree}}
+\doxysubsubsection{\texorpdfstring{query()}{query()}}
+{\footnotesize\ttfamily \label{class_quadtree_a7b7e9512000b128095a49b2da0b2150e} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ $>$ Quadtree\+::query (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{range}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_quadtree_a7b7e9512000b128095a49b2da0b2150e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_quadtree_a7b7e9512000b128095a49b2da0b2150e_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_quadtree_8h}{Quadtree.\+h}}\item 
+\mbox{\hyperlink{_quadtree_8cpp}{Quadtree.\+cpp}}\end{DoxyCompactItemize}

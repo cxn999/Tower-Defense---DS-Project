@@ -1,0 +1,487 @@
+\doxysection{Game\+Engine Class Reference}
+\hypertarget{class_game_engine}{}\label{class_game_engine}\index{GameEngine@{GameEngine}}
+
+
+{\ttfamily \#include $<$Game\+Engine.\+h$>$}
+
+
+
+Collaboration diagram for Game\+Engine\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_engine_a0ca18eba2a25a6a92fc8434d146d9299}{Game\+Engine}} (const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_game_engine_a41a16489bd3b05403545a700f7f9e88e}{change\+Scene}} (const std\+::string \&, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scene}{Scene}} $>$ scene, bool end\+Current\+Scene)
+\item 
+void \mbox{\hyperlink{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae}{run}} ()
+\item 
+void \mbox{\hyperlink{class_game_engine_ad82b626def2e52b28f0d6c2d167589f6}{quit}} ()
+\item 
+\mbox{\hyperlink{class_assets}{Assets}} \& \mbox{\hyperlink{class_game_engine_a2db9a2dd6d6cc9879ec988690837f09e}{get\+Assets}} ()
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_game_engine_ab54532076e85b26619be743450d3a0e5}{window}} ()
+\item 
+bool \mbox{\hyperlink{class_game_engine_ac7fe66907626424cd391f7b4692ba68e}{is\+Running}} ()
+\item 
+float \mbox{\hyperlink{class_game_engine_a4a66ca783b02c25efcf98f8222f8b97c}{get\+Volume}} ()
+\begin{DoxyCompactList}\small\item\em methods to get configurations \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_engine_a216acb74cf052d361aaa825a00e4c03a}{get\+Music}} ()
+\item 
+void \mbox{\hyperlink{class_game_engine_ae8ea35acaa9ae03251d58faf9d5b3908}{set\+Volume}} (float volume)
+\begin{DoxyCompactList}\small\item\em methods to set configurations \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_engine_a8d23b73726b14ad7edff796fb64537d6}{set\+Music}} (bool music)
+\item 
+void \mbox{\hyperlink{class_game_engine_abb8d3e7650d045550956e4d5c2573458}{start\+Music}} (const std\+::string \&music\+Name)
+\begin{DoxyCompactList}\small\item\em methods for musics \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_engine_ae6cae07b810c3a0cd859885ac2ecacb5}{stop\+Music}} ()
+\item 
+void \mbox{\hyperlink{class_game_engine_a70f4192da66e8f2a8fb084e363fdb5c3}{set\+Music\+State}} (bool music\+On)
+\item 
+void \mbox{\hyperlink{class_game_engine_aba79db1d04e0133ad1273ce885434117}{switch\+To\+Music}} (const std\+::string \&music\+Name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{class_game_engine_a111d098e65c1ad2836afd9dc1e4ae235}{m\+\_\+clock}}
+\item 
+float \mbox{\hyperlink{class_game_engine_a0489a5f3f882b11df808e59fc9d82292}{m\+\_\+fps}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_engine_afdc1acd2cec0663921353540226aa839}{init}} (const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_game_engine_ae03241b464040b659b6a91f27920e8c3}{update}} ()
+\item 
+void \mbox{\hyperlink{class_game_engine_a63ad889c82b4a58806e7edb4979144f5}{s\+User\+Input}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scene}{Scene}} $>$ \mbox{\hyperlink{class_game_engine_a3190ba2b66d4690abf451dc2e365b51e}{current\+Scene}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{class_game_engine_a696cd67bc5b2bdcfaa5fb538dff54a08}{m\+\_\+window}}
+\item 
+\mbox{\hyperlink{class_assets}{Assets}} \mbox{\hyperlink{class_game_engine_a6244e9f3b1256089d70d88a7243f4dd3}{m\+\_\+assets}}
+\item 
+std\+::string \mbox{\hyperlink{class_game_engine_ac64e50bae65e7aa8f4e907a99967feee}{m\+\_\+current\+Scene}}
+\item 
+\mbox{\hyperlink{_game_engine_8h_a30a44bde9f6d41838c12dc8ed3eb61d6}{Scene\+Map}} \mbox{\hyperlink{class_game_engine_a164f337b403eeecd5332940c2e099450}{m\+\_\+scene\+Map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_game_engine_ad9c4a2a0ba0c9aad0ea31bee13fa3e1b}{m\+\_\+simulation\+Speed}} = 1
+\item 
+bool \mbox{\hyperlink{class_game_engine_ae587c23c6915881101bb2110dcb9370e}{m\+\_\+running}} = true
+\item 
+float \mbox{\hyperlink{class_game_engine_a59433fa04a5c49d8f09d0a49efe05289}{m\+\_\+volume}} = 50
+\item 
+bool \mbox{\hyperlink{class_game_engine_a8f1ca91bd3f714ead236e4a28db8607a}{m\+\_\+music}} = false
+\item 
+sf\+::\+Music \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_engine_a91c50a70210dc4ec2ddafc81e478d7ad}{m\+\_\+current\+Music}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_engine_a0ca18eba2a25a6a92fc8434d146d9299}\index{GameEngine@{GameEngine}!GameEngine@{GameEngine}}
+\index{GameEngine@{GameEngine}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{GameEngine()}{GameEngine()}}
+{\footnotesize\ttfamily \label{class_game_engine_a0ca18eba2a25a6a92fc8434d146d9299} 
+Game\+Engine\+::\+Game\+Engine (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a0ca18eba2a25a6a92fc8434d146d9299_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_engine_a41a16489bd3b05403545a700f7f9e88e}\index{GameEngine@{GameEngine}!changeScene@{changeScene}}
+\index{changeScene@{changeScene}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{changeScene()}{changeScene()}}
+{\footnotesize\ttfamily \label{class_game_engine_a41a16489bd3b05403545a700f7f9e88e} 
+void Game\+Engine\+::change\+Scene (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{scene\+Name}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scene}{Scene}} $>$}]{scene}{, }\item[{bool}]{end\+Current\+Scene}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a41a16489bd3b05403545a700f7f9e88e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a41a16489bd3b05403545a700f7f9e88e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a3190ba2b66d4690abf451dc2e365b51e}\index{GameEngine@{GameEngine}!currentScene@{currentScene}}
+\index{currentScene@{currentScene}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{currentScene()}{currentScene()}}
+{\footnotesize\ttfamily \label{class_game_engine_a3190ba2b66d4690abf451dc2e365b51e} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scene}{Scene}} $>$ Game\+Engine\+::current\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a3190ba2b66d4690abf451dc2e365b51e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a2db9a2dd6d6cc9879ec988690837f09e}\index{GameEngine@{GameEngine}!getAssets@{getAssets}}
+\index{getAssets@{getAssets}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{getAssets()}{getAssets()}}
+{\footnotesize\ttfamily \label{class_game_engine_a2db9a2dd6d6cc9879ec988690837f09e} 
+\mbox{\hyperlink{class_assets}{Assets}} \& Game\+Engine\+::get\+Assets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a2db9a2dd6d6cc9879ec988690837f09e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a216acb74cf052d361aaa825a00e4c03a}\index{GameEngine@{GameEngine}!getMusic@{getMusic}}
+\index{getMusic@{getMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{getMusic()}{getMusic()}}
+{\footnotesize\ttfamily \label{class_game_engine_a216acb74cf052d361aaa825a00e4c03a} 
+bool Game\+Engine\+::get\+Music (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a216acb74cf052d361aaa825a00e4c03a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a4a66ca783b02c25efcf98f8222f8b97c}\index{GameEngine@{GameEngine}!getVolume@{getVolume}}
+\index{getVolume@{getVolume}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{getVolume()}{getVolume()}}
+{\footnotesize\ttfamily \label{class_game_engine_a4a66ca783b02c25efcf98f8222f8b97c} 
+float Game\+Engine\+::get\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+methods to get configurations 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a4a66ca783b02c25efcf98f8222f8b97c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_afdc1acd2cec0663921353540226aa839}\index{GameEngine@{GameEngine}!init@{init}}
+\index{init@{init}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_game_engine_afdc1acd2cec0663921353540226aa839} 
+void Game\+Engine\+::init (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_afdc1acd2cec0663921353540226aa839_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{class_game_engine_afdc1acd2cec0663921353540226aa839_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ac7fe66907626424cd391f7b4692ba68e}\index{GameEngine@{GameEngine}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily \label{class_game_engine_ac7fe66907626424cd391f7b4692ba68e} 
+bool Game\+Engine\+::is\+Running (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ac7fe66907626424cd391f7b4692ba68e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ad82b626def2e52b28f0d6c2d167589f6}\index{GameEngine@{GameEngine}!quit@{quit}}
+\index{quit@{quit}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{quit()}{quit()}}
+{\footnotesize\ttfamily \label{class_game_engine_ad82b626def2e52b28f0d6c2d167589f6} 
+void Game\+Engine\+::quit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ad82b626def2e52b28f0d6c2d167589f6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae}\index{GameEngine@{GameEngine}!run@{run}}
+\index{run@{run}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae} 
+void Game\+Engine\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{class_game_engine_ab01970da2c68fefbf48b98c59d5627ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a8d23b73726b14ad7edff796fb64537d6}\index{GameEngine@{GameEngine}!setMusic@{setMusic}}
+\index{setMusic@{setMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{setMusic()}{setMusic()}}
+{\footnotesize\ttfamily \label{class_game_engine_a8d23b73726b14ad7edff796fb64537d6} 
+void Game\+Engine\+::set\+Music (\begin{DoxyParamCaption}\item[{bool}]{music}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_game_engine_a70f4192da66e8f2a8fb084e363fdb5c3}\index{GameEngine@{GameEngine}!setMusicState@{setMusicState}}
+\index{setMusicState@{setMusicState}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{setMusicState()}{setMusicState()}}
+{\footnotesize\ttfamily \label{class_game_engine_a70f4192da66e8f2a8fb084e363fdb5c3} 
+void Game\+Engine\+::set\+Music\+State (\begin{DoxyParamCaption}\item[{bool}]{music\+On}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a70f4192da66e8f2a8fb084e363fdb5c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ae8ea35acaa9ae03251d58faf9d5b3908}\index{GameEngine@{GameEngine}!setVolume@{setVolume}}
+\index{setVolume@{setVolume}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{setVolume()}{setVolume()}}
+{\footnotesize\ttfamily \label{class_game_engine_ae8ea35acaa9ae03251d58faf9d5b3908} 
+void Game\+Engine\+::set\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume}{}\end{DoxyParamCaption})}
+
+
+
+methods to set configurations 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ae8ea35acaa9ae03251d58faf9d5b3908_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_abb8d3e7650d045550956e4d5c2573458}\index{GameEngine@{GameEngine}!startMusic@{startMusic}}
+\index{startMusic@{startMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{startMusic()}{startMusic()}}
+{\footnotesize\ttfamily \label{class_game_engine_abb8d3e7650d045550956e4d5c2573458} 
+void Game\+Engine\+::start\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{music\+Name}{}\end{DoxyParamCaption})}
+
+
+
+methods for musics 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_abb8d3e7650d045550956e4d5c2573458_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ae6cae07b810c3a0cd859885ac2ecacb5}\index{GameEngine@{GameEngine}!stopMusic@{stopMusic}}
+\index{stopMusic@{stopMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{stopMusic()}{stopMusic()}}
+{\footnotesize\ttfamily \label{class_game_engine_ae6cae07b810c3a0cd859885ac2ecacb5} 
+void Game\+Engine\+::stop\+Music (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ae6cae07b810c3a0cd859885ac2ecacb5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_a63ad889c82b4a58806e7edb4979144f5}\index{GameEngine@{GameEngine}!sUserInput@{sUserInput}}
+\index{sUserInput@{sUserInput}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{sUserInput()}{sUserInput()}}
+{\footnotesize\ttfamily \label{class_game_engine_a63ad889c82b4a58806e7edb4979144f5} 
+void Game\+Engine\+::s\+User\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a63ad889c82b4a58806e7edb4979144f5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_a63ad889c82b4a58806e7edb4979144f5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_aba79db1d04e0133ad1273ce885434117}\index{GameEngine@{GameEngine}!switchToMusic@{switchToMusic}}
+\index{switchToMusic@{switchToMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{switchToMusic()}{switchToMusic()}}
+{\footnotesize\ttfamily \label{class_game_engine_aba79db1d04e0133ad1273ce885434117} 
+void Game\+Engine\+::switch\+To\+Music (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{music\+Name}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_aba79db1d04e0133ad1273ce885434117_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_aba79db1d04e0133ad1273ce885434117_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ae03241b464040b659b6a91f27920e8c3}\index{GameEngine@{GameEngine}!update@{update}}
+\index{update@{update}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_game_engine_ae03241b464040b659b6a91f27920e8c3} 
+void Game\+Engine\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ae03241b464040b659b6a91f27920e8c3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ae03241b464040b659b6a91f27920e8c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_engine_ab54532076e85b26619be743450d3a0e5}\index{GameEngine@{GameEngine}!window@{window}}
+\index{window@{window}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{window()}{window()}}
+{\footnotesize\ttfamily \label{class_game_engine_ab54532076e85b26619be743450d3a0e5} 
+sf\+::\+Render\+Window \& Game\+Engine\+::window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_engine_ab54532076e85b26619be743450d3a0e5_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_engine_a6244e9f3b1256089d70d88a7243f4dd3}\index{GameEngine@{GameEngine}!m\_assets@{m\_assets}}
+\index{m\_assets@{m\_assets}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_assets}{m\_assets}}
+{\footnotesize\ttfamily \label{class_game_engine_a6244e9f3b1256089d70d88a7243f4dd3} 
+\mbox{\hyperlink{class_assets}{Assets}} Game\+Engine\+::m\+\_\+assets\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_a111d098e65c1ad2836afd9dc1e4ae235}\index{GameEngine@{GameEngine}!m\_clock@{m\_clock}}
+\index{m\_clock@{m\_clock}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_clock}{m\_clock}}
+{\footnotesize\ttfamily \label{class_game_engine_a111d098e65c1ad2836afd9dc1e4ae235} 
+sf\+::\+Clock Game\+Engine\+::m\+\_\+clock}
+
+\Hypertarget{class_game_engine_a91c50a70210dc4ec2ddafc81e478d7ad}\index{GameEngine@{GameEngine}!m\_currentMusic@{m\_currentMusic}}
+\index{m\_currentMusic@{m\_currentMusic}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_currentMusic}{m\_currentMusic}}
+{\footnotesize\ttfamily \label{class_game_engine_a91c50a70210dc4ec2ddafc81e478d7ad} 
+sf\+::\+Music\texorpdfstring{$\ast$}{*} Game\+Engine\+::m\+\_\+current\+Music\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_ac64e50bae65e7aa8f4e907a99967feee}\index{GameEngine@{GameEngine}!m\_currentScene@{m\_currentScene}}
+\index{m\_currentScene@{m\_currentScene}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_currentScene}{m\_currentScene}}
+{\footnotesize\ttfamily \label{class_game_engine_ac64e50bae65e7aa8f4e907a99967feee} 
+std\+::string Game\+Engine\+::m\+\_\+current\+Scene\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_a0489a5f3f882b11df808e59fc9d82292}\index{GameEngine@{GameEngine}!m\_fps@{m\_fps}}
+\index{m\_fps@{m\_fps}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_fps}{m\_fps}}
+{\footnotesize\ttfamily \label{class_game_engine_a0489a5f3f882b11df808e59fc9d82292} 
+float Game\+Engine\+::m\+\_\+fps}
+
+\Hypertarget{class_game_engine_a8f1ca91bd3f714ead236e4a28db8607a}\index{GameEngine@{GameEngine}!m\_music@{m\_music}}
+\index{m\_music@{m\_music}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_music}{m\_music}}
+{\footnotesize\ttfamily \label{class_game_engine_a8f1ca91bd3f714ead236e4a28db8607a} 
+bool Game\+Engine\+::m\+\_\+music = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_ae587c23c6915881101bb2110dcb9370e}\index{GameEngine@{GameEngine}!m\_running@{m\_running}}
+\index{m\_running@{m\_running}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_running}{m\_running}}
+{\footnotesize\ttfamily \label{class_game_engine_ae587c23c6915881101bb2110dcb9370e} 
+bool Game\+Engine\+::m\+\_\+running = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_a164f337b403eeecd5332940c2e099450}\index{GameEngine@{GameEngine}!m\_sceneMap@{m\_sceneMap}}
+\index{m\_sceneMap@{m\_sceneMap}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_sceneMap}{m\_sceneMap}}
+{\footnotesize\ttfamily \label{class_game_engine_a164f337b403eeecd5332940c2e099450} 
+\mbox{\hyperlink{_game_engine_8h_a30a44bde9f6d41838c12dc8ed3eb61d6}{Scene\+Map}} Game\+Engine\+::m\+\_\+scene\+Map\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_ad9c4a2a0ba0c9aad0ea31bee13fa3e1b}\index{GameEngine@{GameEngine}!m\_simulationSpeed@{m\_simulationSpeed}}
+\index{m\_simulationSpeed@{m\_simulationSpeed}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_simulationSpeed}{m\_simulationSpeed}}
+{\footnotesize\ttfamily \label{class_game_engine_ad9c4a2a0ba0c9aad0ea31bee13fa3e1b} 
+size\+\_\+t Game\+Engine\+::m\+\_\+simulation\+Speed = 1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_a59433fa04a5c49d8f09d0a49efe05289}\index{GameEngine@{GameEngine}!m\_volume@{m\_volume}}
+\index{m\_volume@{m\_volume}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_volume}{m\_volume}}
+{\footnotesize\ttfamily \label{class_game_engine_a59433fa04a5c49d8f09d0a49efe05289} 
+float Game\+Engine\+::m\+\_\+volume = 50\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_game_engine_a696cd67bc5b2bdcfaa5fb538dff54a08}\index{GameEngine@{GameEngine}!m\_window@{m\_window}}
+\index{m\_window@{m\_window}!GameEngine@{GameEngine}}
+\doxysubsubsection{\texorpdfstring{m\_window}{m\_window}}
+{\footnotesize\ttfamily \label{class_game_engine_a696cd67bc5b2bdcfaa5fb538dff54a08} 
+sf\+::\+Render\+Window Game\+Engine\+::m\+\_\+window\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_game_engine_8h}{Game\+Engine.\+h}}\item 
+\mbox{\hyperlink{_game_engine_8cpp}{Game\+Engine.\+cpp}}\end{DoxyCompactItemize}

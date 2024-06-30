@@ -1,0 +1,11 @@
+<map id="Scene::width" name="Scene::width">
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,35,517,61"/>
+<area shape="rect" id="Node000002" href="$class_scene___menu.html#ac333bd8b02726ee6db5706219e70073e" title=" " alt="" coords="243,8,365,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="405,40,365,34,366,29,406,35"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="235,60,373,87"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="406,60,374,65,373,60,405,55"/>
+<area shape="rect" id="Node000003" href="$class_scene___menu.html#a0d71fab24a893ff0b270271180186b65" title=" " alt="" coords="5,5,187,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,23,187,22,187,17,227,18"/>
+<area shape="rect" id="Node000005" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="17,56,175,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="219,78,176,78,176,73,219,72"/>
+</map>

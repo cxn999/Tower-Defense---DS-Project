@@ -1,0 +1,7 @@
+<map id="GameEngine::switchToMusic" name="GameEngine::switchToMusic">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,196,57"/>
+<area shape="rect" id="Node000002" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="244,5,407,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,31,228,27,229,32,196,36"/>
+<area shape="rect" id="Node000003" href="$class_assets.html#a8351d230cad9bc777061b69c839c5116" title=" " alt="" coords="264,56,387,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,52,248,58,248,63,196,57"/>
+</map>

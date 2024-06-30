@@ -1,0 +1,7 @@
+<map id="Scene_Play::sSpawnEnemy" name="Scene_Play::sSpawnEnemy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="437,5,623,32"/>
+<area shape="rect" id="Node000002" href="$class_scene___play.html#aa8f46ce13b675726739c0b2c00449f65" title=" " alt="" coords="192,5,389,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="421,21,389,21,389,16,421,16"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="5,5,144,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,21,144,21,144,16,176,16"/>
+</map>

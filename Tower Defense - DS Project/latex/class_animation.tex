@@ -1,0 +1,111 @@
+\doxysection{Animation Class Reference}
+\hypertarget{class_animation}{}\label{class_animation}\index{Animation@{Animation}}
+
+
+{\ttfamily \#include $<$Animation.\+h$>$}
+
+
+
+Collaboration diagram for Animation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{class_animation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animation_adc1e428110cf175e33a07e3cb75d9257}{Animation}} (const std\+::string \&name, const sf\+::\+Texture \&t, size\+\_\+t frame\+Count, size\+\_\+t speed)
+\item 
+\mbox{\hyperlink{class_animation_a98da49cab07da1ea7878dd77cea1f73f}{Animation}} (const std\+::string \&name, const sf\+::\+Texture \&t)
+\item 
+\mbox{\hyperlink{class_animation_a83f0a16cef7117f187ad596de38dd9d6}{Animation}} ()
+\item 
+void \mbox{\hyperlink{class_animation_a4318baf0b0735e7da87b2c6d3d3a2705}{update}} ()
+\item 
+bool \mbox{\hyperlink{class_animation_a650f4e7a268305bf8d3000289ae699a3}{has\+Ended}} ()
+\item 
+std\+::string \& \mbox{\hyperlink{class_animation_a2aa5b53680fc42d16712b111bb8b356d}{get\+Name}} ()
+\item 
+\mbox{\hyperlink{class_vec2}{Vec2}} \& \mbox{\hyperlink{class_animation_accbdf0acc1f6a38e96087e6a771efd97}{get\+Size}} ()
+\item 
+sf\+::\+Sprite \& \mbox{\hyperlink{class_animation_adc3d127aedf807dccbfaae49290f3c76}{get\+Sprite}} ()
+\item 
+int \mbox{\hyperlink{class_animation_a7259de7543e565ebcb7e676a5e0e77c6}{get\+Frame\+Count}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_animation_adc1e428110cf175e33a07e3cb75d9257}\index{Animation@{Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_animation_adc1e428110cf175e33a07e3cb75d9257} 
+Animation\+::\+Animation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const sf\+::\+Texture \&}]{t}{, }\item[{size\+\_\+t}]{frame\+Count}{, }\item[{size\+\_\+t}]{speed}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_a98da49cab07da1ea7878dd77cea1f73f}\index{Animation@{Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_animation_a98da49cab07da1ea7878dd77cea1f73f} 
+Animation\+::\+Animation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const sf\+::\+Texture \&}]{t}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_a83f0a16cef7117f187ad596de38dd9d6}\index{Animation@{Animation}!Animation@{Animation}}
+\index{Animation@{Animation}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Animation()}{Animation()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_animation_a83f0a16cef7117f187ad596de38dd9d6} 
+Animation\+::\+Animation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_animation_a7259de7543e565ebcb7e676a5e0e77c6}\index{Animation@{Animation}!getFrameCount@{getFrameCount}}
+\index{getFrameCount@{getFrameCount}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{getFrameCount()}{getFrameCount()}}
+{\footnotesize\ttfamily \label{class_animation_a7259de7543e565ebcb7e676a5e0e77c6} 
+int Animation\+::get\+Frame\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_a2aa5b53680fc42d16712b111bb8b356d}\index{Animation@{Animation}!getName@{getName}}
+\index{getName@{getName}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_animation_a2aa5b53680fc42d16712b111bb8b356d} 
+std\+::string \& Animation\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_accbdf0acc1f6a38e96087e6a771efd97}\index{Animation@{Animation}!getSize@{getSize}}
+\index{getSize@{getSize}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{class_animation_accbdf0acc1f6a38e96087e6a771efd97} 
+\mbox{\hyperlink{class_vec2}{Vec2}} \& Animation\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_adc3d127aedf807dccbfaae49290f3c76}\index{Animation@{Animation}!getSprite@{getSprite}}
+\index{getSprite@{getSprite}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{getSprite()}{getSprite()}}
+{\footnotesize\ttfamily \label{class_animation_adc3d127aedf807dccbfaae49290f3c76} 
+sf\+::\+Sprite \& Animation\+::get\+Sprite (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_animation_adc3d127aedf807dccbfaae49290f3c76_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_animation_a650f4e7a268305bf8d3000289ae699a3}\index{Animation@{Animation}!hasEnded@{hasEnded}}
+\index{hasEnded@{hasEnded}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{hasEnded()}{hasEnded()}}
+{\footnotesize\ttfamily \label{class_animation_a650f4e7a268305bf8d3000289ae699a3} 
+bool Animation\+::has\+Ended (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_animation_a4318baf0b0735e7da87b2c6d3d3a2705}\index{Animation@{Animation}!update@{update}}
+\index{update@{update}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_animation_a4318baf0b0735e7da87b2c6d3d3a2705} 
+void Animation\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_animation_8h}{Animation.\+h}}\item 
+\mbox{\hyperlink{_animation_8cpp}{Animation.\+cpp}}\end{DoxyCompactItemize}

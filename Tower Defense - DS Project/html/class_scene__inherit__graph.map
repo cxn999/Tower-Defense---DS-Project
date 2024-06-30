@@ -1,0 +1,9 @@
+<map id="Scene" name="Scene">
+<area shape="rect" id="Node000001" title=" " alt="" coords="204,5,428,555"/>
+<area shape="rect" id="Node000002" href="$class_scene___menu.html" title=" " alt="" coords="5,1139,184,1523"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,570,199,603,168,742,144,883,112,1139,107,1139,139,882,163,741,193,602,203,568"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html" title=" " alt="" coords="208,603,424,2059"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="319,570,319,603,313,603,313,570"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html" title="include graphics library" alt="" coords="448,1056,648,1605"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="429,568,439,602,465,716,488,833,522,1056,517,1057,483,834,460,717,433,603,424,570"/>
+</map>

@@ -1,0 +1,806 @@
+\doxysection{Scene\+\_\+\+Play Class Reference}
+\hypertarget{class_scene___play}{}\label{class_scene___play}\index{Scene\_Play@{Scene\_Play}}
+
+
+{\ttfamily \#include $<$Scene\+\_\+\+Play.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+\_\+\+Play\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_scene___play__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Scene\+\_\+\+Play\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scene___play_a2531be022aa16abd7c484b1a0f9b964f}{Scene\+\_\+\+Play}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine, const std\+::string \&level\+Path)
+\item 
+void \mbox{\hyperlink{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b}{init}} (const std\+::string \&path)
+\item 
+void \mbox{\hyperlink{class_scene___play_a416e630ef10fac7e34855babea499700}{update}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a608db7a88064f779d2a3a42f47af3958}{on\+End}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a5b9a11e45810897bedab64740342ef01}{s\+Animation}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619}{s\+Movement}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_aa8f46ce13b675726739c0b2c00449f65}{s\+Enemy\+Spawner}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed}{s\+Spawn\+Enemy}} (size\+\_\+t line)
+\item 
+void \mbox{\hyperlink{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399}{s\+Collision}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2}{s\+Render}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6}{s\+Shop}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a9de72b92bfd1e275ba5e34e540148233}{s\+Health}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a34a74b594e4c984c13462c71cc5d9962}{s\+Do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&a)
+\item 
+void \mbox{\hyperlink{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a}{s\+Placement}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb}{spawn\+Player}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db}{s\+Info}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488}{attack}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ enemy, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ tower)
+\item 
+void \mbox{\hyperlink{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21}{generate\+Road\+Rectangles}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a45099348c653e0ab620808c7d77a1149}{generate\+Grass\+Rectangles}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9}{spawn\+Spikes}} (const std\+::string \&type, const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene_abad71a081e3b76cff376c954d3b6c3cb}{set\+Paused}} (bool)
+\item 
+\mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}} ()
+\item 
+\mbox{\hyperlink{class_scene_a413d692c235f90a9b0aaa33196e87384}{Scene}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine)
+\item 
+virtual void \mbox{\hyperlink{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}{do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\item 
+void \mbox{\hyperlink{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}{register\+Action}} (int input\+Key, const std\+::string \&action\+Name)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}{width}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9ca07b0a912e89b57193d14ca68564d3}{height}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}{current\+Frame}} () const
+\item 
+bool \mbox{\hyperlink{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}{has\+Ended}} () const
+\item 
+const \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \& \mbox{\hyperlink{class_scene_a201c6f29c57f78a6af5addb9fa779306}{get\+Action\+Map}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___play_a92a9cf27cc9f16d9271e4386eb2cbb8d}{m\+\_\+grid\+Text}}
+\item 
+std\+::string \mbox{\hyperlink{class_scene___play_a8d9ea84033e5ef9c66be7f26e1099d44}{m\+\_\+level\+Path}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a52513396bd151983891ca7b17e40285b}{m\+\_\+coins}} = 150
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___play_ac5f4cdc9013bc3a37b4c8f23af386779}{m\+\_\+coins\+Text}}
+\item 
+std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_scene___play_a9a824e4ecf5d6c7146fcb22211112ccf}{m\+\_\+info\+Vector}}
+\item 
+bool \mbox{\hyperlink{class_scene___play_a44177ba34cc7b36a3125742f46502ac9}{m\+\_\+draw\+Info}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b}{m\+\_\+upgrade}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_a7bdec854756816282a026faf78e8b976}{m\+\_\+draw\+Textures}} = true
+\item 
+bool \mbox{\hyperlink{class_scene___play_a7e636f65e6b5e74ab6a68c612daf8570}{m\+\_\+draw\+Collision}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_aae57f65e27a6724c92e8689979bdced3}{m\+\_\+road\+Grid}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_a2868a7d284a4700b7fc0dc2f4fa2481d}{m\+\_\+grass\+Grid}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_a38480929b77a7b10b700139314b57eed}{m\+\_\+mouse\+Item}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_a6823e742de37f535c7747cb587423e94}{m\+\_\+attack}} = false
+\item 
+bool \mbox{\hyperlink{class_scene___play_af013588435fe3cda422874f6151bee47}{m\+\_\+night\+Fall}} = true
+\item 
+\mbox{\hyperlink{class_vec2}{Vec2}} \mbox{\hyperlink{class_scene___play_ac1d299877e77b74b824648cdf6f662f6}{m\+\_\+attack\+Pos}} = \{ 0,0 \}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_scene___play_aead2714c4eeba4a9d8189cfbd3626301}{m\+\_\+lightning\+Square}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_scene___play_a67b298723f166584af576a936c512fb2}{m\+\_\+defense\+Square}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_scene___play_aaade1eebdb03877397bad63f2f2c7e44}{m\+\_\+night\+Filter}}
+\item 
+\mbox{\hyperlink{class_vec2}{Vec2}} \mbox{\hyperlink{class_scene___play_afa027d125eab163028537ec58b51baee}{m\+\_\+grid\+Size}} = \{ 64,64 \}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a3041ada8a339d26effd474e675bf59e1}{m\+\_\+current\+Frame}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a06d2ebc359410fe67fce0961344ddcaf}{m\+\_\+selected\+Item}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a8b06372ed16859c8fd3c485be9829925}{m\+\_\+last\+Frame\+Defense\+Spawn}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a9e1db759b1a178397a1bcd49be621505}{m\+\_\+opacity}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a2a67b138934073057ea9ff8bb54cb9aa}{m\+\_\+spawn\+Rate\+Frame}} = 150
+\item 
+std\+::vector$<$ sf\+::\+Rectangle\+Shape $>$ \mbox{\hyperlink{class_scene___play_a9b5a12c450b3dcba20dedae6ab0707af}{m\+\_\+shop\+Rectangles}}
+\item 
+std\+::vector$<$ sf\+::\+Rectangle\+Shape $>$ \mbox{\hyperlink{class_scene___play_aacdaa84055cb05d7a31ebf6a6101ae37}{m\+\_\+road\+Rectangles\+Grid}}
+\item 
+std\+::vector$<$ sf\+::\+Rectangle\+Shape $>$ \mbox{\hyperlink{class_scene___play_a16862e2f6a0e2835ead0db8e44b84c0c}{m\+\_\+grass\+Rectangles\+Grid}}
+\item 
+std\+::map$<$ size\+\_\+t, bool $>$ \mbox{\hyperlink{class_scene___play_a9ba3ba23b88d1199b3167cec85603f38}{m\+\_\+used\+Rectangles\+Index}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ \mbox{\hyperlink{class_scene___play_a6b38cd470e93d7a2a459311337a10daa}{m\+\_\+player}}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{class_scene___play_a41895673a9ae0a3e1ba592347237e39e}{m\+\_\+clock}}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{class_scene___play_a31c72ea3be787c630dd61c0bf3e25534}{m\+\_\+weather\+Clock}}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{class_scene___play_a32550f7d8e2a2455f769ff9b6b0b797c}{m\+\_\+night\+Clock}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_scene_a055a2a35151e229504f940dc4a1eff0e}{m\+\_\+game}} = nullptr
+\item 
+\mbox{\hyperlink{class_entity_manager}{Entity\+Manager}} \mbox{\hyperlink{class_scene_a9607716b0ac72569b450f7e8aa1ac161}{m\+\_\+entity\+Manager}}
+\item 
+\mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \mbox{\hyperlink{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}{m\+\_\+action\+Map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a7bae804882b015014c71c017f7df0b1e}{m\+\_\+current\+Frame}}
+\item 
+bool \mbox{\hyperlink{class_scene_a9831c81afc52aeaac474275fcaa5bf95}{m\+\_\+paused}} = false
+\item 
+bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\+Ended}} = false
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_scene___play_a2531be022aa16abd7c484b1a0f9b964f}\index{Scene\_Play@{Scene\_Play}!Scene\_Play@{Scene\_Play}}
+\index{Scene\_Play@{Scene\_Play}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{Scene\_Play()}{Scene\_Play()}}
+{\footnotesize\ttfamily \label{class_scene___play_a2531be022aa16abd7c484b1a0f9b964f} 
+Scene\+\_\+\+Play\+::\+Scene\+\_\+\+Play (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{, }\item[{const std\+::string \&}]{level\+Path}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a2531be022aa16abd7c484b1a0f9b964f_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488}\index{Scene\_Play@{Scene\_Play}!attack@{attack}}
+\index{attack@{attack}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily \label{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488} 
+void Scene\+\_\+\+Play\+::attack (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{enemy}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{tower}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a45099348c653e0ab620808c7d77a1149}\index{Scene\_Play@{Scene\_Play}!generateGrassRectangles@{generateGrassRectangles}}
+\index{generateGrassRectangles@{generateGrassRectangles}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{generateGrassRectangles()}{generateGrassRectangles()}}
+{\footnotesize\ttfamily \label{class_scene___play_a45099348c653e0ab620808c7d77a1149} 
+void Scene\+\_\+\+Play\+::generate\+Grass\+Rectangles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a45099348c653e0ab620808c7d77a1149_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a45099348c653e0ab620808c7d77a1149_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21}\index{Scene\_Play@{Scene\_Play}!generateRoadRectangles@{generateRoadRectangles}}
+\index{generateRoadRectangles@{generateRoadRectangles}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{generateRoadRectangles()}{generateRoadRectangles()}}
+{\footnotesize\ttfamily \label{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21} 
+void Scene\+\_\+\+Play\+::generate\+Road\+Rectangles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b}\index{Scene\_Play@{Scene\_Play}!init@{init}}
+\index{init@{init}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b} 
+void Scene\+\_\+\+Play\+::init (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a608db7a88064f779d2a3a42f47af3958}\index{Scene\_Play@{Scene\_Play}!onEnd@{onEnd}}
+\index{onEnd@{onEnd}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{onEnd()}{onEnd()}}
+{\footnotesize\ttfamily \label{class_scene___play_a608db7a88064f779d2a3a42f47af3958} 
+void Scene\+\_\+\+Play\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a608db7a88064f779d2a3a42f47af3958_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{class_scene___play_a608db7a88064f779d2a3a42f47af3958_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a5b9a11e45810897bedab64740342ef01}\index{Scene\_Play@{Scene\_Play}!sAnimation@{sAnimation}}
+\index{sAnimation@{sAnimation}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sAnimation()}{sAnimation()}}
+{\footnotesize\ttfamily \label{class_scene___play_a5b9a11e45810897bedab64740342ef01} 
+void Scene\+\_\+\+Play\+::s\+Animation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a5b9a11e45810897bedab64740342ef01_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{class_scene___play_a5b9a11e45810897bedab64740342ef01_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399}\index{Scene\_Play@{Scene\_Play}!sCollision@{sCollision}}
+\index{sCollision@{sCollision}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sCollision()}{sCollision()}}
+{\footnotesize\ttfamily \label{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399} 
+void Scene\+\_\+\+Play\+::s\+Collision (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a34a74b594e4c984c13462c71cc5d9962}\index{Scene\_Play@{Scene\_Play}!sDoAction@{sDoAction}}
+\index{sDoAction@{sDoAction}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sDoAction()}{sDoAction()}}
+{\footnotesize\ttfamily \label{class_scene___play_a34a74b594e4c984c13462c71cc5d9962} 
+void Scene\+\_\+\+Play\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_action}{Action}} \&}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a34a74b594e4c984c13462c71cc5d9962_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_aa8f46ce13b675726739c0b2c00449f65}\index{Scene\_Play@{Scene\_Play}!sEnemySpawner@{sEnemySpawner}}
+\index{sEnemySpawner@{sEnemySpawner}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sEnemySpawner()}{sEnemySpawner()}}
+{\footnotesize\ttfamily \label{class_scene___play_aa8f46ce13b675726739c0b2c00449f65} 
+void Scene\+\_\+\+Play\+::s\+Enemy\+Spawner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aa8f46ce13b675726739c0b2c00449f65_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aa8f46ce13b675726739c0b2c00449f65_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a9de72b92bfd1e275ba5e34e540148233}\index{Scene\_Play@{Scene\_Play}!sHealth@{sHealth}}
+\index{sHealth@{sHealth}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sHealth()}{sHealth()}}
+{\footnotesize\ttfamily \label{class_scene___play_a9de72b92bfd1e275ba5e34e540148233} 
+void Scene\+\_\+\+Play\+::s\+Health (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a9de72b92bfd1e275ba5e34e540148233_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_scene___play_a9de72b92bfd1e275ba5e34e540148233_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db}\index{Scene\_Play@{Scene\_Play}!sInfo@{sInfo}}
+\index{sInfo@{sInfo}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sInfo()}{sInfo()}}
+{\footnotesize\ttfamily \label{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db} 
+void Scene\+\_\+\+Play\+::s\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619}\index{Scene\_Play@{Scene\_Play}!sMovement@{sMovement}}
+\index{sMovement@{sMovement}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sMovement()}{sMovement()}}
+{\footnotesize\ttfamily \label{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619} 
+void Scene\+\_\+\+Play\+::s\+Movement (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb}\index{Scene\_Play@{Scene\_Play}!spawnPlayer@{spawnPlayer}}
+\index{spawnPlayer@{spawnPlayer}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{spawnPlayer()}{spawnPlayer()}}
+{\footnotesize\ttfamily \label{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb} 
+void Scene\+\_\+\+Play\+::spawn\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9}\index{Scene\_Play@{Scene\_Play}!spawnSpikes@{spawnSpikes}}
+\index{spawnSpikes@{spawnSpikes}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{spawnSpikes()}{spawnSpikes()}}
+{\footnotesize\ttfamily \label{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9} 
+void Scene\+\_\+\+Play\+::spawn\+Spikes (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{type}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a}\index{Scene\_Play@{Scene\_Play}!sPlacement@{sPlacement}}
+\index{sPlacement@{sPlacement}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sPlacement()}{sPlacement()}}
+{\footnotesize\ttfamily \label{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a} 
+void Scene\+\_\+\+Play\+::s\+Placement (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2}\index{Scene\_Play@{Scene\_Play}!sRender@{sRender}}
+\index{sRender@{sRender}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sRender()}{sRender()}}
+{\footnotesize\ttfamily \label{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2} 
+void Scene\+\_\+\+Play\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6}\index{Scene\_Play@{Scene\_Play}!sShop@{sShop}}
+\index{sShop@{sShop}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sShop()}{sShop()}}
+{\footnotesize\ttfamily \label{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6} 
+void Scene\+\_\+\+Play\+::s\+Shop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed}\index{Scene\_Play@{Scene\_Play}!sSpawnEnemy@{sSpawnEnemy}}
+\index{sSpawnEnemy@{sSpawnEnemy}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sSpawnEnemy()}{sSpawnEnemy()}}
+{\footnotesize\ttfamily \label{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed} 
+void Scene\+\_\+\+Play\+::s\+Spawn\+Enemy (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a416e630ef10fac7e34855babea499700}\index{Scene\_Play@{Scene\_Play}!update@{update}}
+\index{update@{update}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_scene___play_a416e630ef10fac7e34855babea499700} 
+void Scene\+\_\+\+Play\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a416e630ef10fac7e34855babea499700_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_scene___play_a6823e742de37f535c7747cb587423e94}\index{Scene\_Play@{Scene\_Play}!m\_attack@{m\_attack}}
+\index{m\_attack@{m\_attack}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_attack}{m\_attack}}
+{\footnotesize\ttfamily \label{class_scene___play_a6823e742de37f535c7747cb587423e94} 
+bool Scene\+\_\+\+Play\+::m\+\_\+attack = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_ac1d299877e77b74b824648cdf6f662f6}\index{Scene\_Play@{Scene\_Play}!m\_attackPos@{m\_attackPos}}
+\index{m\_attackPos@{m\_attackPos}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_attackPos}{m\_attackPos}}
+{\footnotesize\ttfamily \label{class_scene___play_ac1d299877e77b74b824648cdf6f662f6} 
+\mbox{\hyperlink{class_vec2}{Vec2}} Scene\+\_\+\+Play\+::m\+\_\+attack\+Pos = \{ 0,0 \}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a41895673a9ae0a3e1ba592347237e39e}\index{Scene\_Play@{Scene\_Play}!m\_clock@{m\_clock}}
+\index{m\_clock@{m\_clock}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_clock}{m\_clock}}
+{\footnotesize\ttfamily \label{class_scene___play_a41895673a9ae0a3e1ba592347237e39e} 
+sf\+::\+Clock Scene\+\_\+\+Play\+::m\+\_\+clock\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a52513396bd151983891ca7b17e40285b}\index{Scene\_Play@{Scene\_Play}!m\_coins@{m\_coins}}
+\index{m\_coins@{m\_coins}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_coins}{m\_coins}}
+{\footnotesize\ttfamily \label{class_scene___play_a52513396bd151983891ca7b17e40285b} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+coins = 150\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_ac5f4cdc9013bc3a37b4c8f23af386779}\index{Scene\_Play@{Scene\_Play}!m\_coinsText@{m\_coinsText}}
+\index{m\_coinsText@{m\_coinsText}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_coinsText}{m\_coinsText}}
+{\footnotesize\ttfamily \label{class_scene___play_ac5f4cdc9013bc3a37b4c8f23af386779} 
+sf\+::\+Text Scene\+\_\+\+Play\+::m\+\_\+coins\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a3041ada8a339d26effd474e675bf59e1}\index{Scene\_Play@{Scene\_Play}!m\_currentFrame@{m\_currentFrame}}
+\index{m\_currentFrame@{m\_currentFrame}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_currentFrame}{m\_currentFrame}}
+{\footnotesize\ttfamily \label{class_scene___play_a3041ada8a339d26effd474e675bf59e1} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+current\+Frame = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a67b298723f166584af576a936c512fb2}\index{Scene\_Play@{Scene\_Play}!m\_defenseSquare@{m\_defenseSquare}}
+\index{m\_defenseSquare@{m\_defenseSquare}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_defenseSquare}{m\_defenseSquare}}
+{\footnotesize\ttfamily \label{class_scene___play_a67b298723f166584af576a936c512fb2} 
+sf\+::\+Rectangle\+Shape Scene\+\_\+\+Play\+::m\+\_\+defense\+Square\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a7e636f65e6b5e74ab6a68c612daf8570}\index{Scene\_Play@{Scene\_Play}!m\_drawCollision@{m\_drawCollision}}
+\index{m\_drawCollision@{m\_drawCollision}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_drawCollision}{m\_drawCollision}}
+{\footnotesize\ttfamily \label{class_scene___play_a7e636f65e6b5e74ab6a68c612daf8570} 
+bool Scene\+\_\+\+Play\+::m\+\_\+draw\+Collision = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a44177ba34cc7b36a3125742f46502ac9}\index{Scene\_Play@{Scene\_Play}!m\_drawInfo@{m\_drawInfo}}
+\index{m\_drawInfo@{m\_drawInfo}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_drawInfo}{m\_drawInfo}}
+{\footnotesize\ttfamily \label{class_scene___play_a44177ba34cc7b36a3125742f46502ac9} 
+bool Scene\+\_\+\+Play\+::m\+\_\+draw\+Info = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a7bdec854756816282a026faf78e8b976}\index{Scene\_Play@{Scene\_Play}!m\_drawTextures@{m\_drawTextures}}
+\index{m\_drawTextures@{m\_drawTextures}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_drawTextures}{m\_drawTextures}}
+{\footnotesize\ttfamily \label{class_scene___play_a7bdec854756816282a026faf78e8b976} 
+bool Scene\+\_\+\+Play\+::m\+\_\+draw\+Textures = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a2868a7d284a4700b7fc0dc2f4fa2481d}\index{Scene\_Play@{Scene\_Play}!m\_grassGrid@{m\_grassGrid}}
+\index{m\_grassGrid@{m\_grassGrid}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_grassGrid}{m\_grassGrid}}
+{\footnotesize\ttfamily \label{class_scene___play_a2868a7d284a4700b7fc0dc2f4fa2481d} 
+bool Scene\+\_\+\+Play\+::m\+\_\+grass\+Grid = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a16862e2f6a0e2835ead0db8e44b84c0c}\index{Scene\_Play@{Scene\_Play}!m\_grassRectanglesGrid@{m\_grassRectanglesGrid}}
+\index{m\_grassRectanglesGrid@{m\_grassRectanglesGrid}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_grassRectanglesGrid}{m\_grassRectanglesGrid}}
+{\footnotesize\ttfamily \label{class_scene___play_a16862e2f6a0e2835ead0db8e44b84c0c} 
+std\+::vector$<$sf\+::\+Rectangle\+Shape$>$ Scene\+\_\+\+Play\+::m\+\_\+grass\+Rectangles\+Grid\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_afa027d125eab163028537ec58b51baee}\index{Scene\_Play@{Scene\_Play}!m\_gridSize@{m\_gridSize}}
+\index{m\_gridSize@{m\_gridSize}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_gridSize}{m\_gridSize}}
+{\footnotesize\ttfamily \label{class_scene___play_afa027d125eab163028537ec58b51baee} 
+\mbox{\hyperlink{class_vec2}{Vec2}} Scene\+\_\+\+Play\+::m\+\_\+grid\+Size = \{ 64,64 \}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a92a9cf27cc9f16d9271e4386eb2cbb8d}\index{Scene\_Play@{Scene\_Play}!m\_gridText@{m\_gridText}}
+\index{m\_gridText@{m\_gridText}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_gridText}{m\_gridText}}
+{\footnotesize\ttfamily \label{class_scene___play_a92a9cf27cc9f16d9271e4386eb2cbb8d} 
+sf\+::\+Text Scene\+\_\+\+Play\+::m\+\_\+grid\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a9a824e4ecf5d6c7146fcb22211112ccf}\index{Scene\_Play@{Scene\_Play}!m\_infoVector@{m\_infoVector}}
+\index{m\_infoVector@{m\_infoVector}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_infoVector}{m\_infoVector}}
+{\footnotesize\ttfamily \label{class_scene___play_a9a824e4ecf5d6c7146fcb22211112ccf} 
+std\+::vector$<$sf\+::\+Text$>$ Scene\+\_\+\+Play\+::m\+\_\+info\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a8b06372ed16859c8fd3c485be9829925}\index{Scene\_Play@{Scene\_Play}!m\_lastFrameDefenseSpawn@{m\_lastFrameDefenseSpawn}}
+\index{m\_lastFrameDefenseSpawn@{m\_lastFrameDefenseSpawn}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_lastFrameDefenseSpawn}{m\_lastFrameDefenseSpawn}}
+{\footnotesize\ttfamily \label{class_scene___play_a8b06372ed16859c8fd3c485be9829925} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+last\+Frame\+Defense\+Spawn = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a8d9ea84033e5ef9c66be7f26e1099d44}\index{Scene\_Play@{Scene\_Play}!m\_levelPath@{m\_levelPath}}
+\index{m\_levelPath@{m\_levelPath}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_levelPath}{m\_levelPath}}
+{\footnotesize\ttfamily \label{class_scene___play_a8d9ea84033e5ef9c66be7f26e1099d44} 
+std\+::string Scene\+\_\+\+Play\+::m\+\_\+level\+Path\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_aead2714c4eeba4a9d8189cfbd3626301}\index{Scene\_Play@{Scene\_Play}!m\_lightningSquare@{m\_lightningSquare}}
+\index{m\_lightningSquare@{m\_lightningSquare}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_lightningSquare}{m\_lightningSquare}}
+{\footnotesize\ttfamily \label{class_scene___play_aead2714c4eeba4a9d8189cfbd3626301} 
+sf\+::\+Rectangle\+Shape Scene\+\_\+\+Play\+::m\+\_\+lightning\+Square\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a38480929b77a7b10b700139314b57eed}\index{Scene\_Play@{Scene\_Play}!m\_mouseItem@{m\_mouseItem}}
+\index{m\_mouseItem@{m\_mouseItem}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_mouseItem}{m\_mouseItem}}
+{\footnotesize\ttfamily \label{class_scene___play_a38480929b77a7b10b700139314b57eed} 
+bool Scene\+\_\+\+Play\+::m\+\_\+mouse\+Item = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a32550f7d8e2a2455f769ff9b6b0b797c}\index{Scene\_Play@{Scene\_Play}!m\_nightClock@{m\_nightClock}}
+\index{m\_nightClock@{m\_nightClock}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_nightClock}{m\_nightClock}}
+{\footnotesize\ttfamily \label{class_scene___play_a32550f7d8e2a2455f769ff9b6b0b797c} 
+sf\+::\+Clock Scene\+\_\+\+Play\+::m\+\_\+night\+Clock\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_af013588435fe3cda422874f6151bee47}\index{Scene\_Play@{Scene\_Play}!m\_nightFall@{m\_nightFall}}
+\index{m\_nightFall@{m\_nightFall}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_nightFall}{m\_nightFall}}
+{\footnotesize\ttfamily \label{class_scene___play_af013588435fe3cda422874f6151bee47} 
+bool Scene\+\_\+\+Play\+::m\+\_\+night\+Fall = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_aaade1eebdb03877397bad63f2f2c7e44}\index{Scene\_Play@{Scene\_Play}!m\_nightFilter@{m\_nightFilter}}
+\index{m\_nightFilter@{m\_nightFilter}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_nightFilter}{m\_nightFilter}}
+{\footnotesize\ttfamily \label{class_scene___play_aaade1eebdb03877397bad63f2f2c7e44} 
+sf\+::\+Rectangle\+Shape Scene\+\_\+\+Play\+::m\+\_\+night\+Filter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a9e1db759b1a178397a1bcd49be621505}\index{Scene\_Play@{Scene\_Play}!m\_opacity@{m\_opacity}}
+\index{m\_opacity@{m\_opacity}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_opacity}{m\_opacity}}
+{\footnotesize\ttfamily \label{class_scene___play_a9e1db759b1a178397a1bcd49be621505} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+opacity = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a6b38cd470e93d7a2a459311337a10daa}\index{Scene\_Play@{Scene\_Play}!m\_player@{m\_player}}
+\index{m\_player@{m\_player}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_player}{m\_player}}
+{\footnotesize\ttfamily \label{class_scene___play_a6b38cd470e93d7a2a459311337a10daa} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_entity}{Entity}}$>$ Scene\+\_\+\+Play\+::m\+\_\+player\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_aae57f65e27a6724c92e8689979bdced3}\index{Scene\_Play@{Scene\_Play}!m\_roadGrid@{m\_roadGrid}}
+\index{m\_roadGrid@{m\_roadGrid}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_roadGrid}{m\_roadGrid}}
+{\footnotesize\ttfamily \label{class_scene___play_aae57f65e27a6724c92e8689979bdced3} 
+bool Scene\+\_\+\+Play\+::m\+\_\+road\+Grid = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_aacdaa84055cb05d7a31ebf6a6101ae37}\index{Scene\_Play@{Scene\_Play}!m\_roadRectanglesGrid@{m\_roadRectanglesGrid}}
+\index{m\_roadRectanglesGrid@{m\_roadRectanglesGrid}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_roadRectanglesGrid}{m\_roadRectanglesGrid}}
+{\footnotesize\ttfamily \label{class_scene___play_aacdaa84055cb05d7a31ebf6a6101ae37} 
+std\+::vector$<$sf\+::\+Rectangle\+Shape$>$ Scene\+\_\+\+Play\+::m\+\_\+road\+Rectangles\+Grid\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a06d2ebc359410fe67fce0961344ddcaf}\index{Scene\_Play@{Scene\_Play}!m\_selectedItem@{m\_selectedItem}}
+\index{m\_selectedItem@{m\_selectedItem}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_selectedItem}{m\_selectedItem}}
+{\footnotesize\ttfamily \label{class_scene___play_a06d2ebc359410fe67fce0961344ddcaf} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+selected\+Item = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a9b5a12c450b3dcba20dedae6ab0707af}\index{Scene\_Play@{Scene\_Play}!m\_shopRectangles@{m\_shopRectangles}}
+\index{m\_shopRectangles@{m\_shopRectangles}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_shopRectangles}{m\_shopRectangles}}
+{\footnotesize\ttfamily \label{class_scene___play_a9b5a12c450b3dcba20dedae6ab0707af} 
+std\+::vector$<$sf\+::\+Rectangle\+Shape$>$ Scene\+\_\+\+Play\+::m\+\_\+shop\+Rectangles\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a2a67b138934073057ea9ff8bb54cb9aa}\index{Scene\_Play@{Scene\_Play}!m\_spawnRateFrame@{m\_spawnRateFrame}}
+\index{m\_spawnRateFrame@{m\_spawnRateFrame}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_spawnRateFrame}{m\_spawnRateFrame}}
+{\footnotesize\ttfamily \label{class_scene___play_a2a67b138934073057ea9ff8bb54cb9aa} 
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+spawn\+Rate\+Frame = 150\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b}\index{Scene\_Play@{Scene\_Play}!m\_upgrade@{m\_upgrade}}
+\index{m\_upgrade@{m\_upgrade}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_upgrade}{m\_upgrade}}
+{\footnotesize\ttfamily \label{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b} 
+bool Scene\+\_\+\+Play\+::m\+\_\+upgrade = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a9ba3ba23b88d1199b3167cec85603f38}\index{Scene\_Play@{Scene\_Play}!m\_usedRectanglesIndex@{m\_usedRectanglesIndex}}
+\index{m\_usedRectanglesIndex@{m\_usedRectanglesIndex}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_usedRectanglesIndex}{m\_usedRectanglesIndex}}
+{\footnotesize\ttfamily \label{class_scene___play_a9ba3ba23b88d1199b3167cec85603f38} 
+std\+::map$<$size\+\_\+t, bool$>$ Scene\+\_\+\+Play\+::m\+\_\+used\+Rectangles\+Index\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___play_a31c72ea3be787c630dd61c0bf3e25534}\index{Scene\_Play@{Scene\_Play}!m\_weatherClock@{m\_weatherClock}}
+\index{m\_weatherClock@{m\_weatherClock}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{m\_weatherClock}{m\_weatherClock}}
+{\footnotesize\ttfamily \label{class_scene___play_a31c72ea3be787c630dd61c0bf3e25534} 
+sf\+::\+Clock Scene\+\_\+\+Play\+::m\+\_\+weather\+Clock\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_scene___play_8h}{Scene\+\_\+\+Play.\+h}}\item 
+\mbox{\hyperlink{_scene___play_8cpp}{Scene\+\_\+\+Play.\+cpp}}\end{DoxyCompactItemize}

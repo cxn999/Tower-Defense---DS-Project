@@ -1,0 +1,14 @@
+<map id="Animation::getSprite" name="Animation::getSprite">
+<area shape="rect" id="Node000001" title=" " alt="" coords="399,56,538,83"/>
+<area shape="rect" id="Node000002" href="$class_scene___play.html#a2a3c0b2bbdd396f370faaf2ae19b87db" title=" " alt="" coords="211,5,338,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="399,54,328,35,329,30,401,49"/>
+<area shape="rect" id="Node000004" href="$class_scene___menu.html#a4aa2a808fcf50c6767998657d3f4657e" title=" " alt="" coords="198,107,351,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="401,90,329,109,328,103,399,85"/>
+<area shape="rect" id="Node000006" href="$class_scene___play.html#a6ab634d841861b45bb684b6e8ce899a2" title=" " alt="" coords="201,56,348,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="383,72,348,72,348,67,383,67"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="8,31,147,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,31,148,38,147,32,196,26"/>
+<area shape="rect" id="Node000005" href="$class_scene___menu.html#a46cf38bd4128df45b9b11bab2c4484f0" title=" " alt="" coords="5,107,150,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="182,123,150,123,150,117,182,117"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="185,61,147,56,147,50,186,55"/>
+</map>

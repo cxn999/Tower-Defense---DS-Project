@@ -1,0 +1,26 @@
+<map id="Scene_Settings::Scene_Settings" name="Scene_Settings::Scene_Settings">
+<area shape="rect" id="Node000001" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="5,208,164,251"/>
+<area shape="rect" id="Node000002" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="212,216,350,243"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,227,197,227,197,232,164,232"/>
+<area shape="rect" id="Node000003" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="419,5,582,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,215,298,180,321,133,354,84,374,61,396,42,404,37,407,41,400,46,378,65,358,87,326,135,303,182,289,217"/>
+<area shape="rect" id="Node000004" href="$class_assets.html#a044201d3a5016c7ac2785181cec15b50" title=" " alt="" coords="443,56,557,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="288,214,329,155,360,121,397,92,427,79,429,84,399,97,364,125,333,158,292,217"/>
+<area shape="rect" id="Node000005" href="$class_game_engine.html#a216acb74cf052d361aaa825a00e4c03a" title=" " alt="" coords="422,107,579,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="298,213,342,182,397,150,430,136,432,141,399,154,345,186,301,218"/>
+<area shape="rect" id="Node000006" href="$class_game_engine.html#a4a66ca783b02c25efcf98f8222f8b97c" title="methods to get configurations" alt="" coords="650,245,817,272"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="319,213,357,202,398,193,501,181,546,183,603,193,655,212,700,235,697,239,653,216,602,199,545,188,501,186,398,199,358,207,321,218"/>
+<area shape="rect" id="Node000007" href="$class_scene___settings.html#a7ab9de3dc8e935feeb5e637690adeb6b" title="method for getting the color of the volume slider depending on the volume" alt="" coords="409,208,592,251"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="350,227,393,227,393,232,350,232"/>
+<area shape="rect" id="Node000008" href="$class_scene.html#a670b58a8e14e222d9a75afe3eb1e35bc" title=" " alt="" coords="427,275,573,301"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="330,241,399,260,428,268,426,273,397,265,329,246"/>
+<area shape="rect" id="Node000009" href="$class_scene___settings.html#a2b9b180644b36c931eb7c47888ede9c4" title="method for updating the volume slider width" alt="" coords="398,325,602,368"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="300,241,343,276,399,311,411,317,409,321,397,316,340,280,296,245"/>
+<area shape="rect" id="Node000010" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="660,392,807,419"/>
+<area shape="poly" id="edge13_Node000002_Node000010" title=" " alt="" coords="290,242,305,272,329,310,360,348,399,378,459,401,524,414,587,417,645,415,645,420,587,422,523,419,458,407,397,382,356,352,324,313,301,275,286,244"/>
+<area shape="rect" id="Node000011" href="$class_scene.html#a440f3cd29cc9d73ca0d579a828d80c27" title=" " alt="" coords="452,443,548,469"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="289,242,302,278,325,327,358,378,377,401,400,422,418,433,438,442,436,447,416,438,396,426,374,405,353,381,320,329,297,280,284,244"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="569,322,601,311,686,276,688,281,603,316,571,327"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="588,366,663,385,662,390,587,371"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="548,443,654,420,655,425,549,448"/>
+</map>

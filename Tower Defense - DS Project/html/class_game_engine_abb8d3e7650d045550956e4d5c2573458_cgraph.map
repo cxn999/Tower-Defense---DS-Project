@@ -1,0 +1,7 @@
+<map id="GameEngine::startMusic" name="GameEngine::startMusic">
+<area shape="rect" id="Node000001" title="methods for musics" alt="" coords="5,31,171,57"/>
+<area shape="rect" id="Node000002" href="$class_assets.html#a8351d230cad9bc777061b69c839c5116" title=" " alt="" coords="236,5,359,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,31,220,25,221,31,171,37"/>
+<area shape="rect" id="Node000003" href="$class_game_engine.html#a216acb74cf052d361aaa825a00e4c03a" title=" " alt="" coords="219,56,376,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,51,204,55,203,61,171,57"/>
+</map>

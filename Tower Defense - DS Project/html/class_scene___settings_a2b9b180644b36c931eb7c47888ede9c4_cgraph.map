@@ -1,0 +1,7 @@
+<map id="Scene_Settings::updateVolumeSlider" name="Scene_Settings::updateVolumeSlider">
+<area shape="rect" id="Node000001" title="method for updating the volume slider width" alt="" coords="5,23,210,65"/>
+<area shape="rect" id="Node000002" href="$class_game_engine.html#a4a66ca783b02c25efcf98f8222f8b97c" title="methods to get configurations" alt="" coords="258,5,424,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,30,242,27,242,32,210,36"/>
+<area shape="rect" id="Node000003" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="268,56,414,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,52,252,57,252,62,210,58"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Scene_Settings::init" name="Scene_Settings::init">
+<area shape="rect" id="Node000001" title="Initial control scheme." alt="" coords="212,13,350,40"/>
+<area shape="rect" id="Node000002" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="5,5,164,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,29,164,29,164,24,196,24"/>
+</map>

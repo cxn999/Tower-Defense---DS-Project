@@ -1,0 +1,13 @@
+<map id="Quadtree::query" name="Quadtree::query">
+<area shape="rect" id="Node000001" title=" " alt="" coords="635,31,750,57"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="726,18,714,12,692,9,672,11,661,16,658,21,664,29,659,32,653,22,657,12,671,6,693,4,716,7,728,13"/>
+<area shape="rect" id="Node000002" href="$class_entity_manager.html#aaf0e016b7ebef56e20ae7613e0a102f3" title=" " alt="" coords="405,31,587,57"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="620,47,588,47,588,41,620,41"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#aec1850ef08cb92b5c6db6cba02dec399" title=" " alt="" coords="197,5,352,32"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="389,34,352,30,353,25,390,29"/>
+<area shape="rect" id="Node000005" href="$class_scene___play.html#ae80c24b0bb449025d718c9b6dba8d619" title=" " alt="" coords="192,56,357,83"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="390,59,358,63,357,57,389,54"/>
+<area shape="rect" id="Node000004" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="5,31,144,57"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="181,33,144,38,143,33,181,28"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="176,60,144,55,144,50,176,54"/>
+</map>

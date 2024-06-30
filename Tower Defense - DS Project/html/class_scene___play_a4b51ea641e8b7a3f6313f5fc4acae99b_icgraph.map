@@ -1,0 +1,5 @@
+<map id="Scene_Play::init" name="Scene_Play::init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="223,5,339,32"/>
+<area shape="rect" id="Node000002" href="$class_scene___play.html#a2531be022aa16abd7c484b1a0f9b964f" title=" " alt="" coords="5,5,175,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,21,175,21,175,16,207,16"/>
+</map>

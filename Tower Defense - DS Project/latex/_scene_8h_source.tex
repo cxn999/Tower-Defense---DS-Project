@@ -1,0 +1,50 @@
+\doxysection{Scene.\+h}
+\hypertarget{_scene_8h_source}{}\label{_scene_8h_source}\mbox{\hyperlink{_scene_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_action_8h}{Action.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_manager_8h}{EntityManager.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_game_engine}{GameEngine}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ std::map<int,\ std::string>\ \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{ActionMap}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_scene}{Scene}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_game_engine}{GameEngine}}*\ \mbox{\hyperlink{class_scene_a055a2a35151e229504f940dc4a1eff0e}{m\_game}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_entity_manager}{EntityManager}}\ \mbox{\hyperlink{class_scene_a9607716b0ac72569b450f7e8aa1ac161}{m\_entityManager}};}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{ActionMap}}\ \mbox{\hyperlink{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}{m\_actionMap}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_scene_a7bae804882b015014c71c017f7df0b1e}{m\_currentFrame}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_scene_a9831c81afc52aeaac474275fcaa5bf95}{m\_paused}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\_hasEnded}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{onEnd}}()\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_abad71a081e3b76cff376c954d3b6c3cb}{setPaused}}(\textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}}(\mbox{\hyperlink{class_game_engine}{GameEngine}}*\ gameEngine);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ PURE\ VIRTUAL:\ ALL\ DERIVED\ CLASSES\ DEFINE\ THIS\ METHODS}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{update}}()\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Jump,\ move\ right,\ left,\ etc}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{sDoAction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_action}{Action}}\ \&\ action)\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Render\ the\ scene}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{sRender}}()\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}{doAction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_action}{Action}}\&\ action);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}{registerAction}}(\textcolor{keywordtype}{int}\ inputKey,\ \textcolor{keyword}{const}\ std::string\ \&\ actionName);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}{width}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_scene_a9ca07b0a912e89b57193d14ca68564d3}{height}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}{currentFrame}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}{hasEnded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{ActionMap}}\&\ \mbox{\hyperlink{class_scene_a201c6f29c57f78a6af5addb9fa779306}{getActionMap}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \};}
+
+\end{DoxyCode}

@@ -160,13 +160,16 @@ void Scene_Play::sRender() {
 
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
-			e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+			if (e->tag() != "enemyBoss")
+				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+			else if(e->tag() == "enemyBoss")
+				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
 			if (e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health) 
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 	}
-	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
+	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());  
 
 	if (m_drawCollision) {
 		for (auto e : m_entityManager.getEntities()) {
@@ -268,17 +271,18 @@ void Scene_Play::sRender() {
 	r.setPosition(409, 711);
 
 	//Clouds block
-	/*sf::RectangleShape clouds(sf::Vector2f(window.getSize().x, window.getSize().y * 0.72f));*/
+
 	sf::Texture cloudsTexture;
 	sf::Sprite clouds;
-	clouds.setTexture(m_game->getAssets().getTexture("clouds"));
+	clouds = m_game->getAssets().getAnimation("clouds").getSprite(); 
+	clouds.setOrigin(0.0f, 0.0f);
 	clouds.setColor(sf::Color(128, 128, 128, 50)); 
 	clouds.setScale(2.7f, 2.5f);
 
 	window.draw(r); 
 	
 	//clouds movement
-	clouds.setPosition(sf::Vector2f(-1800.f + m_clock.getElapsedTime().asSeconds()*10, 0.f));
+	clouds.setPosition(sf::Vector2f(-1800.f + m_weatherClock.getElapsedTime().asSeconds()*10, 0.f));
 	window.draw(clouds);
 	
 
@@ -343,7 +347,7 @@ void Scene_Play::sAnimation() {
 		auto& animation = e->getComponent<CAnimation>().animation;
 		auto type = e->getComponent<CType>().type;
 		auto direction = e->getComponent<CState>().direction;
-
+		
 		if (e_state == "attack" && (animation.getName().find("Attack") == std::string::npos)) {
 			if (type == "goblin") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinAttack");
@@ -400,6 +404,69 @@ void Scene_Play::sAnimation() {
 		e->getComponent<CAnimation>().animation.update();
 	}
 
+	for (auto& e : m_entityManager.getEntities("enemyBoss")) {
+		auto& e_transform = e->getComponent<CTransform>();
+		auto& e_state = e->getComponent<CState>().state;
+		auto& animation = e->getComponent<CAnimation>().animation;
+		auto type = e->getComponent<CType>().type;
+		auto direction = e->getComponent<CState>().direction;
+
+		if (e_state == "attack" && (animation.getName().find("Attack") == std::string::npos)) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinAttack");
+				else animation = m_game->getAssets().getAnimation("S_goblinAttack");
+			}
+			else if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfAttack");
+				else animation = m_game->getAssets().getAnimation("S_wolfAttack");
+			}
+			else if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeAttack");
+				else animation = m_game->getAssets().getAnimation("S_slimeAttack");
+			}
+			else if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeAttack");
+				else animation = m_game->getAssets().getAnimation("S_beeAttack");
+			}
+		}
+		if (e_state == "death" && (animation.getName().find("Death") == std::string::npos)) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
+				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
+				m_coins += 100;
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
+				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
+				m_coins += 100;
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
+				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
+				m_coins += 100;
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
+				else animation = m_game->getAssets().getAnimation("S_beeDeath");
+				m_coins += 100;
+			}
+			e_transform.velocity = { 0,0 };
+		}
+
+		if (e_state == "death" && animation.hasEnded()) {
+			e->destroy();
+		}
+
+		animation.getSprite().setScale(4, 4);
+
+		if (e_transform.pos.x > e_transform.prevPos.x && animation.getSprite().getScale().x > 0) {
+			animation.getSprite().scale(-1, 1);
+		}
+
+		e->getComponent<CAnimation>().animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
+		e->getComponent<CAnimation>().animation.update();
+	}
+
 	if (m_attack) {
 		auto& attacks = m_entityManager.getEntities("attack");
 		for (auto& ent : attacks) {
@@ -427,7 +494,6 @@ void Scene_Play::sAnimation() {
 				ent->getComponent<CAnimation>().animation.getSprite().setScale(0.75, 0.75);
 				ent->getComponent<CAnimation>().animation.getSprite().setPosition(ent_pos.x, ent_pos.y-50);
 			}
-			ent->getComponent<CAnimation>().animation.update();
 		}
 	}
 
@@ -548,12 +614,8 @@ void Scene_Play::sCollision() {
 	// Query the quadtree for entities within the search area
 	auto nearbyEntities = m_entityManager.queryRange(searchArea);
 
-	std::cout << "TOTAL SIZE: " << m_entityManager.getEntities().size() << std::endl;
-	std::cout << "QUERY SIZE: " << nearbyEntities.size() << std::endl;
-
-
 	for (auto& e : nearbyEntities) {
-		if (e->tag() != "enemy") continue;
+		if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
 
 		auto& tile = e->getComponent<CTransform>();
 
@@ -587,7 +649,20 @@ void Scene_Play::sCollision() {
 				}
 			}
 		}
+	}
+}
 
+void Scene_Play::sMovement() {
+	// Update positions of enemies
+	for (auto& e : m_entityManager.getEntities("enemy")) {
+		auto& e_transform = e->getComponent<CTransform>();
+		e_transform.prevPos = e_transform.pos;
+		e_transform.pos += e_transform.velocity;
+		auto& animation = e->getComponent<CAnimation>().animation;
+		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
+		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
+			attack(e, m_player);
+		}
 		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
 		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
 			// Depending on attack subtract less or more life
@@ -599,11 +674,7 @@ void Scene_Play::sCollision() {
 			e->getComponent<CState>().state = "death";
 		}
 	}
-}
-
-void Scene_Play::sMovement() {
-	// Update positions of enemies
-	for (auto& e : m_entityManager.getEntities("enemy")) {
+	for (auto& e : m_entityManager.getEntities("enemyBoss")) {
 		auto& e_transform = e->getComponent<CTransform>();
 		e_transform.prevPos = e_transform.pos;
 		e_transform.pos += e_transform.velocity;
@@ -624,12 +695,12 @@ void Scene_Play::sMovement() {
 
 		// Query the quadtree for enemies within the archer's range
 		auto nearbyEnemies = m_entityManager.queryRange(searchArea);
-
+		
 		for (auto& e : nearbyEnemies) {
-			if (e->tag() != "enemy") continue;
+			if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
 
 			auto& e_transform = e->getComponent<CTransform>();
-			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) {
+			if (archer_pos.dist(e_transform.pos) <= r && !archer->getComponent<CRange>().target) { 
 				attack(archer, e);
 				archer->getComponent<CRange>().target = true;
 				archer->getComponent<CState>().state = "attack";
@@ -643,15 +714,40 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	if (m_currentFrame%150==0) {
-		sSpawnEnemy(rand()%3+1);
+	float t = m_clock.getElapsedTime().asSeconds();
+	if (t < 30.f) {
+		if (m_currentFrame % 150 == 0) {
+			sSpawnEnemy(rand() % 3 + 1);
+		}
+	}
+	else if (t > 30.f && t < 60) {
+		if (m_currentFrame % 130 == 0) {
+			sSpawnEnemy(rand() % 3 + 1);
+		}
+	}
+	else {
+		if (m_currentFrame % 100 == 0) {
+			sSpawnEnemy(rand() % 3 + 1);
+		}
 	}
 }
 
 void Scene_Play::sSpawnEnemy(size_t line) {
 	// create enemy with "enemy" tag
-	auto entity = m_entityManager.addEntity("enemy");
+
+	std::string tag;
+	if (int(m_clock.getElapsedTime().asSeconds()) == 0 || int(m_clock.getElapsedTime().asSeconds()) % 15 != 0.0f) 
+		tag = "enemy";
+	else {
+		tag = "enemyBoss";
+
+	}
+	auto entity = m_entityManager.addEntity(tag); 
+	
+
+
 	int offsetConstant = 50;
+	
 
 	std::string animation;
 	Vec2 pos, velocity;
@@ -662,72 +758,131 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	auto window_size = m_game->window().getSize();
 
 	if (line == 1) {
-		pos = Vec2(-offsetConstant, rand() % offsetConstant*2 + window_size.y / 2.f);
+		pos = Vec2(-offsetConstant, rand() % offsetConstant * 2 + window_size.y / 2.f);
 		velocity = { 2,0 };
 		entity->addComponent<CState>("walk", "horizontal");
 	}
 	else if (line == 2) {
-		pos = Vec2(window_size.x / 2.f + rand() % offsetConstant*2 -50 , -offsetConstant);
+		pos = Vec2(window_size.x / 2.f + rand() % offsetConstant * 2 - 50, -offsetConstant);
 		velocity = { 0, 2 };
 		entity->addComponent<CState>("walk", "vertical");
 	}
 	else {
-		pos = Vec2(window_size.x + offsetConstant , rand() % offsetConstant*2 + window_size.y / 2.f);
+		pos = Vec2(window_size.x + offsetConstant, rand() % offsetConstant * 2 + window_size.y / 2.f);
 		velocity = { -2, 0 };
 		entity->addComponent<CState>("walk", "horizontal");
 	}
 
-	if (type == 0) {
-		entity->addComponent<CType>("goblin");
-		damage = 5;
-		velocity *= 0.8;
-		health = 80;
-		if (line == 2) {
-			animation = "D_goblinWalk";
+	if (int(m_clock.getElapsedTime().asSeconds()) == 0 || int(m_clock.getElapsedTime().asSeconds()) % 15 != 0.0f) {
+		if (type == 0) {
+			entity->addComponent<CType>("goblin");
+			damage = 5;
+			velocity *= 0.8;
+			health = 80;
+			if (line == 2) {
+				animation = "D_goblinWalk";
+			}
+			else {
+				animation = "S_goblinWalk";
+			}
 		}
-		else {
-			animation = "S_goblinWalk";
+		else if (type == 1) {
+			entity->addComponent<CType>("wolf");
+			damage = 3;
+			velocity *= 1.5;
+			health = 50;
+			if (line == 2) {
+				animation = "D_wolfWalk";
+			}
+			else {
+				animation = "S_wolfWalk";
+			}
 		}
-	}
-	else if (type == 1) {
-		entity->addComponent<CType>("wolf");
-		damage = 3;
-		velocity*=1.5;
-		health = 50;
-		if (line == 2) {
-			animation = "D_wolfWalk";
-		}
-		else {
-			animation = "S_wolfWalk";
-		}
-	}
-	else if (type == 2) {
-		entity->addComponent<CType>("bee");
-		damage = 2;
-		animation = "D_beeWalk";
-		health = 30;
-		if (line == 2) {
+		else if (type == 2) {
+			entity->addComponent<CType>("bee");
+			damage = 2;
 			animation = "D_beeWalk";
+			health = 30;
+			if (line == 2) {
+				animation = "D_beeWalk";
+			}
+			else {
+				animation = "S_beeWalk";
+			}
 		}
-		else {
-			animation = "S_beeWalk";
+		else if (type == 3) {
+			entity->addComponent<CType>("slime");
+			damage = 2.5f;
+			health = 40;
+			animation = "D_slimeWalk";
+			if (line == 2) {
+				animation = "D_slimeWalk";
+			}
+			else {
+				animation = "S_slimeWalk";
+			}
 		}
 	}
-	else if (type == 3) {
-		entity->addComponent<CType>("slime");
-		damage = 2.5f;
-		health = 40;
-		animation = "D_slimeWalk";
-		if (line == 2) {
+	else {
+		if (type == 0) {
+			entity->addComponent<CType>("goblin");
+			damage = 50.f;
+			velocity *= 0.3;
+			health = 400;
+			if (line == 2) {
+				animation = "D_goblinWalk";
+			}
+			else {
+				animation = "S_goblinWalk";
+			}
+		}
+		else if (type == 1) {
+			entity->addComponent<CType>("wolf");
+			damage = 30.f;
+			velocity *= 1.2f;
+			health = 200;
+			if (line == 2) {
+				animation = "D_wolfWalk";
+			}
+			else {
+				animation = "S_wolfWalk";
+			}
+		}
+		else if (type == 2) {
+			entity->addComponent<CType>("bee");
+			damage = 40.f;
+			animation = "D_beeWalk";
+			health = 300;
+			if (line == 2) {
+				animation = "D_beeWalk";
+			}
+			else {
+				animation = "S_beeWalk";
+			}
+		}
+		else if (type == 3) {
+			entity->addComponent<CType>("slime");
+			damage = 15.f;
+			health = 100;
 			animation = "D_slimeWalk";
+			if (line == 2) {
+				animation = "D_slimeWalk";
+			}
+			else {
+				animation = "S_slimeWalk";
+			}
 		}
-		else {
-			animation = "S_slimeWalk";
-		}
+	}
+	
+	entity->addComponent<CAnimation>(m_game->getAssets().getAnimation(animation), false);
+
+	if (tag == "enemy") 
+		entity->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
+	else {
+		entity->getComponent<CAnimation>().animation.getSprite().setScale(4, 4);
+		entity->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
 	}
 
-	entity->addComponent<CAnimation>(m_game->getAssets().getAnimation(animation), false);
-	entity->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 	auto size = entity->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
 	entity->addComponent<CBoundingBox>(Vec2(size.getSize().x, size.getSize().y/2.f));
 	entity->addComponent<CTransform>(pos);
@@ -741,7 +896,7 @@ void Scene_Play::sShop() {
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
-		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem && !m_attack) {
+		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
 
 			if (m_selectedItem < 3 && m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0) continue;
 
@@ -922,7 +1077,7 @@ void Scene_Play::sInfo() {
 
 				break;
 			}
-			if (ent->tag() == "enemy") {
+			if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_damage = ent->getComponent<CAttack>();
 				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);

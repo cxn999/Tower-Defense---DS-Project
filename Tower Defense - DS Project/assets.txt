@@ -100,6 +100,7 @@ Texture backgroundMenu Assets\MenuBackground.jpg
 ------------------------- ANIMATIONS -------------------------
 
 Animation background background 1 0
+Animation clouds clouds 1 0
 Animation backgroundMenu backgroundMenu 1 0
 
 

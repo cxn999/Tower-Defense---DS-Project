@@ -23,7 +23,7 @@ void Scene_Settings::updateVolumeSlider() {
 
 	float newWidth = (m_game->getVolume() / 100.0f) * 200.0f; 
 	m_volumeSlider.setSize(sf::Vector2f(newWidth, 20));
-	m_volumeSlider.setPosition(mx - m_volumeSlider.getSize().x / 2, 220); 
+	m_volumeSlider.setPosition(mx - m_volumeSlider.getSize().x / 2, 370); 
 }
 
 Scene_Settings::Scene_Settings(GameEngine* gameEngine)
@@ -62,15 +62,14 @@ void Scene_Settings::init() {
 	// Add levels text to the vector
 	m_texts.push_back(sf::Text("Volume", f, levels_fontSize));
 	m_texts.push_back(sf::Text("Music", f, levels_fontSize));
-	m_texts.push_back(sf::Text("Controls", f, levels_fontSize));
 
 	std::string helpText("UP: W   DOWN: S   ENTER: ENTER   BACK: ESC");
 	m_texts.push_back(sf::Text(helpText, f, 30));
-	m_texts[3].setPosition(20, m_window.getSize().y - 50);
-	m_texts[3].setColor(sf::Color::Black);
+	m_texts[2].setPosition(20, m_window.getSize().y - 50);
+	m_texts[2].setColor(sf::Color::Black);
 
-	for (int i = 0; i < 3; i++) {
-		m_texts[i].setPosition(mx - m_texts[i].getGlobalBounds().width / 2.f, 150 + 150 * i);
+	for (int i = 0; i < 2; i++) {
+		m_texts[i].setPosition(mx - m_texts[i].getGlobalBounds().width / 2.f, 300 + 200 * i);
 	}
 
 	// Volume slider
@@ -81,22 +80,14 @@ void Scene_Settings::init() {
 	m_volumeText.setString(std::to_string(static_cast<int>(m_game->getVolume())));
 	m_volumeText.setCharacterSize(30);
 	m_volumeText.setFillColor(sf::Color::Black);
-	m_volumeText.setPosition(mx + m_volumeSlider.getSize().x / 2 + 60, 210);
+	m_volumeText.setPosition(mx + m_volumeSlider.getSize().x / 2 + 60, 360);
 
 	// Music toggle
 	m_musicToggleText.setFont(f);
 	m_musicToggleText.setString(m_game->getMusic() ? "Music: On" : "Music: Off");
 	m_musicToggleText.setCharacterSize(30);
 	m_musicToggleText.setFillColor(sf::Color::Black);
-	m_musicToggleText.setPosition(mx - m_musicToggleText.getGlobalBounds().width / 2, 350);
-
-	// Control scheme toggle
-	m_controlSchemeText.setFont(f);
-	m_controlSchemeText.setString(1 ? "Controls: WASD" : "Controls: Arrow Keys");
-	m_controlSchemeText.setCharacterSize(30);
-	m_controlSchemeText.setFillColor(sf::Color::Black);
-	m_controlSchemeText.setPosition(mx - m_controlSchemeText.getGlobalBounds().width / 2, 500);
-
+	m_musicToggleText.setPosition(mx - m_musicToggleText.getGlobalBounds().width / 2, 550);
 }
 
 void Scene_Settings::update() {
@@ -119,12 +110,9 @@ void Scene_Settings::sDoAction(const Action& action) {
 				m_game->setMusicState(!m_game->getMusic());
 				m_musicToggleText.setString(m_game->getMusic() ? "Music: On" : "Music: Off");
 			}
-			else if (m_selectedMenuIndex == 2) { // Toggle control scheme
-				m_controlSchemeText.setString(1 ? "Controls: WASD" : "Controls: Arrow Keys");
-			}
 		}
-		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 3; }
-		else if (action.name() == "UP") { m_selectedMenuIndex = (m_selectedMenuIndex + 2) % 3; }
+		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2; }
+		else if (action.name() == "UP") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2; }
 		else if (action.name() == "LEFT" && m_selectedMenuIndex == 0) { // Adjust volume down
 			m_game->setVolume(std::max(0.0f, m_game->getVolume() - 10.0f));
 			m_volumeText.setString(std::to_string(static_cast<int>(m_game->getVolume())));
@@ -145,8 +133,13 @@ void Scene_Settings::sRender() {
 	auto& m_window = m_game->window();
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
+	// Calculate middle of the screen in Y axis
+	auto my = m_window.getSize().y / 2;
 	// Clear the window with blue
 	m_window.clear(sf::Color(153, 255, 204));
+	sf::Sprite backgroundSprite = m_game->getAssets().getAnimation("backgroundSettings").getSprite();
+	backgroundSprite.setPosition(mx, my);
+	m_window.draw(backgroundSprite);
 
 	// Iterate through the text vector and set their respective color and position
 	for (int i = 0; i < 3; i++) {
@@ -162,7 +155,7 @@ void Scene_Settings::sRender() {
 
 	// Draw the title
 	m_window.draw(m_titleText);
-	m_window.draw(m_texts[3]);
+	m_window.draw(m_texts[2]);
 	m_window.draw(m_volumeSlider);
 	m_window.draw(m_volumeText);
 	m_window.draw(m_musicToggleText);

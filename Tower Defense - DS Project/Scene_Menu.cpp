@@ -3,6 +3,7 @@
 #include "Scene_Menu.h"
 #include "Scene_Play.h"
 #include "Scene_Settings.h"
+#include "Scene_Credits.h"
 #include "GameEngine.h"
 
 Scene_Menu::Scene_Menu(GameEngine* gameEngine)
@@ -72,7 +73,7 @@ void Scene_Menu::sDoAction(const Action& action) {
 				m_game->changeScene("SETTINGS", std::make_shared<Scene_Settings>(m_game), true);
 			}
 			else if (m_selectedMenuIndex == 2) {
-				//m_game->changeScene("SETTINGS", std::make_shared<Scene_Settings>(m_game), true);
+				m_game->changeScene("CREDITS", std::make_shared<Scene_Credits>(m_game), true);
 			}
 		}
 		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 3; }
@@ -85,6 +86,7 @@ void Scene_Menu::sRender() {
 	auto& m_window = m_game->window();
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
+	// Calculate middle of the screen in Y axis
 	auto my = m_window.getSize().y / 2;
 	// Clear the window with blue
 	m_window.clear(sf::Color::Blue);

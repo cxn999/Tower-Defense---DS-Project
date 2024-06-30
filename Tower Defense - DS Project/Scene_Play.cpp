@@ -615,10 +615,6 @@ void Scene_Play::sCollision() {
 	// Query the quadtree for entities within the search area
 	auto nearbyEntities = m_entityManager.queryRange(searchArea);
 
-	std::cout << "TOTAL SIZE: " << m_entityManager.getEntities().size() << std::endl;
-	std::cout << "QUERY SIZE: " << nearbyEntities.size() << std::endl;
-
-
 	for (auto& e : nearbyEntities) {
 		if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
 
@@ -654,17 +650,6 @@ void Scene_Play::sCollision() {
 				}
 			}
 		}
-
-		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
-		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
-			// Depending on attack subtract less or more life
-			e->getComponent<CHealth>().health -= 2;
-		}
-
-		if (e->getComponent<CHealth>().health <= 0) {
-			e->getComponent<CHealth>().health = 0;
-			e->getComponent<CState>().state = "death";
-		}
 	}
 }
 
@@ -678,6 +663,16 @@ void Scene_Play::sMovement() {
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
 			attack(e, m_player);
+		}
+		auto entity_bounds = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+		if (m_attack && m_attackSquare.getGlobalBounds().intersects(entity_bounds)) {
+			// Depending on attack subtract less or more life
+			e->getComponent<CHealth>().health -= 2;
+		}
+
+		if (e->getComponent<CHealth>().health <= 0) {
+			e->getComponent<CHealth>().health = 0;
+			e->getComponent<CState>().state = "death";
 		}
 	}
 	for (auto& e : m_entityManager.getEntities("enemyBoss")) {

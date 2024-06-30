@@ -28,13 +28,13 @@ void Scene_Menu::init() {
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
 	// Set the titleText
-	m_titleText = sf::Text(m_title, f, 80);
+	m_titleText = sf::Text(m_title, f, 40);
 	// Set it's position and it's color
-	m_titleText.setPosition(mx - m_titleText.getGlobalBounds().width / 2.f, 50);
+	m_titleText.setPosition(mx - m_titleText.getGlobalBounds().width / 2.f, 130);
 	m_titleText.setColor(sf::Color::Black);
 	
 	// Constant for the fontSize of the levels
-	int levels_fontSize = 50;
+	int levels_fontSize = 30;
 
 	// Add levels text to the vector
 	m_texts.push_back(sf::Text("PLAY", f, levels_fontSize));
@@ -47,7 +47,7 @@ void Scene_Menu::init() {
 	m_texts[3].setColor(sf::Color::Black);
 
 	for (int i = 0; i < 3; i++) {
-		m_texts[i].setPosition(mx - m_texts[i].getGlobalBounds().width / 2.f, 200 + 100 * i);
+		m_texts[i].setPosition(mx - m_texts[i].getGlobalBounds().width / 2.f, 630 + 50 * i);
 	}
 }
 
@@ -85,8 +85,12 @@ void Scene_Menu::sRender() {
 	auto& m_window = m_game->window();
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
+	auto my = m_window.getSize().y / 2;
 	// Clear the window with blue
 	m_window.clear(sf::Color::Blue);
+	sf::Sprite backgroundSprite = m_game->getAssets().getAnimation("backgroundMenu").getSprite();
+	backgroundSprite.setPosition(mx, my);
+	m_window.draw(backgroundSprite);
 
 	// Iterate through the text vector and set their respective color and position
 	for (int i = 0; i < 3; i++) {

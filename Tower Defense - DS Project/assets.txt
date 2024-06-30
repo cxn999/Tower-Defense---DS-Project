@@ -94,10 +94,14 @@ Texture lightningShop Assets\Shop\Lightning_shop.png
 
 
 Texture background Assets\background.png
+Texture backgroundMenu Assets\MenuBackground.jpg
+
 
 ------------------------- ANIMATIONS -------------------------
 
 Animation background background 1 0
+Animation backgroundMenu backgroundMenu 1 0
+
 
 =================TILES=================
 Animation grass01 tile01 1 0

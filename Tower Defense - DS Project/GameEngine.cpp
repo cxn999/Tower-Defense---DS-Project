@@ -168,6 +168,7 @@ void GameEngine::setMusicState(bool musicOn) {
 	if (m_music) {
 		if (m_currentMusic) {
 			m_currentMusic->play();
+			m_currentMusic->setLoop(true);
 		}
 	}
 	else {
@@ -204,10 +205,12 @@ void GameEngine::switchToMusic(const std::string& musicName) {
 		if (m_music && m_currentMusic) {
 			m_currentMusic->setVolume(m_volume);
 			m_currentMusic->play();
+			m_currentMusic->setLoop(true);
 		}
 	}
 	else if (m_music && m_currentMusic && m_currentMusic->getStatus() != sf::Music::Playing) {
 		m_currentMusic->setVolume(m_volume);
 		m_currentMusic->play();
+		m_currentMusic->setLoop(true);
 	}
 }

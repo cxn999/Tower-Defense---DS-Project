@@ -29,10 +29,16 @@ void Scene_Menu::init() {
 	// Calculate middle of the screen in X axis
 	auto mx = m_window.getSize().x / 2;
 	// Set the titleText
-	m_titleText = sf::Text(m_title, f, 40);
+	m_titleText1 = sf::Text(m_title1, f, 50);
 	// Set it's position and it's color
-	m_titleText.setPosition(mx - m_titleText.getGlobalBounds().width / 2.f, 130);
-	m_titleText.setColor(sf::Color::Black);
+	m_titleText1.setPosition(mx - m_titleText1.getGlobalBounds().width / 2.f, 120);
+	m_titleText1.setColor(sf::Color::Black);
+
+	// Set the titleText
+	m_titleText2 = sf::Text(m_title2, f, 50);
+	// Set it's position and it's color
+	m_titleText2.setPosition(mx - m_titleText2.getGlobalBounds().width / 2.f, 170);
+	m_titleText2.setColor(sf::Color::Black);
 	
 	// Constant for the fontSize of the levels
 	int levels_fontSize = 30;
@@ -107,7 +113,8 @@ void Scene_Menu::sRender() {
 	}
 
 	// Draw the title
-	m_window.draw(m_titleText);
+	m_window.draw(m_titleText1);
+	m_window.draw(m_titleText2);
 	m_window.draw(m_texts[3]);
 
 	// Display the window

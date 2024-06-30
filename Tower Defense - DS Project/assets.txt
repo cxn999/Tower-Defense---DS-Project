@@ -86,6 +86,9 @@ Texture S_barricadeBuild Assets\Defense\Barricades\S_Build.png
 Texture U_barricadeBuild Assets\Defense\Barricades\U_Build.png
 Texture S_barricadeDestroy Assets\Defense\Barricades\S_Destroy.png 
 Texture U_barricadeDestroy Assets\Defense\Barricades\U_Destroy.png
+Texture S_barricadeIdle Assets\Defense\Barricades\S_idle.png
+Texture U_barricadeIdle Assets\Defense\Barricades\U_idle.png
+
 
 Texture lightning Assets\Attack\Lightning\4.png
 Texture iceSpike Assets\Attack\Spikes\4.png
@@ -202,6 +205,8 @@ Animation S_barricadeBuild S_barricadeBuild 6 10
 Animation U_barricadeBuild U_barricadeBuild 6 10
 Animation S_barricadeDestroy S_barricadeDestroy 6 10
 Animation U_barricadeDestroy U_barricadeDestroy 6 10
+Animation S_barricadeIdle S_barricadeIdle 1 0
+Animation U_barricadeIdle U_barricadeIdle 1 0
 
 Animation shopAreaTower shopAreaTower 1 0
 Animation shopFreezeTower shopFreezeTower 1 0

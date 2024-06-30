@@ -71,6 +71,7 @@ public:
 	void sPlacement();
 	void spawnPlayer();
 	void sUpgrade();
+	void spawnBarricade(const Vec2&, size_t);
 	void sInfo();
 
 	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);

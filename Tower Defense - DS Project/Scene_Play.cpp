@@ -231,6 +231,9 @@ void Scene_Play::sRender() {
 		case 3:
 			item = m_game->getAssets().getAnimation("lightningShop");
 			break;
+		case 5:
+			// agregar barricade
+			break;
 		}
 
 		if (m_selectedItem < 3) {
@@ -610,6 +613,10 @@ void Scene_Play::sAnimation() {
 		d.animation.getSprite().setColor(sf::Color(255,0,0));
 		d.animation.update();
 	}
+
+	// for (auto & barricade : m_entityManager.getEntities("barricade"))
+	// if (name_animation_barricade == "build" && animation.hasEnded()
+	//		animation = idle;
 }
 
 void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
@@ -625,6 +632,8 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 
 void Scene_Play::sCollision() {
 	auto& player = m_player->getComponent<CTransform>();
+
+	// COLLISIONS OF PLAYER WITH ENEMIES
 
 	// Define the search area around the player
 	sf::FloatRect searchArea(player.pos.x - 100, player.pos.y - 100, 200, 200); // Adjust size as needed
@@ -668,6 +677,11 @@ void Scene_Play::sCollision() {
 			}
 		}
 	}
+
+	// COLLISIONS OF BARRICADES WITH ENEMIES
+	// for (auto & b : m_entityManager.getEntities("barricade")
+	//        sf::FloatRect searchArea(barricade.pos.x - 100, barricade.pos.y - 100, 200, 200); // Adjust size as needed
+
 }
 
 void Scene_Play::sMovement() {
@@ -1049,19 +1063,21 @@ void Scene_Play::sPlacement() {
 				m_mouseItem = false;
 				m_roadGrid = false;
 
+				// if selecte item == 5 bla bla bla
+
+				// LIGHTNING SPAWN
 				if (m_selectedItem == 3) {
 					m_coins -= 150;
+					auto lightning = m_entityManager.addEntity("attack");
+					lightning->addComponent<CTransform>();
+					lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f - 15, roadRect.getPosition().y + roadRect.getSize().y / 2.f - 310 };
+					m_lightningSquare = roadRect;
+					lightning->addComponent<CType>();
+					lightning->getComponent<CType>().type = "lightning";
+					lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+					lightning->addComponent<CAttack>();
+					lightning->getComponent<CAttack>().damage = 2;
 				}
-
-				auto lightning = m_entityManager.addEntity("attack");
-				lightning->addComponent<CTransform>();
-				lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f -15, roadRect.getPosition().y + roadRect.getSize().y / 2.f -310};
-				m_lightningSquare = roadRect;
-				lightning->addComponent<CType>();
-				lightning->getComponent<CType>().type = "lightning";
-				lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
-				lightning->addComponent<CAttack>();
-				lightning->getComponent<CAttack>().damage = 2;
 			}
 		}
 	}

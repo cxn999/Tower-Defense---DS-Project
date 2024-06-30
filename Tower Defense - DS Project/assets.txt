@@ -98,7 +98,7 @@ Texture background Assets\background.png
 ------------------------- ANIMATIONS -------------------------
 
 Animation background background 1 0
-
+Animation clouds clouds 1 0
 =================TILES=================
 Animation grass01 tile01 1 0
 Animation grass02 tile02 1 0

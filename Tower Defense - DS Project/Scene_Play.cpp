@@ -115,12 +115,12 @@ void Scene_Play::sDoAction(const Action& action) {
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
-		else if (action.name() == "UPGRADE") { m_upgrade = true; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
 		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
-		else if (action.name() == "UPGRADE") { m_upgrade = false; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = false; }
 	}
 }
 
@@ -135,6 +135,7 @@ void Scene_Play::update() {
 		sPlacement();
 		sAnimation();
 		sInfo();
+		sUpgrade();
 	}
 	sRender();
 	m_currentFrame++;
@@ -230,6 +231,9 @@ void Scene_Play::sRender() {
 			break;
 		case 3:
 			item = m_game->getAssets().getAnimation("lightningShop");
+			break;
+		case 5:
+			// agregar barricade
 			break;
 		}
 
@@ -610,6 +614,10 @@ void Scene_Play::sAnimation() {
 		d.animation.getSprite().setColor(sf::Color(255,0,0));
 		d.animation.update();
 	}
+
+	// for (auto & barricade : m_entityManager.getEntities("barricade"))
+	// if (name_animation_barricade == "build" && animation.hasEnded()
+	//		animation = idle;
 }
 
 void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
@@ -625,6 +633,8 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 
 void Scene_Play::sCollision() {
 	auto& player = m_player->getComponent<CTransform>();
+
+	// COLLISIONS OF PLAYER WITH ENEMIES
 
 	// Define the search area around the player
 	sf::FloatRect searchArea(player.pos.x - 100, player.pos.y - 100, 200, 200); // Adjust size as needed
@@ -668,6 +678,11 @@ void Scene_Play::sCollision() {
 			}
 		}
 	}
+
+	// COLLISIONS OF BARRICADES WITH ENEMIES
+	// for (auto & b : m_entityManager.getEntities("barricade")
+	//        sf::FloatRect searchArea(barricade.pos.x - 100, barricade.pos.y - 100, 200, 200); // Adjust size as needed
+
 }
 
 void Scene_Play::sMovement() {
@@ -798,7 +813,7 @@ void Scene_Play::sEnemySpawner() {
 	}
 	if (t >= 1) {
 		if (t % 1 == 0 && m_spawnRateFrame >= 15) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
-			m_spawnRateFrame -= 2;
+			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}
 	}
@@ -1049,19 +1064,21 @@ void Scene_Play::sPlacement() {
 				m_mouseItem = false;
 				m_roadGrid = false;
 
+				// if selecte item == 5 bla bla bla
+
+				// LIGHTNING SPAWN
 				if (m_selectedItem == 3) {
 					m_coins -= 150;
+					auto lightning = m_entityManager.addEntity("attack");
+					lightning->addComponent<CTransform>();
+					lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f - 15, roadRect.getPosition().y + roadRect.getSize().y / 2.f - 310 };
+					m_lightningSquare = roadRect;
+					lightning->addComponent<CType>();
+					lightning->getComponent<CType>().type = "lightning";
+					lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+					lightning->addComponent<CAttack>();
+					lightning->getComponent<CAttack>().damage = 2;
 				}
-
-				auto lightning = m_entityManager.addEntity("attack");
-				lightning->addComponent<CTransform>();
-				lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f -15, roadRect.getPosition().y + roadRect.getSize().y / 2.f -310};
-				m_lightningSquare = roadRect;
-				lightning->addComponent<CType>();
-				lightning->getComponent<CType>().type = "lightning";
-				lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
-				lightning->addComponent<CAttack>();
-				lightning->getComponent<CAttack>().damage = 2;
 			}
 		}
 	}
@@ -1218,5 +1235,21 @@ void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
 		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
 		woodSpike->addComponent<CType>().type = "area";
 		woodSpike->addComponent<CAttack>().damage = 1;
+	}
+}
+
+void Scene_Play::sUpgrade() {
+	auto & player_animation = m_player->getComponent<CAnimation>().animation;
+	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+	
+	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		if (m_player->getComponent<CInput>().rightClick) {
+			m_player->getComponent<CInput>().rightClick = false;
+			auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+			if (m_coins >= upgradePrice) {
+				m_coins -= upgradePrice;
+				m_player->getComponent<CState>().state = "upgrade";
+			}
+		}
 	}
 }

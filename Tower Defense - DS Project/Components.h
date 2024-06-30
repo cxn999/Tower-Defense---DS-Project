@@ -35,6 +35,7 @@ public:
 class CInput : public Component {
 public:
 	bool click = false;
+	bool rightClick = false;
 };
 
 class CBoundingBox : public Component {

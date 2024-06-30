@@ -2,6 +2,7 @@
 
 #include "Scene_Menu.h"
 #include "Scene_Play.h"
+#include "Scene_Settings.h"
 #include "GameEngine.h"
 
 Scene_Menu::Scene_Menu(GameEngine* gameEngine)
@@ -13,9 +14,11 @@ Scene_Menu::Scene_Menu(GameEngine* gameEngine)
 void Scene_Menu::init() {
 	registerAction(sf::Keyboard::P, "PAUSE");
 	registerAction(sf::Keyboard::Escape, "QUIT");
-	registerAction(sf::Keyboard::D, "PLAY");
+	registerAction(sf::Keyboard::Enter, "ENTER");
 	registerAction(sf::Keyboard::S, "DOWN");
 	registerAction(sf::Keyboard::W, "UP");
+	registerAction(sf::Keyboard::Up, "UP");
+	registerAction(sf::Keyboard::Down, "DOWN");
 
 
 	// Set the sf::window in a more convenient variable
@@ -34,11 +37,11 @@ void Scene_Menu::init() {
 	int levels_fontSize = 50;
 
 	// Add levels text to the vector
-	m_texts.push_back(sf::Text("Level 1", f, levels_fontSize));
-	m_texts.push_back(sf::Text("Level 2", f, levels_fontSize));
-	m_texts.push_back(sf::Text("Level 3", f, levels_fontSize));
+	m_texts.push_back(sf::Text("PLAY", f, levels_fontSize));
+	m_texts.push_back(sf::Text("SETTINGS", f, levels_fontSize));
+	m_texts.push_back(sf::Text("CREDITS", f, levels_fontSize));
 
-	std::string helpText("UP: W   DOWN: S   PLAY: D   BACK: ESC");
+	std::string helpText("UP: W   DOWN: S   ENTER: ENTER   BACK: ESC");
 	m_texts.push_back(sf::Text(helpText, f, 30));
 	m_texts[3].setPosition(20, m_window.getSize().y - 50);
 	m_texts[3].setColor(sf::Color::Black);
@@ -61,7 +64,17 @@ void Scene_Menu::sDoAction(const Action& action) {
 	if (action.type() == "START") {
 		if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
-		else if (action.name() == "PLAY") { m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game,"level1.txt"), true); }
+		else if (action.name() == "ENTER") {
+			if (m_selectedMenuIndex == 0) {
+				m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, "level1.txt"), true);
+			}
+			else if (m_selectedMenuIndex == 1) {
+				m_game->changeScene("SETTINGS", std::make_shared<Scene_Settings>(m_game), true);
+			}
+			else if (m_selectedMenuIndex == 2) {
+				//m_game->changeScene("SETTINGS", std::make_shared<Scene_Settings>(m_game), true);
+			}
+		}
 		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 3; }
 		else if (action.name() == "UP") { m_selectedMenuIndex = (m_selectedMenuIndex + 2) % 3; }
 	}

@@ -103,6 +103,9 @@ void Scene_Play::init(const std::string& levelPath) {
 
 	generateRoadRectangles();
 	generateGrassRectangles();
+
+	m_nightFilter.setSize(sf::Vector2f(m_game->window().getSize().x, m_game->window().getSize().y * 0.72));
+	m_nightFilter.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
 void Scene_Play::sDoAction(const Action& action) {
@@ -169,7 +172,7 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 	}
-	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());  
+	
 
 	if (m_drawCollision) {
 		for (auto e : m_entityManager.getEntities()) {
@@ -225,7 +228,7 @@ void Scene_Play::sRender() {
 		}
 
 		if (m_selectedItem < 3) {
-			sf::CircleShape c(250);
+			sf::CircleShape c(265);
 			c.setFillColor(sf::Color(219, 116, 209, 80));
 			c.setOutlineThickness(1.f);
 			c.setOutlineColor(sf::Color::Magenta);
@@ -284,7 +287,7 @@ void Scene_Play::sRender() {
 	//clouds movement
 	clouds.setPosition(sf::Vector2f(-1800.f + m_weatherClock.getElapsedTime().asSeconds()*10, 0.f));
 	window.draw(clouds);
-	
+
 
 
 	window.draw(m_coinsText);
@@ -295,6 +298,32 @@ void Scene_Play::sRender() {
 		}
 	}
 
+	// Day & Night shift block
+
+	float timePassed = m_nightClock.getElapsedTime().asSeconds();
+
+	if (timePassed >= 1.f) {
+		if (m_nightFall) {
+			if (m_opacity < 155) {
+				m_opacity++;
+			}
+			else {
+				m_nightFall = false;
+			}
+		}
+		else {
+			if (m_opacity > 0) {
+				m_opacity--;
+			}
+			else {
+				m_nightFall = true;
+			}
+		}
+		m_nightFilter.setFillColor(sf::Color(5, 19, 41, m_opacity));
+		m_nightClock.restart();
+	}
+	window.draw(m_nightFilter);
+	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
 	window.display();
 }
 
@@ -370,22 +399,22 @@ void Scene_Play::sAnimation() {
 			if (type == "goblin") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
 				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
-				m_coins += 25;
+				m_coins += 7;
 			}
 			if (type == "wolf") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
 				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
-				m_coins += 20;
+				m_coins += 6;
 			}
 			if (type == "slime") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
 				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
-				m_coins += 15;
+				m_coins += 5;
 			}
 			if (type == "bee") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
-				m_coins += 10;
+				m_coins += 4;
 			}
 			e_transform.velocity = { 0,0 };
 		}
@@ -433,22 +462,22 @@ void Scene_Play::sAnimation() {
 			if (type == "goblin") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinDeath");
 				else animation = m_game->getAssets().getAnimation("S_goblinDeath");
-				m_coins += 100;
+				m_coins += 25;
 			}
 			if (type == "wolf") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfDeath");
 				else animation = m_game->getAssets().getAnimation("S_wolfDeath");
-				m_coins += 100;
+				m_coins += 20;
 			}
 			if (type == "slime") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeDeath");
 				else animation = m_game->getAssets().getAnimation("S_slimeDeath");
-				m_coins += 100;
+				m_coins += 20;
 			}
 			if (type == "bee") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
-				m_coins += 100;
+				m_coins += 20;
 			}
 			e_transform.velocity = { 0,0 };
 		}
@@ -546,7 +575,7 @@ void Scene_Play::sAnimation() {
 			}
 
 			archer->addComponent<CTransform>(d_pos);
-			archer->addComponent<CRange>(250);
+			archer->addComponent<CRange>(265);
 			archer->addComponent<CAttack>(15);
 			archer->addComponent<CState>("idle", "vertical");
 		}
@@ -724,22 +753,38 @@ void Scene_Play::onEnd() {
 }
 
 void Scene_Play::sEnemySpawner() {
-	float t = m_clock.getElapsedTime().asSeconds();
-	if (t < 30.f) {
+	int t = m_clock.getElapsedTime().asSeconds();
+	
+	if (m_currentFrame % m_spawnRateFrame == 0) {		//Determines if an enemy spawns or not each n number of frames that gets decreased in the function down below
+		sSpawnEnemy(rand() % 3 + 1);	
+	}
+	if (t >= 1) {
+		if (t % 1 == 0 && m_spawnRateFrame >= 15) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
+			m_spawnRateFrame -= 2;
+			m_clock.restart();
+		}
+	}
+
+	/*if (t < 30.f) {
 		if (m_currentFrame % 150 == 0) {
 			sSpawnEnemy(rand() % 3 + 1);
 		}
 	}
-	else if (t > 30.f && t < 60) {
-		if (m_currentFrame % 130 == 0) {
+	else if (t > 30.f && t < 60.f) {
+		if (m_currentFrame % 120 == 0) {
+			sSpawnEnemy(rand() % 3 + 1);
+		}
+	}
+	else if (t > 60.f && t < 90.f){
+		if (m_currentFrame % 90 == 0) {
 			sSpawnEnemy(rand() % 3 + 1);
 		}
 	}
 	else {
-		if (m_currentFrame % 100 == 0) {
+		if (m_currentFrame % 60 == 0) {
 			sSpawnEnemy(rand() % 3 + 1);
 		}
-	}
+	}*/
 }
 
 void Scene_Play::sSpawnEnemy(size_t line) {

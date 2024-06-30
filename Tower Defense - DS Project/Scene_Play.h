@@ -21,10 +21,12 @@ protected:
 	bool m_grassGrid = false; // draw the grass grid depending on the type of item selected
 	bool m_mouseItem = false; // if the mouse has an item following it
 	bool m_attack = false; // if player has selected an attack item and clicked in a square
+	bool m_nightFall = true; // toggles change in the night filter
 
 	Vec2 m_attackPos = { 0,0 };
 	sf::RectangleShape m_attackSquare; // Square of attack
 	sf::RectangleShape m_defenseSquare; // Square of defense tower
+	sf::RectangleShape m_nightFilter;	// Night filter square
 
 	Vec2 m_gridSize = { 64,64 }; // size of the grid
 
@@ -32,6 +34,8 @@ protected:
 	size_t m_currentFrame = 0; // Current frame
 	size_t m_selectedItem = 0; // Selected item
 	size_t m_lastFrameDefenseSpawn = 0; // Last frame in which a defense tower was placed
+	size_t m_opacity = 0;	// Opacity property of the night filter
+	size_t m_spawnRateFrame = 150; //Initial spawn rate of the enemies 
 
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
@@ -40,8 +44,11 @@ protected:
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
 	
-	sf::Clock m_clock;
-	sf::Clock m_weatherClock;
+	sf::Clock m_clock;			// Clock for calculating the enemy boss spawn rate
+	sf::Clock m_weatherClock;	// Clock for moving the clouds
+	sf::Clock m_nightClock;		// Clock for the day/night time
+
+	
 
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);

@@ -1511,6 +1511,7 @@ void Scene_Play::sUpgrade() {
 			if (m_coins >= upgradePrice) {
 				m_coins -= upgradePrice;
 				m_player->getComponent<CState>().state = "upgrade";
+				m_player->getComponent<CHealth>().totalHealth += 200;
 			}
 		}
 	}

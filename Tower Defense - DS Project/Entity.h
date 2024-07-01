@@ -18,7 +18,6 @@ typedef std::tuple <
 	CType,
 	CDelay,
 	CFocus,
-	CFocusList
 	> ComponentTuple;
 
 class Entity { 

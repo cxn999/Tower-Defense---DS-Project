@@ -132,10 +132,3 @@ public:
 	}
 	CFocus() {}
 };
-
-class CFocusList : public Component {
-public:
-	std::vector<std::shared_ptr<Entity>> entities;
-
-	CFocusList() {}
-};

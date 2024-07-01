@@ -158,6 +158,7 @@ void Scene_Play::spawnPlayer() {
 void Scene_Play::spawnBarricade(const Vec2& position, size_t line) {
 	auto m_barricade = m_entityManager.addEntity("barricade");
 	m_barricade->addComponent<CState>();
+	m_barricade->getComponent<CState>().state = "build";
 	auto& barricadeDirection = m_barricade->getComponent<CState>().direction; 
 	
 	size_t offset = 15;
@@ -183,7 +184,7 @@ void Scene_Play::spawnBarricade(const Vec2& position, size_t line) {
 	m_barricade->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f + 50.f));
 	m_barricade->getComponent<CTransform>().pos = { position.x, position.y - offset};
 	
-
+	m_barricade->addComponent<CFocusList>();
 	m_barricade->addComponent<CHealth>(200);
 }
 
@@ -463,9 +464,27 @@ void Scene_Play::sAnimation() {
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
 				m_coins += 4;
 			}
+			e->getComponent<CFocus>().entity = nullptr;
 			e_transform.velocity = { 0,0 };
 		}
-
+		if (e_state == "idle" && animation.getName().find("Walk") == std::string::npos) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinWalk");
+				else animation = m_game->getAssets().getAnimation("S_goblinWalk");
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfWalk");
+				else animation = m_game->getAssets().getAnimation("S_wolfWalk");
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeWalk");
+				else animation = m_game->getAssets().getAnimation("S_slimeWalk");
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeWalk");
+				else animation = m_game->getAssets().getAnimation("S_beeWalk");
+			}
+		}
 		if (e_state == "death" && animation.hasEnded()) {
 			e->destroy();
 		}
@@ -526,9 +545,27 @@ void Scene_Play::sAnimation() {
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
 				m_coins += 20;
 			}
+			e->getComponent<CFocus>().entity = nullptr;
 			e_transform.velocity = { 0,0 };
 		}
-
+		if (e_state == "idle" && animation.getName().find("Walk") == std::string::npos) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinWalk");
+				else animation = m_game->getAssets().getAnimation("S_goblinWalk");
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfWalk");
+				else animation = m_game->getAssets().getAnimation("S_wolfWalk");
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeWalk");
+				else animation = m_game->getAssets().getAnimation("S_slimeWalk");
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeWalk");
+				else animation = m_game->getAssets().getAnimation("S_beeWalk");
+			}
+		}
 		if (e_state == "death" && animation.hasEnded()) {
 			e->destroy();
 		}
@@ -663,6 +700,30 @@ void Scene_Play::sAnimation() {
 		
 
 		
+		if (b_state.state == "idle" && b.animation.getName().find("Idle") == std::string::npos) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeIdle");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeIdle");
+				if(b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x-30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x+30.4, b_pos.y);
+			}
+		}
+		else if (b.animation.getName().find("Build") != std::string::npos) {
+			if (b_state.direction == "Left")
+				b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+			else if (b_state.direction == "Right")
+				b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			else {
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+		}
+		
 		if (b.animation.getName().find("Build") != std::string::npos && b.animation.hasEnded()) {
 			if (b_state.direction == "Up")
 			{
@@ -687,14 +748,43 @@ void Scene_Play::sAnimation() {
 			}
 		}
 
-		
+		if (b_state.state == "death" && b.animation.getName().find("Destroy") == std::string::npos) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeDestroy");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeDestroy");
+				if (b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			}
+		}
+		else if (b.animation.getName().find("Build") != std::string::npos && b.animation.hasEnded()) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeBuild");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeDestroy");
+				if (b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			}
+		}
 		if(b_state.direction == "Right")
 			b.animation.getSprite().setScale(-3, 3);
 		else
 			b.animation.getSprite().setScale(3, 3);
+
+		if (b.animation.getName().find("Destroy") != std::string::npos && b.animation.hasEnded()) {
+			barricade->destroy();
+		}
 		b.animation.update();
-		
-		
 	}
 }
 
@@ -733,9 +823,11 @@ void Scene_Play::sCollision() {
 		// Check if player hits the tile from the bottom
 		if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) {
 			if (0 <= overlap.y && prevOverlap.y <= 0) {
+				tile.move = false;
 				tile.pos.y += overlap.y;
-				tile.velocity.y = 0;
 				e->getComponent<CState>().state = "attack";
+				e->getComponent<CFocus>().entity = m_player;
+
 			}
 		}
 
@@ -746,12 +838,16 @@ void Scene_Play::sCollision() {
 				if (dx > 0) {
 					// Tile is right of player
 					tile.pos.x += overlap.x;
+					tile.move = false;
 					e->getComponent<CState>().state = "attack";
+					e->getComponent<CFocus>().entity = m_player;
 				}
 				else {
 					// Tile is left of player
 					tile.pos.x -= overlap.x;
+					tile.move = false;
 					e->getComponent<CState>().state = "attack";
+					e->getComponent<CFocus>().entity = m_player;
 				}
 			}
 		}
@@ -781,9 +877,10 @@ void Scene_Play::sCollision() {
 			// Check if player hits the tile from the bottom
 			if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) { 
 				if (0 <= overlap.y && prevOverlap.y <= 0) { 
-					tile.pos.y += overlap.y; 
-					tile.velocity.y = 0; 
+					tile.move = false;
+					tile.pos.y -= overlap.y; 
 					e->getComponent<CState>().state = "attack"; 
+					e->getComponent<CFocus>().entity = barricade;
 				}
 			}
 
@@ -793,39 +890,55 @@ void Scene_Play::sCollision() {
 				if (0 <= overlap.x && prevOverlap.x <= 0) {
 					if (dx > 0) {
 						// Tile is right of player
+						tile.move = false;
 						tile.pos.x += overlap.x;
-						e->getComponent<CState>().state = "attack"; 
+						e->getComponent<CState>().state = "attack";
+						e->getComponent<CFocus>().entity = barricade;
 					}
 					else {
 						// Tile is left of player
 						tile.pos.x -= overlap.x;
-						e->getComponent<CState>().state = "attack"; 
+						tile.move = false;
+						e->getComponent<CState>().state = "attack";
+						e->getComponent<CFocus>().entity = barricade;
 					}
 				}
 			}
 		}
+		if (barricade->getComponent<CHealth>().health <= 0) {
+			barricade->getComponent<CState>().state = "death";
+		}
 	}
-
-	
 }
 
 void Scene_Play::sMovement() {
 	// Update positions of enemies
 	for (auto& e : m_entityManager.getEntities("enemy")) {
 		auto& e_transform = e->getComponent<CTransform>();
-		e_transform.prevPos = e_transform.pos;
 
-		if (e->getComponent<CState>().effect == "freeze") {
-			e_transform.pos += e_transform.velocity/2.f;
+		if (e_transform.move) {
+			e_transform.prevPos = e_transform.pos;
+
+			if (e->getComponent<CState>().effect == "freeze") {
+				e_transform.pos += e_transform.velocity / 2.f;
+			}
+			else {
+				e_transform.pos += e_transform.velocity;
+			}
 		}
-		else {
-			e_transform.pos += e_transform.velocity;
-		}
+
 		
 		auto& animation = e->getComponent<CAnimation>().animation;
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
-			attack(e, m_player);
+			if (e->getComponent<CFocus>().entity->getComponent<CState>().state == "death") {
+				e->getComponent<CFocus>().entity = nullptr;
+				e->getComponent<CState>().state = "idle";
+				e_transform.move = true;
+			}
+			else {
+				attack(e, e->getComponent<CFocus>().entity);
+			}
 		}
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;
@@ -1121,6 +1234,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	entity->getComponent<CTransform>().velocity = velocity;
 	entity->addComponent<CHealth>(health);
 	entity->addComponent<CAttack>(damage);
+	entity->addComponent<CFocus>();
 }
 
 void Scene_Play::sShop() {
@@ -1192,7 +1306,6 @@ void Scene_Play::sPlacement() {
 
 				if (m_selectedItem == 5) {
 					m_coins -= 25;
-					auto barricade = m_entityManager.addEntity("barricade");
 					auto pos = Vec2(roadRect.getPosition().x + roadRect.getSize().x / 2.f, roadRect.getPosition().y + roadRect.getSize().y / 2.f);
 					
 					int line;
@@ -1356,6 +1469,14 @@ void Scene_Play::sInfo() {
 				m_infoVector[1].setPosition(1268, 725);
 				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
 				m_infoVector[2].setPosition(1268, 750);
+			}
+
+			if (ent->tag() == "barricade") {
+				auto& ent_health = ent->getComponent<CHealth>();
+				auto& ent_level = ent->getComponent<CLevel>();
+				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+				m_infoVector.push_back(sf::Text(health, f, 20));
+				m_infoVector[0].setPosition(1268, 700);
 			}
 		}
 	}

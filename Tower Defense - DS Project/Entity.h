@@ -16,7 +16,9 @@ typedef std::tuple <
 	CAttack,
 	CRange,
 	CType,
-	CDelay
+	CDelay,
+	CFocus,
+	CFocusList
 	> ComponentTuple;
 
 class Entity { 
@@ -28,6 +30,7 @@ class Entity {
 	Entity(const size_t& id, const std::string& tag) : m_id(id), m_tag(tag) {}
 
 	friend class EntityManager;
+	friend class Component;
 public:
 
 	size_t id();

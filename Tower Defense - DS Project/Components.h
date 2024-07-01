@@ -5,6 +5,9 @@
 #include "Vec2.h"
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <memory>
+
+class Entity;
 
 class Component {
 public:
@@ -18,10 +21,11 @@ public:
 	Vec2 scale = { 1.0, 1.0 };
 	Vec2 velocity = { 0.0, 0.0 };
 	float angle = 0;
+	bool move = true;
 
 	CTransform() {}
 	CTransform(const Vec2 & p) : pos(p) {}
-	CTransform(const Vec2& p, const Vec2& v, const Vec2& sc, float a) : pos(p), velocity(v), scale(sc), angle(a) {}
+	CTransform(const Vec2& p, const Vec2& v, const Vec2& sc, float a, bool m) : pos(p), velocity(v), scale(sc), angle(a), move(m) {}
 };
 
 class CLifeSpan : public Component {
@@ -117,4 +121,21 @@ public:
 
 	CDelay(size_t l, size_t d) : lastAttackFrame(l), delay(d) {}
 	CDelay() {}
+};
+
+class CFocus : public Component {
+public:
+	std::shared_ptr<Entity> entity;
+
+	CFocus(std::shared_ptr<Entity> e) {
+		entity = e;
+	}
+	CFocus() {}
+};
+
+class CFocusList : public Component {
+public:
+	std::vector<std::shared_ptr<Entity>> entities;
+
+	CFocusList() {}
 };

@@ -195,7 +195,8 @@ void Scene_Play::sRender() {
 
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
-			if (e->tag() == "barricade") { continue; }
+			if (e->tag() == "barricade") continue;
+			if (e->getComponent<CType>().type == "bee") continue;
 			if (e->tag() != "enemyBoss")
 				if (e->getComponent<CState>().effect == "freeze")
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
@@ -217,6 +218,23 @@ void Scene_Play::sRender() {
 			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
+		}
+		for (auto e : m_entityManager.getEntities("enemy")) {
+			if (e->getComponent<CType>().type == "bee") {
+				if (e->tag() != "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+				else if (e->tag() == "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
+				if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
+				window.draw(e->getComponent<CAnimation>().animation.getSprite());
+			}
 		}
 	}
 	
@@ -864,6 +882,8 @@ void Scene_Play::sCollision() {
 
 		for (auto& e : nearbyEntities) {
 			if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
+
+			if (e->getComponent<CType>().type == "bee") continue;
 
 			auto& tile = e->getComponent<CTransform>(); 
 

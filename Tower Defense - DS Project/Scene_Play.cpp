@@ -1488,7 +1488,6 @@ void Scene_Play::sInfo() {
 				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
 				m_infoVector[2].setPosition(1268, 750);
 			}
-
 			if (ent->tag() == "barricade") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_level = ent->getComponent<CLevel>();
@@ -1523,13 +1522,19 @@ void Scene_Play::sUpgrade() {
 	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 	
 	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		if (m_player->getComponent<CInput>().rightClick) {
-			m_player->getComponent<CInput>().rightClick = false;
-			auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
-			if (m_coins >= upgradePrice) {
-				m_coins -= upgradePrice;
-				m_player->getComponent<CState>().state = "upgrade";
-				m_player->getComponent<CHealth>().totalHealth += 200;
+		if (m_player->getComponent<CInput>().rightClick && m_player->getComponent<CState>().state != "upgrade") {
+			if (m_player->getComponent<CLevel>().level < m_player->getComponent<CLevel>().max_level) {
+				m_player->getComponent<CLevel>().level++;
+				m_player->getComponent<CInput>().rightClick = false;
+				auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+				if (m_coins >= upgradePrice) {
+					m_coins -= upgradePrice;
+					auto& cHealth = m_player->getComponent<CHealth>();
+					m_player->getComponent<CState>().state = "upgrade";
+					float percent = cHealth.health / cHealth.totalHealth;
+					cHealth.totalHealth += 200;
+					cHealth.health = cHealth.totalHealth * percent;
+				}
 			}
 		}
 	}

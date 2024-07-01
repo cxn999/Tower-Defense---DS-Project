@@ -8,7 +8,7 @@ protected:
 	sf::Text m_gridText;
 	std::string m_levelPath;
 
-	size_t m_coins = 700;
+	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
 
 	std::vector<sf::Text> m_infoVector;

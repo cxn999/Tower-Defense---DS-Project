@@ -1,14 +1,20 @@
 <map id="Scene_Settings::update" name="Scene_Settings::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,166,57"/>
-<area shape="rect" id="Node000002" href="$class_scene___settings.html#adef765b0de1cab51176913b143c6f0bc" title="virtual method of the base class" alt="" coords="214,5,383,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,32,198,28,199,33,167,37"/>
-<area shape="rect" id="Node000004" href="$class_entity_manager.html#abc6a2cc5077501f4b06d88f4ed3e7e31" title=" " alt="" coords="222,56,375,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,51,207,56,206,61,166,56"/>
-<area shape="rect" id="Node000003" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="431,5,577,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,16,416,16,416,21,383,21"/>
-<area shape="rect" id="Node000005" href="$class_quadtree.html#ab2b40ef82fa81688886c8f38bf7846d3" title=" " alt="" coords="449,56,559,83"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="375,67,433,67,433,72,375,72"/>
-<area shape="rect" id="Node000006" href="$class_quadtree.html#a5707a18168416e1699ba5838bc65015e" title=" " alt="" coords="447,131,561,157"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="338,81,452,122,450,127,336,86"/>
-<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="469,132,463,122,467,112,481,106,504,104,529,107,542,113,539,118,527,112,504,109,483,111,471,116,468,121,474,129"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,166,184"/>
+<area shape="rect" id="Node000002" href="$class_scene___settings.html#adef765b0de1cab51176913b143c6f0bc" title="virtual method of the base class" alt="" coords="214,107,383,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,154,224,135,225,140,145,159"/>
+<area shape="rect" id="Node000007" href="$class_entity_manager.html#abc6a2cc5077501f4b06d88f4ed3e7e31" title=" " alt="" coords="222,208,375,235"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="145,182,225,201,224,206,144,187"/>
+<area shape="rect" id="Node000003" href="$class_assets.html#a82a07c4ce9f847b53f635018533c160c" title=" " alt="" coords="440,5,586,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,104,368,73,430,42,446,35,448,40,432,46,371,78,322,108"/>
+<area shape="rect" id="Node000004" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="431,56,594,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="357,103,438,84,439,89,359,109"/>
+<area shape="rect" id="Node000005" href="$class_animation.html#adc3d127aedf807dccbfaae49290f3c76" title=" " alt="" coords="443,107,582,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="383,117,428,117,428,123,383,123"/>
+<area shape="rect" id="Node000006" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="440,157,586,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="359,131,439,151,438,156,357,137"/>
+<area shape="rect" id="Node000008" href="$class_quadtree.html#ab2b40ef82fa81688886c8f38bf7846d3" title=" " alt="" coords="458,208,568,235"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="375,219,442,219,442,224,375,224"/>
+<area shape="rect" id="Node000009" href="$class_quadtree.html#a5707a18168416e1699ba5838bc65015e" title=" " alt="" coords="456,283,570,309"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="340,233,459,275,457,280,338,238"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="476,284,470,274,474,264,489,258,513,256,538,259,552,265,549,270,537,264,513,261,490,263,478,268,475,273,481,281"/>
 </map>

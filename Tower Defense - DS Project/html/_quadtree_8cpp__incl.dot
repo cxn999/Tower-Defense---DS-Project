@@ -36,7 +36,8 @@ digraph "Quadtree.cpp"
   Node7 -> Node9 [id="edge17_Node000007_Node000009",color="steelblue1",style="solid",tooltip=" "];
   Node7 -> Node10 [id="edge18_Node000007_Node000010",color="steelblue1",style="solid",tooltip=" "];
   Node7 -> Node3 [id="edge19_Node000007_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node6 -> Node10 [id="edge20_Node000006_Node000010",color="steelblue1",style="solid",tooltip=" "];
-  Node6 -> Node14 [id="edge21_Node000006_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node7 -> Node5 [id="edge20_Node000007_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node10 [id="edge21_Node000006_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node14 [id="edge22_Node000006_Node000014",color="steelblue1",style="solid",tooltip=" "];
   Node14 [id="Node000014",label="tuple",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
 }

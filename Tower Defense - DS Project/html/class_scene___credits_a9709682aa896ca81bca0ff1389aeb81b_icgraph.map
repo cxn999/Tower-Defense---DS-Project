@@ -1,0 +1,5 @@
+<map id="Scene_Credits::init" name="Scene_Credits::init">
+<area shape="rect" id="Node000001" title="text for the menu" alt="" coords="205,13,336,40"/>
+<area shape="rect" id="Node000002" href="$class_scene___credits.html#a116fe838117406dd88dba69220b25d81" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="5,5,157,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,29,157,29,157,24,189,24"/>
+</map>

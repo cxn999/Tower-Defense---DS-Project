@@ -6,8 +6,10 @@ digraph "Scene_Menu"
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   Node1 [id="Node000001",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Menu</TD></TR>
 <HR/>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title1<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title2<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText1<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText2<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; sf::Text<BR ALIGN="LEFT"/> &gt; m_texts<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; std::string<BR ALIGN="LEFT"/> &gt; m_menuStrings<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; std::string<BR ALIGN="LEFT"/> &gt; m_levelPaths<BR ALIGN="LEFT"/></TD></TR>

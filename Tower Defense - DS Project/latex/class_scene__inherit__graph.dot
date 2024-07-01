@@ -29,11 +29,30 @@ digraph "Scene"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">virtual void onEnd()=0<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
-  Node1 -> Node2 [id="edge4_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
-  Node2 [id="Node000002",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Menu</TD></TR>
+  Node1 -> Node2 [id="edge5_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node2 [id="Node000002",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Credits</TD></TR>
 <HR/>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; sf::Text<BR ALIGN="LEFT"/> &gt; m_texts<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; std::string<BR ALIGN="LEFT"/> &gt; m_menuStrings<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_menuText<BR ALIGN="LEFT"/></TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">Scene_Credits(GameEngine<BR ALIGN="LEFT"/> *gameEngine=nullptr)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sRender()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void init()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void update()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void onEnd()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sDoAction(const<BR ALIGN="LEFT"/> Action &amp;action)<BR ALIGN="LEFT"/></TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_scene___credits.html",tooltip="include graphics library"];
+  Node1 -> Node3 [id="edge6_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node3 [id="Node000003",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Menu</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title1<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_title2<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText1<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText2<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; sf::Text<BR ALIGN="LEFT"/> &gt; m_texts<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; std::string<BR ALIGN="LEFT"/> &gt; m_menuStrings<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; std::string<BR ALIGN="LEFT"/> &gt; m_levelPaths<BR ALIGN="LEFT"/></TD></TR>
@@ -48,8 +67,8 @@ digraph "Scene"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sDoAction(const<BR ALIGN="LEFT"/> Action &amp;action)<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_scene___menu.html",tooltip=" "];
-  Node1 -> Node3 [id="edge5_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
-  Node3 [id="Node000003",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Play</TD></TR>
+  Node1 -> Node4 [id="edge7_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node4 [id="Node000004",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Play</TD></TR>
 <HR/>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_gridText<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::string m_levelPath<BR ALIGN="LEFT"/></TD></TR>
@@ -57,7 +76,6 @@ digraph "Scene"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_coinsText<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; sf::Text<BR ALIGN="LEFT"/> &gt; m_infoVector<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool m_drawInfo<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool m_upgrade<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool m_drawTextures<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool m_drawCollision<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">bool m_roadGrid<BR ALIGN="LEFT"/></TD></TR>
@@ -99,15 +117,17 @@ digraph "Scene"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sDoAction(const<BR ALIGN="LEFT"/> Action &amp;a)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sPlacement()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnPlayer()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sUpgrade()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnBarricade<BR ALIGN="LEFT"/>(const Vec2 &amp;, size_t)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sInfo()<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void attack(std::shared<BR ALIGN="LEFT"/>_ptr&lt; Entity &gt; enemy,<BR ALIGN="LEFT"/> std::shared_ptr&lt; Entity<BR ALIGN="LEFT"/> &gt; tower)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void attack(std::shared<BR ALIGN="LEFT"/>_ptr&lt; Entity &gt; a, std<BR ALIGN="LEFT"/>::shared_ptr&lt; Entity &gt; b)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void generateRoadRectangles()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void generateGrassRectangles()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnSpikes(const<BR ALIGN="LEFT"/> std::string &amp;type, const<BR ALIGN="LEFT"/> Vec2 &amp;pos)<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_scene___play.html",tooltip=" "];
-  Node1 -> Node4 [id="edge6_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
-  Node4 [id="Node000004",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Settings</TD></TR>
+  Node1 -> Node5 [id="edge8_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node5 [id="Node000005",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Scene_Settings</TD></TR>
 <HR/>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">sf::Text m_titleText<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">#</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">std::vector&lt; sf::Text<BR ALIGN="LEFT"/> &gt; m_texts<BR ALIGN="LEFT"/></TD></TR>

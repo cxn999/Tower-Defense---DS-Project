@@ -1,0 +1,298 @@
+\doxysection{Scene\+\_\+\+Credits Class Reference}
+\hypertarget{class_scene___credits}{}\label{class_scene___credits}\index{Scene\_Credits@{Scene\_Credits}}
+
+
+include graphics library  
+
+
+
+
+{\ttfamily \#include $<$Scene\+\_\+\+Credits.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+\_\+\+Credits\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_scene___credits__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Scene\+\_\+\+Credits\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scene___credits_a116fe838117406dd88dba69220b25d81}{Scene\+\_\+\+Credits}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine=nullptr)
+\begin{DoxyCompactList}\small\item\em constructor for play scene that receives the pointer to the game engine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene___credits_a9c6466de3294b1dbdf94203fb7540d3b}{s\+Render}} ()
+\begin{DoxyCompactList}\small\item\em virtual method of the base class \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene_abad71a081e3b76cff376c954d3b6c3cb}{set\+Paused}} (bool)
+\item 
+\mbox{\hyperlink{class_scene_ad10176d75a9cc0da56626f682d083507}{Scene}} ()
+\item 
+\mbox{\hyperlink{class_scene_a413d692c235f90a9b0aaa33196e87384}{Scene}} (\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}game\+Engine)
+\item 
+virtual void \mbox{\hyperlink{class_scene_af69ab1aeb2b5d8c084aa02444e1f65d4}{do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\item 
+void \mbox{\hyperlink{class_scene_a670b58a8e14e222d9a75afe3eb1e35bc}{register\+Action}} (int input\+Key, const std\+::string \&action\+Name)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a440f3cd29cc9d73ca0d579a828d80c27}{width}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9ca07b0a912e89b57193d14ca68564d3}{height}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a9f43c171b6a78154f919cf0b8b3b9c1a}{current\+Frame}} () const
+\item 
+bool \mbox{\hyperlink{class_scene_ac6421c6df8dba50d02fdaf37538dfebf}{has\+Ended}} () const
+\item 
+const \mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \& \mbox{\hyperlink{class_scene_a201c6f29c57f78a6af5addb9fa779306}{get\+Action\+Map}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_scene___credits_a9709682aa896ca81bca0ff1389aeb81b}{init}} ()
+\begin{DoxyCompactList}\small\item\em text for the menu \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene___credits_af989f5130f6792f59972670b32211b54}{update}} ()
+\item 
+void \mbox{\hyperlink{class_scene___credits_a1f5cceef6b2bd640f501a924602984fe}{on\+End}} ()
+\item 
+void \mbox{\hyperlink{class_scene___credits_a7f0d1e351a35aeae0f7743bbdb9529b5}{s\+Do\+Action}} (const \mbox{\hyperlink{class_action}{Action}} \&action)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_scene___credits_a166d17da82936cdd190870bc3b0f7078}{m\+\_\+title}} = "{}Credits to\+: "{}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___credits_a33589d758e6e8cacdf29774f6b93bd01}{m\+\_\+title\+Text}}
+\item 
+std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_scene___credits_abae808efe6529891d528eb53e5f32c6a}{m\+\_\+texts}}
+\begin{DoxyCompactList}\small\item\em text for the credits \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_scene___credits_a2bdfaa183595359eea775a6546956030}{m\+\_\+menu\+Strings}}
+\begin{DoxyCompactList}\small\item\em vector for the texts in the scene \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___credits_a44615efdfc7836e0679bb42c737eacc7}{m\+\_\+menu\+Text}}
+\begin{DoxyCompactList}\small\item\em vector for the strings \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_scene}{Scene}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_scene_a055a2a35151e229504f940dc4a1eff0e}{m\+\_\+game}} = nullptr
+\item 
+\mbox{\hyperlink{class_entity_manager}{Entity\+Manager}} \mbox{\hyperlink{class_scene_a9607716b0ac72569b450f7e8aa1ac161}{m\+\_\+entity\+Manager}}
+\item 
+\mbox{\hyperlink{_scene_8h_a86ff12d26b739ff16bcff91d715df70e}{Action\+Map}} \mbox{\hyperlink{class_scene_a4221f1cd9c7ed1b714cfee64b0391da2}{m\+\_\+action\+Map}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_scene_a7bae804882b015014c71c017f7df0b1e}{m\+\_\+current\+Frame}}
+\item 
+bool \mbox{\hyperlink{class_scene_a9831c81afc52aeaac474275fcaa5bf95}{m\+\_\+paused}} = false
+\item 
+bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\+Ended}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+include graphics library 
+
+include entity manager header file include scene header file include map library include memory library derived \doxylink{class_scene}{Scene} from \doxylink{_scene_8h}{Scene.\+h} to implement the credits \doxylink{class_scene}{Scene} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_scene___credits_a116fe838117406dd88dba69220b25d81}\index{Scene\_Credits@{Scene\_Credits}!Scene\_Credits@{Scene\_Credits}}
+\index{Scene\_Credits@{Scene\_Credits}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{Scene\_Credits()}{Scene\_Credits()}}
+{\footnotesize\ttfamily \label{class_scene___credits_a116fe838117406dd88dba69220b25d81} 
+Scene\+\_\+\+Credits\+::\+Scene\+\_\+\+Credits (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+constructor for play scene that receives the pointer to the game engine 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a116fe838117406dd88dba69220b25d81_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_scene___credits_a9709682aa896ca81bca0ff1389aeb81b}\index{Scene\_Credits@{Scene\_Credits}!init@{init}}
+\index{init@{init}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_scene___credits_a9709682aa896ca81bca0ff1389aeb81b} 
+void Scene\+\_\+\+Credits\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+text for the menu 
+
+pure virtual method of the base class Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a9709682aa896ca81bca0ff1389aeb81b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{class_scene___credits_a9709682aa896ca81bca0ff1389aeb81b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___credits_a1f5cceef6b2bd640f501a924602984fe}\index{Scene\_Credits@{Scene\_Credits}!onEnd@{onEnd}}
+\index{onEnd@{onEnd}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{onEnd()}{onEnd()}}
+{\footnotesize\ttfamily \label{class_scene___credits_a1f5cceef6b2bd640f501a924602984fe} 
+void Scene\+\_\+\+Credits\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a1f5cceef6b2bd640f501a924602984fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a1f5cceef6b2bd640f501a924602984fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___credits_a7f0d1e351a35aeae0f7743bbdb9529b5}\index{Scene\_Credits@{Scene\_Credits}!sDoAction@{sDoAction}}
+\index{sDoAction@{sDoAction}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{sDoAction()}{sDoAction()}}
+{\footnotesize\ttfamily \label{class_scene___credits_a7f0d1e351a35aeae0f7743bbdb9529b5} 
+void Scene\+\_\+\+Credits\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_action}{Action}} \&}]{action}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a7f0d1e351a35aeae0f7743bbdb9529b5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___credits_a9c6466de3294b1dbdf94203fb7540d3b}\index{Scene\_Credits@{Scene\_Credits}!sRender@{sRender}}
+\index{sRender@{sRender}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{sRender()}{sRender()}}
+{\footnotesize\ttfamily \label{class_scene___credits_a9c6466de3294b1dbdf94203fb7540d3b} 
+void Scene\+\_\+\+Credits\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+virtual method of the base class 
+
+
+
+Implements \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a9c6466de3294b1dbdf94203fb7540d3b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_a9c6466de3294b1dbdf94203fb7540d3b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___credits_af989f5130f6792f59972670b32211b54}\index{Scene\_Credits@{Scene\_Credits}!update@{update}}
+\index{update@{update}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_scene___credits_af989f5130f6792f59972670b32211b54} 
+void Scene\+\_\+\+Credits\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{Scene}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___credits_af989f5130f6792f59972670b32211b54_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_scene___credits_a2bdfaa183595359eea775a6546956030}\index{Scene\_Credits@{Scene\_Credits}!m\_menuStrings@{m\_menuStrings}}
+\index{m\_menuStrings@{m\_menuStrings}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{m\_menuStrings}{m\_menuStrings}}
+{\footnotesize\ttfamily \label{class_scene___credits_a2bdfaa183595359eea775a6546956030} 
+std\+::vector$<$std\+::string$>$ Scene\+\_\+\+Credits\+::m\+\_\+menu\+Strings\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+vector for the texts in the scene 
+
+\Hypertarget{class_scene___credits_a44615efdfc7836e0679bb42c737eacc7}\index{Scene\_Credits@{Scene\_Credits}!m\_menuText@{m\_menuText}}
+\index{m\_menuText@{m\_menuText}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{m\_menuText}{m\_menuText}}
+{\footnotesize\ttfamily \label{class_scene___credits_a44615efdfc7836e0679bb42c737eacc7} 
+sf\+::\+Text Scene\+\_\+\+Credits\+::m\+\_\+menu\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+vector for the strings 
+
+\Hypertarget{class_scene___credits_abae808efe6529891d528eb53e5f32c6a}\index{Scene\_Credits@{Scene\_Credits}!m\_texts@{m\_texts}}
+\index{m\_texts@{m\_texts}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{m\_texts}{m\_texts}}
+{\footnotesize\ttfamily \label{class_scene___credits_abae808efe6529891d528eb53e5f32c6a} 
+std\+::vector$<$sf\+::\+Text$>$ Scene\+\_\+\+Credits\+::m\+\_\+texts\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+text for the credits 
+
+\Hypertarget{class_scene___credits_a166d17da82936cdd190870bc3b0f7078}\index{Scene\_Credits@{Scene\_Credits}!m\_title@{m\_title}}
+\index{m\_title@{m\_title}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{m\_title}{m\_title}}
+{\footnotesize\ttfamily \label{class_scene___credits_a166d17da82936cdd190870bc3b0f7078} 
+std\+::string Scene\+\_\+\+Credits\+::m\+\_\+title = "{}Credits to\+: "{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___credits_a33589d758e6e8cacdf29774f6b93bd01}\index{Scene\_Credits@{Scene\_Credits}!m\_titleText@{m\_titleText}}
+\index{m\_titleText@{m\_titleText}!Scene\_Credits@{Scene\_Credits}}
+\doxysubsubsection{\texorpdfstring{m\_titleText}{m\_titleText}}
+{\footnotesize\ttfamily \label{class_scene___credits_a33589d758e6e8cacdf29774f6b93bd01} 
+sf\+::\+Text Scene\+\_\+\+Credits\+::m\+\_\+title\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_scene___credits_8h}{Scene\+\_\+\+Credits.\+h}}\item 
+\mbox{\hyperlink{_scene___credits_8cpp}{Scene\+\_\+\+Credits.\+cpp}}\end{DoxyCompactItemize}

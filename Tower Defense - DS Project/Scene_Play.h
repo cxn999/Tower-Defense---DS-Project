@@ -47,8 +47,6 @@ protected:
 	sf::Clock m_weatherClock;	// Clock for moving the clouds
 	sf::Clock m_nightClock;		// Clock for the day/night time
 
-	
-
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
 
@@ -74,7 +72,7 @@ public:
 	void spawnBarricade(const Vec2&, size_t);
 	void sInfo();
 
-	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
+	void attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b);
 	void generateRoadRectangles();
 	void generateGrassRectangles();
 

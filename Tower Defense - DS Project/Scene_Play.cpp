@@ -183,8 +183,6 @@ void Scene_Play::spawnBarricade(const Vec2& position, size_t line) {
 	m_barricade->addComponent<CBoundingBox>(Vec2(size.getSize().x / 2.f + 15.f, size.getSize().y / 2.f + 15.f));
 	m_barricade->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f + 50.f));
 	m_barricade->getComponent<CTransform>().pos = { position.x, position.y - offset};
-	
-	m_barricade->addComponent<CFocusList>();
 	m_barricade->addComponent<CHealth>(200);
 }
 
@@ -824,7 +822,7 @@ void Scene_Play::sCollision() {
 		if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) {
 			if (0 <= overlap.y && prevOverlap.y <= 0) {
 				tile.move = false;
-				tile.pos.y += overlap.y;
+				tile.pos.y -= overlap.y;
 				e->getComponent<CState>().state = "attack";
 				e->getComponent<CFocus>().entity = m_player;
 

@@ -17,7 +17,7 @@ typedef std::tuple <
 	CRange,
 	CType,
 	CDelay,
-	CFocus,
+	CFocus
 	> ComponentTuple;
 
 class Entity { 

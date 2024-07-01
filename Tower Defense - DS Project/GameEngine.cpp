@@ -9,9 +9,6 @@ GameEngine::GameEngine(const std::string& path) {
 }
 
 void GameEngine::init(const std::string& path) {
-	//std::ifstream fin(path);
-	// TO DO: READ CONFIG FILE
-	
 	m_assets.loadFromFile(path);
 
 	// Create a window with the specified resolution
@@ -23,8 +20,6 @@ void GameEngine::init(const std::string& path) {
 }
 
 void GameEngine::update() {
-	float currentTime = m_clock.restart().asSeconds();
-	float m_fps = 1.0f / (currentTime);
 	sUserInput();
 	m_sceneMap[m_currentScene]->update();
 }

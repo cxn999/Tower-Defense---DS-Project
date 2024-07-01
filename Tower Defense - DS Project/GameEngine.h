@@ -23,7 +23,6 @@ protected:
 	float m_volume = 50;
 	bool m_music = false;
 
-
 	// Should load the assets
 	void init(const std::string& path);
 	void update();
@@ -31,12 +30,7 @@ protected:
 	void sUserInput();
 	std::shared_ptr<Scene> currentScene();
 	sf::Music* m_currentMusic; // Pointer to the current music track
-
-
 public:
-	sf::Clock m_clock;
-	float m_fps;
-
 	GameEngine(const std::string& path);
 
 	// Change scene  

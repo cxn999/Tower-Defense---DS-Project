@@ -1460,7 +1460,7 @@ void Scene_Play::sPlacement() {
 				if (m_selectedItem == 5) {
 					if (m_usedRoadRectanglesIndex[i] == true) continue;
 					m_usedRoadRectanglesIndex[i] = true;
-					m_coins -= 25;
+					m_coins -= 40;
 					auto pos = Vec2(roadRect.getPosition().x + roadRect.getSize().x / 2.f, roadRect.getPosition().y + roadRect.getSize().y / 2.f);
 					
 					int line;

@@ -216,7 +216,7 @@ Animation lightningShop lightningShop 1 0
 ------------------------- MUSICS -------------------------
 
 Music menu Assets\Musics\TheCastleWalls.ogg
-Music play Assets\Musics\forest_battle.ogg
+Music play Assets\Musics\surviveTHEHORDE.ogg
 
 ------------------------SOUND EFFECTS -------------------------
 

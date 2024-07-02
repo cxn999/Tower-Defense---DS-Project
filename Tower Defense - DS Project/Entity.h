@@ -8,7 +8,6 @@ typedef std::tuple <
 	CAnimation,
 	CBoundingBox,
 	CInput,
-	CLifeSpan,
 	CTransform,
 	CLevel,
 	CHealth,

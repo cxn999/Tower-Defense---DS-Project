@@ -27,14 +27,6 @@ public:
 	CTransform(const Vec2& p, const Vec2& v, size_t i, bool m) : pos(p), velocity(v), index(i), move(m) {}
 };
 
-class CLifeSpan : public Component {
-public:
-	int lifespan = 0;
-	int frameCreated = 0;
-	CLifeSpan() {}
-	CLifeSpan(int duration, int frame) : lifespan(duration), frameCreated(frame) {}
-};
-
 class CInput : public Component {
 public:
 	bool click = false;

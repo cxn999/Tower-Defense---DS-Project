@@ -79,8 +79,10 @@ void Scene_Play::init() {
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
 	registerAction(sf::Keyboard::R, "REPLAY");
+	registerAction(sf::Keyboard::H, "HELP");
 	registerAction(sf::Mouse::Right, "RIGHTCLICK"); 
 	registerAction(sf::Mouse::Left, "CLICK");
+	
 
 
 	spawnPlayer();
@@ -121,6 +123,13 @@ void Scene_Play::sDoAction(const Action& action) {
 	if (action.type() == "START") {
 		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
 		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
+		else if (action.name() == "HELP") { 
+			setPaused(!m_paused); 
+			if (m_toggleHelp)
+				m_toggleHelp = false;
+			else
+				m_toggleHelp = true;
+		}
 		else if (action.name() == "PAUSE") { 
 			setPaused(!m_paused); 
 			if (m_pauseP)
@@ -448,6 +457,11 @@ void Scene_Play::sRender() {
 	 m_helpPauseText.setOutlineThickness(3.f);
 	 window.draw(m_helpPauseText);
 	
+	 m_helpTutorialText = sf::Text("PRESS 'H' FOR HELP", m_game->getAssets().getFont("RETROGAMING"), 20);
+	 m_helpTutorialText.setPosition(window.getSize().x * 0.40f, window.getSize().y * 0.92f);
+	 m_helpTutorialText.setOutlineColor(sf::Color::Black);
+	 m_helpTutorialText.setOutlineThickness(3.f);
+	 window.draw(m_helpTutorialText);
 
 	if (!m_player->isActive() || m_paused) {
 		 sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40);
@@ -505,6 +519,11 @@ void Scene_Play::sRender() {
 		window.draw(quit); 
 
 	}
+
+	if (m_toggleHelp) {
+	
+	}	
+
 	window.display(); 
 }
 

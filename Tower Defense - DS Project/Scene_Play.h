@@ -8,7 +8,7 @@ protected:
 	sf::Text m_gridText;
 
 
-	size_t m_coins = 153434340;
+	size_t m_coins = 150;
 	sf::Text m_coinsText;
 	sf::Text m_helpPauseText;
 

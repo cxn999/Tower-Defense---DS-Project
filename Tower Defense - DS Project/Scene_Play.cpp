@@ -1553,7 +1553,7 @@ void Scene_Play::sShop() {
 				}
 			}
 			else if (i == 5) {
-				if (m_coins < 25) { continue; }
+				if (m_coins < 40) { continue; }
 				m_mouseItem = true;
 			}
 
@@ -1965,7 +1965,7 @@ void Scene_Play::sUpgrade() {
 				if (defense->getComponent<CLevel>().level < defense->getComponent<CLevel>().max_level) {
 					defense->getComponent<CLevel>().level++;
 					defense->getComponent<CInput>().rightClick = false;
-					auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+					auto upgradePrice = 80 + 40 * (defense->getComponent<CLevel>().level-1);
 					if (m_coins >= upgradePrice) {
 						m_coins -= upgradePrice;
 						auto& cHealth = m_player->getComponent<CHealth>();

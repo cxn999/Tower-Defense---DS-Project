@@ -368,7 +368,7 @@ void Scene_Play::sRender() {
 
 	//Clouds block
 	sf::Sprite clouds;
-	clouds = m_game->getAssets().getAnimation("clouds").getSprite(); 
+	clouds = m_game->getAssets().getAnimation("clouds").getSprite();  
 	clouds.setOrigin(0.0f, 0.0f);
 	clouds.setColor(sf::Color(128, 128, 128, 50)); 
 	clouds.setScale(2.7f, 2.5f);

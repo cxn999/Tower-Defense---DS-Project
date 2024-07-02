@@ -8,7 +8,10 @@ protected:
 	sf::Text m_gridText;
 
 
-	size_t m_coins = 500;
+
+	size_t m_coins = 50000;
+
+
 	sf::Text m_coinsText;
 	sf::Text m_helpPauseText;
 	sf::Text m_helpTutorialText;
@@ -40,6 +43,7 @@ protected:
 	size_t m_lastFrameDefenseSpawn = 0; // Last frame in which a defense tower was placed
 	size_t m_opacity = 0;	// Opacity property of the night filter
 	size_t m_spawnRateFrame = 150; //Initial spawn rate of the enemies 
+	size_t tutorialIndex = 0;
 
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
@@ -54,6 +58,7 @@ protected:
 	sf::Clock m_nightClock;		// Clock for the day/night time
 
 	sf::Sprite m_pauseBackground;
+	std::vector<sf::Sprite> tutorials; 
 
 public:
 	Scene_Play(GameEngine* gameEngine);

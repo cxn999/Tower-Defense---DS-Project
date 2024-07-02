@@ -82,8 +82,9 @@ void Scene_Play::init() {
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Keyboard::R, "REPLAY");
+	registerAction(sf::Keyboard::R, "RESTART");
 	registerAction(sf::Keyboard::H, "HELP");
+	registerAction(sf::Keyboard::N, "NEXT");
 	registerAction(sf::Mouse::Right, "RIGHTCLICK"); 
 	registerAction(sf::Mouse::Left, "CLICK");
 	
@@ -121,6 +122,19 @@ void Scene_Play::init() {
 
 	m_pauseBackground = m_game->getAssets().getAnimation("backgroundPause").getSprite();
 	m_pauseBackground.setPosition(sf::Vector2f(m_game->window().getSize().x / 2, m_game->window().getSize().y * 0.86));
+
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto1").getSprite()); 
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto2").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto3").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto4").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto5").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto6").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto7").getSprite());
+	tutorials.push_back(m_game->getAssets().getAnimation("tuto8").getSprite());
+
+	for (int i = 0; i <= 7; i++) {
+		tutorials[i].setPosition(sf::Vector2f(m_game->window().getSize().x / 2, m_game->window().getSize().y / 2));
+	}
 }
 
 void Scene_Play::sDoAction(const Action& action) {
@@ -134,6 +148,11 @@ void Scene_Play::sDoAction(const Action& action) {
 			else
 				m_toggleHelp = true;
 		}
+		else if (action.name() == "NEXT") {
+			tutorialIndex += 1;
+			if (tutorialIndex == 8)
+				tutorialIndex = 0;
+		}
 		else if (action.name() == "PAUSE") { 
 			setPaused(!m_paused); 
 			if (m_pauseP)
@@ -142,7 +161,7 @@ void Scene_Play::sDoAction(const Action& action) {
 				m_pauseP = true;
 		}
 		else if (action.name() == "QUIT") { onEnd(); }
-		else if (action.name() == "REPLAY") {
+		else if (action.name() == "RESTART") {
 			if (!m_player->isActive() || m_paused) {
 				replay();
 			}
@@ -488,7 +507,7 @@ void Scene_Play::sRender() {
 	 window.draw(m_helpTutorialText);
 
 	if (!m_player->isActive() || m_paused) {
-		 sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40);
+		 sf::Text replay = sf::Text("Restart: R", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 sf::Text gameOver = sf::Text("GAME OVER", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 gameOver.setFillColor(sf::Color::Red);
@@ -517,7 +536,7 @@ void Scene_Play::sRender() {
 
 	if (m_pauseP){
 		
-		sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40); 
+		sf::Text replay = sf::Text("Restart: R", m_game->getAssets().getFont("RETROGAMING"), 40); 
 		sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40); 
 		m_helpPauseText = sf::Text("Resume: P", m_game->getAssets().getFont("RETROGAMING"), 40);
 
@@ -545,7 +564,7 @@ void Scene_Play::sRender() {
 	}
 
 	if (m_toggleHelp) {
-	
+			window.draw(tutorials[tutorialIndex]);
 	}	
 
 	window.display(); 
@@ -1340,7 +1359,7 @@ void Scene_Play::sEnemySpawner() {
 		sSpawnEnemy(rand() % 3 + 1);	
 	}
 	if (t >= 1) {
-		if (t % 1 == 0 && m_spawnRateFrame >= 50) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
+		if (t % 1 == 0 && m_spawnRateFrame >= 30) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
 			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}

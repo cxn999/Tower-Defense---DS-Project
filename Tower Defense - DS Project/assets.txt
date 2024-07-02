@@ -105,6 +105,16 @@ Texture backgroundMenu Assets\MenuBackground.png
 Texture backgroundSettings Assets\SettingsBackground.png
 Texture backgroundPause Assets\pauseBackground.png
 
+Texture tuto1 Assets\Tutorial\tuto1.png
+Texture tuto2 Assets\Tutorial\tuto2.png
+Texture tuto3 Assets\Tutorial\tuto3.png
+Texture tuto4 Assets\Tutorial\tuto4.png
+Texture tuto5 Assets\Tutorial\tuto5.png
+Texture tuto6 Assets\Tutorial\tuto6.png
+Texture tuto7 Assets\Tutorial\tuto7.png
+Texture tuto8 Assets\Tutorial\tuto8.png
+
+
 ------------------------- ANIMATIONS -------------------------
 
 Animation background background 1 0
@@ -214,6 +224,16 @@ Animation shopTargetTower shopTargetTower 1 0
 Animation lightningShop lightningShop 1 0
 
 Animation backgroundPause backgroundPause 1 0 
+
+Animation tuto1 tuto1 1 0
+Animation tuto2 tuto2 1 0
+Animation tuto3 tuto3 1 0
+Animation tuto4 tuto4 1 0
+Animation tuto5 tuto5 1 0
+Animation tuto6 tuto6 1 0
+Animation tuto7 tuto7 1 0
+Animation tuto8 tuto8 1 0
+
 
 ------------------------- MUSICS -------------------------
 

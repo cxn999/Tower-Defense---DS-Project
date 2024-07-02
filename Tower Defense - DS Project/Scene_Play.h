@@ -6,7 +6,7 @@
 class Scene_Play : public Scene {
 protected:
 	sf::Text m_gridText;
-	std::string m_levelPath;
+
 
 	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
@@ -51,13 +51,14 @@ protected:
 	sf::Clock m_nightClock;		// Clock for the day/night time
 
 public:
-	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
+	Scene_Play(GameEngine* gameEngine);
 
 	// Check which is public or private smh
-	void init(const std::string & path);
+	void init();
 	void update();
 
 	void onEnd();
+	void replay();
 
 	// Systems
 	void sAnimation();

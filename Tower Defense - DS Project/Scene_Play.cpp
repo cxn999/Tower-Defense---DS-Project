@@ -11,12 +11,11 @@
 #include <time.h>
 #include <cmath>
 
-Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath) 
+Scene_Play::Scene_Play(GameEngine* gameEngine) 
 	: Scene(gameEngine)
-	, m_levelPath(levelPath) 
 {
 	srand(time(NULL));
-	init(m_levelPath);
+	init();
 
 }
 
@@ -74,13 +73,15 @@ void Scene_Play::generateGrassRectangles() {
 	}
 }
 
-void Scene_Play::init(const std::string& levelPath) {
+void Scene_Play::init() {
 	registerAction(sf::Keyboard::P, "PAUSE");
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Mouse::Right, "RIGHTCLICK");
+	registerAction(sf::Keyboard::R, "REPLAY");
+	registerAction(sf::Mouse::Right, "RIGHTCLICK"); 
 	registerAction(sf::Mouse::Left, "CLICK");
+
 
 	spawnPlayer();
 
@@ -125,6 +126,11 @@ void Scene_Play::sDoAction(const Action& action) {
 				m_pauseP = true;
 		}
 		else if (action.name() == "QUIT") { onEnd(); }
+		else if (action.name() == "REPLAY") {
+			if (!m_player->isActive() || m_paused) {
+				replay();
+			}
+		}
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
 		else if (action.name() == "RIGHTCLICK") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
@@ -1736,4 +1742,8 @@ void Scene_Play::sUpgrade() {
 			}
 		}
 	}
+}
+
+void Scene_Play::replay() {
+	m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game), true);
 }

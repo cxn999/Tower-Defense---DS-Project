@@ -531,8 +531,8 @@ void Scene_Play::sAnimation() {
 		auto& e_transform = e->getComponent<CTransform>();
 		auto& e_state = e->getComponent<CState>().state;
 		auto& animation = e->getComponent<CAnimation>().animation;
-		auto type = e->getComponent<CType>().type;
-		auto direction = e->getComponent<CState>().direction;
+		auto& type = e->getComponent<CType>().type; 
+		auto& direction = e->getComponent<CState>().direction; 
 		
 		if (e_state == "attack" && (animation.getName().find("Attack") == std::string::npos)) {
 			if (type == "goblin") {
@@ -612,8 +612,8 @@ void Scene_Play::sAnimation() {
 		auto& e_transform = e->getComponent<CTransform>();
 		auto& e_state = e->getComponent<CState>().state;
 		auto& animation = e->getComponent<CAnimation>().animation;
-		auto type = e->getComponent<CType>().type;
-		auto direction = e->getComponent<CState>().direction;
+		auto& type = e->getComponent<CType>().type;
+		auto& direction = e->getComponent<CState>().direction;
 
 		if (e_state == "attack" && (animation.getName().find("Attack") == std::string::npos)) {
 			if (type == "goblin") {
@@ -652,7 +652,7 @@ void Scene_Play::sAnimation() {
 			if (type == "bee") {
 				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeDeath");
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
-				m_coins += 20;
+				m_coins += 30;
 			}
 			e->getComponent<CFocus>().entity = nullptr;
 			e_transform.velocity = { 0,0 };
@@ -1177,7 +1177,7 @@ void Scene_Play::sEnemySpawner() {
 		sSpawnEnemy(rand() % 3 + 1);	
 	}
 	if (t >= 1) {
-		if (t % 1 == 0 && m_spawnRateFrame >= 15) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
+		if (t % 1 == 0 && m_spawnRateFrame >= 50) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
 			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}
@@ -1311,7 +1311,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 		else if (type == 1) {
 			entity->addComponent<CType>("wolf");
-			damage = 30.f;
+			damage = 30;
 			velocity *= 1.2f;
 			health = 200;
 			if (line == 2) {
@@ -1323,9 +1323,9 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 		}
 		else if (type == 2) {
 			entity->addComponent<CType>("bee");
-			damage = 40.f;
+			damage = 40;
 			animation = "D_beeWalk";
-			health = 300;
+			health = 222;
 			if (line == 2) {
 				animation = "D_beeWalk";
 			}

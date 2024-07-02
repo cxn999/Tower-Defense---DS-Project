@@ -1003,12 +1003,27 @@ void Scene_Play::sMovement() {
 	}
 	for (auto& e : m_entityManager.getEntities("enemyBoss")) {
 		auto& e_transform = e->getComponent<CTransform>();
-		e_transform.prevPos = e_transform.pos;
-		e_transform.pos += e_transform.velocity;
+		if (e_transform.move) {
+			e_transform.prevPos = e_transform.pos;
+
+			if (e->getComponent<CState>().effect == "freeze") {
+				e_transform.pos += e_transform.velocity / 2.f;
+			}
+			else {
+				e_transform.pos += e_transform.velocity;
+			}
+		}
 		auto& animation = e->getComponent<CAnimation>().animation;
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
-			attack(e, m_player);
+			if (e->getComponent<CFocus>().entity->getComponent<CState>().state == "death") {
+				e->getComponent<CFocus>().entity = nullptr;
+				e->getComponent<CState>().state = "idle";
+				e_transform.move = true;
+			}
+			else {
+				attack(e, e->getComponent<CFocus>().entity);
+			}
 		}
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;

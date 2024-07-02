@@ -10,6 +10,10 @@
 #include <iostream>
 #include <time.h>
 #include <cmath>
+#include <iomanip>
+#include <sstream>
+#include <algorithm>
+
 
 Scene_Play::Scene_Play(GameEngine* gameEngine) 
 	: Scene(gameEngine)
@@ -224,9 +228,11 @@ void Scene_Play::sRender() {
 	window.draw(m_game->getAssets().getAnimation("background").getSprite());
 
 	if (m_drawTextures) {
-		for (auto e : m_entityManager.getEntities()) {
+		for (auto& e : m_entityManager.getEntities()) {
 			if (e->tag() == "barricade") continue;
 			if (e->getComponent<CType>().type == "bee") continue;
+			if (e->tag() == "defense" || e->tag() == "archer") continue;
+
 			if (e->tag() != "enemyBoss")
 				if (e->getComponent<CState>().effect == "freeze")
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
@@ -242,7 +248,7 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 
-		for (auto e : m_entityManager.getEntities("barricade")) {
+		for (auto& e : m_entityManager.getEntities("barricade")) {
 			if (e->tag() != "enemyBoss")
 					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
 			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
@@ -250,7 +256,7 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 
-		for (auto e : m_entityManager.getEntities("enemy")) {
+		for (auto& e : m_entityManager.getEntities("enemy")) {
 			if (e->getComponent<CType>().type == "bee") {
 				if (e->tag() != "enemyBoss")
 					if (e->getComponent<CState>().effect == "freeze")
@@ -268,7 +274,7 @@ void Scene_Play::sRender() {
 			}
 		}
 
-		for (auto e : m_entityManager.getEntities("enemyBoss")) {
+		for (auto& e : m_entityManager.getEntities("enemyBoss")) {
 			if (e->getComponent<CType>().type == "bee") {
 				if (e->tag() != "enemyBoss")
 					if (e->getComponent<CState>().effect == "freeze")
@@ -284,6 +290,24 @@ void Scene_Play::sRender() {
 					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 				window.draw(e->getComponent<CAnimation>().animation.getSprite());
 			}
+		}
+
+		auto& defenses = m_entityManager.getEntities("defense");
+
+		// Sort the vector based on the Y component of the CTransform component
+		std::sort(defenses.begin(), defenses.end(), [](const auto& lhs, const auto& rhs) {
+			return lhs->getComponent<CTransform>().pos.y < rhs->getComponent<CTransform>().pos.y;
+			});
+
+		// Accessing the sorted vector
+		for (const auto& entity : defenses) {
+			window.draw(entity->getComponent<CAnimation>().animation.getSprite());
+		}
+
+		for (auto& archer : m_entityManager.getEntities("archer")) {
+			auto & sprite = archer->getComponent<CAnimation>().animation.getSprite();
+			sprite.setColor(sf::Color(255, 255, 255));
+			window.draw(sprite);
 		}
 	}
 	
@@ -751,6 +775,8 @@ void Scene_Play::sAnimation() {
 		auto& d = defense->getComponent<CAnimation>();
 		auto& d_pos = defense->getComponent<CTransform>().pos;
 		auto d_type = defense->getComponent<CType>().type;
+		auto d_level = defense->getComponent<CLevel>().level;
+		auto& d_state = defense->getComponent<CState>().state;
 
 		if (d.animation.getName() == "constructionTower" && m_lastFrameDefenseSpawn+300==m_currentFrame) {
 
@@ -765,43 +791,105 @@ void Scene_Play::sAnimation() {
 			}
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 		}
-		if (d.animation.getName().find("upgrade") != std::string::npos && d.animation.hasEnded()) {
 
-			if (d_type == "area") {
-				d.animation = (m_game->getAssets().getAnimation("areaTower2"));
+		if (d_state == "upgrade" && d.animation.getName().find("upgrade") == std::string::npos) {
+			if (d_level == 2) {
+				auto& archer = defense->getComponent<CFocus>().entity;
+				archer->getComponent<CTransform>().pos.y -= 12;
+				if (d_type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeAreaTower2"));
+					archer->getComponent<CDelay>().delay /= 2.f;
+				}
+				else if (d_type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeFreezeTower2"));
+				}
+				else if (d_type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeTargetTower2"));
+					archer->getComponent<CAttack>().damage *= 2;
+				}
 			}
-			else if (d_type == "freeze") {
-				d.animation = (m_game->getAssets().getAnimation("freezeTower2"));
+			else if (d_level == 3) {
+				auto& archer = defense->getComponent<CFocus>().entity;
+				archer->getComponent<CTransform>().pos.y -= 16;
+				if (d_type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeAreaTower3"));
+					archer->getComponent<CDelay>().delay /= 2.f;
+				}
+				else if (d_type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeFreezeTower3"));
+				}
+				else if (d_type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("upgradeTargetTower3"));
+					archer->getComponent<CAttack>().damage *= 2;
+				}
 			}
-			else if (d_type == "target") {
-				d.animation = (m_game->getAssets().getAnimation("targetTower2"));
+			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
+		}
+
+		if (d.animation.getName().find("upgrade") != std::string::npos && d.animation.hasEnded()) {
+			d_state = "idle";
+			if (d_level == 1) {
+				if (d_type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("areaTower2"));
+				}
+				else if (d_type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("freezeTower2"));
+				}
+				else if (d_type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("targetTower2"));
+				}
+
+				auto archer = m_entityManager.addEntity("archer");
+				defense->addComponent<CFocus>();
+				defense->getComponent<CFocus>().entity = archer;
+
+				archer->addComponent<CType>(d_type);
+				archer->addComponent<CAnimation>();
+
+				auto type = archer->getComponent<CType>().type;
+
+				if (type == "area") {
+					archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
+					archer->addComponent<CDelay>(0, 200);
+					archer->addComponent<CAttack>(15);
+				}
+				else if (type == "freeze") {
+					archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
+					archer->addComponent<CDelay>(0, 200);
+				}
+				else if (type == "target") {
+					archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
+					archer->addComponent<CAttack>(18);
+				}
+
+				archer->addComponent<CTransform>(d_pos);
+				archer->addComponent<CRange>(265);
+				archer->addComponent<CState>("idle", "vertical");
+			}
+			else if (d_level == 2) {
+				if (d_type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("areaTower3"));
+				}
+				else if (d_type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("freezeTower3"));
+				}
+				else if (d_type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("targetTower3"));
+				}
+			}
+			else if (d_level == 3) {
+				if (d_type == "area") {
+					d.animation = (m_game->getAssets().getAnimation("areaTower4"));
+				}
+				else if (d_type == "freeze") {
+					d.animation = (m_game->getAssets().getAnimation("freezeTower4"));
+				}
+				else if (d_type == "target") {
+					d.animation = (m_game->getAssets().getAnimation("targetTower4"));
+				}
 			}
 
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
-			auto archer = m_entityManager.addEntity("archer");
-
-			archer->addComponent<CType>(d_type);
-			archer->addComponent<CAnimation>();
-
-			auto type = archer->getComponent<CType>().type;
-
-			if (type == "area") {
-				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
-				archer->addComponent<CDelay>(0, 200);
-				archer->addComponent<CAttack>(15);
-			}
-			else if (type == "freeze") {
-				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
-				archer->addComponent<CDelay>(0, 200);
-			}
-			else if (type == "target") {
-				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
-				archer->addComponent<CAttack>(18);
-			}
-
-			archer->addComponent<CTransform>(d_pos);
-			archer->addComponent<CRange>(265);
-			archer->addComponent<CState>("idle", "vertical");
 		}
 		d.animation.getSprite().setScale(2, 2);		
 		d.animation.update();
@@ -1079,6 +1167,12 @@ void Scene_Play::sMovement() {
 			if (e->getComponent<CState>().effect == "freeze") {
 				e_transform.pos += e_transform.velocity / 2.f;
 			}
+			else if (e->getComponent<CState>().effect == "freeze2") {
+				e_transform.pos += e_transform.velocity / 4.f;
+			}
+			else if (e->getComponent<CState>().effect == "freeze3") {
+				e_transform.pos += e_transform.velocity / 8.f;
+			}
 			else {
 				e_transform.pos += e_transform.velocity;
 			}
@@ -1128,6 +1222,12 @@ void Scene_Play::sMovement() {
 			if (e->getComponent<CState>().effect == "freeze") {
 				e_transform.pos += e_transform.velocity / 2.f;
 			}
+			else if (e->getComponent<CState>().effect == "freeze2") {
+				e_transform.pos += e_transform.velocity / 4.f;
+			}
+			else if (e->getComponent<CState>().effect == "freeze3") {
+				e_transform.pos += e_transform.velocity / 8.f;
+			}
 			else {
 				e_transform.pos += e_transform.velocity;
 			}
@@ -1156,6 +1256,14 @@ void Scene_Play::sMovement() {
 				if (a->getComponent<CType>().type == "freeze") {
 					e->getComponent<CState>().effect = "freeze";
 					auto & type = e->getComponent<CType>().type;
+				}
+				else if (a->getComponent<CType>().type == "freeze2") {
+					e->getComponent<CState>().effect = "freeze2";
+					auto& type = e->getComponent<CType>().type;
+				}
+				else if (a->getComponent<CType>().type == "freeze3") {
+					e->getComponent<CState>().effect = "freeze3";
+					auto& type = e->getComponent<CType>().type;
 				}
 				else if (a->getComponent<CType>().type == "area") {
 					attack(a, e);
@@ -1193,7 +1301,18 @@ void Scene_Play::sMovement() {
 					auto& cDelay = archer->getComponent<CDelay>();
 					if (cDelay.lastAttackFrame == 0 || cDelay.lastAttackFrame + cDelay.delay <= m_currentFrame) {
 						cDelay.lastAttackFrame = m_currentFrame;
-						spawnSpikes("freeze", e_transform.pos);
+						if (archer->getComponent<CLevel>().level == 1) {
+							spawnSpikes("freeze", e_transform.pos);
+
+						}
+						else if (archer->getComponent<CLevel>().level == 2) {
+							spawnSpikes("freeze2", e_transform.pos);
+
+						}
+						else if (archer->getComponent<CLevel>().level == 3) {
+							spawnSpikes("freeze3", e_transform.pos);
+
+						}
 					}
 				}
 				else if (archer_type == "area") {
@@ -1453,7 +1572,7 @@ void Scene_Play::sShop() {
 				}
 			}
 			else if (i == 5) {
-				if (m_coins < 25) { continue; }
+				if (m_coins < 40) { continue; }
 				m_mouseItem = true;
 			}
 
@@ -1540,7 +1659,7 @@ void Scene_Play::sPlacement() {
 				}
 
 				Vec2 m_defensePos = { grassRect.getPosition().x + grassRect.getSize().x / 2.f,
-								grassRect.getPosition().y + grassRect.getSize().y / 2.f };
+								grassRect.getPosition().y + grassRect.getSize().y / 2.f + 15.f};
 
 				m_defenseSquare = grassRect;
 				m_lastFrameDefenseSpawn = m_currentFrame;
@@ -1550,6 +1669,7 @@ void Scene_Play::sPlacement() {
 				defense->addComponent<CAnimation>(m_game->getAssets().getAnimation("constructionTower"), false);
 				defense->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 				defense->getComponent<CAnimation>().animation.getSprite().setPosition(m_defensePos.x,m_defensePos.y);
+				defense->addComponent<CLevel>(3);
 
 				std::string type;
 
@@ -1644,8 +1764,6 @@ void Scene_Play::sInfo() {
 				m_infoVector.push_back(sf::Text("HP: 200", f, 20));
 				m_infoVector[1].setPosition(1268, 725);
 				break;
-				// code block
-				break;
 			}
 		}
 		i++;
@@ -1655,58 +1773,125 @@ void Scene_Play::sInfo() {
 		if (ent->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 			m_drawInfo = true;
 			auto& f = m_game->getAssets().getFont("RETROGAMING");
-
-			if (ent->tag() == "player") {
-				auto& ent_health = ent->getComponent<CHealth>();
-				auto& ent_level = ent->getComponent<CLevel>();
-				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
-				m_infoVector.push_back(sf::Text(health, f, 20));
-				m_infoVector[0].setPosition(1268, 700);
-				std::string level = "Level: " + std::to_string((int)ent_level.level) + "/" + std::to_string((int)ent_level.max_level);
-				m_infoVector.push_back(sf::Text(level , f, 20));
-				m_infoVector[1].setPosition(1268, 725);
-
-				if (ent_level.level != ent_level.max_level) {
-					int upgradePrice = ent_health.totalHealth * 0.6 + 300;
-					std::string upgrade = "Upgrade: " + std::to_string(m_coins) +"/" + std::to_string(upgradePrice);
-					m_infoVector.push_back(sf::Text(upgrade, f, 20));
-					if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
-					else m_infoVector[2].setFillColor(sf::Color(64, 4, 4));
-					m_infoVector[2].setPosition(1268, 750);
-				}
-
-				break;
-			}
 			if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_damage = ent->getComponent<CAttack>();
+				auto& ent_type = ent->getComponent<CType>().type;
+				m_infoVector.push_back(sf::Text(ent_type, f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector[0].setFillColor(sf::Color::Black);
 				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
 				m_infoVector.push_back(sf::Text(health, f, 20));
-				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector[1].setPosition(1268, 725);
 				std::string damage = "Damage: " + std::to_string((int)ent_damage.damage);
 				m_infoVector.push_back(sf::Text(damage, f, 20));
-				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector[2].setPosition(1268, 750);
 				auto& speed = ent->getComponent<CTransform>().velocity;
 				auto m = ent->getComponent<CAnimation>().animation.getFrameCount();
 				std::string velocity;
+				float v;
 				if (speed.x != 0)
-					velocity = "Speed: " + std::to_string((int)abs(speed.x*m));
+					v = (int)abs(speed.x * m);
 				else
-					velocity = "Speed: " + std::to_string((int)abs(speed.y*m));
+					v = (int)abs(speed.y * m);
+
+				if (ent->getComponent<CState>().effect == "freeze") {
+					v = v/2.f;
+				}
+				else if (ent->getComponent<CState>().effect == "freeze2") {
+					v = v / 4.f;
+				}
+				else if (ent->getComponent<CState>().effect == "freeze3") {
+					v = v / 8.f;
+				}
+
+				velocity = "Speed: " + std::to_string((int)v);
+
 				m_infoVector.push_back(sf::Text(velocity, f, 20));
-				m_infoVector[2].setPosition(1268, 750);
+				m_infoVector[3].setPosition(1268, 775);
 				break;
 			}
-			if (ent->tag() == "archer") {
+			else if (ent->tag() == "defense") {
+
+				if (ent->getComponent<CAnimation>().animation.getName().find("construction") != std::string::npos) continue;
+				if (ent->getComponent<CAnimation>().animation.getName().find("upgrade") != std::string::npos) continue;
+
 				auto& f = m_game->getAssets().getFont("RETROGAMING");
-				m_infoVector.push_back(sf::Text("Attack damage: 15", f, 20));
-				m_infoVector[0].setPosition(1268, 700);
-				m_infoVector.push_back(sf::Text("Attack speed: 5", f, 20));
-				m_infoVector[1].setPosition(1268, 725);
-				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
-				m_infoVector[2].setPosition(1268, 750);
+				auto archer_type = ent->getComponent<CType>().type;
+				auto archer_level = ent->getComponent<CLevel>();
+				if (archer_type == "area") {
+					m_infoVector.push_back(sf::Text("Red Archer Tower", f, 20));
+					m_infoVector[0].setPosition(1268, 700);
+					m_infoVector[0].setFillColor(sf::Color(130, 9, 15));
+					m_infoVector.push_back(sf::Text("Area damage: 60", f, 20));
+					m_infoVector[1].setPosition(1268, 725);
+
+					auto & archer = ent->getComponent<CFocus>().entity;
+					float s = archer->getComponent<CDelay>().delay/60.f;
+					std::stringstream stream;
+					stream << std::fixed << std::setprecision(2) << s;
+					std::string speed = "Attack Speed: " + stream.str() + "s";
+
+					m_infoVector.push_back(sf::Text(speed, f, 20));
+					m_infoVector[2].setPosition(1268, 750);
+				}
+				else if (archer_type == "freeze") {
+					m_infoVector.push_back(sf::Text("Blue Archer Tower", f, 20));
+					m_infoVector[0].setPosition(1268, 700);
+					m_infoVector[0].setFillColor(sf::Color::Blue);
+					m_infoVector.push_back(sf::Text("Speed of enemies: 50%", f, 20));
+					m_infoVector[1].setPosition(1268, 725);
+
+					auto& archer = ent->getComponent<CFocus>().entity;
+					float s = archer->getComponent<CDelay>().delay / 60.f;
+					std::stringstream stream;
+					stream << std::fixed << std::setprecision(2) << s;
+					std::string speed = "Attack Speed: " + stream.str() + "s";
+
+					m_infoVector.push_back(sf::Text(speed, f, 20));
+					m_infoVector[2].setPosition(1268, 750);
+				}
+				else if (archer_type == "target") {
+					m_infoVector.push_back(sf::Text("Green Archer Tower", f, 20));
+					m_infoVector[0].setPosition(1268, 700);
+					m_infoVector[0].setFillColor(sf::Color::Green);
+
+					auto& archer = ent->getComponent<CFocus>().entity;
+					int a = archer->getComponent<CAttack>().damage;
+					std::string attack = "Attack Damage: " + std::to_string(a);
+					m_infoVector.push_back(sf::Text(attack, f, 20));
+					m_infoVector[1].setPosition(1268, 725);
+					m_infoVector.push_back(sf::Text("Attack speed: 0.2s", f, 20));
+					m_infoVector[2].setPosition(1268, 750);
+				}
+
+				std::string level = "Level: " + std::to_string((int)archer_level.level) + "/" + std::to_string((int)archer_level.max_level);
+				m_infoVector.push_back(sf::Text(level, f, 20));
+				m_infoVector[3].setPosition(1268, 775);
+
+				if (archer_level.level != archer_level.max_level) {
+					int upgradePrice;
+					switch (archer_level.level) {
+					case 1:
+						upgradePrice = 80;
+						break;
+					case 2:
+						upgradePrice = 120;
+						break;
+					case 3:
+						upgradePrice = 160;
+						break;
+					}
+
+					std::string upgrade = "Upgrade: " + std::to_string(m_coins) + "/" + std::to_string(upgradePrice);
+					m_infoVector.push_back(sf::Text(upgrade, f, 20));
+					if (upgradePrice < m_coins) m_infoVector[4].setFillColor(sf::Color::Green);
+					else m_infoVector[4].setFillColor(sf::Color(130, 9, 15));
+					m_infoVector[4].setPosition(1268, 800);
+				}
+
 			}
-			if (ent->tag() == "barricade") {
+			else if (ent->tag() == "barricade") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_level = ent->getComponent<CLevel>();
 				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
@@ -1715,15 +1900,46 @@ void Scene_Play::sInfo() {
 			}
 		}
 	}
+	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+	if (m_player->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		m_infoVector.clear();
+		auto& f = m_game->getAssets().getFont("RETROGAMING");
+		auto& ent_health = m_player->getComponent<CHealth>();
+		auto& ent_level = m_player->getComponent<CLevel>();
+		std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+		m_infoVector.push_back(sf::Text(health, f, 20));
+		m_infoVector[0].setPosition(1268, 700);
+		std::string level = "Level: " + std::to_string((int)ent_level.level) + "/" + std::to_string((int)ent_level.max_level);
+		m_infoVector.push_back(sf::Text(level, f, 20));
+		m_infoVector[1].setPosition(1268, 725);
+
+		if (ent_level.level != ent_level.max_level) {
+			int upgradePrice = ent_health.totalHealth * 0.6 + 300;
+			std::string upgrade = "Upgrade: " + std::to_string(m_coins) + "/" + std::to_string(upgradePrice);
+			m_infoVector.push_back(sf::Text(upgrade, f, 20));
+			if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
+			else m_infoVector[2].setFillColor(sf::Color(130, 9, 15));
+			m_infoVector[2].setPosition(1268, 750);
+		}
+	}
 }
 
 void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
-	if (type == "freeze") {
+	if (type.find("freeze") != std::string::npos) {
 		auto iceSpike = m_entityManager.addEntity("attack");
 		iceSpike->addComponent<CTransform>(pos);
 		iceSpike->addComponent<CAnimation>();
 		iceSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
-		iceSpike->addComponent<CType>().type = "freeze";
+
+		if (type == "freeze") {
+			iceSpike->addComponent<CType>().type = "freeze";
+		}
+		else if (type == "freeze2") {
+			iceSpike->addComponent<CType>().type = "freeze2";
+		}
+		else if (type == "freeze3") {
+			iceSpike->addComponent<CType>().type = "freeze3";
+		}
 	}
 	else if (type == "area") {
 		auto woodSpike = m_entityManager.addEntity("attack");
@@ -1752,6 +1968,28 @@ void Scene_Play::sUpgrade() {
 					float percent = cHealth.health / cHealth.totalHealth;
 					cHealth.totalHealth += 200;
 					cHealth.health = cHealth.totalHealth * percent;
+				}
+			}
+		}
+	}
+
+	for (auto& defense : m_entityManager.getEntities("defense")) {
+		if (defense->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+
+			if (defense->getComponent<CAnimation>().animation.getName().find("construction") != std::string::npos) continue;
+
+			if (defense->getComponent<CAnimation>().animation.getName().find("upgrade") != std::string::npos) continue;
+
+			if (m_player->getComponent<CInput>().rightClick && defense->getComponent<CState>().state != "upgrade") {
+				if (defense->getComponent<CLevel>().level < defense->getComponent<CLevel>().max_level) {
+					defense->getComponent<CLevel>().level++;
+					defense->getComponent<CInput>().rightClick = false;
+					auto upgradePrice = 80 + 40 * (defense->getComponent<CLevel>().level-1);
+					if (m_coins >= upgradePrice) {
+						m_coins -= upgradePrice;
+						auto& cHealth = m_player->getComponent<CHealth>();
+						defense->getComponent<CState>().state = "upgrade";
+					}
 				}
 			}
 		}

@@ -1754,27 +1754,7 @@ void Scene_Play::sInfo() {
 		if (ent->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 			m_drawInfo = true;
 			auto& f = m_game->getAssets().getFont("RETROGAMING");
-
-			if (ent->tag() == "player") {
-				auto& ent_health = ent->getComponent<CHealth>();
-				auto& ent_level = ent->getComponent<CLevel>();
-				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
-				m_infoVector.push_back(sf::Text(health, f, 20));
-				m_infoVector[0].setPosition(1268, 700);
-				std::string level = "Level: " + std::to_string((int)ent_level.level) + "/" + std::to_string((int)ent_level.max_level);
-				m_infoVector.push_back(sf::Text(level , f, 20));
-				m_infoVector[1].setPosition(1268, 725);
-
-				if (ent_level.level != ent_level.max_level) {
-					int upgradePrice = ent_health.totalHealth * 0.6 + 300;
-					std::string upgrade = "Upgrade: " + std::to_string(m_coins) +"/" + std::to_string(upgradePrice);
-					m_infoVector.push_back(sf::Text(upgrade, f, 20));
-					if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
-					else m_infoVector[2].setFillColor(sf::Color(130, 9, 15));
-					m_infoVector[2].setPosition(1268, 750);
-				}
-			}
-			else if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
+			if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_damage = ent->getComponent<CAttack>();
 				auto& ent_type = ent->getComponent<CType>().type;
@@ -1899,6 +1879,28 @@ void Scene_Play::sInfo() {
 				m_infoVector.push_back(sf::Text(health, f, 20));
 				m_infoVector[0].setPosition(1268, 700);
 			}
+		}
+	}
+	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+	if (m_player->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		m_infoVector.clear();
+		auto& f = m_game->getAssets().getFont("RETROGAMING");
+		auto& ent_health = m_player->getComponent<CHealth>();
+		auto& ent_level = m_player->getComponent<CLevel>();
+		std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+		m_infoVector.push_back(sf::Text(health, f, 20));
+		m_infoVector[0].setPosition(1268, 700);
+		std::string level = "Level: " + std::to_string((int)ent_level.level) + "/" + std::to_string((int)ent_level.max_level);
+		m_infoVector.push_back(sf::Text(level, f, 20));
+		m_infoVector[1].setPosition(1268, 725);
+
+		if (ent_level.level != ent_level.max_level) {
+			int upgradePrice = ent_health.totalHealth * 0.6 + 300;
+			std::string upgrade = "Upgrade: " + std::to_string(m_coins) + "/" + std::to_string(upgradePrice);
+			m_infoVector.push_back(sf::Text(upgrade, f, 20));
+			if (upgradePrice < m_coins) m_infoVector[2].setFillColor(sf::Color::Green);
+			else m_infoVector[2].setFillColor(sf::Color(130, 9, 15));
+			m_infoVector[2].setPosition(1268, 750);
 		}
 	}
 }

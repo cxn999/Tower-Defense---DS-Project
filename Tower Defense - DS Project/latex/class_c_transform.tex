@@ -31,7 +31,7 @@ Collaboration diagram for CTransform\+:
 \item 
 \mbox{\hyperlink{class_c_transform_a824847a832eadaffd32abe4199e63c0e}{CTransform}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&p)
 \item 
-\mbox{\hyperlink{class_c_transform_ad587f280763bf19b0a0631587881e3f0}{CTransform}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&p, const \mbox{\hyperlink{class_vec2}{Vec2}} \&v, const \mbox{\hyperlink{class_vec2}{Vec2}} \&sc, float a)
+\mbox{\hyperlink{class_c_transform_af513889242722e5463f19f44b85001f5}{CTransform}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&p, const \mbox{\hyperlink{class_vec2}{Vec2}} \&v, const \mbox{\hyperlink{class_vec2}{Vec2}} \&sc, float a, bool m)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -45,6 +45,8 @@ Collaboration diagram for CTransform\+:
 \mbox{\hyperlink{class_vec2}{Vec2}} \mbox{\hyperlink{class_c_transform_ad56abe671f3f03085f81300c1aacb993}{velocity}} = \{ 0.\+0, 0.\+0 \}
 \item 
 float \mbox{\hyperlink{class_c_transform_ae23bf3d85f8d040ba9f3132e555f7ab7}{angle}} = 0
+\item 
+bool \mbox{\hyperlink{class_c_transform_a5868615ed7343d838ca819d208e7c3af}{move}} = true
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_component}{Component}}}
 \begin{DoxyCompactItemize}
@@ -66,11 +68,11 @@ CTransform\+::\+CTransform (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\
 {\footnotesize\ttfamily \label{class_c_transform_a824847a832eadaffd32abe4199e63c0e} 
 CTransform\+::\+CTransform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\Hypertarget{class_c_transform_ad587f280763bf19b0a0631587881e3f0}\index{CTransform@{CTransform}!CTransform@{CTransform}}
+\Hypertarget{class_c_transform_af513889242722e5463f19f44b85001f5}\index{CTransform@{CTransform}!CTransform@{CTransform}}
 \index{CTransform@{CTransform}!CTransform@{CTransform}}
 \doxysubsubsection{\texorpdfstring{CTransform()}{CTransform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily \label{class_c_transform_ad587f280763bf19b0a0631587881e3f0} 
-CTransform\+::\+CTransform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{p}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{v}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{sc}{, }\item[{float}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{class_c_transform_af513889242722e5463f19f44b85001f5} 
+CTransform\+::\+CTransform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{p}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{v}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{sc}{, }\item[{float}]{a}{, }\item[{bool}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -80,6 +82,12 @@ CTransform\+::\+CTransform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlin
 \doxysubsubsection{\texorpdfstring{angle}{angle}}
 {\footnotesize\ttfamily \label{class_c_transform_ae23bf3d85f8d040ba9f3132e555f7ab7} 
 float CTransform\+::angle = 0}
+
+\Hypertarget{class_c_transform_a5868615ed7343d838ca819d208e7c3af}\index{CTransform@{CTransform}!move@{move}}
+\index{move@{move}!CTransform@{CTransform}}
+\doxysubsubsection{\texorpdfstring{move}{move}}
+{\footnotesize\ttfamily \label{class_c_transform_a5868615ed7343d838ca819d208e7c3af} 
+bool CTransform\+::move = true}
 
 \Hypertarget{class_c_transform_a0f66ce679335e059ffb4670f511e802b}\index{CTransform@{CTransform}!pos@{pos}}
 \index{pos@{pos}!CTransform@{CTransform}}

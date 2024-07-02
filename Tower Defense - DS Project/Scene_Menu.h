@@ -10,8 +10,10 @@
 
 class Scene_Menu : public Scene {
 protected:
-	std::string m_title = "TOWER DEFENSE";
-	sf::Text m_titleText;
+	std::string m_title1 = "TOWER OF";
+	std::string m_title2 = "THE FOREST";
+	sf::Text m_titleText1;
+	sf::Text m_titleText2;
 	std::vector<sf::Text> m_texts;
 	std::vector<std::string> m_menuStrings;
 	std::vector <std::string> m_levelPaths;

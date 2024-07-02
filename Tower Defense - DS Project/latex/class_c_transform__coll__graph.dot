@@ -10,10 +10,10 @@ digraph "CTransform"
 <HR/>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">CTransform()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">CTransform(const Vec2 &amp;p)<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">CTransform(const Vec2<BR ALIGN="LEFT"/> &amp;p, const Vec2 &amp;v, const<BR ALIGN="LEFT"/> Vec2 &amp;sc, float a)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">CTransform(const Vec2<BR ALIGN="LEFT"/> &amp;p, const Vec2 &amp;v, const<BR ALIGN="LEFT"/> Vec2 &amp;sc, float a, bool m)<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
-  Node2 -> Node1 [id="edge6_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
+  Node2 -> Node1 [id="edge7_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" ",arrowtail="onormal"];
   Node2 [id="Node000002",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Component</TD></TR>
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
@@ -21,7 +21,7 @@ digraph "CTransform"
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_component.html",tooltip=" "];
-  Node3 -> Node2 [id="edge7_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" +has",fontcolor="grey" ,arrowhead="odiamond"];
+  Node3 -> Node2 [id="edge8_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" +has",fontcolor="grey" ,arrowhead="odiamond"];
   Node3 [id="Node000003",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">bool</TD></TR>
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
@@ -29,7 +29,7 @@ digraph "CTransform"
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node4 -> Node1 [id="edge8_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" ",label=" +pos\n+prevPos\n+scale\n+velocity",fontcolor="grey" ,arrowhead="odiamond"];
+  Node4 -> Node1 [id="edge9_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" ",label=" +pos\n+prevPos\n+scale\n+velocity",fontcolor="grey" ,arrowhead="odiamond"];
   Node4 [id="Node000004",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Vec2</TD></TR>
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
@@ -49,7 +49,7 @@ digraph "CTransform"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">float dist(const Vec2<BR ALIGN="LEFT"/> &amp;rhs) const<BR ALIGN="LEFT"/></TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_vec2.html",tooltip=" "];
-  Node5 -> Node4 [id="edge9_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" ",label=" +x\n+y",fontcolor="grey" ,arrowhead="odiamond"];
+  Node5 -> Node4 [id="edge10_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" ",label=" +x\n+y",fontcolor="grey" ,arrowhead="odiamond"];
   Node5 [id="Node000005",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">float</TD></TR>
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
@@ -57,5 +57,6 @@ digraph "CTransform"
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node5 -> Node1 [id="edge10_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" ",label=" +angle",fontcolor="grey" ,arrowhead="odiamond"];
+  Node5 -> Node1 [id="edge11_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" ",label=" +angle",fontcolor="grey" ,arrowhead="odiamond"];
+  Node3 -> Node1 [id="edge12_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" +move",fontcolor="grey" ,arrowhead="odiamond"];
 }

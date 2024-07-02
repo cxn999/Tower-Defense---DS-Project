@@ -5,7 +5,6 @@
 
 typedef std::tuple <
 	CState,
-	CGravity,
 	CAnimation,
 	CBoundingBox,
 	CInput,
@@ -16,7 +15,8 @@ typedef std::tuple <
 	CAttack,
 	CRange,
 	CType,
-	CDelay
+	CDelay,
+	CFocus
 	> ComponentTuple;
 
 class Entity { 

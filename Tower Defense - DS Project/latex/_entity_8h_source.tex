@@ -19,65 +19,67 @@
 \DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_c_attack}{CAttack}},}
 \DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_c_range}{CRange}},}
 \DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_c_type}{CType}},}
-\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_c_delay}{CDelay}}}
-\DoxyCodeLine{00020\ \ \ \ \ >\ \mbox{\hyperlink{_entity_8h_ac5ee1dbd7d5b006ff8657317b341fe99}{ComponentTuple}};}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity}{Entity}}\ \{\ }
-\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{_entity_8h_ac5ee1dbd7d5b006ff8657317b341fe99}{ComponentTuple}}\ m\_components;}
-\DoxyCodeLine{00024\ \ \ \ \ std::string\ m\_tag\ =\ \textcolor{stringliteral}{"{}default"{}};}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_active\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_id\ =\ 0;}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}})\ :\ m\_id(\textcolor{keywordtype}{id}),\ m\_tag(\mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}})\ \{\}}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity_manager}{EntityManager}};}
-\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_entity_a33ea809110fb8fdad11196403ecb495c}{id}}();}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_a00a0f5a9e9f39be9b9db28d5dbccd20e}{isActive}}();}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}}();}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a691dbe5f9ec930c27af2af0b97907a9e}{destroy}}();}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ TArgs>}
-\DoxyCodeLine{00039\ \ \ \ \ T\ \&\ \mbox{\hyperlink{class_entity_aafe23d7d7ea7f427ca40454edcae460e}{addComponent}}(TArgs\&\&...\ mArgs);}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}{hasComponent}}();}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00043\ \ \ \ \ T\ \&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_c_delay}{CDelay}},}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_c_focus}{CFocus}}}
+\DoxyCodeLine{00021\ \ \ \ \ >\ \mbox{\hyperlink{_entity_8h_a9baf106ee204853eb11be23e1e7b1c2c}{ComponentTuple}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity}{Entity}}\ \{\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{_entity_8h_a9baf106ee204853eb11be23e1e7b1c2c}{ComponentTuple}}\ m\_components;}
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ m\_tag\ =\ \textcolor{stringliteral}{"{}default"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ m\_id\ =\ 0;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_entity}{Entity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}})\ :\ m\_id(\textcolor{keywordtype}{id}),\ m\_tag(\mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}})\ \{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_entity_manager}{EntityManager}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_component}{Component}};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_entity_a33ea809110fb8fdad11196403ecb495c}{id}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_a00a0f5a9e9f39be9b9db28d5dbccd20e}{isActive}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_entity_a5b92e79c2f8dff009caec96048630cad}{tag}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a691dbe5f9ec930c27af2af0b97907a9e}{destroy}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ TArgs>}
+\DoxyCodeLine{00041\ \ \ \ \ T\ \&\ \mbox{\hyperlink{class_entity_aafe23d7d7ea7f427ca40454edcae460e}{addComponent}}(TArgs\&\&...\ mArgs);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}{hasComponent}}();}
 \DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a590ddbda675cf9b188977d553e396a0f}{removeComponent}}();}
-\DoxyCodeLine{00048\ \};}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ TArgs>}
-\DoxyCodeLine{00051\ T\&\ \mbox{\hyperlink{class_entity_aafe23d7d7ea7f427ca40454edcae460e}{Entity::addComponent}}(TArgs\&\&...\ mArgs)}
-\DoxyCodeLine{00052\ \{}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{auto}\&\ component\ =\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}();}
-\DoxyCodeLine{00054\ \ \ \ \ component\ =\ T(std::forward<TArgs>(mArgs)...);}
-\DoxyCodeLine{00055\ \ \ \ \ component.has\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ component;}
-\DoxyCodeLine{00057\ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00061\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{Entity::getComponent}}()\ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_components);}
-\DoxyCodeLine{00063\ \}}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00066\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{Entity::getComponent}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_components);}
-\DoxyCodeLine{00068\ \}}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00071\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}{Entity::hasComponent}}()\ \{}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}().has;}
-\DoxyCodeLine{00073\ \}}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
-\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a590ddbda675cf9b188977d553e396a0f}{Entity::removeComponent}}()\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}()\ =\ T();}
-\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00045\ \ \ \ \ T\ \&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a590ddbda675cf9b188977d553e396a0f}{removeComponent}}();}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ TArgs>}
+\DoxyCodeLine{00053\ T\&\ \mbox{\hyperlink{class_entity_aafe23d7d7ea7f427ca40454edcae460e}{Entity::addComponent}}(TArgs\&\&...\ mArgs)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{auto}\&\ component\ =\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}();}
+\DoxyCodeLine{00056\ \ \ \ \ component\ =\ T(std::forward<TArgs>(mArgs)...);}
+\DoxyCodeLine{00057\ \ \ \ \ component.has\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ component;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00063\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{Entity::getComponent}}()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_components);}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00068\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{Entity::getComponent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_components);}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_entity_ad42785721cb226a1bea8025aeb1d9e8d}{Entity::hasComponent}}()\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}().has;}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_entity_a590ddbda675cf9b188977d553e396a0f}{Entity::removeComponent}}()\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_entity_af378c2ea70fa68a8433f19500261393d}{getComponent<T>}}()\ =\ T();}
+\DoxyCodeLine{00080\ \}}
 
 \end{DoxyCode}

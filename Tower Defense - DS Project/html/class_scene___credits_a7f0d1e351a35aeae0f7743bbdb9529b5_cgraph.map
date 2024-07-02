@@ -1,0 +1,24 @@
+<map id="Scene_Credits::sDoAction" name="Scene_Credits::sDoAction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,180,108"/>
+<area shape="rect" id="Node000002" href="$class_action.html#a23800f6ef38781f10e6823f09ad6d62c" title=" " alt="" coords="254,5,353,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,78,227,41,245,35,247,40,229,47,130,83"/>
+<area shape="rect" id="Node000003" href="$class_scene___credits.html#a1f5cceef6b2bd640f501a924602984fe" title=" " alt="" coords="228,56,379,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,81,212,78,213,83,181,87"/>
+<area shape="rect" id="Node000010" href="$class_scene.html#abad71a081e3b76cff376c954d3b6c3cb" title=" " alt="" coords="239,107,368,133"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="181,103,224,108,224,113,180,108"/>
+<area shape="rect" id="Node000011" href="$class_action.html#a17c7beb7eb4055b45fbc4587f61ec933" title=" " alt="" coords="258,157,349,184"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="130,106,229,143,247,149,245,154,227,148,129,111"/>
+<area shape="rect" id="Node000004" href="$class_game_engine.html#a41a16489bd3b05403545a700f7f9e88e" title=" " alt="" coords="427,56,610,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="380,67,411,67,411,72,380,72"/>
+<area shape="rect" id="Node000005" href="$class_assets.html#a8351d230cad9bc777061b69c839c5116" title=" " alt="" coords="917,31,1040,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="548,53,598,32,658,16,711,9,753,7,849,16,905,24,904,30,848,21,753,13,712,14,659,21,600,37,550,58"/>
+<area shape="rect" id="Node000006" href="$class_game_engine.html#a216acb74cf052d361aaa825a00e4c03a" title=" " alt="" coords="675,31,832,57"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="610,57,659,51,660,57,611,62"/>
+<area shape="rect" id="Node000007" href="$class_game_engine.html#ae6cae07b810c3a0cd859885ac2ecacb5" title=" " alt="" coords="671,81,836,108"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="611,77,656,82,656,87,610,82"/>
+<area shape="rect" id="Node000008" href="$class_game_engine.html#aba79db1d04e0133ad1273ce885434117" title=" " alt="" coords="658,132,849,159"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="556,81,659,117,683,125,682,130,658,123,555,86"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="815,129,848,118,899,92,944,64,946,69,902,96,850,122,817,134"/>
+<area shape="rect" id="Node000009" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="897,132,1060,159"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="849,143,881,143,881,148,849,148"/>
+</map>

@@ -21,6 +21,7 @@ Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 }
 
 void Scene_Play::generateRoadRectangles() {
+	int n = 0;
 	for (int i = 64; i < m_game->window().getSize().x - 128; i += 128) {
 		if (i != 128 * 6 + 64) {
 			sf::RectangleShape roadRect(sf::Vector2f(128, 128));
@@ -29,7 +30,9 @@ void Scene_Play::generateRoadRectangles() {
 			roadRect.setOutlineColor(sf::Color::Magenta);
 			roadRect.setFillColor(sf::Color(219, 116, 209, 80));
 			m_roadRectanglesGrid.push_back(roadRect);
+			m_usedRoadRectanglesIndex[n] = false;
 		}
+		n++;
 	}
 	for (int i = 64; i < m_game->window().getSize().y / 2.f; i += 128) {
 		sf::RectangleShape roadRect(sf::Vector2f(128, 128));
@@ -38,6 +41,8 @@ void Scene_Play::generateRoadRectangles() {
 		roadRect.setOutlineColor(sf::Color::Magenta);
 		roadRect.setFillColor(sf::Color(219, 116, 209, 80));
 		m_roadRectanglesGrid.push_back(roadRect);
+		m_usedRoadRectanglesIndex[n] = false;
+		n++;
 	}
 }
 
@@ -51,7 +56,7 @@ void Scene_Play::generateGrassRectangles() {
 			grassRect.setOutlineColor(sf::Color::Magenta);
 			grassRect.setFillColor(sf::Color(219, 116, 209, 80));
 			m_grassRectanglesGrid.push_back(grassRect);
-			m_usedRectanglesIndex[n] = false;
+			m_usedGrassRectanglesIndex[n] = false;
 		}
 		n++;
 	}
@@ -64,7 +69,7 @@ void Scene_Play::generateGrassRectangles() {
 		m_grassRectanglesGrid.push_back(grassRect);
 		grassRect.setPosition(128 * 8, i);
 		m_grassRectanglesGrid.push_back(grassRect);
-		m_usedRectanglesIndex[n] = false;
+		m_usedGrassRectanglesIndex[n] = false;
 		n++;
 	}
 }
@@ -115,12 +120,12 @@ void Scene_Play::sDoAction(const Action& action) {
 		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
-		else if (action.name() == "UPGRADE") { m_upgrade = true; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
 		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
-		else if (action.name() == "UPGRADE") { m_upgrade = false; }
+		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = false; }
 	}
 }
 
@@ -135,6 +140,7 @@ void Scene_Play::update() {
 		sPlacement();
 		sAnimation();
 		sInfo();
+		sUpgrade();
 	}
 	sRender();
 	m_currentFrame++;
@@ -154,6 +160,38 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CInput>();
 }
 
+void Scene_Play::spawnBarricade(const Vec2& position, size_t line, size_t index) {
+	auto m_barricade = m_entityManager.addEntity("barricade");
+	m_barricade->addComponent<CState>();
+	m_barricade->getComponent<CState>().state = "build";
+	auto& barricadeDirection = m_barricade->getComponent<CState>().direction; 
+	
+	size_t offset = 15;
+
+	if (line == 1) {
+		m_barricade->addComponent<CAnimation>(m_game->getAssets().getAnimation("S_barricadeBuild"), false);
+		barricadeDirection = "Left";
+		
+	}
+	else if (line == 2) {
+		m_barricade->addComponent<CAnimation>(m_game->getAssets().getAnimation("U_barricadeBuild"), false);
+		barricadeDirection = "Up";
+		offset = 0;
+	}
+	else {
+		m_barricade->addComponent<CAnimation>(m_game->getAssets().getAnimation("S_barricadeBuild"), false);
+		barricadeDirection = "Right";
+	}
+	
+	m_barricade->getComponent<CAnimation>().animation.getSprite().setScale(3, 3);
+	auto size = m_barricade->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
+	m_barricade->addComponent<CBoundingBox>(Vec2(size.getSize().x / 2.f + 15.f, size.getSize().y / 2.f + 15.f));
+	m_barricade->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f + 50.f));
+	m_barricade->getComponent<CTransform>().index = index;
+	m_barricade->getComponent<CTransform>().pos = { position.x, position.y - offset};
+	m_barricade->addComponent<CHealth>(200);
+}
+
 void Scene_Play::sRender() {
 	auto& window = m_game->window();
 
@@ -163,6 +201,8 @@ void Scene_Play::sRender() {
 
 	if (m_drawTextures) {
 		for (auto e : m_entityManager.getEntities()) {
+			if (e->tag() == "barricade") continue;
+			if (e->getComponent<CType>().type == "bee") continue;
 			if (e->tag() != "enemyBoss")
 				if (e->getComponent<CState>().effect == "freeze")
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
@@ -176,6 +216,31 @@ void Scene_Play::sRender() {
 			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
+		}
+
+		for (auto e : m_entityManager.getEntities("barricade")) {
+			if (e->tag() != "enemyBoss")
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
+				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
+			window.draw(e->getComponent<CAnimation>().animation.getSprite());
+		}
+		for (auto e : m_entityManager.getEntities("enemy")) {
+			if (e->getComponent<CType>().type == "bee") {
+				if (e->tag() != "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+				else if (e->tag() == "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
+				if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
+				window.draw(e->getComponent<CAnimation>().animation.getSprite());
+			}
 		}
 	}
 	
@@ -195,10 +260,13 @@ void Scene_Play::sRender() {
 			}
 		}
 	}
+
+	sShop();
+
 	if (m_grassGrid && !m_paused) {
 		int n = 0;
 		for (auto& grassRect : m_grassRectanglesGrid) {
-			if (m_usedRectanglesIndex[n] == true) {
+			if (m_usedGrassRectanglesIndex[n] == true) {
 				grassRect.setFillColor(sf::Color(255, 0, 0, 80));
 				grassRect.setOutlineColor(sf::Color::Red);
 			}
@@ -207,12 +275,21 @@ void Scene_Play::sRender() {
 		}
 	}
 	if (m_roadGrid && !m_paused) {
+		int n = 0;
 		for (auto& roadRect : m_roadRectanglesGrid) {
+			roadRect.setFillColor(sf::Color(219, 116, 209, 80));
+			roadRect.setOutlineColor(sf::Color::Magenta);
+			if (m_selectedItem == 5) {
+				std::cout << m_selectedItem << std::endl;
+				if (m_usedRoadRectanglesIndex[n] == true) {
+					roadRect.setFillColor(sf::Color(255, 0, 0, 80));
+					roadRect.setOutlineColor(sf::Color::Red);
+				}
+			}
 			window.draw(roadRect);
+			n++;
 		}
 	}
-	
-	sShop();
 
 	if (m_mouseItem) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
@@ -230,6 +307,9 @@ void Scene_Play::sRender() {
 			break;
 		case 3:
 			item = m_game->getAssets().getAnimation("lightningShop");
+			break;
+		case 5:
+			item = m_game->getAssets().getAnimation("U_barricadeIdle");
 			break;
 		}
 
@@ -418,9 +498,27 @@ void Scene_Play::sAnimation() {
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
 				m_coins += 4;
 			}
+			e->getComponent<CFocus>().entity = nullptr;
 			e_transform.velocity = { 0,0 };
 		}
-
+		if (e_state == "idle" && animation.getName().find("Walk") == std::string::npos) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinWalk");
+				else animation = m_game->getAssets().getAnimation("S_goblinWalk");
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfWalk");
+				else animation = m_game->getAssets().getAnimation("S_wolfWalk");
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeWalk");
+				else animation = m_game->getAssets().getAnimation("S_slimeWalk");
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeWalk");
+				else animation = m_game->getAssets().getAnimation("S_beeWalk");
+			}
+		}
 		if (e_state == "death" && animation.hasEnded()) {
 			e->destroy();
 		}
@@ -481,9 +579,27 @@ void Scene_Play::sAnimation() {
 				else animation = m_game->getAssets().getAnimation("S_beeDeath");
 				m_coins += 20;
 			}
+			e->getComponent<CFocus>().entity = nullptr;
 			e_transform.velocity = { 0,0 };
 		}
-
+		if (e_state == "idle" && animation.getName().find("Walk") == std::string::npos) {
+			if (type == "goblin") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_goblinWalk");
+				else animation = m_game->getAssets().getAnimation("S_goblinWalk");
+			}
+			if (type == "wolf") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_wolfWalk");
+				else animation = m_game->getAssets().getAnimation("S_wolfWalk");
+			}
+			if (type == "slime") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_slimeWalk");
+				else animation = m_game->getAssets().getAnimation("S_slimeWalk");
+			}
+			if (type == "bee") {
+				if (direction == "vertical") animation = m_game->getAssets().getAnimation("D_beeWalk");
+				else animation = m_game->getAssets().getAnimation("S_beeWalk");
+			}
+		}
 		if (e_state == "death" && animation.hasEnded()) {
 			e->destroy();
 		}
@@ -610,6 +726,102 @@ void Scene_Play::sAnimation() {
 		d.animation.getSprite().setColor(sf::Color(255,0,0));
 		d.animation.update();
 	}
+
+	for (auto& barricade : m_entityManager.getEntities("barricade")) {
+		auto& b = barricade->getComponent<CAnimation>();
+		auto& b_pos = barricade->getComponent<CTransform>().pos;
+		auto& b_state = barricade->getComponent<CState>(); 
+		
+
+		
+		if (b_state.state == "idle" && b.animation.getName().find("Idle") == std::string::npos) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeIdle");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeIdle");
+				if(b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x-30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x+30.4, b_pos.y);
+			}
+		}
+		else if (b.animation.getName().find("Build") != std::string::npos) {
+			if (b_state.direction == "Left")
+				b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+			else if (b_state.direction == "Right")
+				b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			else {
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+		}
+		
+		if (b.animation.getName().find("Build") != std::string::npos && b.animation.hasEnded()) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeIdle");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeIdle");
+				if(b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x-30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x+30.4, b_pos.y);
+			}
+		}
+		else if (b.animation.getName().find("Build") != std::string::npos) {
+			if (b_state.direction == "Left")
+				b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+			else if (b_state.direction == "Right")
+				b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			else {
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+		}
+
+		if (b_state.state == "death" && b.animation.getName().find("Destroy") == std::string::npos) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeDestroy");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeDestroy");
+				if (b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			}
+		}
+		else if (b.animation.getName().find("Build") != std::string::npos && b.animation.hasEnded()) {
+			if (b_state.direction == "Up")
+			{
+				b.animation = m_game->getAssets().getAnimation("U_barricadeBuild");
+				b.animation.getSprite().setPosition(b_pos.x, b_pos.y);
+			}
+			else {
+				b.animation = m_game->getAssets().getAnimation("S_barricadeDestroy");
+				if (b_state.direction == "Left")
+					b.animation.getSprite().setPosition(b_pos.x - 30.4, b_pos.y);
+				else
+					b.animation.getSprite().setPosition(b_pos.x + 30.4, b_pos.y);
+			}
+		}
+		if(b_state.direction == "Right")
+			b.animation.getSprite().setScale(-3, 3);
+		else
+			b.animation.getSprite().setScale(3, 3);
+
+		if (b.animation.getName().find("Destroy") != std::string::npos && b.animation.hasEnded()) {
+			size_t index = barricade->getComponent<CTransform>().index;
+			m_usedRoadRectanglesIndex[index] = false;
+			barricade->destroy();
+		}
+		b.animation.update();
+	}
 }
 
 void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
@@ -625,6 +837,8 @@ void Scene_Play::attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
 
 void Scene_Play::sCollision() {
 	auto& player = m_player->getComponent<CTransform>();
+
+	// COLLISIONS OF PLAYER WITH ENEMIES
 
 	// Define the search area around the player
 	sf::FloatRect searchArea(player.pos.x - 100, player.pos.y - 100, 200, 200); // Adjust size as needed
@@ -645,9 +859,11 @@ void Scene_Play::sCollision() {
 		// Check if player hits the tile from the bottom
 		if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) {
 			if (0 <= overlap.y && prevOverlap.y <= 0) {
-				tile.pos.y += overlap.y;
-				tile.velocity.y = 0;
+				tile.move = false;
+				tile.pos.y -= overlap.y;
 				e->getComponent<CState>().state = "attack";
+				e->getComponent<CFocus>().entity = m_player;
+
 			}
 		}
 
@@ -658,14 +874,77 @@ void Scene_Play::sCollision() {
 				if (dx > 0) {
 					// Tile is right of player
 					tile.pos.x += overlap.x;
+					tile.move = false;
 					e->getComponent<CState>().state = "attack";
+					e->getComponent<CFocus>().entity = m_player;
 				}
 				else {
 					// Tile is left of player
 					tile.pos.x -= overlap.x;
+					tile.move = false;
 					e->getComponent<CState>().state = "attack";
+					e->getComponent<CFocus>().entity = m_player;
 				}
 			}
+		}
+	}
+
+	// COLLISIONS OF BARRICADES WITH ENEMIES
+	
+	for (auto& barricade : m_entityManager.getEntities("barricade")) {
+		auto& barricadeTransform = barricade->getComponent<CTransform>();
+
+		// Define the search area around the barricade
+		sf::FloatRect searchArea(barricadeTransform.pos.x - 100, barricadeTransform.pos.y - 100, 200, 200);		// Adjust size as needed
+
+		// Query the quadtree for entities within the search area
+		auto nearbyEntities = m_entityManager.queryRange(searchArea);
+
+		for (auto& e : nearbyEntities) {
+			if (e->tag() != "enemy" && e->tag() != "enemyBoss") continue;
+
+			if (e->getComponent<CType>().type == "bee") continue;
+
+			auto& tile = e->getComponent<CTransform>(); 
+
+			Vec2 overlap = GetOverlap(e, barricade);
+			Vec2 prevOverlap = GetPreviousOverlap(e, barricade);
+
+			float dy = tile.pos.y - barricadeTransform.pos.y;
+
+			// Check if player hits the tile from the bottom
+			if (0 < overlap.x && -m_gridSize.y < overlap.y && dy < 0) { 
+				if (0 <= overlap.y && prevOverlap.y <= 0) { 
+					tile.move = false;
+					tile.pos.y -= overlap.y; 
+					e->getComponent<CState>().state = "attack"; 
+					e->getComponent<CFocus>().entity = barricade;
+				}
+			}
+
+			// Check player and enemy side collision
+			float dx = tile.pos.x - barricadeTransform.pos.x; 
+			if (0 < overlap.y && -m_gridSize.x < overlap.x) {
+				if (0 <= overlap.x && prevOverlap.x <= 0) {
+					if (dx > 0) {
+						// Tile is right of player
+						tile.move = false;
+						tile.pos.x += overlap.x;
+						e->getComponent<CState>().state = "attack";
+						e->getComponent<CFocus>().entity = barricade;
+					}
+					else {
+						// Tile is left of player
+						tile.pos.x -= overlap.x;
+						tile.move = false;
+						e->getComponent<CState>().state = "attack";
+						e->getComponent<CFocus>().entity = barricade;
+					}
+				}
+			}
+		}
+		if (barricade->getComponent<CHealth>().health <= 0) {
+			barricade->getComponent<CState>().state = "death";
 		}
 	}
 }
@@ -674,19 +953,30 @@ void Scene_Play::sMovement() {
 	// Update positions of enemies
 	for (auto& e : m_entityManager.getEntities("enemy")) {
 		auto& e_transform = e->getComponent<CTransform>();
-		e_transform.prevPos = e_transform.pos;
 
-		if (e->getComponent<CState>().effect == "freeze") {
-			e_transform.pos += e_transform.velocity/2.f;
+		if (e_transform.move) {
+			e_transform.prevPos = e_transform.pos;
+
+			if (e->getComponent<CState>().effect == "freeze") {
+				e_transform.pos += e_transform.velocity / 2.f;
+			}
+			else {
+				e_transform.pos += e_transform.velocity;
+			}
 		}
-		else {
-			e_transform.pos += e_transform.velocity;
-		}
+
 		
 		auto& animation = e->getComponent<CAnimation>().animation;
 		animation.getSprite().setPosition(e_transform.pos.x, e_transform.pos.y);
 		if (e->getComponent<CState>().state == "attack" && animation.hasEnded()) {
-			attack(e, m_player);
+			if (e->getComponent<CFocus>().entity->getComponent<CState>().state == "death") {
+				e->getComponent<CFocus>().entity = nullptr;
+				e->getComponent<CState>().state = "idle";
+				e_transform.move = true;
+			}
+			else {
+				attack(e, e->getComponent<CFocus>().entity);
+			}
 		}
 		if (e->getComponent<CHealth>().health <= 0) {
 			e->getComponent<CHealth>().health = 0;
@@ -798,7 +1088,7 @@ void Scene_Play::sEnemySpawner() {
 	}
 	if (t >= 1) {
 		if (t % 1 == 0 && m_spawnRateFrame >= 15) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
-			m_spawnRateFrame -= 2;
+			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}
 	}
@@ -982,6 +1272,7 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 	entity->getComponent<CTransform>().velocity = velocity;
 	entity->addComponent<CHealth>(health);
 	entity->addComponent<CAttack>(damage);
+	entity->addComponent<CFocus>();
 }
 
 void Scene_Play::sShop() {
@@ -990,7 +1281,6 @@ void Scene_Play::sShop() {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
-
 			if (i < 3) {
 				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0)
 					continue;
@@ -1023,6 +1313,7 @@ void Scene_Play::sShop() {
 			}
 			else if (i == 5) {
 				if (m_coins < 25) { continue; }
+				m_mouseItem = true;
 			}
 
 			m_selectedItem = i;
@@ -1043,26 +1334,45 @@ void Scene_Play::sPlacement() {
 	bool& click = m_player->getComponent<CInput>().click;
 	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 	if (m_roadGrid) {
+		size_t i = 0; 
 		for (auto& roadRect : m_roadRectanglesGrid) {
 			if (click && roadRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 				click = false;
 				m_mouseItem = false;
 				m_roadGrid = false;
 
-				if (m_selectedItem == 3) {
-					m_coins -= 150;
+				if (m_selectedItem == 5) {
+					if (m_usedRoadRectanglesIndex[i] == true) continue;
+					m_usedRoadRectanglesIndex[i] = true;
+					m_coins -= 25;
+					auto pos = Vec2(roadRect.getPosition().x + roadRect.getSize().x / 2.f, roadRect.getPosition().y + roadRect.getSize().y / 2.f);
+					
+					int line;
+					if (i < 6)
+						line = 1;
+					else if (i < 12)
+						line = 3;
+					else
+						line = 2;
+
+					spawnBarricade(pos, line, i);
 				}
 
-				auto lightning = m_entityManager.addEntity("attack");
-				lightning->addComponent<CTransform>();
-				lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f -15, roadRect.getPosition().y + roadRect.getSize().y / 2.f -310};
-				m_lightningSquare = roadRect;
-				lightning->addComponent<CType>();
-				lightning->getComponent<CType>().type = "lightning";
-				lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
-				lightning->addComponent<CAttack>();
-				lightning->getComponent<CAttack>().damage = 2;
+				// LIGHTNING SPAWN
+				if (m_selectedItem == 3) {
+					m_coins -= 150;
+					auto lightning = m_entityManager.addEntity("attack");
+					lightning->addComponent<CTransform>();
+					lightning->getComponent<CTransform>().pos = { roadRect.getPosition().x + roadRect.getSize().x / 2.f - 15, roadRect.getPosition().y + roadRect.getSize().y / 2.f - 310 };
+					m_lightningSquare = roadRect;
+					lightning->addComponent<CType>();
+					lightning->getComponent<CType>().type = "lightning";
+					lightning->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("lightning");
+					lightning->addComponent<CAttack>();
+					lightning->getComponent<CAttack>().damage = 2;
+				}
 			}
+			i++;
 		}
 	}
 	else if (m_grassGrid) {
@@ -1070,12 +1380,12 @@ void Scene_Play::sPlacement() {
 		for (auto& grassRect : m_grassRectanglesGrid) {
 			if (click && grassRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 
-				if (m_usedRectanglesIndex[i] == true) continue;
+				if (m_usedGrassRectanglesIndex[i] == true) continue;
 
 				click = false;
 				m_mouseItem = false;
 				m_grassGrid = false;
-				m_usedRectanglesIndex[i] = true;
+				m_usedGrassRectanglesIndex[i] = true;
 
 
 				if (m_selectedItem == 0) {
@@ -1199,6 +1509,13 @@ void Scene_Play::sInfo() {
 				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
 				m_infoVector[2].setPosition(1268, 750);
 			}
+			if (ent->tag() == "barricade") {
+				auto& ent_health = ent->getComponent<CHealth>();
+				auto& ent_level = ent->getComponent<CLevel>();
+				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
+				m_infoVector.push_back(sf::Text(health, f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+			}
 		}
 	}
 }
@@ -1218,5 +1535,28 @@ void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
 		woodSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("woodSpike");
 		woodSpike->addComponent<CType>().type = "area";
 		woodSpike->addComponent<CAttack>().damage = 1;
+	}
+}
+
+void Scene_Play::sUpgrade() {
+	auto & player_animation = m_player->getComponent<CAnimation>().animation;
+	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
+	
+	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		if (m_player->getComponent<CInput>().rightClick && m_player->getComponent<CState>().state != "upgrade") {
+			if (m_player->getComponent<CLevel>().level < m_player->getComponent<CLevel>().max_level) {
+				m_player->getComponent<CLevel>().level++;
+				m_player->getComponent<CInput>().rightClick = false;
+				auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+				if (m_coins >= upgradePrice) {
+					m_coins -= upgradePrice;
+					auto& cHealth = m_player->getComponent<CHealth>();
+					m_player->getComponent<CState>().state = "upgrade";
+					float percent = cHealth.health / cHealth.totalHealth;
+					cHealth.totalHealth += 200;
+					cHealth.health = cHealth.totalHealth * percent;
+				}
+			}
+		}
 	}
 }

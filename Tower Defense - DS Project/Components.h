@@ -1,10 +1,12 @@
 #pragma once
-
 #include "Animation.h"
 #include "Assets.h"
 #include "Vec2.h"
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <memory>
+
+class Entity;
 
 class Component {
 public:
@@ -16,11 +18,13 @@ public:
 	Vec2 pos = { 0.0, 0.0 };
 	Vec2 prevPos = { 0.0, 0.0 };
 	Vec2 velocity = { 0.0, 0.0 };
-	float angle = 0;
+	size_t index = 0;
+	bool move = true;
 
 	CTransform() {}
-	CTransform(const Vec2 & p) : pos(p) {}
-	CTransform(const Vec2& p, const Vec2& v, float a) : pos(p), velocity(v), angle(a) {}
+	CTransform(const Vec2& p) : pos(p) {}
+
+	CTransform(const Vec2& p, const Vec2& v, size_t i, bool m) : pos(p), velocity(v), index(i), move(m) {}
 };
 
 class CLifeSpan : public Component {
@@ -34,6 +38,7 @@ public:
 class CInput : public Component {
 public:
 	bool click = false;
+	bool rightClick = false;
 };
 
 class CBoundingBox : public Component {
@@ -50,13 +55,6 @@ public:
 	bool repeat = false;
 	CAnimation() {}
 	CAnimation(const Animation & animation, bool r) : animation(animation), repeat(r) {}
-};
-
-class CGravity : public Component {
-public:
-	float gravity = 0;
-	CGravity() {}
-	CGravity(float g) : gravity(g) {}
 };
 
 class CState : public Component {
@@ -115,4 +113,14 @@ public:
 
 	CDelay(size_t l, size_t d) : lastAttackFrame(l), delay(d) {}
 	CDelay() {}
+};
+
+class CFocus : public Component {
+public:
+	std::shared_ptr<Entity> entity;
+
+	CFocus(std::shared_ptr<Entity> e) {
+		entity = e;
+	}
+	CFocus() {}
 };

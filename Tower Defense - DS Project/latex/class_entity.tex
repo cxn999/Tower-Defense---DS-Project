@@ -6,8 +6,7 @@
 
 
 
-Collaboration diagram for Entity\+:
-\nopagebreak
+Collaboration diagram for Entity\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,6 +38,8 @@ void \mbox{\hyperlink{class_entity_a691dbe5f9ec930c27af2af0b97907a9e}{destroy}} 
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_entity_a6f579cda6059d102e9074e11a27e0282}{Entity\+Manager}}
+\item 
+class \mbox{\hyperlink{class_entity_a90717717700965c100968cff0188e244}{Component}}
 \end{DoxyCompactItemize}
 
 
@@ -50,8 +51,7 @@ class \mbox{\hyperlink{class_entity_a6f579cda6059d102e9074e11a27e0282}{Entity\+M
 template$<$typename T , typename... TArgs$>$ \\
 T \& Entity\+::add\+Component (\begin{DoxyParamCaption}\item[{TArgs \&\&...}]{m\+Args}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -71,8 +71,7 @@ void Entity\+::destroy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 template$<$typename T $>$ \\
 T \& Entity\+::get\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -93,8 +92,7 @@ const T \& Entity\+::get\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamC
 template$<$class T $>$ \\
 bool Entity\+::has\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -120,8 +118,7 @@ bool Entity\+::is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 template$<$class T $>$ \\
 void Entity\+::remove\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -137,6 +134,12 @@ const std\+::string \& Entity\+::tag (\begin{DoxyParamCaption}{}{}\end{DoxyParam
 
 
 \doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_entity_a90717717700965c100968cff0188e244}\index{Entity@{Entity}!Component@{Component}}
+\index{Component@{Component}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Component}{Component}}
+{\footnotesize\ttfamily \label{class_entity_a90717717700965c100968cff0188e244} 
+friend class \mbox{\hyperlink{class_component}{Component}}\hspace{0.3cm}{\ttfamily [friend]}}
+
 \Hypertarget{class_entity_a6f579cda6059d102e9074e11a27e0282}\index{Entity@{Entity}!EntityManager@{EntityManager}}
 \index{EntityManager@{EntityManager}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{EntityManager}{EntityManager}}

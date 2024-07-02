@@ -1,0 +1,7 @@
+<map id="Scene_Play::spawnBarricade" name="Scene_Play::spawnBarricade">
+<area shape="rect" id="Node000001" title=" " alt="" coords="408,5,599,32"/>
+<area shape="rect" id="Node000002" href="$class_scene___play.html#aaaa8f51ec7e85f23a999307ceaa1236a" title=" " alt="" coords="192,5,360,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,21,360,21,360,16,392,16"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="5,5,144,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,21,144,21,144,16,176,16"/>
+</map>

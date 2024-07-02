@@ -27,5 +27,5 @@ digraph "CInput"
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node3 -> Node1 [id="edge3_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" +click",fontcolor="grey" ,arrowhead="odiamond"];
+  Node3 -> Node1 [id="edge3_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" ",label=" +click\n+rightClick",fontcolor="grey" ,arrowhead="odiamond"];
 }

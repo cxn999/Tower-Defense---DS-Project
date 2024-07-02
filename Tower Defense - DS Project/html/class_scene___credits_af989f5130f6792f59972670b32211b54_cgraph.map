@@ -1,0 +1,20 @@
+<map id="Scene_Credits::update" name="Scene_Credits::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,159,184"/>
+<area shape="rect" id="Node000002" href="$class_scene___credits.html#a9c6466de3294b1dbdf94203fb7540d3b" title="virtual method of the base class" alt="" coords="207,107,369,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,154,215,135,217,140,140,159"/>
+<area shape="rect" id="Node000007" href="$class_entity_manager.html#abc6a2cc5077501f4b06d88f4ed3e7e31" title=" " alt="" coords="212,208,364,235"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="140,182,217,201,215,206,139,187"/>
+<area shape="rect" id="Node000003" href="$class_assets.html#a82a07c4ce9f847b53f635018533c160c" title=" " alt="" coords="426,5,572,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,104,356,73,416,42,432,35,434,40,418,46,359,78,311,108"/>
+<area shape="rect" id="Node000004" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="417,56,580,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="346,103,425,84,426,89,347,109"/>
+<area shape="rect" id="Node000005" href="$class_animation.html#adc3d127aedf807dccbfaae49290f3c76" title=" " alt="" coords="429,107,568,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="370,117,413,117,413,123,370,123"/>
+<area shape="rect" id="Node000006" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="426,157,572,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="347,131,426,151,425,156,346,137"/>
+<area shape="rect" id="Node000008" href="$class_quadtree.html#ab2b40ef82fa81688886c8f38bf7846d3" title=" " alt="" coords="444,208,554,235"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="364,219,428,219,428,224,364,224"/>
+<area shape="rect" id="Node000009" href="$class_quadtree.html#a5707a18168416e1699ba5838bc65015e" title=" " alt="" coords="442,283,556,309"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="329,233,445,274,443,279,327,238"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="463,284,457,274,461,264,475,258,499,256,524,259,537,265,535,270,522,264,499,261,477,263,465,268,462,273,467,281"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Scene_Play::spawnBarricade" name="Scene_Play::spawnBarricade">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,197,108"/>
+<area shape="rect" id="Node000002" href="$class_entity_manager.html#a85c22d45c0bde41cd2b82336b6f32046" title=" " alt="" coords="245,5,413,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,78,244,41,265,35,267,40,246,47,141,83"/>
+<area shape="rect" id="Node000003" href="$class_assets.html#a82a07c4ce9f847b53f635018533c160c" title=" " alt="" coords="256,56,402,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,81,240,77,240,82,197,87"/>
+<area shape="rect" id="Node000004" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="247,107,411,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,103,232,107,231,112,197,108"/>
+<area shape="rect" id="Node000005" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="256,157,402,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="141,106,246,143,267,150,265,155,244,148,139,111"/>
+</map>

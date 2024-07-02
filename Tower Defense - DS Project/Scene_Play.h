@@ -8,13 +8,12 @@ protected:
 	sf::Text m_gridText;
 	std::string m_levelPath;
 
-	size_t m_coins = 150;
+	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
 
 	std::vector<sf::Text> m_infoVector;
 
 	bool m_drawInfo = false;
-	bool m_upgrade = false;
 	bool m_drawTextures = true; // toggle textures
 	bool m_drawCollision = false; // toggle hitboxes
 	bool m_roadGrid = false; // draw the road grid depending on the type of item selected
@@ -40,15 +39,14 @@ protected:
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
 	std::vector<sf::RectangleShape> m_grassRectanglesGrid;
-	std::map<size_t, bool> m_usedRectanglesIndex;
+	std::map<size_t, bool> m_usedGrassRectanglesIndex;
+	std::map<size_t, bool> m_usedRoadRectanglesIndex;
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
 	
 	sf::Clock m_clock;			// Clock for calculating the enemy boss spawn rate
 	sf::Clock m_weatherClock;	// Clock for moving the clouds
 	sf::Clock m_nightClock;		// Clock for the day/night time
-
-	
 
 public:
 	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
@@ -71,10 +69,11 @@ public:
 	void sDoAction(const Action& a);
 	void sPlacement();
 	void spawnPlayer();
-
+	void sUpgrade();
+	void spawnBarricade(const Vec2&, size_t, size_t);
 	void sInfo();
 
-	void attack(std::shared_ptr<Entity> enemy, std::shared_ptr<Entity> tower);
+	void attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b);
 	void generateRoadRectangles();
 	void generateGrassRectangles();
 

@@ -23,8 +23,10 @@ digraph "Scene_Play"
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sDoAction(const<BR ALIGN="LEFT"/> Action &amp;a)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sPlacement()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnPlayer()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sUpgrade()<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnBarricade<BR ALIGN="LEFT"/>(const Vec2 &amp;, size_t)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void sInfo()<BR ALIGN="LEFT"/></TD></TR>
-<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void attack(std::shared<BR ALIGN="LEFT"/>_ptr&lt; Entity &gt; enemy,<BR ALIGN="LEFT"/> std::shared_ptr&lt; Entity<BR ALIGN="LEFT"/> &gt; tower)<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void attack(std::shared<BR ALIGN="LEFT"/>_ptr&lt; Entity &gt; a, std<BR ALIGN="LEFT"/>::shared_ptr&lt; Entity &gt; b)<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void generateRoadRectangles()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void generateGrassRectangles()<BR ALIGN="LEFT"/></TD></TR>
 <TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">void spawnSpikes(const<BR ALIGN="LEFT"/> std::string &amp;type, const<BR ALIGN="LEFT"/> Vec2 &amp;pos)<BR ALIGN="LEFT"/></TD></TR>
@@ -204,7 +206,7 @@ digraph "Scene_Play"
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node9 -> Node1 [id="edge47_Node000001_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_attack\n#m_drawCollision\n#m_drawInfo\n#m_drawTextures\n#m_grassGrid\n#m_mouseItem\n#m_nightFall\n#m_roadGrid\n#m_upgrade",fontcolor="grey" ,arrowhead="odiamond"];
+  Node9 -> Node1 [id="edge47_Node000001_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_attack\n#m_drawCollision\n#m_drawInfo\n#m_drawTextures\n#m_grassGrid\n#m_mouseItem\n#m_nightFall\n#m_roadGrid",fontcolor="grey" ,arrowhead="odiamond"];
   Node17 -> Node1 [id="edge48_Node000001_Node000017",color="steelblue1",style="solid",tooltip=" ",label=" #m_attackPos\n#m_gridSize",fontcolor="grey" ,arrowhead="odiamond"];
   Node17 [id="Node000017",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Vec2</TD></TR>
 <HR/>

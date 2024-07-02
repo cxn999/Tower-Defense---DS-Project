@@ -1,9 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_scene.html" title=" " alt="" coords="5,56,64,83"/>
-<area shape="rect" id="Node000001" href="$class_scene___menu.html" title=" " alt="" coords="120,5,217,32"/>
-<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="78,50,130,30,132,35,79,55"/>
-<area shape="rect" id="Node000002" href="$class_scene___play.html" title=" " alt="" coords="123,56,214,83"/>
-<area shape="poly" id="edge15_Node000000_Node000002" title=" " alt="" coords="80,67,122,67,122,72,80,72"/>
-<area shape="rect" id="Node000003" href="$class_scene___settings.html" title="include graphics library" alt="" coords="112,107,225,133"/>
-<area shape="poly" id="edge16_Node000000_Node000003" title=" " alt="" coords="79,83,132,104,130,109,78,88"/>
+<area shape="rect" id="Node000000" href="$class_scene.html" title=" " alt="" coords="5,81,64,108"/>
+<area shape="rect" id="Node000001" href="$class_scene___credits.html" title="include graphics library" alt="" coords="115,5,222,32"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="66,70,110,42,133,30,136,35,113,46,68,74"/>
+<area shape="rect" id="Node000002" href="$class_scene___menu.html" title=" " alt="" coords="120,56,217,83"/>
+<area shape="poly" id="edge16_Node000000_Node000002" title=" " alt="" coords="79,84,119,76,120,81,80,89"/>
+<area shape="rect" id="Node000003" href="$class_scene___play.html" title=" " alt="" coords="123,107,214,133"/>
+<area shape="poly" id="edge17_Node000000_Node000003" title=" " alt="" coords="80,100,123,109,122,114,79,106"/>
+<area shape="rect" id="Node000004" href="$class_scene___settings.html" title="include graphics library" alt="" coords="112,157,225,184"/>
+<area shape="poly" id="edge18_Node000000_Node000004" title=" " alt="" coords="68,115,113,143,136,154,133,159,110,148,66,119"/>
 </map>

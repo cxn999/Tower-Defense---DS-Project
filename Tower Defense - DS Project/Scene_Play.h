@@ -8,7 +8,7 @@ protected:
 	sf::Text m_gridText;
 	std::string m_levelPath;
 
-	size_t m_coins = 700;
+	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
 	sf::Text m_helpPauseText;
 
@@ -41,7 +41,8 @@ protected:
 	std::vector<sf::RectangleShape> m_shopRectangles; // Rectangles of the shop for the items
 	std::vector<sf::RectangleShape> m_roadRectanglesGrid; // Rectangles of the road for attacking
 	std::vector<sf::RectangleShape> m_grassRectanglesGrid;
-	std::map<size_t, bool> m_usedRectanglesIndex;
+	std::map<size_t, bool> m_usedGrassRectanglesIndex;
+	std::map<size_t, bool> m_usedRoadRectanglesIndex;
 
 	std::shared_ptr<Entity> m_player; // Pointer to the player entity
 	
@@ -71,7 +72,7 @@ public:
 	void sPlacement();
 	void spawnPlayer();
 	void sUpgrade();
-	void spawnBarricade(const Vec2&, size_t);
+	void spawnBarricade(const Vec2&, size_t, size_t);
 	void sInfo();
 
 	void attack(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b);

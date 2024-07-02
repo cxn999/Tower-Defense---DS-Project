@@ -1,19 +1,23 @@
 <map id="Assets::getFont" name="Assets::getFont">
-<area shape="rect" id="Node000001" title=" " alt="" coords="421,85,535,112"/>
-<area shape="rect" id="Node000002" href="$class_scene___menu.html#ac333bd8b02726ee6db5706219e70073e" title=" " alt="" coords="243,7,365,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,80,372,49,341,36,343,31,374,44,439,76"/>
-<area shape="rect" id="Node000004" href="$class_scene___play.html#a4b51ea641e8b7a3f6313f5fc4acae99b" title=" " alt="" coords="246,59,362,85"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="405,90,362,83,363,78,406,85"/>
-<area shape="rect" id="Node000006" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="235,111,373,137"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="406,112,374,117,373,111,405,107"/>
-<area shape="rect" id="Node000008" href="$class_scene___play.html#a2a3c0b2bbdd396f370faaf2ae19b87db" title=" " alt="" coords="241,165,367,192"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="437,122,374,152,339,167,337,162,372,147,434,117"/>
-<area shape="rect" id="Node000003" href="$class_scene___menu.html#a0d71fab24a893ff0b270271180186b65" title=" " alt="" coords="5,5,187,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,22,187,22,187,17,227,17"/>
-<area shape="rect" id="Node000005" href="$class_scene___play.html#a2531be022aa16abd7c484b1a0f9b964f" title=" " alt="" coords="11,56,181,83"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="230,74,181,73,181,68,230,68"/>
-<area shape="rect" id="Node000007" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="17,107,175,149"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="219,128,176,129,176,124,219,123"/>
-<area shape="rect" id="Node000009" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="27,173,165,200"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="225,184,166,187,166,181,225,179"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,123,535,149"/>
+<area shape="rect" id="Node000002" href="$class_scene___credits.html#a9709682aa896ca81bca0ff1389aeb81b" title="text for the menu" alt="" coords="238,17,370,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="447,115,412,88,372,62,340,47,343,42,374,58,415,84,450,111"/>
+<area shape="rect" id="Node000004" href="$class_scene___menu.html#ac333bd8b02726ee6db5706219e70073e" title=" " alt="" coords="243,72,365,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="414,120,352,102,353,97,416,115"/>
+<area shape="rect" id="Node000006" href="$class_scene___play.html#a4b51ea641e8b7a3f6313f5fc4acae99b" title=" " alt="" coords="246,123,362,149"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="405,139,362,139,362,133,405,133"/>
+<area shape="rect" id="Node000008" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="235,177,373,204"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="419,157,350,179,348,174,418,152"/>
+<area shape="rect" id="Node000010" href="$class_scene___play.html#a2a3c0b2bbdd396f370faaf2ae19b87db" title=" " alt="" coords="241,236,367,263"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="451,162,374,218,338,238,336,233,372,214,448,157"/>
+<area shape="rect" id="Node000003" href="$class_scene___credits.html#a116fe838117406dd88dba69220b25d81" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="20,5,172,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,32,172,31,172,25,223,26"/>
+<area shape="rect" id="Node000005" href="$class_scene___menu.html#a0d71fab24a893ff0b270271180186b65" title=" " alt="" coords="5,72,187,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="227,88,187,88,187,83,227,83"/>
+<area shape="rect" id="Node000007" href="$class_scene___play.html#a2531be022aa16abd7c484b1a0f9b964f" title=" " alt="" coords="11,123,181,149"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="230,139,181,139,181,133,230,133"/>
+<area shape="rect" id="Node000009" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="17,173,175,216"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="219,195,176,196,176,190,219,190"/>
+<area shape="rect" id="Node000011" href="$class_scene___play.html#a416e630ef10fac7e34855babea499700" title=" " alt="" coords="27,240,165,267"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="225,254,166,255,166,249,225,248"/>
 </map>

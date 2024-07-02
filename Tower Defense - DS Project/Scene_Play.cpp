@@ -21,6 +21,7 @@ Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath)
 }
 
 void Scene_Play::generateRoadRectangles() {
+	int n = 0;
 	for (int i = 64; i < m_game->window().getSize().x - 128; i += 128) {
 		if (i != 128 * 6 + 64) {
 			sf::RectangleShape roadRect(sf::Vector2f(128, 128));
@@ -29,7 +30,9 @@ void Scene_Play::generateRoadRectangles() {
 			roadRect.setOutlineColor(sf::Color::Magenta);
 			roadRect.setFillColor(sf::Color(219, 116, 209, 80));
 			m_roadRectanglesGrid.push_back(roadRect);
+			m_usedRoadRectanglesIndex[n] = false;
 		}
+		n++;
 	}
 	for (int i = 64; i < m_game->window().getSize().y / 2.f; i += 128) {
 		sf::RectangleShape roadRect(sf::Vector2f(128, 128));
@@ -38,6 +41,8 @@ void Scene_Play::generateRoadRectangles() {
 		roadRect.setOutlineColor(sf::Color::Magenta);
 		roadRect.setFillColor(sf::Color(219, 116, 209, 80));
 		m_roadRectanglesGrid.push_back(roadRect);
+		m_usedRoadRectanglesIndex[n] = false;
+		n++;
 	}
 }
 
@@ -51,7 +56,7 @@ void Scene_Play::generateGrassRectangles() {
 			grassRect.setOutlineColor(sf::Color::Magenta);
 			grassRect.setFillColor(sf::Color(219, 116, 209, 80));
 			m_grassRectanglesGrid.push_back(grassRect);
-			m_usedRectanglesIndex[n] = false;
+			m_usedGrassRectanglesIndex[n] = false;
 		}
 		n++;
 	}
@@ -64,7 +69,7 @@ void Scene_Play::generateGrassRectangles() {
 		m_grassRectanglesGrid.push_back(grassRect);
 		grassRect.setPosition(128 * 8, i);
 		m_grassRectanglesGrid.push_back(grassRect);
-		m_usedRectanglesIndex[n] = false;
+		m_usedGrassRectanglesIndex[n] = false;
 		n++;
 	}
 }
@@ -161,7 +166,7 @@ void Scene_Play::spawnPlayer() {
 	m_player->addComponent<CInput>();
 }
 
-void Scene_Play::spawnBarricade(const Vec2& position, size_t line) {
+void Scene_Play::spawnBarricade(const Vec2& position, size_t line, size_t index) {
 	auto m_barricade = m_entityManager.addEntity("barricade");
 	m_barricade->addComponent<CState>();
 	m_barricade->getComponent<CState>().state = "build";
@@ -188,6 +193,7 @@ void Scene_Play::spawnBarricade(const Vec2& position, size_t line) {
 	auto size = m_barricade->getComponent<CAnimation>().animation.getSprite().getGlobalBounds();
 	m_barricade->addComponent<CBoundingBox>(Vec2(size.getSize().x / 2.f + 15.f, size.getSize().y / 2.f + 15.f));
 	m_barricade->addComponent<CTransform>(Vec2(m_game->window().getSize().x / 2.f, m_game->window().getSize().y / 2.f + 50.f));
+	m_barricade->getComponent<CTransform>().index = index;
 	m_barricade->getComponent<CTransform>().pos = { position.x, position.y - offset};
 	m_barricade->addComponent<CHealth>(200);
 }
@@ -260,10 +266,13 @@ void Scene_Play::sRender() {
 			}
 		}
 	}
+
+	sShop();
+
 	if (m_grassGrid && !m_paused) {
 		int n = 0;
 		for (auto& grassRect : m_grassRectanglesGrid) {
-			if (m_usedRectanglesIndex[n] == true) {
+			if (m_usedGrassRectanglesIndex[n] == true) {
 				grassRect.setFillColor(sf::Color(255, 0, 0, 80));
 				grassRect.setOutlineColor(sf::Color::Red);
 			}
@@ -272,12 +281,21 @@ void Scene_Play::sRender() {
 		}
 	}
 	if (m_roadGrid && !m_paused) {
+		int n = 0;
 		for (auto& roadRect : m_roadRectanglesGrid) {
+			roadRect.setFillColor(sf::Color(219, 116, 209, 80));
+			roadRect.setOutlineColor(sf::Color::Magenta);
+			if (m_selectedItem == 5) {
+				std::cout << m_selectedItem << std::endl;
+				if (m_usedRoadRectanglesIndex[n] == true) {
+					roadRect.setFillColor(sf::Color(255, 0, 0, 80));
+					roadRect.setOutlineColor(sf::Color::Red);
+				}
+			}
 			window.draw(roadRect);
+			n++;
 		}
 	}
-	
-	sShop();
 
 	if (m_mouseItem) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
@@ -873,6 +891,8 @@ void Scene_Play::sAnimation() {
 			b.animation.getSprite().setScale(3, 3);
 
 		if (b.animation.getName().find("Destroy") != std::string::npos && b.animation.hasEnded()) {
+			size_t index = barricade->getComponent<CTransform>().index;
+			m_usedRoadRectanglesIndex[index] = false;
 			barricade->destroy();
 		}
 		b.animation.update();
@@ -1336,7 +1356,6 @@ void Scene_Play::sShop() {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
-
 			if (i < 3) {
 				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0)
 					continue;
@@ -1398,6 +1417,8 @@ void Scene_Play::sPlacement() {
 				m_roadGrid = false;
 
 				if (m_selectedItem == 5) {
+					if (m_usedRoadRectanglesIndex[i] == true) continue;
+					m_usedRoadRectanglesIndex[i] = true;
 					m_coins -= 25;
 					auto pos = Vec2(roadRect.getPosition().x + roadRect.getSize().x / 2.f, roadRect.getPosition().y + roadRect.getSize().y / 2.f);
 					
@@ -1409,7 +1430,7 @@ void Scene_Play::sPlacement() {
 					else
 						line = 2;
 
-					spawnBarricade(pos, line);
+					spawnBarricade(pos, line, i);
 				}
 
 				// LIGHTNING SPAWN
@@ -1434,12 +1455,12 @@ void Scene_Play::sPlacement() {
 		for (auto& grassRect : m_grassRectanglesGrid) {
 			if (click && grassRect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 
-				if (m_usedRectanglesIndex[i] == true) continue;
+				if (m_usedGrassRectanglesIndex[i] == true) continue;
 
 				click = false;
 				m_mouseItem = false;
 				m_grassGrid = false;
-				m_usedRectanglesIndex[i] = true;
+				m_usedGrassRectanglesIndex[i] = true;
 
 
 				if (m_selectedItem == 0) {
@@ -1563,7 +1584,6 @@ void Scene_Play::sInfo() {
 				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
 				m_infoVector[2].setPosition(1268, 750);
 			}
-
 			if (ent->tag() == "barricade") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_level = ent->getComponent<CLevel>();
@@ -1598,13 +1618,19 @@ void Scene_Play::sUpgrade() {
 	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 	
 	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		if (m_player->getComponent<CInput>().rightClick) {
-			m_player->getComponent<CInput>().rightClick = false;
-			auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
-			if (m_coins >= upgradePrice) {
-				m_coins -= upgradePrice;
-				m_player->getComponent<CState>().state = "upgrade";
-				m_player->getComponent<CHealth>().totalHealth += 200;
+		if (m_player->getComponent<CInput>().rightClick && m_player->getComponent<CState>().state != "upgrade") {
+			if (m_player->getComponent<CLevel>().level < m_player->getComponent<CLevel>().max_level) {
+				m_player->getComponent<CLevel>().level++;
+				m_player->getComponent<CInput>().rightClick = false;
+				auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+				if (m_coins >= upgradePrice) {
+					m_coins -= upgradePrice;
+					auto& cHealth = m_player->getComponent<CHealth>();
+					m_player->getComponent<CState>().state = "upgrade";
+					float percent = cHealth.health / cHealth.totalHealth;
+					cHealth.totalHealth += 200;
+					cHealth.health = cHealth.totalHealth * percent;
+				}
 			}
 		}
 	}

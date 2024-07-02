@@ -6,10 +6,12 @@ digraph "Scene::setPaused"
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="RL";
   Node1 [id="Node000001",label="Scene::setPaused",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
-  Node1 -> Node2 [id="edge4_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="Scene_Menu::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___menu.html#a1293fb9b99a662d7fa6416fbcf857541",tooltip=" "];
-  Node1 -> Node3 [id="edge5_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="Scene_Play::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___play.html#a34a74b594e4c984c13462c71cc5d9962",tooltip=" "];
-  Node1 -> Node4 [id="edge6_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="Scene_Settings::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___settings.html#a4da6738ad070d4fb99ce3675e636b160",tooltip=" "];
+  Node1 -> Node2 [id="edge5_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Scene_Credits::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___credits.html#a7f0d1e351a35aeae0f7743bbdb9529b5",tooltip=" "];
+  Node1 -> Node3 [id="edge6_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Scene_Menu::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___menu.html#a1293fb9b99a662d7fa6416fbcf857541",tooltip=" "];
+  Node1 -> Node4 [id="edge7_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Scene_Play::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___play.html#a34a74b594e4c984c13462c71cc5d9962",tooltip=" "];
+  Node1 -> Node5 [id="edge8_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Scene_Settings::sDoAction",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_scene___settings.html#a4da6738ad070d4fb99ce3675e636b160",tooltip=" "];
 }

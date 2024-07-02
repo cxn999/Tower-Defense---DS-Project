@@ -57,9 +57,13 @@ void \mbox{\hyperlink{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a}{s\+P
 \item 
 void \mbox{\hyperlink{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb}{spawn\+Player}} ()
 \item 
+void \mbox{\hyperlink{class_scene___play_a19d8e8e0fc6fecce78298f45b1797f05}{s\+Upgrade}} ()
+\item 
+void \mbox{\hyperlink{class_scene___play_a5f4c81de78c16c90d1099e9b3f0ce92b}{spawn\+Barricade}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&, size\+\_\+t)
+\item 
 void \mbox{\hyperlink{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db}{s\+Info}} ()
 \item 
-void \mbox{\hyperlink{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488}{attack}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ enemy, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ tower)
+void \mbox{\hyperlink{class_scene___play_ad7018c3a99b43631630f1fc07be0ca72}{attack}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ a, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ b)
 \item 
 void \mbox{\hyperlink{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21}{generate\+Road\+Rectangles}} ()
 \item 
@@ -97,15 +101,13 @@ sf\+::\+Text \mbox{\hyperlink{class_scene___play_a92a9cf27cc9f16d9271e4386eb2cbb
 \item 
 std\+::string \mbox{\hyperlink{class_scene___play_a8d9ea84033e5ef9c66be7f26e1099d44}{m\+\_\+level\+Path}}
 \item 
-size\+\_\+t \mbox{\hyperlink{class_scene___play_a52513396bd151983891ca7b17e40285b}{m\+\_\+coins}} = 150
+size\+\_\+t \mbox{\hyperlink{class_scene___play_a52513396bd151983891ca7b17e40285b}{m\+\_\+coins}} = 153434340
 \item 
 sf\+::\+Text \mbox{\hyperlink{class_scene___play_ac5f4cdc9013bc3a37b4c8f23af386779}{m\+\_\+coins\+Text}}
 \item 
 std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_scene___play_a9a824e4ecf5d6c7146fcb22211112ccf}{m\+\_\+info\+Vector}}
 \item 
 bool \mbox{\hyperlink{class_scene___play_a44177ba34cc7b36a3125742f46502ac9}{m\+\_\+draw\+Info}} = false
-\item 
-bool \mbox{\hyperlink{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b}{m\+\_\+upgrade}} = false
 \item 
 bool \mbox{\hyperlink{class_scene___play_a7bdec854756816282a026faf78e8b976}{m\+\_\+draw\+Textures}} = true
 \item 
@@ -182,8 +184,7 @@ bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\
 {\footnotesize\ttfamily \label{class_scene___play_a2531be022aa16abd7c484b1a0f9b964f} 
 Scene\+\_\+\+Play\+::\+Scene\+\_\+\+Play (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{, }\item[{const std\+::string \&}]{level\+Path}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -193,18 +194,18 @@ Here is the call graph for this function\+:
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488}\index{Scene\_Play@{Scene\_Play}!attack@{attack}}
+\Hypertarget{class_scene___play_ad7018c3a99b43631630f1fc07be0ca72}\index{Scene\_Play@{Scene\_Play}!attack@{attack}}
 \index{attack@{attack}!Scene\_Play@{Scene\_Play}}
 \doxysubsubsection{\texorpdfstring{attack()}{attack()}}
-{\footnotesize\ttfamily \label{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488} 
-void Scene\+\_\+\+Play\+::attack (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{enemy}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{tower}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{class_scene___play_ad7018c3a99b43631630f1fc07be0ca72} 
+void Scene\+\_\+\+Play\+::attack (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{a}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$}]{b}{}\end{DoxyParamCaption})}
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_scene___play_ad9800454ac0f4dd0b21c373d20f6d488_icgraph}
+\includegraphics[width=350pt]{class_scene___play_ad7018c3a99b43631630f1fc07be0ca72_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_scene___play_a45099348c653e0ab620808c7d77a1149}\index{Scene\_Play@{Scene\_Play}!generateGrassRectangles@{generateGrassRectangles}}
@@ -213,16 +214,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a45099348c653e0ab620808c7d77a1149} 
 void Scene\+\_\+\+Play\+::generate\+Grass\+Rectangles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a45099348c653e0ab620808c7d77a1149_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -235,16 +234,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21} 
 void Scene\+\_\+\+Play\+::generate\+Road\+Rectangles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_ac05e85f12cb6faf83281b6e945a2bb21_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -257,16 +254,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b} 
 void Scene\+\_\+\+Play\+::init (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a4b51ea641e8b7a3f6313f5fc4acae99b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -283,16 +278,14 @@ void Scene\+\_\+\+Play\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 Implements \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a608db7a88064f779d2a3a42f47af3958_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -313,8 +306,7 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{class_scene___play_a5b9a11e45810897bedab64740342ef01_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -335,8 +327,7 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{class_scene___play_aec1850ef08cb92b5c6db6cba02dec399_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -353,8 +344,7 @@ void Scene\+\_\+\+Play\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \m
 
 Implements \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -367,16 +357,14 @@ Here is the call graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_aa8f46ce13b675726739c0b2c00449f65} 
 void Scene\+\_\+\+Play\+::s\+Enemy\+Spawner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_aa8f46ce13b675726739c0b2c00449f65_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -389,16 +377,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a9de72b92bfd1e275ba5e34e540148233} 
 void Scene\+\_\+\+Play\+::s\+Health (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a9de72b92bfd1e275ba5e34e540148233_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -411,16 +397,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db} 
 void Scene\+\_\+\+Play\+::s\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=342pt]{class_scene___play_a2a3c0b2bbdd396f370faaf2ae19b87db_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -441,12 +425,33 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a5f4c81de78c16c90d1099e9b3f0ce92b}\index{Scene\_Play@{Scene\_Play}!spawnBarricade@{spawnBarricade}}
+\index{spawnBarricade@{spawnBarricade}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{spawnBarricade()}{spawnBarricade()}}
+{\footnotesize\ttfamily \label{class_scene___play_a5f4c81de78c16c90d1099e9b3f0ce92b} 
+void Scene\+\_\+\+Play\+::spawn\+Barricade (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{position}{, }\item[{size\+\_\+t}]{line}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a5f4c81de78c16c90d1099e9b3f0ce92b_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=344pt]{class_scene___play_ae80c24b0bb449025d718c9b6dba8d619_icgraph}
+\includegraphics[width=350pt]{class_scene___play_a5f4c81de78c16c90d1099e9b3f0ce92b_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb}\index{Scene\_Play@{Scene\_Play}!spawnPlayer@{spawnPlayer}}
@@ -455,16 +460,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb} 
 void Scene\+\_\+\+Play\+::spawn\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_aa4fb330c856093ee8dbb0589852fbcfb_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -477,16 +480,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9} 
 void Scene\+\_\+\+Play\+::spawn\+Spikes (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{type}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a8dcc60d0a600916e20dd8a6ae1c2b8a9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -507,8 +508,7 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{class_scene___play_aaaa8f51ec7e85f23a999307ceaa1236a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -525,16 +525,14 @@ void Scene\+\_\+\+Play\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamC
 
 Implements \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___play_a6ab634d841861b45bb684b6e8ce899a2_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -547,16 +545,14 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6} 
 void Scene\+\_\+\+Play\+::s\+Shop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=328pt]{class_scene___play_a4b7395fb63f4704c9f1b9f9c549342d6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -569,12 +565,32 @@ Here is the caller graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed} 
 void Scene\+\_\+\+Play\+::s\+Spawn\+Enemy (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{line}{}\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_scene___play_a19d8e8e0fc6fecce78298f45b1797f05}\index{Scene\_Play@{Scene\_Play}!sUpgrade@{sUpgrade}}
+\index{sUpgrade@{sUpgrade}!Scene\_Play@{Scene\_Play}}
+\doxysubsubsection{\texorpdfstring{sUpgrade()}{sUpgrade()}}
+{\footnotesize\ttfamily \label{class_scene___play_a19d8e8e0fc6fecce78298f45b1797f05} 
+void Scene\+\_\+\+Play\+::s\+Upgrade (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_cgraph}
+\includegraphics[width=342pt]{class_scene___play_a19d8e8e0fc6fecce78298f45b1797f05_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:
@@ -582,7 +598,7 @@ Here is the caller graph for this function\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_scene___play_a4ec6b3ff26ed80eb2f14d8a0b3e796ed_icgraph}
+\includegraphics[width=336pt]{class_scene___play_a19d8e8e0fc6fecce78298f45b1797f05_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_scene___play_a416e630ef10fac7e34855babea499700}\index{Scene\_Play@{Scene\_Play}!update@{update}}
@@ -628,7 +644,7 @@ sf\+::\+Clock Scene\+\_\+\+Play\+::m\+\_\+clock\hspace{0.3cm}{\ttfamily [protect
 \index{m\_coins@{m\_coins}!Scene\_Play@{Scene\_Play}}
 \doxysubsubsection{\texorpdfstring{m\_coins}{m\_coins}}
 {\footnotesize\ttfamily \label{class_scene___play_a52513396bd151983891ca7b17e40285b} 
-size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+coins = 150\hspace{0.3cm}{\ttfamily [protected]}}
+size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+coins = 153434340\hspace{0.3cm}{\ttfamily [protected]}}
 
 \Hypertarget{class_scene___play_ac5f4cdc9013bc3a37b4c8f23af386779}\index{Scene\_Play@{Scene\_Play}!m\_coinsText@{m\_coinsText}}
 \index{m\_coinsText@{m\_coinsText}!Scene\_Play@{Scene\_Play}}
@@ -779,12 +795,6 @@ std\+::vector$<$sf\+::\+Rectangle\+Shape$>$ Scene\+\_\+\+Play\+::m\+\_\+shop\+Re
 \doxysubsubsection{\texorpdfstring{m\_spawnRateFrame}{m\_spawnRateFrame}}
 {\footnotesize\ttfamily \label{class_scene___play_a2a67b138934073057ea9ff8bb54cb9aa} 
 size\+\_\+t Scene\+\_\+\+Play\+::m\+\_\+spawn\+Rate\+Frame = 150\hspace{0.3cm}{\ttfamily [protected]}}
-
-\Hypertarget{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b}\index{Scene\_Play@{Scene\_Play}!m\_upgrade@{m\_upgrade}}
-\index{m\_upgrade@{m\_upgrade}!Scene\_Play@{Scene\_Play}}
-\doxysubsubsection{\texorpdfstring{m\_upgrade}{m\_upgrade}}
-{\footnotesize\ttfamily \label{class_scene___play_a33f9a63eda1f6c8267682e4feb8c905b} 
-bool Scene\+\_\+\+Play\+::m\+\_\+upgrade = false\hspace{0.3cm}{\ttfamily [protected]}}
 
 \Hypertarget{class_scene___play_a9ba3ba23b88d1199b3167cec85603f38}\index{Scene\_Play@{Scene\_Play}!m\_usedRectanglesIndex@{m\_usedRectanglesIndex}}
 \index{m\_usedRectanglesIndex@{m\_usedRectanglesIndex}!Scene\_Play@{Scene\_Play}}

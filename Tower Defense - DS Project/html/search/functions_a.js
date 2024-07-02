@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['onend_0',['onEnd',['../class_scene.html#af53e066bb222802c6287eb9d749ef0b4',1,'Scene::onEnd()'],['../class_scene___menu.html#a6f9695c142fe978a98aa94649d3f966e',1,'Scene_Menu::onEnd()'],['../class_scene___play.html#a608db7a88064f779d2a3a42f47af3958',1,'Scene_Play::onEnd()'],['../class_scene___settings.html#a25488bed750f7bbaed6fb7b1a31f6629',1,'Scene_Settings::onEnd()']]],
+  ['onend_0',['onEnd',['../class_scene.html#af53e066bb222802c6287eb9d749ef0b4',1,'Scene::onEnd()'],['../class_scene___credits.html#a1f5cceef6b2bd640f501a924602984fe',1,'Scene_Credits::onEnd()'],['../class_scene___menu.html#a6f9695c142fe978a98aa94649d3f966e',1,'Scene_Menu::onEnd()'],['../class_scene___play.html#a608db7a88064f779d2a3a42f47af3958',1,'Scene_Play::onEnd()'],['../class_scene___settings.html#a25488bed750f7bbaed6fb7b1a31f6629',1,'Scene_Settings::onEnd()']]],
   ['operator_21_3d_1',['operator!=',['../class_vec2.html#ad171adeadd5b58c431687cec6837d68d',1,'Vec2']]],
   ['operator_2a_2',['operator*',['../class_vec2.html#ad574bfce5c7dad58b80b364f517ffb37',1,'Vec2']]],
   ['operator_2a_3d_3',['operator*=',['../class_vec2.html#a1f15c9ade68b07ef08a422b3049283d4',1,'Vec2']]],

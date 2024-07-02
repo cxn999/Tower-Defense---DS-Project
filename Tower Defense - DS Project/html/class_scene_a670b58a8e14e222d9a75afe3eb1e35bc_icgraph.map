@@ -1,15 +1,19 @@
 <map id="Scene::registerAction" name="Scene::registerAction">
-<area shape="rect" id="Node000001" title=" " alt="" coords="421,56,567,83"/>
-<area shape="rect" id="Node000002" href="$class_scene___menu.html#ac333bd8b02726ee6db5706219e70073e" title=" " alt="" coords="243,5,365,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="426,54,356,35,357,30,427,49"/>
-<area shape="rect" id="Node000004" href="$class_scene___play.html#a4b51ea641e8b7a3f6313f5fc4acae99b" title=" " alt="" coords="246,56,362,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="406,72,362,72,362,67,406,67"/>
-<area shape="rect" id="Node000006" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="235,111,373,137"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="431,90,354,113,352,108,430,85"/>
-<area shape="rect" id="Node000003" href="$class_scene___menu.html#a0d71fab24a893ff0b270271180186b65" title=" " alt="" coords="5,5,187,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,21,187,21,187,16,227,16"/>
-<area shape="rect" id="Node000005" href="$class_scene___play.html#a2531be022aa16abd7c484b1a0f9b964f" title=" " alt="" coords="11,56,181,83"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="230,72,181,72,181,67,230,67"/>
-<area shape="rect" id="Node000007" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="17,107,175,149"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="219,128,176,129,176,124,219,123"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,97,567,124"/>
+<area shape="rect" id="Node000002" href="$class_scene___credits.html#a9709682aa896ca81bca0ff1389aeb81b" title="text for the menu" alt="" coords="238,17,370,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="445,93,336,47,339,42,447,88"/>
+<area shape="rect" id="Node000004" href="$class_scene___menu.html#ac333bd8b02726ee6db5706219e70073e" title=" " alt="" coords="243,72,365,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="406,102,365,96,365,91,406,96"/>
+<area shape="rect" id="Node000006" href="$class_scene___play.html#a4b51ea641e8b7a3f6313f5fc4acae99b" title=" " alt="" coords="246,123,362,149"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="406,125,362,131,362,126,406,120"/>
+<area shape="rect" id="Node000008" href="$class_scene___settings.html#a76b13e5709a76c73b7768859555f83bc" title="Initial control scheme." alt="" coords="235,177,373,204"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="447,133,339,179,336,174,445,128"/>
+<area shape="rect" id="Node000003" href="$class_scene___credits.html#a116fe838117406dd88dba69220b25d81" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="20,5,172,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,32,172,31,172,25,223,26"/>
+<area shape="rect" id="Node000005" href="$class_scene___menu.html#a0d71fab24a893ff0b270271180186b65" title=" " alt="" coords="5,72,187,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="227,88,187,88,187,83,227,83"/>
+<area shape="rect" id="Node000007" href="$class_scene___play.html#a2531be022aa16abd7c484b1a0f9b964f" title=" " alt="" coords="11,123,181,149"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="230,139,181,139,181,133,230,133"/>
+<area shape="rect" id="Node000009" href="$class_scene___settings.html#aed9876c261637e7aa4f25c1c39261033" title="constructor for play scene that receives the pointer to the game engine" alt="" coords="17,173,175,216"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="219,195,176,196,176,190,219,190"/>
 </map>

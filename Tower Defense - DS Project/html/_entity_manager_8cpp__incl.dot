@@ -36,14 +36,15 @@ digraph "EntityManager.cpp"
   Node7 -> Node10 [id="edge17_Node000007_Node000010",color="steelblue1",style="solid",tooltip=" "];
   Node7 -> Node11 [id="edge18_Node000007_Node000011",color="steelblue1",style="solid",tooltip=" "];
   Node7 -> Node9 [id="edge19_Node000007_Node000009",color="steelblue1",style="solid",tooltip=" "];
-  Node6 -> Node11 [id="edge20_Node000006_Node000011",color="steelblue1",style="solid",tooltip=" "];
-  Node6 -> Node14 [id="edge21_Node000006_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node7 -> Node4 [id="edge20_Node000007_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node11 [id="edge21_Node000006_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node14 [id="edge22_Node000006_Node000014",color="steelblue1",style="solid",tooltip=" "];
   Node14 [id="Node000014",label="tuple",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
-  Node2 -> Node15 [id="edge22_Node000002_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node15 [id="edge23_Node000002_Node000015",color="steelblue1",style="solid",tooltip=" "];
   Node15 [id="Node000015",label="Quadtree.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_quadtree_8h.html",tooltip=" "];
-  Node15 -> Node9 [id="edge23_Node000015_Node000009",color="steelblue1",style="solid",tooltip=" "];
-  Node15 -> Node3 [id="edge24_Node000015_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node15 -> Node4 [id="edge25_Node000015_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node15 -> Node6 [id="edge26_Node000015_Node000006",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node6 [id="edge27_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node9 [id="edge24_Node000015_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node3 [id="edge25_Node000015_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node4 [id="edge26_Node000015_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node6 [id="edge27_Node000015_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node6 [id="edge28_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
 }

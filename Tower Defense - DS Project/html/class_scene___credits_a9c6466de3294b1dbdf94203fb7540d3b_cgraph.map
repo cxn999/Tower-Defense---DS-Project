@@ -1,0 +1,11 @@
+<map id="Scene_Credits::sRender" name="Scene_Credits::sRender">
+<area shape="rect" id="Node000001" title="virtual method of the base class" alt="" coords="5,81,168,108"/>
+<area shape="rect" id="Node000002" href="$class_assets.html#a82a07c4ce9f847b53f635018533c160c" title=" " alt="" coords="224,5,371,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,78,215,41,235,35,236,40,217,47,122,83"/>
+<area shape="rect" id="Node000003" href="$class_game_engine.html#a2db9a2dd6d6cc9879ec988690837f09e" title=" " alt="" coords="216,56,379,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="168,82,200,78,200,84,169,88"/>
+<area shape="rect" id="Node000004" href="$class_animation.html#adc3d127aedf807dccbfaae49290f3c76" title=" " alt="" coords="228,107,367,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="169,102,213,107,212,112,168,107"/>
+<area shape="rect" id="Node000005" href="$class_game_engine.html#ab54532076e85b26619be743450d3a0e5" title=" " alt="" coords="224,157,371,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="122,106,217,143,236,150,235,155,215,148,120,111"/>
+</map>

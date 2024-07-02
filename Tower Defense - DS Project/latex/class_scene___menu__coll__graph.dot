@@ -172,8 +172,8 @@ digraph "Scene_Menu"
 ,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
   Node8 -> Node2 [id="edge34_Node000002_Node000008",color="steelblue1",style="solid",tooltip=" ",label=" #m_currentFrame",fontcolor="grey" ,arrowhead="odiamond"];
   Node9 -> Node2 [id="edge35_Node000002_Node000009",color="steelblue1",style="solid",tooltip=" ",label=" #m_hasEnded\n#m_paused",fontcolor="grey" ,arrowhead="odiamond"];
-  Node6 -> Node1 [id="edge36_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" ",label=" #m_title",fontcolor="grey" ,arrowhead="odiamond"];
-  Node15 -> Node1 [id="edge37_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" ",label=" #m_menuText\n#m_titleText",fontcolor="grey" ,arrowhead="odiamond"];
+  Node6 -> Node1 [id="edge36_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" ",label=" #m_title1\n#m_title2",fontcolor="grey" ,arrowhead="odiamond"];
+  Node15 -> Node1 [id="edge37_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" ",label=" #m_menuText\n#m_titleText1\n#m_titleText2",fontcolor="grey" ,arrowhead="odiamond"];
   Node15 [id="Node000015",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">Text</TD></TR>
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>

@@ -68,9 +68,13 @@ void \mbox{\hyperlink{class_scene___menu_a1293fb9b99a662d7fa6416fbcf857541}{s\+D
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::string \mbox{\hyperlink{class_scene___menu_aa7cd7d21b0b727d1a76e8d6cb3d48a3d}{m\+\_\+title}} = "{}TOWER DEFENSE"{}
+std\+::string \mbox{\hyperlink{class_scene___menu_a24a9295b511a893ca76a1f74fb42d9ca}{m\+\_\+title1}} = "{}TOWER OF"{}
 \item 
-sf\+::\+Text \mbox{\hyperlink{class_scene___menu_accf268891589938aacb6249b95be1765}{m\+\_\+title\+Text}}
+std\+::string \mbox{\hyperlink{class_scene___menu_a8a4b04995fdfbb8a93653eefd42895d0}{m\+\_\+title2}} = "{}THE FOREST"{}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___menu_aa298926cd5be1fe933de1908ed30f7bc}{m\+\_\+title\+Text1}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_scene___menu_aea73be927e03ba86c736adcc26588dca}{m\+\_\+title\+Text2}}
 \item 
 std\+::vector$<$ sf\+::\+Text $>$ \mbox{\hyperlink{class_scene___menu_a11b4229f213c9779aa1a8fcf8a856862}{m\+\_\+texts}}
 \item 
@@ -106,8 +110,7 @@ bool \mbox{\hyperlink{class_scene_ac4ef25d90a952ae5f93e80e5fd939d03}{m\+\_\+has\
 {\footnotesize\ttfamily \label{class_scene___menu_a0d71fab24a893ff0b270271180186b65} 
 Scene\+\_\+\+Menu\+::\+Scene\+\_\+\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_engine}{Game\+Engine}} \texorpdfstring{$\ast$}{*}}]{game\+Engine}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,16 +126,14 @@ Here is the call graph for this function\+:
 {\footnotesize\ttfamily \label{class_scene___menu_ac333bd8b02726ee6db5706219e70073e} 
 void Scene\+\_\+\+Menu\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___menu_ac333bd8b02726ee6db5706219e70073e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -149,16 +150,14 @@ void Scene\+\_\+\+Menu\+::on\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 Implements \mbox{\hyperlink{class_scene_af53e066bb222802c6287eb9d749ef0b4}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=317pt]{class_scene___menu_a6f9695c142fe978a98aa94649d3f966e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -175,8 +174,7 @@ void Scene\+\_\+\+Menu\+::s\+Do\+Action (\begin{DoxyParamCaption}\item[{const \m
 
 Implements \mbox{\hyperlink{class_scene_aa445449fc0befdff76d7228aaf5a90e4}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -193,16 +191,14 @@ void Scene\+\_\+\+Menu\+::s\+Render (\begin{DoxyParamCaption}{}{}\end{DoxyParamC
 
 Implements \mbox{\hyperlink{class_scene_a081ddb41b1f3c25080308dd0d21ebb5b}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_scene___menu_a4aa2a808fcf50c6767998657d3f4657e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -219,8 +215,7 @@ void Scene\+\_\+\+Menu\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 
 Implements \mbox{\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{Scene}}.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -260,17 +255,29 @@ int Scene\+\_\+\+Menu\+::m\+\_\+selected\+Menu\+Index = 0\hspace{0.3cm}{\ttfamil
 {\footnotesize\ttfamily \label{class_scene___menu_a11b4229f213c9779aa1a8fcf8a856862} 
 std\+::vector$<$sf\+::\+Text$>$ Scene\+\_\+\+Menu\+::m\+\_\+texts\hspace{0.3cm}{\ttfamily [protected]}}
 
-\Hypertarget{class_scene___menu_aa7cd7d21b0b727d1a76e8d6cb3d48a3d}\index{Scene\_Menu@{Scene\_Menu}!m\_title@{m\_title}}
-\index{m\_title@{m\_title}!Scene\_Menu@{Scene\_Menu}}
-\doxysubsubsection{\texorpdfstring{m\_title}{m\_title}}
-{\footnotesize\ttfamily \label{class_scene___menu_aa7cd7d21b0b727d1a76e8d6cb3d48a3d} 
-std\+::string Scene\+\_\+\+Menu\+::m\+\_\+title = "{}TOWER DEFENSE"{}\hspace{0.3cm}{\ttfamily [protected]}}
+\Hypertarget{class_scene___menu_a24a9295b511a893ca76a1f74fb42d9ca}\index{Scene\_Menu@{Scene\_Menu}!m\_title1@{m\_title1}}
+\index{m\_title1@{m\_title1}!Scene\_Menu@{Scene\_Menu}}
+\doxysubsubsection{\texorpdfstring{m\_title1}{m\_title1}}
+{\footnotesize\ttfamily \label{class_scene___menu_a24a9295b511a893ca76a1f74fb42d9ca} 
+std\+::string Scene\+\_\+\+Menu\+::m\+\_\+title1 = "{}TOWER OF"{}\hspace{0.3cm}{\ttfamily [protected]}}
 
-\Hypertarget{class_scene___menu_accf268891589938aacb6249b95be1765}\index{Scene\_Menu@{Scene\_Menu}!m\_titleText@{m\_titleText}}
-\index{m\_titleText@{m\_titleText}!Scene\_Menu@{Scene\_Menu}}
-\doxysubsubsection{\texorpdfstring{m\_titleText}{m\_titleText}}
-{\footnotesize\ttfamily \label{class_scene___menu_accf268891589938aacb6249b95be1765} 
-sf\+::\+Text Scene\+\_\+\+Menu\+::m\+\_\+title\+Text\hspace{0.3cm}{\ttfamily [protected]}}
+\Hypertarget{class_scene___menu_a8a4b04995fdfbb8a93653eefd42895d0}\index{Scene\_Menu@{Scene\_Menu}!m\_title2@{m\_title2}}
+\index{m\_title2@{m\_title2}!Scene\_Menu@{Scene\_Menu}}
+\doxysubsubsection{\texorpdfstring{m\_title2}{m\_title2}}
+{\footnotesize\ttfamily \label{class_scene___menu_a8a4b04995fdfbb8a93653eefd42895d0} 
+std\+::string Scene\+\_\+\+Menu\+::m\+\_\+title2 = "{}THE FOREST"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___menu_aa298926cd5be1fe933de1908ed30f7bc}\index{Scene\_Menu@{Scene\_Menu}!m\_titleText1@{m\_titleText1}}
+\index{m\_titleText1@{m\_titleText1}!Scene\_Menu@{Scene\_Menu}}
+\doxysubsubsection{\texorpdfstring{m\_titleText1}{m\_titleText1}}
+{\footnotesize\ttfamily \label{class_scene___menu_aa298926cd5be1fe933de1908ed30f7bc} 
+sf\+::\+Text Scene\+\_\+\+Menu\+::m\+\_\+title\+Text1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_scene___menu_aea73be927e03ba86c736adcc26588dca}\index{Scene\_Menu@{Scene\_Menu}!m\_titleText2@{m\_titleText2}}
+\index{m\_titleText2@{m\_titleText2}!Scene\_Menu@{Scene\_Menu}}
+\doxysubsubsection{\texorpdfstring{m\_titleText2}{m\_titleText2}}
+{\footnotesize\ttfamily \label{class_scene___menu_aea73be927e03ba86c736adcc26588dca} 
+sf\+::\+Text Scene\+\_\+\+Menu\+::m\+\_\+title\+Text2\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

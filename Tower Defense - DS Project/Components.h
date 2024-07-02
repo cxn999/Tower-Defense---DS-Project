@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Animation.h"
 #include "Assets.h"
 #include "Vec2.h"
@@ -18,14 +17,14 @@ class CTransform : public Component {
 public:
 	Vec2 pos = { 0.0, 0.0 };
 	Vec2 prevPos = { 0.0, 0.0 };
-	Vec2 scale = { 1.0, 1.0 };
 	Vec2 velocity = { 0.0, 0.0 };
-	float angle = 0;
+	size_t index = 0;
 	bool move = true;
 
 	CTransform() {}
-	CTransform(const Vec2 & p) : pos(p) {}
-	CTransform(const Vec2& p, const Vec2& v, const Vec2& sc, float a, bool m) : pos(p), velocity(v), scale(sc), angle(a), move(m) {}
+	CTransform(const Vec2& p) : pos(p) {}
+
+	CTransform(const Vec2& p, const Vec2& v, size_t i, bool m) : pos(p), velocity(v), index(i), move(m) {}
 };
 
 class CLifeSpan : public Component {
@@ -56,13 +55,6 @@ public:
 	bool repeat = false;
 	CAnimation() {}
 	CAnimation(const Animation & animation, bool r) : animation(animation), repeat(r) {}
-};
-
-class CGravity : public Component {
-public:
-	float gravity = 0;
-	CGravity() {}
-	CGravity(float g) : gravity(g) {}
 };
 
 class CState : public Component {

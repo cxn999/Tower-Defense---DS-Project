@@ -1956,11 +1956,12 @@ void Scene_Play::sUpgrade() {
 	auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 	
 	if (player_animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		if (m_player->getComponent<CInput>().rightClick && m_player->getComponent<CState>().state != "upgrade") {
+		auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
+
+		if (m_player->getComponent<CInput>().rightClick && m_player->getComponent<CState>().state != "upgrade" && m_coins >= upgradePrice) {
 			if (m_player->getComponent<CLevel>().level < m_player->getComponent<CLevel>().max_level) {
 				m_player->getComponent<CLevel>().level++;
 				m_player->getComponent<CInput>().rightClick = false;
-				auto upgradePrice = m_player->getComponent<CHealth>().totalHealth * 0.6 + 300;
 				if (m_coins >= upgradePrice) {
 					m_coins -= upgradePrice;
 					auto& cHealth = m_player->getComponent<CHealth>();
@@ -1974,7 +1975,9 @@ void Scene_Play::sUpgrade() {
 	}
 
 	for (auto& defense : m_entityManager.getEntities("defense")) {
-		if (defense->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		auto upgradePrice = 80 + 40 * (defense->getComponent<CLevel>().level - 1);
+
+		if (defense->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && m_coins >= upgradePrice) {
 
 			if (defense->getComponent<CAnimation>().animation.getName().find("construction") != std::string::npos) continue;
 
@@ -1984,7 +1987,6 @@ void Scene_Play::sUpgrade() {
 				if (defense->getComponent<CLevel>().level < defense->getComponent<CLevel>().max_level) {
 					defense->getComponent<CLevel>().level++;
 					defense->getComponent<CInput>().rightClick = false;
-					auto upgradePrice = 80 + 40 * (defense->getComponent<CLevel>().level-1);
 					if (m_coins >= upgradePrice) {
 						m_coins -= upgradePrice;
 						auto& cHealth = m_player->getComponent<CHealth>();

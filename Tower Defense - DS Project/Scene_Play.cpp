@@ -260,6 +260,9 @@ void Scene_Play::sRender() {
 			}
 		}
 	}
+
+	sShop();
+
 	if (m_grassGrid && !m_paused) {
 		int n = 0;
 		for (auto& grassRect : m_grassRectanglesGrid) {
@@ -276,7 +279,8 @@ void Scene_Play::sRender() {
 		for (auto& roadRect : m_roadRectanglesGrid) {
 			roadRect.setFillColor(sf::Color(219, 116, 209, 80));
 			roadRect.setOutlineColor(sf::Color::Magenta);
-			if (m_selectedItem == 3) {
+			if (m_selectedItem == 5) {
+				std::cout << m_selectedItem << std::endl;
 				if (m_usedRoadRectanglesIndex[n] == true) {
 					roadRect.setFillColor(sf::Color(255, 0, 0, 80));
 					roadRect.setOutlineColor(sf::Color::Red);
@@ -286,8 +290,6 @@ void Scene_Play::sRender() {
 			n++;
 		}
 	}
-	
-	sShop();
 
 	if (m_mouseItem) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
@@ -1279,7 +1281,6 @@ void Scene_Play::sShop() {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (click && rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y) && !m_mouseItem) {
-
 			if (i < 3) {
 				if (m_lastFrameDefenseSpawn + 305 > m_currentFrame && m_lastFrameDefenseSpawn != 0)
 					continue;

@@ -12,6 +12,8 @@
 #include <cmath>
 #include <iomanip>
 #include <sstream>
+#include <algorithm>
+
 
 Scene_Play::Scene_Play(GameEngine* gameEngine) 
 	: Scene(gameEngine)
@@ -217,9 +219,11 @@ void Scene_Play::sRender() {
 	window.draw(m_game->getAssets().getAnimation("background").getSprite());
 
 	if (m_drawTextures) {
-		for (auto e : m_entityManager.getEntities()) {
+		for (auto& e : m_entityManager.getEntities()) {
 			if (e->tag() == "barricade") continue;
 			if (e->getComponent<CType>().type == "bee") continue;
+			if (e->tag() == "defense" || e->tag() == "archer") continue;
+
 			if (e->tag() != "enemyBoss")
 				if (e->getComponent<CState>().effect == "freeze")
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
@@ -235,7 +239,7 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 
-		for (auto e : m_entityManager.getEntities("barricade")) {
+		for (auto& e : m_entityManager.getEntities("barricade")) {
 			if (e->tag() != "enemyBoss")
 					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
 			if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
@@ -243,7 +247,7 @@ void Scene_Play::sRender() {
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
 
-		for (auto e : m_entityManager.getEntities("enemy")) {
+		for (auto& e : m_entityManager.getEntities("enemy")) {
 			if (e->getComponent<CType>().type == "bee") {
 				if (e->tag() != "enemyBoss")
 					if (e->getComponent<CState>().effect == "freeze")
@@ -261,7 +265,7 @@ void Scene_Play::sRender() {
 			}
 		}
 
-		for (auto e : m_entityManager.getEntities("enemyBoss")) {
+		for (auto& e : m_entityManager.getEntities("enemyBoss")) {
 			if (e->getComponent<CType>().type == "bee") {
 				if (e->tag() != "enemyBoss")
 					if (e->getComponent<CState>().effect == "freeze")
@@ -277,6 +281,24 @@ void Scene_Play::sRender() {
 					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 				window.draw(e->getComponent<CAnimation>().animation.getSprite());
 			}
+		}
+
+		auto& defenses = m_entityManager.getEntities("defense");
+
+		// Sort the vector based on the Y component of the CTransform component
+		std::sort(defenses.begin(), defenses.end(), [](const auto& lhs, const auto& rhs) {
+			return lhs->getComponent<CTransform>().pos.y < rhs->getComponent<CTransform>().pos.y;
+			});
+
+		// Accessing the sorted vector
+		for (const auto& entity : defenses) {
+			window.draw(entity->getComponent<CAnimation>().animation.getSprite());
+		}
+
+		for (auto& archer : m_entityManager.getEntities("archer")) {
+			auto & sprite = archer->getComponent<CAnimation>().animation.getSprite();
+			sprite.setColor(sf::Color(255, 255, 255));
+			window.draw(sprite);
 		}
 	}
 	

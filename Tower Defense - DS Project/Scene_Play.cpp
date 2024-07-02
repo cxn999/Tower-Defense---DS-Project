@@ -764,6 +764,7 @@ void Scene_Play::sAnimation() {
 			if (type == "area") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerAreaIdle"));
 				archer->addComponent<CDelay>(0, 200);
+				archer->addComponent<CAttack>(15);
 			}
 			else if (type == "freeze") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerFreezeIdle"));
@@ -771,11 +772,11 @@ void Scene_Play::sAnimation() {
 			}
 			else if (type == "target") {
 				archer->getComponent<CAnimation>().animation = (m_game->getAssets().getAnimation("D_archerTargetIdle"));
+				archer->addComponent<CAttack>(18);
 			}
 
 			archer->addComponent<CTransform>(d_pos);
 			archer->addComponent<CRange>(265);
-			archer->addComponent<CAttack>(15);
 			archer->addComponent<CState>("idle", "vertical");
 		}
 		d.animation.getSprite().setScale(2, 2);		
@@ -1556,18 +1557,74 @@ void Scene_Play::sHealth() {
 void Scene_Play::sInfo() {
 	m_drawInfo = false;
 	m_infoVector.clear();
+	int i = 0;
 	for (auto& rect : m_shopRectangles) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());
 		if (rect.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 			m_drawInfo = true;
 			auto& f = m_game->getAssets().getFont("RETROGAMING");
-			m_infoVector.push_back(sf::Text("Attack damage: 15", f, 20));
-			m_infoVector[0].setPosition(1268, 700);
-			m_infoVector.push_back(sf::Text("Attack speed: 5", f, 20));
-			m_infoVector[1].setPosition(1268, 725);
-			m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
-			m_infoVector[2].setPosition(1268, 750);
+
+			switch (i) {
+			case 0:
+				m_infoVector.push_back(sf::Text("Red Archer Tower", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector[0].setFillColor(sf::Color(130, 9, 15));
+				m_infoVector.push_back(sf::Text("Area damage: 60", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector.push_back(sf::Text("Attack speed: 3.33s", f, 20));
+				m_infoVector[2].setPosition(1268, 750);
+				m_infoVector.push_back(sf::Text("Cost: 20", f, 20));
+				m_infoVector[3].setPosition(1268, 775);
+				break;
+			case 1:
+				m_infoVector.push_back(sf::Text("Blue Archer Tower", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector[0].setFillColor(sf::Color::Blue);
+				m_infoVector.push_back(sf::Text("Speed of enemies: 50%", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector.push_back(sf::Text("Attack speed: 3.33s", f, 20));
+				m_infoVector[2].setPosition(1268, 750);
+				m_infoVector.push_back(sf::Text("Cost: 30", f, 20));
+				m_infoVector[3].setPosition(1268, 775);
+				break;
+			case 2:
+				m_infoVector.push_back(sf::Text("Green Archer Tower", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector[0].setFillColor(sf::Color::Green);
+				m_infoVector.push_back(sf::Text("Attack damage: 18", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector.push_back(sf::Text("Attack speed: 0.2s", f, 20));
+				m_infoVector[2].setPosition(1268, 750);
+				m_infoVector.push_back(sf::Text("Cost: 25", f, 20));
+				m_infoVector[3].setPosition(1268, 775);
+				break;
+			case 3:
+				m_infoVector.push_back(sf::Text("Lightning", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector.push_back(sf::Text("Attack damage: 120", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				m_infoVector.push_back(sf::Text("Attack speed: 1s", f, 20));
+				m_infoVector[2].setPosition(1268, 750);
+				m_infoVector.push_back(sf::Text("Cost: 150", f, 20));
+				m_infoVector[3].setPosition(1268, 775);
+				break;
+			case 4:
+				m_infoVector.push_back(sf::Text("Heal", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector.push_back(sf::Text("Tower HP: +50", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				break;
+			case 5:
+				m_infoVector.push_back(sf::Text("Barricade", f, 20));
+				m_infoVector[0].setPosition(1268, 700);
+				m_infoVector.push_back(sf::Text("HP: 200", f, 20));
+				m_infoVector[1].setPosition(1268, 725);
+				break;
+				// code block
+				break;
+			}
 		}
+		i++;
 	}
 	for (auto& ent : m_entityManager.getEntities()) {
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());

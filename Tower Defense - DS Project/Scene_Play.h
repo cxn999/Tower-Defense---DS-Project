@@ -6,7 +6,7 @@
 class Scene_Play : public Scene {
 protected:
 	sf::Text m_gridText;
-	std::string m_levelPath;
+
 
 	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
@@ -28,6 +28,7 @@ protected:
 	sf::RectangleShape m_lightningSquare; // Square of attack
 	sf::RectangleShape m_defenseSquare; // Square of defense tower
 	sf::RectangleShape m_nightFilter;	// Night filter square
+	
 
 	Vec2 m_gridSize = { 64,64 }; // size of the grid
 
@@ -50,14 +51,17 @@ protected:
 	sf::Clock m_weatherClock;	// Clock for moving the clouds
 	sf::Clock m_nightClock;		// Clock for the day/night time
 
+	sf::Sprite m_pauseBackground;
+
 public:
-	Scene_Play(GameEngine* gameEngine, const std::string& levelPath);
+	Scene_Play(GameEngine* gameEngine);
 
 	// Check which is public or private smh
-	void init(const std::string & path);
+	void init();
 	void update();
 
 	void onEnd();
+	void replay();
 
 	// Systems
 	void sAnimation();

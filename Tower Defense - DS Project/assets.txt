@@ -103,7 +103,7 @@ Texture lightningShop Assets\Shop\Lightning_shop.png
 Texture background Assets\background.png
 Texture backgroundMenu Assets\MenuBackground.png
 Texture backgroundSettings Assets\SettingsBackground.png
-
+Texture backgroundPause Assets\pauseBackground.png
 
 ------------------------- ANIMATIONS -------------------------
 
@@ -169,8 +169,8 @@ Animation constructionTower constructionTower 1 0
 
 =================TARGET TOWER===============
 Animation targetTower2 targetTower2 1 0
-Animation targetTower3 targetTower3 4 4
-Animation targetTower4 targetTower4 4 4
+Animation targetTower3 targetTower3 4 10
+Animation targetTower4 targetTower4 4 10
 Animation upgradeTargetTower1 upgradeTargetTower1 4 10
 Animation upgradeTargetTower2 upgradeTargetTower2 4 10
 Animation upgradeTargetTower3 upgradeTargetTower3 4 10
@@ -180,8 +180,8 @@ Animation D_archerTargetAttack D_archerTargetAttack 6 20
 Animation S_archerTargetAttack S_archerTargetAttack 6 20
 =================AREA TOWER===============
 Animation areaTower2 areaTower2 1 0
-Animation areaTower3 areaTower3 4 4
-Animation areaTower4 areaTower4 4 4
+Animation areaTower3 areaTower3 4 10
+Animation areaTower4 areaTower4 4 10
 Animation upgradeAreaTower1 upgradeAreaTower1 4 10
 Animation upgradeAreaTower2 upgradeAreaTower2 4 10
 Animation upgradeAreaTower3 upgradeAreaTower3 4 10
@@ -191,8 +191,8 @@ Animation D_archerAreaAttack D_archerAreaAttack 6 20
 Animation S_archerAreaAttack S_archerAreaAttack 6 20
 =================FREEZE TOWER===============
 Animation freezeTower2 freezeTower2 1 0
-Animation freezeTower3 freezeTower3 4 4
-Animation freezeTower4 freezeTower4 4 4
+Animation freezeTower3 freezeTower3 4 10
+Animation freezeTower4 freezeTower4 4 10
 Animation upgradeFreezeTower1 upgradeFreezeTower1 4 10
 Animation upgradeFreezeTower2 upgradeFreezeTower2 4 10
 Animation upgradeFreezeTower3 upgradeFreezeTower3 4 10
@@ -212,6 +212,8 @@ Animation shopAreaTower shopAreaTower 1 0
 Animation shopFreezeTower shopFreezeTower 1 0
 Animation shopTargetTower shopTargetTower 1 0
 Animation lightningShop lightningShop 1 0
+
+Animation backgroundPause backgroundPause 1 0 
 
 ------------------------- MUSICS -------------------------
 

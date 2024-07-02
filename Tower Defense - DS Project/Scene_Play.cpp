@@ -79,7 +79,7 @@ void Scene_Play::init(const std::string& levelPath) {
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Mouse::Right, "UPGRADE");
+	registerAction(sf::Mouse::Right, "RIGHTCLICK");
 	registerAction(sf::Mouse::Left, "CLICK");
 
 	spawnPlayer();
@@ -126,12 +126,12 @@ void Scene_Play::sDoAction(const Action& action) {
 		}
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
-		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = true; }
+		else if (action.name() == "RIGHTCLICK") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
 	}
 	else if (action.type() == "END") {
 		if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = false; }
-		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = false; }
+		else if (action.name() == "RIGHTCLICK") { m_player->getComponent<CInput>().rightClick = false; }
 	}
 }
 
@@ -231,7 +231,26 @@ void Scene_Play::sRender() {
 				e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
 			window.draw(e->getComponent<CAnimation>().animation.getSprite());
 		}
+
 		for (auto e : m_entityManager.getEntities("enemy")) {
+			if (e->getComponent<CType>().type == "bee") {
+				if (e->tag() != "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 255, 255));
+				else if (e->tag() == "enemyBoss")
+					if (e->getComponent<CState>().effect == "freeze")
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(110, 133, 255, 200));
+					else
+						e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 155));
+				if (e->hasComponent<CHealth>() && e->getComponent<CHealth>().prevHealth > e->getComponent<CHealth>().health)
+					e->getComponent<CAnimation>().animation.getSprite().setColor(sf::Color(255, 0, 0, 200));
+				window.draw(e->getComponent<CAnimation>().animation.getSprite());
+			}
+		}
+
+		for (auto e : m_entityManager.getEntities("enemyBoss")) {
 			if (e->getComponent<CType>().type == "bee") {
 				if (e->tag() != "enemyBoss")
 					if (e->getComponent<CState>().effect == "freeze")
@@ -1367,6 +1386,13 @@ void Scene_Play::sSpawnEnemy(size_t line) {
 
 void Scene_Play::sShop() {
 	int i = 0;
+
+	if (m_player->getComponent<CInput>().rightClick && m_mouseItem) {
+		m_mouseItem = false;
+		m_roadGrid = false;
+		m_grassGrid = false;
+	}
+
 	for (auto & rect : m_shopRectangles) {
 		bool& click = m_player->getComponent<CInput>().click;
 		auto mouse_pos = sf::Mouse::getPosition(m_game->window());

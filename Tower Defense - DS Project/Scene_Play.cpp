@@ -1359,7 +1359,7 @@ void Scene_Play::sEnemySpawner() {
 		sSpawnEnemy(rand() % 3 + 1);	
 	}
 	if (t >= 1) {
-		if (t % 1 == 0 && m_spawnRateFrame >= 30) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
+		if (t % 1 == 0 && m_spawnRateFrame >= 5) {		//Each second that passes by, the n of frames needed for an enemy to spawn gets reduced by 2 
 			m_spawnRateFrame -= 1;
 			m_clock.restart();
 		}

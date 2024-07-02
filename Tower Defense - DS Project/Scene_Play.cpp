@@ -114,6 +114,9 @@ void Scene_Play::init() {
 
 	m_nightFilter.setSize(sf::Vector2f(m_game->window().getSize().x, m_game->window().getSize().y * 0.72));
 	m_nightFilter.setFillColor(sf::Color(0, 0, 0, 0));
+
+	m_pauseBackground = m_game->getAssets().getAnimation("backgroundPause").getSprite();
+	m_pauseBackground.setPosition(sf::Vector2f(m_game->window().getSize().x / 2, m_game->window().getSize().y * 0.86));
 }
 
 void Scene_Play::sDoAction(const Action& action) {
@@ -448,17 +451,13 @@ void Scene_Play::sRender() {
 	 window.draw(m_helpPauseText);
 	
 
-	 if (!m_player->isActive() || m_paused) {
+	if (!m_player->isActive() || m_paused) {
 		 sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 sf::Text gameOver = sf::Text("GAME OVER", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 gameOver.setFillColor(sf::Color::Red);
 
-		 auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x - 50.f, window.getSize().y * 0.22f));
-		 rect.setFillColor(sf::Color(180, 89, 69));
-		 rect.setPosition(27.f, window.getSize().y * 0.745f);
-		 rect.setOutlineThickness(31.f);
-		 rect.setOutlineColor(sf::Color(115, 77, 66));
+		
 
 		 replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
 		 gameOver.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
@@ -472,7 +471,7 @@ void Scene_Play::sRender() {
 		 replay.setOutlineColor(sf::Color::Black);
 		 quit.setOutlineColor(sf::Color::Black);
 
-		 window.draw(rect);
+		 window.draw(m_pauseBackground); 
 		 window.draw(replay);
 
 		 window.draw(gameOver);
@@ -486,11 +485,7 @@ void Scene_Play::sRender() {
 		sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40); 
 		m_helpPauseText = sf::Text("Resume: P", m_game->getAssets().getFont("RETROGAMING"), 40);
 
-		auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x - 50.f , window.getSize().y * 0.22f)); 
-		rect.setFillColor(sf::Color(180, 89, 69));
-		rect.setPosition(27.f, window.getSize().y * 0.745f); 
-		rect.setOutlineThickness(31.f);
-		rect.setOutlineColor(sf::Color(115, 77, 66));
+		
 
 		replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
 		quit.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
@@ -504,7 +499,7 @@ void Scene_Play::sRender() {
 		replay.setOutlineColor(sf::Color::Black);
 		quit.setOutlineColor(sf::Color::Black);
 
-		window.draw(rect); 
+		window.draw(m_pauseBackground);
 		window.draw(replay); 
 		
 		window.draw(m_helpPauseText); 

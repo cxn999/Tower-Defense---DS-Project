@@ -103,7 +103,7 @@ Texture lightningShop Assets\Shop\Lightning_shop.png
 Texture background Assets\background.png
 Texture backgroundMenu Assets\MenuBackground.png
 Texture backgroundSettings Assets\SettingsBackground.png
-
+Texture backgroundPause Assets\pauseBackground.png
 
 ------------------------- ANIMATIONS -------------------------
 
@@ -212,6 +212,8 @@ Animation shopAreaTower shopAreaTower 1 0
 Animation shopFreezeTower shopFreezeTower 1 0
 Animation shopTargetTower shopTargetTower 1 0
 Animation lightningShop lightningShop 1 0
+
+Animation backgroundPause backgroundPause 1 0 
 
 ------------------------- MUSICS -------------------------
 

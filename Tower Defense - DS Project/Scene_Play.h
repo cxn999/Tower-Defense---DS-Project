@@ -28,6 +28,7 @@ protected:
 	sf::RectangleShape m_lightningSquare; // Square of attack
 	sf::RectangleShape m_defenseSquare; // Square of defense tower
 	sf::RectangleShape m_nightFilter;	// Night filter square
+	
 
 	Vec2 m_gridSize = { 64,64 }; // size of the grid
 
@@ -49,6 +50,8 @@ protected:
 	sf::Clock m_clock;			// Clock for calculating the enemy boss spawn rate
 	sf::Clock m_weatherClock;	// Clock for moving the clouds
 	sf::Clock m_nightClock;		// Clock for the day/night time
+
+	sf::Sprite m_pauseBackground;
 
 public:
 	Scene_Play(GameEngine* gameEngine);

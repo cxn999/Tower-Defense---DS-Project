@@ -11,12 +11,11 @@
 #include <time.h>
 #include <cmath>
 
-Scene_Play::Scene_Play(GameEngine* gameEngine, const std::string& levelPath) 
+Scene_Play::Scene_Play(GameEngine* gameEngine) 
 	: Scene(gameEngine)
-	, m_levelPath(levelPath) 
 {
 	srand(time(NULL));
-	init(m_levelPath);
+	init();
 
 }
 
@@ -74,13 +73,15 @@ void Scene_Play::generateGrassRectangles() {
 	}
 }
 
-void Scene_Play::init(const std::string& levelPath) {
+void Scene_Play::init() {
 	registerAction(sf::Keyboard::P, "PAUSE");
 	registerAction(sf::Keyboard::Escape, "QUIT");
 	registerAction(sf::Keyboard::T, "TOGGLE_TEXTURE"); // Toggle drawing textures
 	registerAction(sf::Keyboard::C, "TOGGLE_COLLISION"); // Toggle drawing collision boxes
-	registerAction(sf::Mouse::Right, "RIGHTCLICK");
+	registerAction(sf::Keyboard::R, "REPLAY");
+	registerAction(sf::Mouse::Right, "RIGHTCLICK"); 
 	registerAction(sf::Mouse::Left, "CLICK");
+
 
 	spawnPlayer();
 
@@ -125,6 +126,11 @@ void Scene_Play::sDoAction(const Action& action) {
 				m_pauseP = true;
 		}
 		else if (action.name() == "QUIT") { onEnd(); }
+		else if (action.name() == "REPLAY") {
+			if (!m_player->isActive() || m_paused) {
+				replay();
+			}
+		}
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
 		else if (action.name() == "RIGHTCLICK") { m_player->getComponent<CInput>().rightClick = true; }
 		// ADD REMAINING ACTIONS
@@ -446,9 +452,11 @@ void Scene_Play::sRender() {
 		 sf::Text gameOver = sf::Text("GAME OVER", m_game->getAssets().getFont("RETROGAMING"), 40);
 		 gameOver.setFillColor(sf::Color::Red);
 
-		 auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x, window.getSize().y * 0.29f));
-		 rect.setFillColor(sf::Color(0,0,0));
-		 rect.setPosition(0.f, window.getSize().y * 0.71f); 
+		 auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x - 50.f, window.getSize().y * 0.22f));
+		 rect.setFillColor(sf::Color(180, 89, 69));
+		 rect.setPosition(27.f, window.getSize().y * 0.745f);
+		 rect.setOutlineThickness(31.f);
+		 rect.setOutlineColor(sf::Color(115, 77, 66));
 
 		 replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
 		 gameOver.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
@@ -476,15 +484,17 @@ void Scene_Play::sRender() {
 		sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40); 
 		m_helpPauseText = sf::Text("Resume: P", m_game->getAssets().getFont("RETROGAMING"), 40);
 
-		auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x , window.getSize().y * 0.29f)); 
-		rect.setFillColor(sf::Color(0,0,0));
-		rect.setPosition(0.f, window.getSize().y * 0.71f); 
+		auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x - 50.f , window.getSize().y * 0.22f)); 
+		rect.setFillColor(sf::Color(180, 89, 69));
+		rect.setPosition(27.f, window.getSize().y * 0.745f); 
+		rect.setOutlineThickness(31.f);
+		rect.setOutlineColor(sf::Color(115, 77, 66));
 
 		replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
 		quit.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
 		m_helpPauseText.setPosition(window.getSize().x * 0.7f, window.getSize().y * 0.83f);
 
-		m_helpPauseText.setOutlineThickness(3.f);
+		m_helpPauseText.setOutlineThickness(3.f); 
 		replay.setOutlineThickness(3.f);
 		quit.setOutlineThickness(3.f);
 
@@ -1873,4 +1883,8 @@ void Scene_Play::sUpgrade() {
 			}
 		}
 	}
+}
+
+void Scene_Play::replay() {
+	m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game), true);
 }

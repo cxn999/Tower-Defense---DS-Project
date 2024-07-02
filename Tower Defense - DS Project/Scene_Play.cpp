@@ -10,6 +10,8 @@
 #include <iostream>
 #include <time.h>
 #include <cmath>
+#include <iomanip>
+#include <sstream>
 
 Scene_Play::Scene_Play(GameEngine* gameEngine) 
 	: Scene(gameEngine)
@@ -756,30 +758,34 @@ void Scene_Play::sAnimation() {
 
 		if (d_state == "upgrade" && d.animation.getName().find("upgrade") == std::string::npos) {
 			if (d_level == 2) {
+				auto& archer = defense->getComponent<CFocus>().entity;
+				archer->getComponent<CTransform>().pos.y -= 12;
 				if (d_type == "area") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeAreaTower2"));
+					archer->getComponent<CDelay>().delay /= 2.f;
 				}
 				else if (d_type == "freeze") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeFreezeTower2"));
 				}
 				else if (d_type == "target") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeTargetTower2"));
+					archer->getComponent<CAttack>().damage *= 2;
 				}
-				auto& archer = defense->getComponent<CFocus>().entity;
-				archer->getComponent<CTransform>().pos.y -= 12;
 			}
 			else if (d_level == 3) {
+				auto& archer = defense->getComponent<CFocus>().entity;
+				archer->getComponent<CTransform>().pos.y -= 16;
 				if (d_type == "area") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeAreaTower3"));
+					archer->getComponent<CDelay>().delay /= 2.f;
 				}
 				else if (d_type == "freeze") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeFreezeTower3"));
 				}
 				else if (d_type == "target") {
 					d.animation = (m_game->getAssets().getAnimation("upgradeTargetTower3"));
+					archer->getComponent<CAttack>().damage *= 2;
 				}
-				auto& archer = defense->getComponent<CFocus>().entity;
-				archer->getComponent<CTransform>().pos.y -= 16;
 			}
 			d.animation.getSprite().setPosition(d_pos.x, d_pos.y);
 		}
@@ -823,8 +829,6 @@ void Scene_Play::sAnimation() {
 				archer->addComponent<CTransform>(d_pos);
 				archer->addComponent<CRange>(265);
 				archer->addComponent<CState>("idle", "vertical");
-				archer->addComponent<CLevel>(3);
-
 			}
 			else if (d_level == 2) {
 				if (d_type == "area") {
@@ -1127,6 +1131,12 @@ void Scene_Play::sMovement() {
 			if (e->getComponent<CState>().effect == "freeze") {
 				e_transform.pos += e_transform.velocity / 2.f;
 			}
+			else if (e->getComponent<CState>().effect == "freeze2") {
+				e_transform.pos += e_transform.velocity / 4.f;
+			}
+			else if (e->getComponent<CState>().effect == "freeze3") {
+				e_transform.pos += e_transform.velocity / 8.f;
+			}
 			else {
 				e_transform.pos += e_transform.velocity;
 			}
@@ -1176,6 +1186,12 @@ void Scene_Play::sMovement() {
 			if (e->getComponent<CState>().effect == "freeze") {
 				e_transform.pos += e_transform.velocity / 2.f;
 			}
+			else if (e->getComponent<CState>().effect == "freeze2") {
+				e_transform.pos += e_transform.velocity / 4.f;
+			}
+			else if (e->getComponent<CState>().effect == "freeze3") {
+				e_transform.pos += e_transform.velocity / 8.f;
+			}
 			else {
 				e_transform.pos += e_transform.velocity;
 			}
@@ -1204,6 +1220,14 @@ void Scene_Play::sMovement() {
 				if (a->getComponent<CType>().type == "freeze") {
 					e->getComponent<CState>().effect = "freeze";
 					auto & type = e->getComponent<CType>().type;
+				}
+				else if (a->getComponent<CType>().type == "freeze2") {
+					e->getComponent<CState>().effect = "freeze2";
+					auto& type = e->getComponent<CType>().type;
+				}
+				else if (a->getComponent<CType>().type == "freeze3") {
+					e->getComponent<CState>().effect = "freeze3";
+					auto& type = e->getComponent<CType>().type;
 				}
 				else if (a->getComponent<CType>().type == "area") {
 					attack(a, e);
@@ -1241,7 +1265,18 @@ void Scene_Play::sMovement() {
 					auto& cDelay = archer->getComponent<CDelay>();
 					if (cDelay.lastAttackFrame == 0 || cDelay.lastAttackFrame + cDelay.delay <= m_currentFrame) {
 						cDelay.lastAttackFrame = m_currentFrame;
-						spawnSpikes("freeze", e_transform.pos);
+						if (archer->getComponent<CLevel>().level == 1) {
+							spawnSpikes("freeze", e_transform.pos);
+
+						}
+						else if (archer->getComponent<CLevel>().level == 2) {
+							spawnSpikes("freeze2", e_transform.pos);
+
+						}
+						else if (archer->getComponent<CLevel>().level == 3) {
+							spawnSpikes("freeze3", e_transform.pos);
+
+						}
 					}
 				}
 				else if (archer_type == "area") {
@@ -1598,6 +1633,7 @@ void Scene_Play::sPlacement() {
 				defense->addComponent<CAnimation>(m_game->getAssets().getAnimation("constructionTower"), false);
 				defense->getComponent<CAnimation>().animation.getSprite().setScale(2, 2);
 				defense->getComponent<CAnimation>().animation.getSprite().setPosition(m_defensePos.x,m_defensePos.y);
+				defense->addComponent<CLevel>(3);
 
 				std::string type;
 
@@ -1721,7 +1757,7 @@ void Scene_Play::sInfo() {
 					m_infoVector[2].setPosition(1268, 750);
 				}
 			}
-			if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
+			else if (ent->tag() == "enemy" || ent->tag() == "enemyBoss") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_damage = ent->getComponent<CAttack>();
 				auto& ent_type = ent->getComponent<CType>().type;
@@ -1746,6 +1782,12 @@ void Scene_Play::sInfo() {
 				if (ent->getComponent<CState>().effect == "freeze") {
 					v = v/2.f;
 				}
+				else if (ent->getComponent<CState>().effect == "freeze2") {
+					v = v / 4.f;
+				}
+				else if (ent->getComponent<CState>().effect == "freeze3") {
+					v = v / 8.f;
+				}
 
 				velocity = "Speed: " + std::to_string((int)v);
 
@@ -1753,7 +1795,11 @@ void Scene_Play::sInfo() {
 				m_infoVector[3].setPosition(1268, 775);
 				break;
 			}
-			if (ent->tag() == "defense") {
+			else if (ent->tag() == "defense") {
+
+				if (ent->getComponent<CAnimation>().animation.getName().find("construction") != std::string::npos) continue;
+				if (ent->getComponent<CAnimation>().animation.getName().find("upgrade") != std::string::npos) continue;
+
 				auto& f = m_game->getAssets().getFont("RETROGAMING");
 				auto archer_type = ent->getComponent<CType>().type;
 				auto archer_level = ent->getComponent<CLevel>();
@@ -1763,7 +1809,14 @@ void Scene_Play::sInfo() {
 					m_infoVector[0].setFillColor(sf::Color(130, 9, 15));
 					m_infoVector.push_back(sf::Text("Area damage: 60", f, 20));
 					m_infoVector[1].setPosition(1268, 725);
-					m_infoVector.push_back(sf::Text("Attack speed: 3.33s", f, 20));
+
+					auto & archer = ent->getComponent<CFocus>().entity;
+					float s = archer->getComponent<CDelay>().delay/60.f;
+					std::stringstream stream;
+					stream << std::fixed << std::setprecision(2) << s;
+					std::string speed = "Attack Speed: " + stream.str() + "s";
+
+					m_infoVector.push_back(sf::Text(speed, f, 20));
 					m_infoVector[2].setPosition(1268, 750);
 				}
 				else if (archer_type == "freeze") {
@@ -1772,14 +1825,25 @@ void Scene_Play::sInfo() {
 					m_infoVector[0].setFillColor(sf::Color::Blue);
 					m_infoVector.push_back(sf::Text("Speed of enemies: 50%", f, 20));
 					m_infoVector[1].setPosition(1268, 725);
-					m_infoVector.push_back(sf::Text("Attack speed: 3.33s", f, 20));
+
+					auto& archer = ent->getComponent<CFocus>().entity;
+					float s = archer->getComponent<CDelay>().delay / 60.f;
+					std::stringstream stream;
+					stream << std::fixed << std::setprecision(2) << s;
+					std::string speed = "Attack Speed: " + stream.str() + "s";
+
+					m_infoVector.push_back(sf::Text(speed, f, 20));
 					m_infoVector[2].setPosition(1268, 750);
 				}
 				else if (archer_type == "target") {
 					m_infoVector.push_back(sf::Text("Green Archer Tower", f, 20));
 					m_infoVector[0].setPosition(1268, 700);
 					m_infoVector[0].setFillColor(sf::Color::Green);
-					m_infoVector.push_back(sf::Text("Attack damage: 18", f, 20));
+
+					auto& archer = ent->getComponent<CFocus>().entity;
+					int a = archer->getComponent<CAttack>().damage;
+					std::string attack = "Attack Damage: " + std::to_string(a);
+					m_infoVector.push_back(sf::Text(attack, f, 20));
 					m_infoVector[1].setPosition(1268, 725);
 					m_infoVector.push_back(sf::Text("Attack speed: 0.2s", f, 20));
 					m_infoVector[2].setPosition(1268, 750);
@@ -1811,7 +1875,7 @@ void Scene_Play::sInfo() {
 				}
 
 			}
-			if (ent->tag() == "barricade") {
+			else if (ent->tag() == "barricade") {
 				auto& ent_health = ent->getComponent<CHealth>();
 				auto& ent_level = ent->getComponent<CLevel>();
 				std::string health = "Health: " + std::to_string((int)ent_health.health) + "/" + std::to_string((int)ent_health.totalHealth);
@@ -1823,12 +1887,21 @@ void Scene_Play::sInfo() {
 }
 
 void Scene_Play::spawnSpikes(const std::string& type , const Vec2& pos) {
-	if (type == "freeze") {
+	if (type.find("freeze") != std::string::npos) {
 		auto iceSpike = m_entityManager.addEntity("attack");
 		iceSpike->addComponent<CTransform>(pos);
 		iceSpike->addComponent<CAnimation>();
 		iceSpike->getComponent<CAnimation>().animation = m_game->getAssets().getAnimation("iceSpike");
-		iceSpike->addComponent<CType>().type = "freeze";
+
+		if (type == "freeze") {
+			iceSpike->addComponent<CType>().type = "freeze";
+		}
+		else if (type == "freeze2") {
+			iceSpike->addComponent<CType>().type = "freeze2";
+		}
+		else if (type == "freeze3") {
+			iceSpike->addComponent<CType>().type = "freeze3";
+		}
 	}
 	else if (type == "area") {
 		auto woodSpike = m_entityManager.addEntity("attack");

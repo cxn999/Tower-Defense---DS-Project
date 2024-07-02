@@ -10,6 +10,7 @@ protected:
 
 	size_t m_coins = 153434340;
 	sf::Text m_coinsText;
+	sf::Text m_helpPauseText;
 
 	std::vector<sf::Text> m_infoVector;
 
@@ -21,6 +22,7 @@ protected:
 	bool m_mouseItem = false; // if the mouse has an item following it
 	bool m_attack = false; // if player has selected an attack item and clicked in a square
 	bool m_nightFall = true; // toggles change in the night filter
+	bool m_pauseP = false; // bool to check if game was paused with P 
 
 	Vec2 m_attackPos = { 0,0 };
 	sf::RectangleShape m_lightningSquare; // Square of attack

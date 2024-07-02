@@ -117,7 +117,13 @@ void Scene_Play::sDoAction(const Action& action) {
 	if (action.type() == "START") {
 		if (action.name() == "TOGGLE_TEXTURE") { m_drawTextures = !m_drawTextures; }
 		else if (action.name() == "TOGGLE_COLLISION") { m_drawCollision = !m_drawCollision; }
-		else if (action.name() == "PAUSE") { setPaused(!m_paused); }
+		else if (action.name() == "PAUSE") { 
+			setPaused(!m_paused); 
+			if (m_pauseP)
+				m_pauseP = false;
+			else
+				m_pauseP = true;
+		}
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "CLICK") { m_player->getComponent<CInput>().click = true; }
 		else if (action.name() == "UPGRADE") { m_player->getComponent<CInput>().rightClick = true; }
@@ -405,8 +411,77 @@ void Scene_Play::sRender() {
 		m_nightClock.restart();
 	}
 	window.draw(m_nightFilter);
+
 	window.draw(m_player->getComponent<CAnimation>().animation.getSprite());
-	window.display();
+
+	 m_helpPauseText = sf::Text("PRESS 'P' TO PAUSE", m_game->getAssets().getFont("RETROGAMING"), 20);
+	 m_helpPauseText.setPosition(window.getSize().x * 0.75f, window.getSize().y * 0.92f);
+	 m_helpPauseText.setOutlineColor(sf::Color::Black);
+	 m_helpPauseText.setOutlineThickness(3.f);
+	 window.draw(m_helpPauseText);
+	
+
+	 if (!m_player->isActive() || m_paused) {
+		 sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40);
+		 sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40);
+		 sf::Text gameOver = sf::Text("GAME OVER", m_game->getAssets().getFont("RETROGAMING"), 40);
+		 gameOver.setFillColor(sf::Color::Red);
+
+		 auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x, window.getSize().y * 0.29f));
+		 rect.setFillColor(sf::Color(0,0,0));
+		 rect.setPosition(0.f, window.getSize().y * 0.71f); 
+
+		 replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
+		 gameOver.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
+		 quit.setPosition(window.getSize().x * 0.7f, window.getSize().y * 0.83f);
+
+		 gameOver.setOutlineThickness(3.f);
+		 replay.setOutlineThickness(3.f);
+		 quit.setOutlineThickness(3.f);
+
+		 gameOver.setOutlineColor(sf::Color::Black);
+		 replay.setOutlineColor(sf::Color::Black);
+		 quit.setOutlineColor(sf::Color::Black);
+
+		 window.draw(rect);
+		 window.draw(replay);
+
+		 window.draw(gameOver);
+
+		 window.draw(quit);
+	}
+
+	if (m_pauseP){
+		
+		sf::Text replay = sf::Text("Replay: R", m_game->getAssets().getFont("RETROGAMING"), 40); 
+		sf::Text quit = sf::Text("Quit: ESC", m_game->getAssets().getFont("RETROGAMING"), 40); 
+		m_helpPauseText = sf::Text("Resume: P", m_game->getAssets().getFont("RETROGAMING"), 40);
+
+		auto rect = sf::RectangleShape(sf::Vector2f(window.getSize().x , window.getSize().y * 0.29f)); 
+		rect.setFillColor(sf::Color(0,0,0));
+		rect.setPosition(0.f, window.getSize().y * 0.71f); 
+
+		replay.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.83f);
+		quit.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.83f);
+		m_helpPauseText.setPosition(window.getSize().x * 0.7f, window.getSize().y * 0.83f);
+
+		m_helpPauseText.setOutlineThickness(3.f);
+		replay.setOutlineThickness(3.f);
+		quit.setOutlineThickness(3.f);
+
+		m_helpPauseText.setOutlineColor(sf::Color::Black);
+		replay.setOutlineColor(sf::Color::Black);
+		quit.setOutlineColor(sf::Color::Black);
+
+		window.draw(rect); 
+		window.draw(replay); 
+		
+		window.draw(m_helpPauseText); 
+
+		window.draw(quit); 
+
+	}
+	window.display(); 
 }
 
 void Scene_Play::sAnimation() {

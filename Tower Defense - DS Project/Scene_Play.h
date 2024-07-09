@@ -9,7 +9,7 @@ protected:
 
 
 
-	size_t m_coins = 50000;
+	size_t m_coins = 150;
 
 
 	sf::Text m_coinsText;

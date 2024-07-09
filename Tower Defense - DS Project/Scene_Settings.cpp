@@ -102,17 +102,27 @@ void Scene_Settings::onEnd() {
 
 void Scene_Settings::sDoAction(const Action& action) {
 	if (action.type() == "START") {
+		auto& clickSound = m_game->getAssets().getSound("clickSound");
+		auto& enterSound = m_game->getAssets().getSound("enterSound");
 		if (action.name() == "PAUSE") { setPaused(!m_paused); }
 		else if (action.name() == "QUIT") { onEnd(); }
 		else if (action.name() == "ENTER") { 
-			std::cout << "ENTER PRESSED" << std::endl; 
+			std::cout << "ENTER PRESSED" << std::endl;
 			if (m_selectedMenuIndex == 1) { // Toggle music on/off
+				enterSound.setVolume(m_game->getVolume());
+				enterSound.play();
 				m_game->setMusicState(!m_game->getMusic());
 				m_musicToggleText.setString(m_game->getMusic() ? "Music: On" : "Music: Off");
 			}
 		}
-		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2; }
-		else if (action.name() == "UP") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2; }
+		else if (action.name() == "DOWN") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2;
+		clickSound.setVolume(m_game->getVolume());
+		clickSound.play();
+		}
+		else if (action.name() == "UP") { m_selectedMenuIndex = (m_selectedMenuIndex + 1) % 2;
+		clickSound.setVolume(m_game->getVolume());
+		clickSound.play();
+		}
 		else if (action.name() == "LEFT" && m_selectedMenuIndex == 0) { // Adjust volume down
 			m_game->setVolume(std::max(0.0f, m_game->getVolume() - 10.0f));
 			m_volumeText.setString(std::to_string(static_cast<int>(m_game->getVolume())));

@@ -242,4 +242,5 @@ Music play Assets\Musics\surviveTHEHORDE.ogg
 
 ------------------------SOUND EFFECTS -------------------------
 
-
+SoundEffects clickSound Assets\SoundEffects\click1.ogg
+SoundEffects enterSound Assets\SoundEffects\enterSound.ogg
